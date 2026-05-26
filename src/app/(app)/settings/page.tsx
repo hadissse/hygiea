@@ -1,111 +1,167 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Headline } from '@/components/Headline';
-import { Body } from '@/components/Body';
-import { Card } from '@/components/Card';
-import { Rule } from '@/components/Rule';
+import Link from 'next/link';
 import { signOut } from '@/lib/auth';
 import { getSupabase } from '@/lib/supabase';
-import Link from 'next/link';
+import { isSynthesisEnabled, enableSynthesis, disableSynthesis } from '@/lib/synthesis';
 
-const settingsItems = [
-  { label: 'الملف الشخصي', href: '/settings/profile' },
-  { label: 'الإشعارات', href: '/settings/notifications' },
-  { label: 'المعايرة', href: '/settings/calibration' },
-  { label: 'الاستشارات والممارسة', href: '/settings/practice' },
-  { label: 'البيانات', href: '/settings/data' },
-  { label: 'عن سُكون', href: '/settings/about' },
-  { label: 'سياسة الخصوصية', href: '/settings/privacy' },
+const SETTINGS_LINKS = [
+  { label: 'Notifications',        href: '/settings/notifications' },
+  { label: 'Practice settings',    href: '/settings/practice' },
+  { label: 'Data sovereignty',     href: '/settings/data' },
+  { label: 'Privacy policy',       href: '/settings/privacy' },
+  { label: 'About Hygiea',        href: '/settings/about' },
 ];
 
 export default function SettingsPage() {
   const router = useRouter();
+  const [aiEnabled, setAiEnabled] = useState(false);
+  const [showAiOffer, setShowAiOffer] = useState(false);
 
-  const handleDeleteAccount = async () => {
-    if (!window.confirm('هل أنت متأكد؟ سيُحذف حسابك وجميع بياناتك بشكل نهائي.')) return;
+  useEffect(() => {
+    setAiEnabled(isSynthesisEnabled());
+    // Show AI offer if user has been in the app 7+ days (threshold crossed 7+ times)
+    try {
+      const raw = localStorage.getItem('hygiea.threshold.count');
+      const count = raw ? parseInt(raw, 10) : 0;
+      setShowAiOffer(count >= 7 && !isSynthesisEnabled());
+    } catch {}
+  }, []);
+
+  function toggleAI() {
+    if (aiEnabled) {
+      disableSynthesis();
+      setAiEnabled(false);
+    } else {
+      enableSynthesis();
+      setAiEnabled(true);
+      setShowAiOffer(false);
+    }
+  }
+
+  async function handleSignOut() {
+    await signOut();
+    clearHygieaStorage();
+    router.push('/welcome');
+  }
+
+  async function handleDeleteAccount() {
+    if (!window.confirm('This will permanently delete your account and all cloud data. Local data will also be cleared. Continue?')) return;
     try {
       const sb = getSupabase();
       if (sb) await sb.functions.invoke('delete-account');
-    } catch { /* ignore — we still clear local data */ }
-    const keysToRemove: string[] = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith('sukoon.')) keysToRemove.push(k);
-    }
-    keysToRemove.forEach((k) => localStorage.removeItem(k));
+    } catch {}
+    clearHygieaStorage();
     router.push('/welcome');
-  };
+  }
 
-  const handleSignOut = async () => {
-    await signOut();
-    // Clear all local Sukoon data so a new user starts fresh
-    const keysToRemove: string[] = [];
+  function clearHygieaStorage() {
+    const keys: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('sukoon.')) keysToRemove.push(k);
+      if (k && k.startsWith('hygiea.')) keys.push(k);
     }
-    keysToRemove.forEach((k) => localStorage.removeItem(k));
-    router.push('/welcome');
-  };
+    keys.forEach((k) => localStorage.removeItem(k));
+  }
 
   return (
-    <div className="px-5 py-6 flex flex-col gap-5">
-      <div className="flex items-center gap-3">
-        <Link href="/today" className="text-ink-muted hover:text-ink transition-colors">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </Link>
-        <Headline>الإعدادات</Headline>
+    <div className="pb-28 max-w-[430px] mx-auto">
+      <div className="px-5 pt-6 pb-4">
+        <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-1">
+          Settings
+        </div>
+        <h1 className="font-serif text-[1.75rem] text-ink leading-tight">Hygiea</h1>
       </div>
 
-      <Card>
-        <div className="flex flex-col">
-          {settingsItems.map((item, i) => (
-            <div key={item.label}>
+      <div className="px-5 space-y-2">
+        {/* Navigation links */}
+        <div className="rounded-[16px] overflow-hidden" style={{ background: 'rgba(28,25,23,0.04)' }}>
+          {SETTINGS_LINKS.map((item, i) => (
+            <div key={item.href}>
               <Link
                 href={item.href}
-                className="flex items-center justify-between py-3.5 text-ink hover:text-coral transition-colors"
+                className="flex items-center justify-between px-4 py-3.5"
               >
-                <span className="text-base">{item.label}</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-30 rotate-180">
+                <span className="text-sm text-ink">{item.label}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted opacity-40">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </Link>
-              {i < settingsItems.length - 1 && <Rule />}
+              {i < SETTINGS_LINKS.length - 1 && (
+                <div className="mx-4" style={{ borderTop: '1px solid var(--color-rule-soft)' }} />
+              )}
             </div>
           ))}
         </div>
-      </Card>
 
-      <button onClick={handleSignOut} className="text-right">
-        <Card>
-          <div className="flex items-center justify-between">
-            <span className="text-base text-coral">تسجيل الخروج</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E9785E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
-            </svg>
+        {/* AI synthesis */}
+        {showAiOffer && (
+          <div className="rounded-[16px] p-4" style={{ background: 'rgba(90,62,122,0.08)', border: '1px solid rgba(90,62,122,0.15)' }}>
+            <div className="text-[10px] font-medium tracking-widest uppercase mb-1" style={{ color: '#5A3E7A' }}>
+              ◇ AI orientation — opt in
+            </div>
+            <p className="text-sm text-ink-soft leading-[1.65] mb-3">
+              Once per day, Hygiea can generate a single paragraph of orientation — weaving your constitution, barometer state, exercise, and season into a brief compass for the day. No journal text, no reflections, no Rückschau entries ever reach the AI. The output is marked ◇ and deletable at any time.
+            </p>
+            <button
+              onClick={toggleAI}
+              className="text-sm font-medium px-4 py-2 rounded-[10px]"
+              style={{ background: '#5A3E7A', color: 'white' }}
+            >
+              Enable ◇ orientation
+            </button>
           </div>
-        </Card>
-      </button>
+        )}
 
-      <button onClick={handleDeleteAccount} className="text-right">
-        <Card>
-          <div className="flex items-center justify-between">
-            <span className="text-base text-ink-muted">حذف الحساب</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink-muted opacity-40">
-              <polyline points="3 6 5 6 21 6" />
-              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-              <path d="M10 11v6M14 11v6" />
-              <path d="M9 6V4h6v2" />
-            </svg>
+        {!showAiOffer && (
+          <div
+            className="rounded-[16px] p-4 flex items-center justify-between"
+            style={{ background: 'rgba(28,25,23,0.04)' }}
+          >
+            <div>
+              <div className="text-[10px] font-medium tracking-widest uppercase mb-0.5" style={{ color: '#5A3E7A' }}>
+                ◇ AI orientation
+              </div>
+              <div className="text-sm text-ink-muted">
+                {aiEnabled ? 'On — one paragraph per day' : 'Off'}
+              </div>
+            </div>
+            <button
+              onClick={toggleAI}
+              className="w-11 h-6 rounded-full transition-all relative"
+              style={{ background: aiEnabled ? '#5A3E7A' : 'rgba(28,25,23,0.15)' }}
+            >
+              <div
+                className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all"
+                style={{ left: aiEnabled ? '22px' : '2px' }}
+              />
+            </button>
           </div>
-        </Card>
-      </button>
+        )}
 
-      <div className="pt-2 text-center">
-        <Body muted className="text-sm">سُكون · الإصدار ٠.١</Body>
+        {/* Sign out */}
+        <button
+          onClick={handleSignOut}
+          className="w-full rounded-[16px] px-4 py-3.5 flex items-center justify-between"
+          style={{ background: 'rgba(28,25,23,0.04)' }}
+        >
+          <span className="text-sm" style={{ color: '#8B2E2E' }}>Sign out</span>
+        </button>
+
+        {/* Delete account */}
+        <button
+          onClick={handleDeleteAccount}
+          className="w-full rounded-[16px] px-4 py-3.5 flex items-center justify-between"
+          style={{ background: 'rgba(28,25,23,0.04)' }}
+        >
+          <span className="text-sm text-ink-muted">Delete account</span>
+        </button>
+
+        <div className="pt-2 text-center text-xs text-ink-muted/50">
+          Hygiea · spirit-soul hygiene · v0.1
+        </div>
       </div>
     </div>
   );

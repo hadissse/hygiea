@@ -16,7 +16,6 @@ export { HeroCard } from './HeroCard';
 export { MiniCard } from './MiniCard';
 export { Section } from './Section';
 export { SettingsSubHeader } from './SettingsSubHeader';
-export { StreakBadge } from './StreakBadge';
 export { TabBar } from './TabBar';
 export { TodayHeader } from './TodayHeader';
 export { TransitHeroCard } from './TransitHeroCard';

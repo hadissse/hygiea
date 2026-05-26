@@ -34,7 +34,7 @@ describe('loadEvents', () => {
   });
 
   it('returns empty array on malformed JSON', () => {
-    store['sukoon.events'] = 'not json';
+    store['hygiea.events'] = 'not json';
     expect(loadEvents()).toEqual([]);
   });
 });

@@ -97,7 +97,7 @@ export function ZoomableWheel({ size = 377, tone = 'paper', chart: chartProp }: 
   useEffect(() => {
     if (chartProp !== undefined) { setChart(chartProp); return; }
     try {
-      const stored = localStorage.getItem('sukoon.primary-chart.v1');
+      const stored = localStorage.getItem('hygiea.primary-chart.v1');
       if (stored) setChart(JSON.parse(stored));
     } catch { /* localStorage unavailable */ }
   }, [chartProp]);

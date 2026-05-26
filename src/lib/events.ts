@@ -12,7 +12,7 @@ export interface LoggedEvent {
   stamp: CosmicStamp;
 }
 
-const STORAGE_KEY = 'sukoon.events';
+const STORAGE_KEY = 'hygiea.events';
 
 export const STREAM_AR: Record<StreamKey, string> = {
   thinking: 'الفكر',

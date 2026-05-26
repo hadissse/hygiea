@@ -1,9 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { SettingsSubHeader } from '@/components/SettingsSubHeader';
-import { Card } from '@/components/Card';
-import { Body } from '@/components/Body';
+import Link from 'next/link';
 import {
   loadNotificationPrefs,
   saveNotificationPrefs,
@@ -15,18 +13,12 @@ import {
   unsubscribeFromPush,
   type NotificationPrefs,
 } from '@/lib/notifications';
-import { syncPreferences } from '@/lib/sync';
-
-function pad(n: number) {
-  return String(n).padStart(2, '0');
-}
 
 export default function NotificationsPage() {
   const [prefs, setPrefs] = useState<NotificationPrefs | null>(null);
   const [permission, setPermission] = useState<string>('default');
   const [supported, setSupported] = useState(true);
   const [requesting, setRequesting] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     setSupported(notificationsSupported());
@@ -34,139 +26,123 @@ export default function NotificationsPage() {
     setPrefs(loadNotificationPrefs());
   }, []);
 
-  const handleToggle = async () => {
-    if (!prefs) return;
-
-    if (!prefs.enabled) {
-      // Enable: request permission first
-      setRequesting(true);
-      const granted = await requestNotificationPermission();
-      setPermission(notificationPermission());
-
-      if (!granted) {
-        setRequesting(false);
-        return;
-      }
-
-      await registerServiceWorker();
+  async function handleEnable() {
+    setRequesting(true);
+    await registerServiceWorker();
+    const granted = await requestNotificationPermission();
+    if (granted && prefs) {
       const updated = { ...prefs, enabled: true };
       setPrefs(updated);
       saveNotificationPrefs(updated);
-
-      // Register server-side push subscription
-      await subscribeToPush(updated.hour, updated.minute);
-      setRequesting(false);
-    } else {
-      // Disable: remove server-side subscription
-      await unsubscribeFromPush();
-      const updated = { ...prefs, enabled: false };
-      setPrefs(updated);
-      saveNotificationPrefs(updated);
+      await subscribeToPush();
     }
-  };
-
-  const handleTimeChange = async (field: 'hour' | 'minute', raw: string) => {
-    if (!prefs) return;
-    const val = parseInt(raw, 10);
-    if (isNaN(val)) return;
-    const clamped = field === 'hour' ? Math.max(0, Math.min(23, val)) : Math.max(0, Math.min(59, val));
-    const updated = { ...prefs, [field]: clamped };
-    setPrefs(updated);
-    saveNotificationPrefs(updated);
-    // Re-subscribe with new time so the server knows the updated preferred hour
-    if (updated.enabled) await subscribeToPush(updated.hour, updated.minute);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 1500);
-    syncPreferences();
-  };
-
-  if (!supported) {
-    return (
-      <div className="py-4">
-        <SettingsSubHeader title="الإشعارات" />
-        <div className="px-5 mt-4">
-          <Card>
-            <Body muted>الإشعارات غير مدعومة في هذا المتصفح.</Body>
-          </Card>
-        </div>
-      </div>
-    );
+    setPermission(notificationPermission());
+    setRequesting(false);
   }
 
+  async function handleDisable() {
+    if (!prefs) return;
+    const updated = { ...prefs, enabled: false };
+    setPrefs(updated);
+    saveNotificationPrefs(updated);
+    await unsubscribeFromPush();
+  }
+
+  function toggleType(key: 'dawn' | 'midday' | 'dusk' | 'seasonal') {
+    if (!prefs) return;
+    const updated = { ...prefs, [key]: !prefs[key] };
+    setPrefs(updated);
+    saveNotificationPrefs(updated);
+  }
+
+  if (!prefs) return null;
+
   return (
-    <div className="py-4">
-      <SettingsSubHeader title="الإشعارات" />
-      <div className="px-5 flex flex-col gap-4 mt-2">
+    <div className="pb-28 max-w-[430px] mx-auto">
+      <div className="px-5 pt-6 pb-4">
+        <Link href="/settings" className="text-xs text-ink-muted">← Settings</Link>
+        <h1 className="font-serif text-[1.5rem] text-ink leading-tight mt-3">Notifications</h1>
+        <p className="text-sm text-ink-muted mt-1 leading-[1.65]">
+          Rhythm-only — no engagement notifications. Hygiea sends reminders at diurnal thresholds only.
+        </p>
+      </div>
 
-        {/* Main toggle */}
-        <Card>
-          <div className="flex items-center justify-between">
-            <div className="flex flex-col gap-0.5">
-              <div className="font-serif text-base text-ink">التذكير اليومي</div>
-              <Body muted className="text-xs">
-                {prefs?.enabled ? 'مفعّل' : 'موقف'}
-              </Body>
-            </div>
-            <button
-              onClick={handleToggle}
-              disabled={requesting || permission === 'denied'}
-              className={`relative w-12 h-7 rounded-full transition-colors ${
-                prefs?.enabled ? 'bg-coral' : 'bg-rule-soft'
-              } disabled:opacity-40`}
-            >
-              <span
-                className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-all ${
-                  prefs?.enabled ? 'right-1' : 'left-1'
-                }`}
-              />
-            </button>
-          </div>
-        </Card>
-
-        {/* Permission denied warning */}
-        {permission === 'denied' && (
-          <div className="rounded-[14px] bg-coral/8 border border-coral/20 p-4">
-            <Body muted className="text-sm">
-              الإشعارات محظورة في إعدادات المتصفح. افتح إعدادات الموقع وأذِن بالإشعارات.
-            </Body>
+      <div className="px-5 space-y-3">
+        {!supported && (
+          <div className="rounded-[14px] p-4" style={{ background: 'rgba(139,46,46,0.08)' }}>
+            <p className="text-sm text-ink-muted">Notifications are not supported on this device.</p>
           </div>
         )}
 
-        {/* Time picker — shown only when enabled */}
-        {prefs?.enabled && (
-          <Card>
-            <div className="flex flex-col gap-3">
-              <div className="font-serif text-base text-ink">وقت التذكير</div>
-              <div className="flex items-center gap-3 dir-ltr" dir="ltr">
-                <input
-                  type="number"
-                  min={0}
-                  max={23}
-                  value={pad(prefs.hour)}
-                  onChange={(e) => handleTimeChange('hour', e.target.value)}
-                  className="w-16 h-11 rounded-[10px] bg-cream-soft border border-rule-soft text-center text-lg font-serif text-ink focus:outline-none focus:border-coral"
-                />
-                <span className="text-xl text-ink-muted font-serif">:</span>
-                <input
-                  type="number"
-                  min={0}
-                  max={59}
-                  step={5}
-                  value={pad(prefs.minute)}
-                  onChange={(e) => handleTimeChange('minute', e.target.value)}
-                  className="w-16 h-11 rounded-[10px] bg-cream-soft border border-rule-soft text-center text-lg font-serif text-ink focus:outline-none focus:border-coral"
-                />
+        {supported && permission === 'denied' && (
+          <div className="rounded-[14px] p-4" style={{ background: 'rgba(139,46,46,0.08)' }}>
+            <p className="text-sm text-ink-muted">Notifications have been denied. Enable them in your browser settings to proceed.</p>
+          </div>
+        )}
+
+        {/* Master toggle */}
+        <div
+          className="rounded-[16px] p-4 flex items-center justify-between"
+          style={{ background: 'rgba(28,25,23,0.04)' }}
+        >
+          <div>
+            <div className="text-sm font-medium text-ink">Rhythm notifications</div>
+            <div className="text-xs text-ink-muted">
+              {prefs.enabled ? 'On' : 'Off'} — fires at dawn, midday (if exercise not done), and dusk
+            </div>
+          </div>
+          <button
+            onClick={prefs.enabled ? handleDisable : handleEnable}
+            disabled={requesting || !supported || permission === 'denied'}
+            className="w-11 h-6 rounded-full transition-all relative disabled:opacity-40"
+            style={{ background: prefs.enabled ? 'var(--color-cosmic-blue)' : 'rgba(28,25,23,0.15)' }}
+          >
+            <div
+              className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all"
+              style={{ left: prefs.enabled ? '22px' : '2px' }}
+            />
+          </button>
+        </div>
+
+        {prefs.enabled && (
+          <div className="rounded-[16px] overflow-hidden" style={{ background: 'rgba(28,25,23,0.04)' }}>
+            {(
+              [
+                { key: 'dawn' as const,     label: 'Dawn reminder',      desc: '6–9am — threshold entry' },
+                { key: 'midday' as const,   label: 'Midday practice',    desc: '11am–1pm — only if exercise not logged' },
+                { key: 'dusk' as const,     label: 'Dusk — Rückschau',   desc: '7–9pm — evening review' },
+                { key: 'seasonal' as const, label: 'Seasonal thresholds', desc: 'St John\'s, Michaelmas, Christmas, Epiphany' },
+              ] as const
+            ).map(({ key, label, desc }, i, arr) => (
+              <div key={key}>
+                <div className="px-4 py-3.5 flex items-center justify-between">
+                  <div>
+                    <div className="text-sm text-ink">{label}</div>
+                    <div className="text-xs text-ink-muted">{desc}</div>
+                  </div>
+                  <button
+                    onClick={() => toggleType(key)}
+                    className="w-10 h-5 rounded-full transition-all relative flex-shrink-0"
+                    style={{ background: prefs[key] ? 'var(--color-cosmic-blue)' : 'rgba(28,25,23,0.15)' }}
+                  >
+                    <div
+                      className="absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-all"
+                      style={{ left: prefs[key] ? '19px' : '2px' }}
+                    />
+                  </button>
+                </div>
+                {i < arr.length - 1 && (
+                  <div className="mx-4" style={{ borderTop: '1px solid var(--color-rule-soft)' }} />
+                )}
               </div>
-              {saved && <Body muted className="text-xs">حُفظ</Body>}
-            </div>
-          </Card>
+            ))}
+          </div>
         )}
 
-        {/* Explanation */}
-        <div className="px-1">
-          <Body muted className="text-xs leading-relaxed">
-            سيُرسَل إشعار يومي في الوقت المحدد يدعوك للتأمّل أو تسجيل لحظة. يعمل عند تفعيل التطبيق كـ PWA أو عند تصفّحه مفتوحًا في الخلفية.
-          </Body>
+        <div className="rounded-[14px] p-4" style={{ background: 'rgba(28,25,23,0.04)' }}>
+          <p className="text-xs text-ink-muted leading-[1.65]">
+            These notifications fire at natural daily thresholds and seasonal events. There are no re-engagement notifications, no streak reminders, and no arbitrary timing. The practice is here when you are.
+          </p>
         </div>
       </div>
     </div>

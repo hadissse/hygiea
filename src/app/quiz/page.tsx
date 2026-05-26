@@ -104,7 +104,7 @@ export default function QuizPage() {
   const persist = (next: Record<string, string[]>) => {
     setAnswers(next);
     try {
-      localStorage.setItem('sukoon.quiz', JSON.stringify(next));
+      localStorage.setItem('hygiea.quiz', JSON.stringify(next));
     } catch {
       // localStorage unavailable — ignore (UI-only flow).
     }

@@ -6,12 +6,12 @@ interface HeaderProps {
   title?: string;
 }
 
-export function Header({ title = 'سُكون' }: HeaderProps) {
+export function Header({ title = 'Hygiea' }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur-xl safe-top">
       <div className="flex items-center justify-between max-w-[430px] mx-auto h-11 px-5">
         <div className="flex items-center gap-3">
-          <Link href="/settings" className="p-1 -m-1 text-ink-muted hover:text-ink transition-colors" aria-label="الإعدادات">
+          <Link href="/settings" className="p-1 -m-1 text-ink-muted hover:text-ink transition-colors" aria-label="Settings">
             {/* Sliders / controls icon — clearly reads as settings */}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" y1="6" x2="20" y2="6" />
@@ -30,7 +30,7 @@ export function Header({ title = 'سُكون' }: HeaderProps) {
           <Link
             href="/log"
             className="p-1 -m-1 text-coral hover:text-coral/80 transition-colors"
-            aria-label="تسجيل لحظة"
+            aria-label="Log a moment"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="12" y1="5" x2="12" y2="19" />

@@ -110,7 +110,7 @@ function LogFlow() {
   const [savedEvent, setSavedEvent] = useState<LoggedEvent | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('sukoon.primary-chart.v1');
+    const stored = localStorage.getItem('hygiea.primary-chart.v1');
     if (stored) {
       try {
         setChart(JSON.parse(stored));

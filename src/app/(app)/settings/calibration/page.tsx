@@ -31,8 +31,8 @@ export default function CalibrationPage() {
     const out: CalEntry[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('sukoon.calibration.')) {
-        const raw = k.replace('sukoon.calibration.', ''); // type:key
+      if (k && k.startsWith('hygiea.calibration.')) {
+        const raw = k.replace('hygiea.calibration.', ''); // type:key
         const [type, key] = raw.split(':');
         const value = localStorage.getItem(k) || '';
         out.push({ label: `${TYPE_AR[type] ?? type} · ${key}`, value });

@@ -2,186 +2,298 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Meta } from '@/components/Meta';
-import { Rule } from '@/components/Rule';
-import { TodayHeader } from '@/components/TodayHeader';
-import { TransitHeroCard } from '@/components/TransitHeroCard';
-import { GradientOrb } from '@/components/GradientOrb';
 import { getCosmicStamp, type CosmicStamp } from '@/lib/cosmicStamp';
+import { loadBarometer, type BarometerReading, getStateLabel, getStatePosition } from '@/lib/barometer';
+import { getTodayExercise, isTodayComplete, type TodayExercise } from '@/lib/exerciseCycle';
 
-// Daily rotating question — advances each day
-const DAILY_QUESTIONS = [
-  'ما الذي يحتاج منك أن تسمعه اليوم — لا أن تحلّه؟',
-  'من أنت حين لا يراك أحد؟',
-  'ما الشيء الذي تؤجّله منذ زمن — وما السبب الحقيقي؟',
-  'ما الذي تعطيه بسهولة، وما الذي تجد صعوبة في أخذه؟',
-  'في أيّ لحظة شعرت اليوم أنك أنت — لا دورك؟',
-  'ما الذي ينمو فيك الآن في الصمت؟',
-  'ما الحاجة التي لم تقلها بعد؟',
+// ─── Soul Quality picker ──────────────────────────────────────────────────────
+const SOUL_QUALITIES = [
+  { id: 'clarity',     label: 'Clarity',     member: 'Thinking soul' },
+  { id: 'warmth',      label: 'Warmth',      member: 'Feeling soul' },
+  { id: 'resolve',     label: 'Resolve',     member: 'Willing soul' },
+  { id: 'openness',    label: 'Openness',    member: 'Consciousness soul' },
+  { id: 'equanimity',  label: 'Equanimity',  member: 'Balance' },
+  { id: 'positivity',  label: 'Positivity',  member: 'Etheric radiance' },
 ];
 
-function getDailyQuestion(): string {
-  const dayOfYear = Math.floor(
-    (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000,
-  );
-  return DAILY_QUESTIONS[dayOfYear % DAILY_QUESTIONS.length];
+const QUALITY_KEY = 'hygiea.today-quality.v1';
+
+function todayISO() {
+  return new Date().toISOString().split('T')[0];
 }
 
-export default function TodayPage() {
-  const [stamp, setStamp] = useState<CosmicStamp | null>(null);
-  const [journey1Step, setJourney1Step] = useState<number | null>(null);
+function getDayGreeting(): string {
+  const h = new Date().getHours();
+  if (h < 12) return 'Good morning.';
+  if (h < 17) return 'Good afternoon.';
+  return 'Good evening.';
+}
 
-  useEffect(() => {
-    setStamp(getCosmicStamp());
-    try {
-      const raw = localStorage.getItem('sukoon.journey1.v1');
-      if (raw) {
-        const data = JSON.parse(raw);
-        setJourney1Step(data.currentStep ?? 0);
-      }
-    } catch {}
-  }, []);
+// ─── Barometer arc ────────────────────────────────────────────────────────────
 
-  const question = getDailyQuestion();
+function BarometerWidget({ reading }: { reading: BarometerReading | null }) {
+  const pos = reading ? getStatePosition(reading.state) : 2;
+  const label = reading ? getStateLabel(reading.state) : 'Not yet read';
+  const direction = reading?.direction ?? 'Complete your Rückschau to calibrate.';
+
+  const dots = [0, 1, 2, 3, 4];
+  const colors = ['#8B2E2E', '#C47A5A', '#C9A84C', '#7E9AB0', '#1E3A5F'];
+  const bgColors = ['rgba(139,46,46,0.08)', 'rgba(196,122,90,0.08)', 'rgba(201,168,76,0.08)', 'rgba(126,154,176,0.08)', 'rgba(30,58,95,0.08)'];
 
   return (
-    <div className="pb-24 flex flex-col gap-0">
-      {/* ── Sky hero banner ── */}
-      <div className="relative overflow-hidden px-5 pt-6 pb-5" style={{ background: '#0F1228' }}>
-        {/* Stars */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 24 }).map((_, i) => {
-            const x = (i * 41) % 380;
-            const y = ((i * 57) % 160) + 10;
-            const s = (i % 3) + 1;
-            return (
-              <div key={i} className="absolute rounded-full" style={{ left: x, top: y, width: s, height: s, background: `rgba(255,255,255,${0.3 + (i % 3) * 0.2})` }} />
-            );
-          })}
+    <div
+      className="rounded-[18px] p-4"
+      style={{ background: bgColors[pos] }}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-0.5">
+            Soul Barometer
+          </div>
+          <div className="font-serif text-base text-ink">{label}</div>
         </div>
-        <div className="absolute -top-12 -left-12 opacity-50 pointer-events-none">
-          <GradientOrb variant="night" size={180} />
+        <div className="flex gap-1.5">
+          {dots.map((i) => (
+            <div
+              key={i}
+              className="rounded-full transition-all"
+              style={{
+                width: i === pos ? 10 : 6,
+                height: i === pos ? 10 : 6,
+                background: i === pos ? colors[pos] : 'rgba(28,25,23,0.15)',
+              }}
+            />
+          ))}
         </div>
-        <div className="relative">
-          <TodayHeader />
-          {stamp && (
-            <div className="mt-4">
-              <div className="text-[11px] text-cream/50 font-semibold tracking-wider mb-1.5">السماء الآن</div>
-              <div className="font-serif text-xl text-cream leading-snug">{stamp.moonPhase}</div>
-              <div className="text-xs text-cream/60 mt-1">{stamp.sunPosition} · {stamp.dayRuler}</div>
-              <Link href="/explore" className="inline-block mt-3 text-xs text-coral font-medium">
-                استكشف السماء ←
-              </Link>
+      </div>
+      <p className="text-sm text-ink-soft leading-[1.6]">{direction}</p>
+      {reading?.guardian && (
+        <p className="text-xs text-ink-muted mt-2 leading-[1.6] italic">{reading.guardian}</p>
+      )}
+    </div>
+  );
+}
+
+// ─── Exercise strip ────────────────────────────────────────────────────────────
+
+function ExerciseStrip({ todayEx, complete }: { todayEx: TodayExercise; complete: boolean }) {
+  return (
+    <Link href="/today/exercise" className="block">
+      <div
+        className="rounded-[18px] p-4 flex items-start gap-3"
+        style={{
+          background: complete
+            ? 'rgba(201,168,76,0.1)'
+            : 'rgba(30,58,95,0.06)',
+          border: complete ? '1px solid rgba(201,168,76,0.3)' : '1px solid transparent',
+        }}
+      >
+        <div
+          className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 font-serif text-sm font-medium"
+          style={{
+            background: complete ? 'var(--color-gold-soft)' : 'var(--color-cosmic-blue)',
+            color: 'white',
+          }}
+        >
+          {todayEx.isRestDay ? '○' : todayEx.exercise.id}
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-0.5">
+            {todayEx.isRestDay ? 'Rest — Harmony' : `Exercise ${todayEx.exercise.id} · Through the day`}
+          </div>
+          <div className="font-serif text-base text-ink">{todayEx.exercise.name}</div>
+          <div className="text-sm text-ink-muted mt-1 leading-[1.55]">{todayEx.exercise.dayCompass}</div>
+          {!complete && (
+            <div className="text-xs font-medium mt-2" style={{ color: 'var(--color-cosmic-blue)' }}>
+              Open practice →
+            </div>
+          )}
+          {complete && (
+            <div className="text-xs font-medium mt-2" style={{ color: 'var(--color-gold-soft)' }}>
+              ✓ Practice complete
             </div>
           )}
         </div>
       </div>
+    </Link>
+  );
+}
 
-      <div className="px-5 flex flex-col gap-4 pt-5">
-        {/* Active transit */}
-        <TransitHeroCard />
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
-        <Rule />
+export default function TodayPage() {
+  const [stamp, setStamp] = useState<CosmicStamp | null>(null);
+  const [barometer, setBarometer] = useState<BarometerReading | null>(null);
+  const [todayEx, setTodayEx] = useState<TodayExercise | null>(null);
+  const [exerciseComplete, setExerciseComplete] = useState(false);
+  const [selectedQuality, setSelectedQuality] = useState<string | null>(null);
 
-        {/* Daily question — coral-tinted box */}
+  useEffect(() => {
+    setStamp(getCosmicStamp());
+    setBarometer(loadBarometer());
+    const te = getTodayExercise();
+    setTodayEx(te);
+    setExerciseComplete(isTodayComplete());
+
+    // Load today's quality
+    try {
+      const raw = localStorage.getItem(QUALITY_KEY);
+      if (raw) {
+        const { date, quality } = JSON.parse(raw);
+        if (date === todayISO()) setSelectedQuality(quality);
+      }
+    } catch {}
+  }, []);
+
+  function setQuality(id: string) {
+    setSelectedQuality(id);
+    try {
+      localStorage.setItem(QUALITY_KEY, JSON.stringify({ date: todayISO(), quality: id }));
+    } catch {}
+  }
+
+  const greeting = getDayGreeting();
+
+  return (
+    <div className="pb-28 flex flex-col">
+
+      {/* ── Morning header ── */}
+      <div
+        className="px-5 pt-6 pb-5"
+        style={{ background: 'linear-gradient(180deg, rgba(30,58,95,0.05) 0%, transparent 100%)' }}
+      >
+        <div className="text-[11px] text-ink-muted font-medium tracking-widest uppercase mb-1">
+          {stamp ? stamp.dayRuler : '—'}
+        </div>
+        <h1 className="font-serif text-[2rem] text-ink leading-tight">{greeting}</h1>
+        {stamp && (
+          <div className="mt-2 text-sm text-ink-muted">
+            {stamp.moonPhase} · {stamp.sunPosition}
+          </div>
+        )}
+      </div>
+
+      <div className="px-5 flex flex-col gap-4 mt-2">
+
+        {/* ── Soul Barometer ── */}
+        <BarometerWidget reading={barometer} />
+
+        {/* ── Divider ── */}
+        <div
+          className="text-[10px] font-medium tracking-widest uppercase text-ink-muted/60 pt-1"
+        >
+          Today's practice
+        </div>
+
+        {/* ── Exercise of the day ── */}
+        {todayEx && (
+          <ExerciseStrip todayEx={todayEx} complete={exerciseComplete} />
+        )}
+
+        {/* ── Soul quality morning pick ── */}
+        <div>
+          <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-2.5">
+            Quality of soul — this morning
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {SOUL_QUALITIES.map((q) => {
+              const sel = selectedQuality === q.id;
+              return (
+                <button
+                  key={q.id}
+                  onClick={() => setQuality(q.id)}
+                  className="px-3.5 py-1.5 rounded-full text-sm transition-all"
+                  style={{
+                    background: sel ? 'var(--color-cosmic-blue)' : 'rgba(28,25,23,0.06)',
+                    color: sel ? 'white' : 'var(--color-ink)',
+                    border: sel ? 'none' : '1px solid var(--color-rule-soft)',
+                  }}
+                >
+                  {q.label}
+                </button>
+              );
+            })}
+          </div>
+          {selectedQuality && (
+            <div className="text-xs text-ink-muted mt-2">
+              {SOUL_QUALITIES.find((q) => q.id === selectedQuality)?.member}
+            </div>
+          )}
+        </div>
+
+        {/* ── Divider ── */}
+        <div className="border-t" style={{ borderColor: 'var(--color-rule-soft)' }} />
+
+        {/* ── Chart — your constitution ── */}
+        <Link href="/constitution" className="block">
+          <div
+            className="rounded-[18px] p-4"
+            style={{ background: 'rgba(30,58,95,0.05)' }}
+          >
+            <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-1">
+              Your constitution
+            </div>
+            <div className="font-serif text-base text-ink">Natal chart & spirit-soul profile</div>
+            <div className="text-sm text-ink-muted mt-1">
+              Temperament · Biographical phase · Ninefold being
+            </div>
+            <div className="text-xs font-medium mt-2.5" style={{ color: 'var(--color-cosmic-blue)' }}>
+              Open →
+            </div>
+          </div>
+        </Link>
+
+        {/* ── Log a moment ── */}
         <Link href="/log" className="block">
-          <div className="relative rounded-[20px] overflow-hidden p-5" style={{ background: 'linear-gradient(135deg, #F8D6BE 0%, #F0C0A0 100%)' }}>
-            <div className="absolute -top-8 -right-8 opacity-30">
-              <GradientOrb variant="dawn" size={120} />
+          <div
+            className="rounded-[18px] p-4 flex items-center gap-3"
+            style={{ background: 'rgba(201,168,76,0.07)', border: '1px solid rgba(201,168,76,0.2)' }}
+          >
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ background: 'var(--color-gold-soft)' }}
+            >
+              <span className="text-white text-base leading-none">+</span>
             </div>
-            <div className="relative">
-              <div className="text-[11px] text-coral font-semibold tracking-wider mb-2">سؤال اليوم</div>
-              <div className="font-serif text-[17px] text-ink leading-[1.6]">{question}</div>
-              <div className="text-xs text-ink-muted mt-3 font-medium">سجّل إجابتك ←</div>
-            </div>
-          </div>
-        </Link>
-
-        {/* Journey card — sage/green box */}
-        <Link href="/journey-1" className="block">
-          <div className="relative rounded-[20px] overflow-hidden p-5" style={{ background: 'linear-gradient(135deg, #C9D2BE 0%, #B8C4AC 100%)' }}>
-            <div className="absolute -bottom-8 -left-8 opacity-30">
-              <GradientOrb variant="sage" size={120} />
-            </div>
-            <div className="relative">
-              <div className="text-[11px] text-ink/60 font-semibold tracking-wider mb-2">رحلتك الأسبوعية</div>
-              {journey1Step !== null ? (
-                <>
-                  <div className="font-serif text-[17px] text-ink">الخطوة {journey1Step + 1} من ٧</div>
-                  <div className="flex gap-1 mt-3">
-                    {Array.from({ length: 7 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-1 flex-1 rounded-full"
-                        style={{ background: i <= journey1Step ? '#171B3A' : 'rgba(23,27,58,0.2)' }}
-                      />
-                    ))}
-                  </div>
-                  <div className="text-xs text-ink/60 mt-2 font-medium">تابع ←</div>
-                </>
-              ) : (
-                <>
-                  <div className="font-serif text-[17px] text-ink">ابدأ المسار الأسبوعي</div>
-                  <div className="text-xs text-ink-muted mt-1.5">سبع خطوات عبر خريطتك الداخلية</div>
-                  <div className="text-xs text-ink/60 mt-3 font-medium">ابدأ ←</div>
-                </>
-              )}
-            </div>
-          </div>
-        </Link>
-
-        <Rule />
-
-        {/* Body + moon — lake/blue box */}
-        <Link href="/self" className="block">
-          <div className="relative rounded-[20px] overflow-hidden p-5" style={{ background: 'linear-gradient(135deg, #C2D3E2 0%, #A8C0D6 100%)' }}>
-            <div className="absolute -top-6 -right-6 opacity-40">
-              <GradientOrb variant="lake" size={110} />
-            </div>
-            <div className="relative">
-              <div className="text-[11px] text-ink/60 font-semibold tracking-wider mb-2">الجسد والقمر</div>
-              <div className="font-serif text-[17px] text-ink">
-                {stamp ? `القمر في ${stamp.moonPhase.split(' في ')[1] ?? 'السماء'}` : 'القمر والجسد'}
+            <div>
+              <div className="text-[10px] text-ink-muted font-medium tracking-widest uppercase mb-0.5">
+                Event log
               </div>
-              <div className="text-xs text-ink/60 mt-1.5">انتبه إلى ما يحتاجه جسدك اليوم</div>
-              <div className="text-xs text-ink/50 mt-3 font-medium">افتح خريطتك ←</div>
+              <div className="font-serif text-base text-ink">Note a moment</div>
             </div>
           </div>
         </Link>
 
-        {/* Teaching — ember/amber box */}
-        <Link href="/learn" className="block">
-          <div className="relative rounded-[20px] overflow-hidden p-5" style={{ background: 'linear-gradient(135deg, #F0C8A0 0%, #E0B080 100%)' }}>
-            <div className="absolute -bottom-6 -right-6 opacity-30">
-              <GradientOrb variant="ember" size={100} />
-            </div>
-            <div className="relative">
-              <div className="text-[11px] text-ink/60 font-semibold tracking-wider mb-2">تعلّم</div>
-              <div className="font-serif text-[17px] text-ink">كيف تقرأ عبورك اليومي؟</div>
-              <div className="text-xs text-ink/60 mt-1.5">ربط السماء بلحظتك الحياتية</div>
-              <div className="text-xs text-ink/50 mt-3 font-medium">استكشف الدروس ←</div>
-            </div>
-          </div>
-        </Link>
+        {/* ── Divider ── */}
+        <div className="border-t" style={{ borderColor: 'var(--color-rule-soft)' }} />
 
-        {/* Evening reflection — dark box */}
+        {/* ── Evening — The Rückschau ── */}
         <Link href="/evening" className="block">
-          <div className="relative rounded-[20px] overflow-hidden p-5" style={{ background: '#0F1228' }}>
-            <div className="absolute -top-6 -right-6 opacity-40 pointer-events-none">
-              <GradientOrb variant="night" size={100} />
+          <div
+            className="rounded-[18px] p-4"
+            style={{ background: '#1C1917', color: 'var(--color-cream)' }}
+          >
+            <div
+              className="text-[10px] font-medium tracking-widest uppercase mb-1"
+              style={{ color: 'rgba(245,242,234,0.5)' }}
+            >
+              Evening · The Rückschau
             </div>
-            <div className="relative flex items-center gap-4">
-              <div>
-                <div className="text-[11px] text-cream/50 font-semibold tracking-wider mb-2">قبل النوم</div>
-                <div className="font-serif text-[17px] text-cream">المراجعة المسائية</div>
-                <div className="text-xs text-cream/55 mt-1.5">ثلاث لحظات من يومك</div>
-              </div>
-              <div className="mr-auto">
-                <span className="text-coral text-sm">←</span>
-              </div>
+            <div className="font-serif text-base" style={{ color: 'var(--color-cream)' }}>
+              Walk the day in reverse.
+            </div>
+            <div className="text-sm mt-1" style={{ color: 'rgba(245,242,234,0.6)' }}>
+              Five steps. Four minutes. A gentle backward review.
+            </div>
+            <div
+              className="text-xs font-medium mt-2.5"
+              style={{ color: 'var(--color-gold-soft)' }}
+            >
+              Begin when ready →
             </div>
           </div>
         </Link>
+
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export function TransitHeroCard() {
   const voteKey = `sukoon.vote.transit.${today}`;
 
   useEffect(() => {
-    const stored = localStorage.getItem('sukoon.primary-chart.v1');
+    const stored = localStorage.getItem('hygiea.primary-chart.v1');
     if (stored) {
       try {
         const chart: AstralChart = JSON.parse(stored);

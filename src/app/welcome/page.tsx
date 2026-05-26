@@ -136,7 +136,7 @@ export default function WelcomePage() {
     const { error } = await signInWithEmail(email, password);
     setAuthLoading(false);
     if (error) { setAuthError('بيانات الدخول غير صحيحة'); return; }
-    const hasChart = !!localStorage.getItem('sukoon.primary-chart.v1');
+    const hasChart = !!localStorage.getItem('hygiea.primary-chart.v1');
     router.push(hasChart ? '/today' : '/onboarding');
   };
 

@@ -3,11 +3,11 @@ import { getUser } from './auth';
 import type { LoggedEvent } from './events';
 import type { TraitProfile } from './traitEngine';
 
-const CHART_KEY = 'sukoon.primary-chart.v1';
-const QUIZ_KEY = 'sukoon.quiz';
-const JOURNEY_KEY = 'sukoon.journey1.v1';
-const TRAITS_KEY = 'sukoon.traits.v1';
-const NOTIF_KEY = 'sukoon.notifications';
+const CHART_KEY = 'hygiea.primary-chart.v1';
+const QUIZ_KEY = 'hygiea.quiz';
+const JOURNEY_KEY = 'hygiea.journey1.v1';
+const TRAITS_KEY = 'hygiea.traits.v1';
+const NOTIF_KEY = 'hygiea.notifications';
 
 // ─── Chart ───────────────────────────────────────────────────────────────────
 
@@ -353,7 +353,7 @@ export async function syncPreferences(): Promise<void> {
     const uiFlags: Record<string, string> = {};
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && (k === 'sukoon.chart-guide-seen')) {
+      if (k && (k === 'hygiea.chart-guide-seen')) {
         uiFlags[k] = localStorage.getItem(k) ?? '';
       }
     }
@@ -451,6 +451,59 @@ export async function syncVote(args: {
   }
 }
 
+// ─── Rückschau ────────────────────────────────────────────────────────────────
+
+export async function syncRuckschau(
+  date: string,
+  reverseEntries: object[],
+  witnessNote?: string,
+): Promise<void> {
+  const sb = getSupabase();
+  const user = await getUser();
+  if (!sb || !user) return;
+
+  try {
+    await sb.from('ruckschau').upsert(
+      {
+        user_id: user.id,
+        date,
+        reverse_entries: reverseEntries,
+        witness_note: witnessNote ?? null,
+      },
+      { onConflict: 'user_id,date' },
+    );
+  } catch (e) {
+    if (process.env.NODE_ENV === 'development') console.error('syncRuckschau:', e);
+  }
+}
+
+// ─── Constitution ─────────────────────────────────────────────────────────────
+
+export async function syncConstitution(data: {
+  biographicalPhase: number;
+  dominantTemperament: string;
+  ninefoldJson: object;
+}): Promise<void> {
+  const sb = getSupabase();
+  const user = await getUser();
+  if (!sb || !user) return;
+
+  try {
+    await sb.from('constitution').upsert(
+      {
+        user_id: user.id,
+        biographical_phase: data.biographicalPhase,
+        dominant_temperament: data.dominantTemperament,
+        ninefold_json: data.ninefoldJson,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id' },
+    );
+  } catch (e) {
+    if (process.env.NODE_ENV === 'development') console.error('syncConstitution:', e);
+  }
+}
+
 // ─── Load All (called on auth restore) ───────────────────────────────────────
 
 export async function loadAllRemote(): Promise<{ hasChart: boolean }> {
@@ -460,7 +513,7 @@ export async function loadAllRemote(): Promise<{ hasChart: boolean }> {
       if (remoteEvents.length === 0) return;
       const { saveEvent } = await import('./events');
       const existing = new Set<string>(
-        JSON.parse(localStorage.getItem('sukoon.events') ?? '[]').map((e: { id: string }) => e.id)
+        JSON.parse(localStorage.getItem('hygiea.events') ?? '[]').map((e: { id: string }) => e.id)
       );
       for (const evt of remoteEvents) {
         if (!existing.has(evt.id)) saveEvent(evt);

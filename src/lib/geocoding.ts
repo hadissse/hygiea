@@ -8,7 +8,7 @@ export interface Location {
   country: string;
 }
 
-const CACHE_KEY_PREFIX = 'sukoon.geocache.';
+const CACHE_KEY_PREFIX = 'hygiea.geocache.';
 const CACHE_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 function getCachedLocation(query: string): Location | null {

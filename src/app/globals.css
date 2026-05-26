@@ -1,34 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FFFFFF;
-  --color-cream-soft: #F8F8F8;
-  --color-sand: #F0F0F0;
-  --color-ink: #171B3A;
-  --color-ink-soft: #2A2F66;
-  --color-ink-muted: #5C5C7A;
-  --color-coral: #E9785E;
-  --color-coral-soft: #F3B8A6;
-  --color-amber: #D4A04C;
-  --color-midnight: #0F1228;
-  --color-midnight-2: #1B1F47;
-  --color-rule-soft: #E5E1D8;
+  /* Base palette */
+  --color-cream:          #F5F2EA;
+  --color-cream-soft:     #F0EDE4;
+  --color-sand:           #E8E4D9;
+  --color-ink:            #1C1917;
+  --color-ink-soft:       #3D3733;
+  --color-ink-muted:      #78716C;
+  /* Accent */
+  --color-cosmic-blue:    #1E3A5F;
+  --color-cosmic-blue-soft: #2E5080;
+  --color-iron-red:       #8B2E2E;
+  --color-gold-soft:      #C9A84C;
+  --color-silver:         #A8B4C0;
+  /* Utility */
+  --color-rule-soft:      #DDD9CE;
+  /* Streams */
   --color-stream-thinking: #5C6E78;
-  --color-stream-feeling: #D4A04C;
-  --color-stream-willing: #E9785E;
+  --color-stream-feeling:  #C9A84C;
+  --color-stream-willing:  #8B2E2E;
 
-  --color-sage: #8FA084;
-  --color-lake: #7E97B8;
-
-  --radius-chip: 14px;
-  --radius-card: 18px;
-  --radius-modal: 22px;
+  --radius-chip:   14px;
+  --radius-card:   18px;
+  --radius-modal:  22px;
   --radius-button: 26px;
 
-  --font-sukoon: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-sans: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-serif: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --font-prose: 'EB Garamond', Georgia, serif;
+  --font-ui:    'Inter', system-ui, sans-serif;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-serif: 'EB Garamond', Georgia, serif;
 }
 
 @layer base {
@@ -39,7 +40,7 @@
   }
 
   html {
-    font-family: var(--font-sukoon);
+    font-family: var(--font-ui);
     background-color: var(--color-cream);
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
@@ -52,6 +53,45 @@
     flex-direction: column;
     overflow-x: hidden;
   }
+
+  /* Prose surfaces use Garamond */
+  .prose {
+    font-family: var(--font-prose);
+    line-height: 1.7;
+    max-width: 65ch;
+  }
+}
+
+/* ── Seasonal palette overrides ──────────────────────────────────────────── */
+html[data-season="spring"] {
+  --season-accent:  var(--color-gold-soft);
+  --season-bg-tint: rgba(201,168,76,0.04);
+}
+html[data-season="summer"] {
+  --season-accent:  var(--color-cosmic-blue-soft);
+  --season-bg-tint: rgba(46,80,128,0.04);
+}
+html[data-season="autumn"] {
+  --season-accent:  var(--color-iron-red);
+  --season-bg-tint: rgba(139,46,46,0.05);
+}
+html[data-season="winter"] {
+  --season-accent:  var(--color-cosmic-blue);
+  --season-bg-tint: rgba(30,58,95,0.06);
+}
+
+/* ── Breath-paced transitions ────────────────────────────────────────────── */
+.threshold-fade {
+  transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
+}
+.ruckschau-step {
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+.verse-reveal {
+  transition: opacity 0.5s ease-in-out;
+}
+.page-enter {
+  transition: opacity 0.4s ease-in-out;
 }
 
 @layer utilities {
@@ -60,5 +100,45 @@
   }
   .safe-top {
     padding-top: env(safe-area-inset-top, 0px);
+  }
+  .font-prose {
+    font-family: var(--font-prose);
+  }
+  .font-ui {
+    font-family: var(--font-ui);
+  }
+
+  /* Prose surface — EB Garamond, 1.7 line-height, 65ch max */
+  .prose-surface {
+    font-family: var(--font-prose);
+    line-height: 1.7;
+    max-width: 65ch;
+    font-size: 1.0625rem;
+  }
+
+  /* Hide scrollbars while keeping scroll behaviour */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Long-form prose body (library articles, Foundation Stone) */
+  .prose-body {
+    font-family: var(--font-prose);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-ink-soft);
+  }
+
+  /* UI label — Inter, tight tracking, uppercase */
+  .label-caps {
+    font-family: var(--font-ui);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 }

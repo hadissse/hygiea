@@ -1,9 +1,10 @@
-import ar, { type TranslationKey } from './ar';
+import en, { type TranslationKey } from './en';
+import ar from './ar';
 
-const dictionaries = { ar } as const;
+const dictionaries = { en, ar } as const;
 type Locale = keyof typeof dictionaries;
 
-let currentLocale: Locale = 'ar';
+let currentLocale: Locale = 'en';
 
 export function setLocale(locale: Locale) {
   currentLocale = locale;

@@ -19,17 +19,17 @@ export function Logo({ height = 28, color = 'currentColor', className }: LogoPro
         width,
         height,
         backgroundColor: color,
-        maskImage: 'url(/sukoon-logo.png)',
+        maskImage: 'url(/hygiea-logo.png)',
         maskSize: 'contain',
         maskRepeat: 'no-repeat',
         maskPosition: 'center',
-        WebkitMaskImage: 'url(/sukoon-logo.png)',
+        WebkitMaskImage: 'url(/hygiea-logo.png)',
         WebkitMaskSize: 'contain',
         WebkitMaskRepeat: 'no-repeat',
         WebkitMaskPosition: 'center',
         flexShrink: 0,
       }}
-      aria-label="سُكون"
+      aria-label="Hygiea"
       role="img"
     />
   );

@@ -2,13 +2,13 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "سُكون",
-  description: "خريطتك. سماؤك. سُكونك.",
+  title: "Hygiea",
+  description: "Your constitution. Your calendar. Your hygiene.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "سُكون",
+    title: "Hygiea",
   },
   formatDetection: { telephone: false },
 };
@@ -27,10 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />

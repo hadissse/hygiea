@@ -16,12 +16,12 @@ export default function ProfilePage() {
     let calibrations = 0;
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
-      if (k && k.startsWith('sukoon.calibration.')) calibrations++;
+      if (k && k.startsWith('hygiea.calibration.')) calibrations++;
     }
     setStats({
       events: loadEvents().length,
       calibrations,
-      hasChart: !!localStorage.getItem('sukoon.primary-chart.v1'),
+      hasChart: !!localStorage.getItem('hygiea.primary-chart.v1'),
     });
   }, []);
 

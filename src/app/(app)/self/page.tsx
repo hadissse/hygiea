@@ -700,7 +700,7 @@ export default function SelfPage() {
   const [showGuide, setShowGuide] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('sukoon.primary-chart.v1');
+    const stored = localStorage.getItem('hygiea.primary-chart.v1');
     if (stored) {
       try {
         setChart(JSON.parse(stored));
@@ -709,13 +709,13 @@ export default function SelfPage() {
       }
     }
     // Show guide on first visit after onboarding
-    if (!localStorage.getItem('sukoon.chart-guide-seen')) {
+    if (!localStorage.getItem('hygiea.chart-guide-seen')) {
       setShowGuide(true);
     }
   }, []);
 
   const dismissGuide = () => {
-    localStorage.setItem('sukoon.chart-guide-seen', '1');
+    localStorage.setItem('hygiea.chart-guide-seen', '1');
     setShowGuide(false);
   };
 

@@ -31,7 +31,7 @@ export default function Journey2Page() {
   useEffect(() => {
     setEvents(loadEvents());
     try {
-      const raw = localStorage.getItem('sukoon.primary-chart.v1');
+      const raw = localStorage.getItem('hygiea.primary-chart.v1');
       if (raw) setChart(JSON.parse(raw));
     } catch {
       // no chart

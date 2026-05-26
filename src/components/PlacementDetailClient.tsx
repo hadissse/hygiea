@@ -154,7 +154,7 @@ function CalibrateBlock({ storageKey }: { storageKey: string }) {
     setSelected(v);
     localStorage.setItem(storageKey, v);
     // storageKey = "sukoon.calibration.{type}:{key}"
-    const raw = storageKey.replace('sukoon.calibration.', '');
+    const raw = storageKey.replace('hygiea.calibration.', '');
     const colonIdx = raw.indexOf(':');
     if (colonIdx > -1) {
       syncCalibration(raw.slice(0, colonIdx), raw.slice(colonIdx + 1), v);
@@ -189,7 +189,7 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
   const [chart, setChart] = useState<AstralChart | null>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('sukoon.primary-chart.v1');
+    const stored = localStorage.getItem('hygiea.primary-chart.v1');
     if (stored) {
       try {
         setChart(JSON.parse(stored));

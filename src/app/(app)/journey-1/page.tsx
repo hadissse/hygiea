@@ -10,7 +10,7 @@ import { Body } from '@/components/Body';
 import { Chip } from '@/components/Chip';
 import { syncJourney } from '@/lib/sync';
 
-const STORAGE_KEY = 'sukoon.journey1.v1';
+const STORAGE_KEY = 'hygiea.journey1.v1';
 
 interface StepProgress {
   stepIndex: number;
@@ -79,7 +79,7 @@ export default function Journey1Page() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('sukoon.primary-chart.v1');
+      const raw = localStorage.getItem('hygiea.primary-chart.v1');
       if (raw) setChart(JSON.parse(raw));
     } catch {
       // no chart
