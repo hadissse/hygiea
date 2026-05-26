@@ -2,11 +2,5 @@
   "framework": "nextjs",
   "buildCommand": "next build",
   "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "crons": [
-    {
-      "path": "/api/push/cron",
-      "schedule": "0 * * * *"
-    }
-  ]
+  "installCommand": "npm install"
 }
