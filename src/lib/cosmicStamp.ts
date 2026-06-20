@@ -1,35 +1,30 @@
 import * as Astronomy from 'astronomy-engine';
 
-const ZODIAC_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
-const DAY_NAMES_AR = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-const DAY_RULERS_AR = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
-
-function toArabicDigits(input: string | number): string {
-  return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
-}
+const ZODIAC_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+const DAY_NAMES_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const DAY_RULERS_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
 function signAndDegree(longitude: number): { sign: string; degree: number } {
   const n = ((longitude % 360) + 360) % 360;
   const i = Math.floor(n / 30);
-  return { sign: ZODIAC_AR[i], degree: Math.floor(n - i * 30) };
+  return { sign: ZODIAC_EN[i], degree: Math.floor(n - i * 30) };
 }
 
 function moonPhaseName(angle: number): string {
-  // angle: 0 = new, 90 = first quarter, 180 = full, 270 = last quarter
-  if (angle < 45) return 'هلال جديد';
-  if (angle < 90) return 'هلال متزايد';
-  if (angle < 135) return 'تربيع أول';
-  if (angle < 180) return 'أحدب متزايد';
-  if (angle < 225) return 'بدر';
-  if (angle < 270) return 'أحدب متناقص';
-  if (angle < 315) return 'تربيع أخير';
-  return 'هلال متناقص';
+  if (angle < 45) return 'New Moon';
+  if (angle < 90) return 'Waxing Crescent';
+  if (angle < 135) return 'First Quarter';
+  if (angle < 180) return 'Waxing Gibbous';
+  if (angle < 225) return 'Full Moon';
+  if (angle < 270) return 'Waning Gibbous';
+  if (angle < 315) return 'Last Quarter';
+  return 'Waning Crescent';
 }
 
 export interface CosmicStamp {
-  dayRuler: string;   // "السبت · Saturn"
-  moonPhase: string;  // "هلال متزايد في الجدي"
-  sunPosition: string; // "٢٧° الثور"
+  dayRuler: string;
+  moonPhase: string;
+  sunPosition: string;
 }
 
 export function getCosmicStamp(date: Date = new Date()): CosmicStamp {
@@ -44,13 +39,13 @@ export function getCosmicStamp(date: Date = new Date()): CosmicStamp {
     const phase = moonPhaseName(Astronomy.MoonPhase(time));
 
     return {
-      dayRuler: `${DAY_NAMES_AR[dow]} · ${DAY_RULERS_AR[dow]}`,
-      moonPhase: `${phase} في ${moon.sign}`,
-      sunPosition: `${toArabicDigits(sun.degree)}° ${sun.sign}`,
+      dayRuler: `${DAY_NAMES_EN[dow]} · ${DAY_RULERS_EN[dow]}`,
+      moonPhase: `${phase} in ${moon.sign}`,
+      sunPosition: `${sun.degree}° ${sun.sign}`,
     };
   } catch {
     return {
-      dayRuler: `${DAY_NAMES_AR[dow]} · ${DAY_RULERS_AR[dow]}`,
+      dayRuler: `${DAY_NAMES_EN[dow]} · ${DAY_RULERS_EN[dow]}`,
       moonPhase: '—',
       sunPosition: '—',
     };

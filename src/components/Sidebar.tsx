@@ -2,13 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SukoonIcon } from './SukoonIcon';
-import { Logo } from './Logo';
+import Image from 'next/image';
 
 const tabs = [
   { key: 'today', label: 'Day', href: '/today', icon: TodayIcon },
   // { key: 'library', label: 'مكتبتي', href: '/library', icon: LibraryIcon }, // hidden — re-enable when ready
-  { key: 'self', label: 'أنت', href: '/self', icon: SelfIcon },
+  { key: 'self', label: 'Self', href: '/self', icon: SelfIcon },
 ] as const;
 
 function TodayIcon({ active }: { active: boolean }) {
@@ -47,8 +46,8 @@ export function Sidebar() {
       <div className="flex flex-col h-full px-5 py-6">
         {/* Brand */}
         <Link href="/today" className="flex items-center gap-3 px-2 mb-8" aria-label="Hygiea">
-          <SukoonIcon size={72} />
-          <Logo height={28} color="#171B3A" />
+          <Image src="/hygiea-logo.png" alt="Hygiea" width={40} height={40} className="object-contain" />
+          <span className="font-serif text-xl text-ink tracking-wide">Hygiea</span>
         </Link>
 
         {/* Primary navigation */}
@@ -92,7 +91,7 @@ export function Sidebar() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 3v18l7-4 7 4V3z" />
             </svg>
-            <span>تتبّع وSave</span>
+            <span>Track &amp; Save</span>
           </Link>
         </div>
 

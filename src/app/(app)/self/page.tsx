@@ -32,28 +32,28 @@ import { FIXED_STARS, findStarConjunctions, starLongitudeAtJD, fixedStarSlug, ty
 import { UNIFIED_TIMELINE, type UnifiedTimelineItem } from '@/app/explore/biographyData';
 import { CalendarMonthView } from '@/app/explore/CalendarMonthView';
 
-const ZODIAC_SIGNS_AR_FS = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+const ZODIAC_SIGNS_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 function toAr(n: number | string): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 function lonToSignDeg(lon: number): string {
   const n = ((lon % 360) + 360) % 360;
   const sign = Math.floor(n / 30);
   const deg = Math.floor(n % 30);
-  return `${ZODIAC_SIGNS_AR_FS[sign]} ⁦${toAr(deg)}°⁩`;
+  return `${deg}° ${ZODIAC_SIGNS_EN[sign]}`;
 }
 
 const chartSubtabs = [
   { key: 'planets', label: 'Planets' },
   { key: 'houses', label: 'Houses' },
-  { key: 'aspects', label: 'الجوانب' },
-  { key: 'organs', label: 'الأعضاء' },
+  { key: 'aspects', label: 'Aspects' },
+  { key: 'organs', label: 'Organs' },
   { key: 'stars', label: 'Fixed Stars' },
 ] as const;
 
 const ZODIAC_SVG_KEYS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sag', 'cap', 'aqua', 'pisces'];
-const ZODIAC_NAMES_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+const ZODIAC_NAMES_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
 function formatPosition(planet: any): string {
   return `${planet.sign} ⁦${toAr(planet.degree)}°⁩`;
@@ -62,7 +62,7 @@ function formatPosition(planet: any): string {
 const PLANET_DISPLAY_AR: Record<string, string> = {
   sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
   jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
-  chiron: 'كيرون', northNode: 'شمال Moon', southNode: 'جنوب Moon',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 function transformChartToPlanets(chart: AstralChart | null): any[] {
@@ -90,10 +90,10 @@ function transformChartToPlanets(chart: AstralChart | null): any[] {
 function transformChartToSigns(chart: AstralChart | null): any[] {
   if (!chart) return [];
 
-  const elements = ['نار', 'تراب', 'هواء', 'ماء'];
-  const houseNames = ['بيت Ascendant', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع — طالع', 'الثامن', 'التاسع', 'العاشر — Sun', 'الحادي عشر — عناقيد', 'الثاني عشر'];
+  const elements = ['Fire', 'Earth', 'Air', 'Water'];
+  const houseNames = ['1st · Ascendant', '2nd', '3rd', '4th', '5th', '6th', '7th · Descendant', '8th', '9th', '10th · Midheaven', '11th', '12th'];
 
-  return ZODIAC_NAMES_AR.map((name, idx) => ({
+  return ZODIAC_NAMES_EN.map((name, idx) => ({
     name,
     svgKey: ZODIAC_SVG_KEYS[idx],
     house: houseNames[idx],
@@ -105,21 +105,21 @@ function transformChartToHouses(chart: AstralChart | null): any[] {
   if (!chart || !chart.houses) return [];
   
   const houseThemes = [
-    'الذات · الجسد',
-    'المورد · الميدان',
-    'العقل · القريب',
-    'الأصول · الموقد',
-    'الإبداع · الشرارة',
-    'العمل · Dayي',
-    'الآخر · المرآة',
-    'الأعماق · المشترك',
-    'الأفق · المعنى',
-    'المهنة · الإرث',
-    'المجتمع · الأحلام',
-    'الخلوة · اللاوعي',
+    'Self · Body',
+    'Resources · Values',
+    'Mind · Communication',
+    'Roots · Home',
+    'Creativity · Pleasure',
+    'Work · Daily Practice',
+    'Other · Partnership',
+    'Depth · Shared',
+    'Horizon · Meaning',
+    'Career · Legacy',
+    'Community · Dreams',
+    'Retreat · Unconscious',
   ];
 
-  const houseNumbers = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر'];
+  const houseNumbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
   return chart.houses.map((house, idx) => ({
     num: houseNumbers[idx],
@@ -135,11 +135,11 @@ function calculateAspects(chart: AstralChart | null): any[] {
   const planetList = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'northNode', 'southNode'];
   
   const aspectTypes = [
-    { angle: 0,   name: 'اقتران', symbol: '☌', orb: 8, color: '#5C5C7A' },
-    { angle: 60,  name: 'سُداس',  symbol: '⚹', orb: 6, color: '#4A7FB5' },
-    { angle: 90,  name: 'تربيع',  symbol: '▫', orb: 8, color: '#C0392B' },
-    { angle: 120, name: 'تثليث',  symbol: '△', orb: 8, color: '#27AE60' },
-    { angle: 180, name: 'تقابل',  symbol: '☍', orb: 8, color: '#C0392B' },
+    { angle: 0,   name: 'Conjunction', symbol: '☌', orb: 8, color: '#5C5C7A' },
+    { angle: 60,  name: 'Sextile',     symbol: '⚹', orb: 6, color: '#4A7FB5' },
+    { angle: 90,  name: 'Square',      symbol: '▫', orb: 8, color: '#C0392B' },
+    { angle: 120, name: 'Trine',       symbol: '△', orb: 8, color: '#27AE60' },
+    { angle: 180, name: 'Opposition',  symbol: '☍', orb: 8, color: '#C0392B' },
   ];
   
   for (let i = 0; i < planetList.length; i++) {
@@ -181,7 +181,7 @@ function ChartVoiceIntro({ chart }: { chart: AstralChart }) {
   const moonSlug = SIGN_SLUGS[chart.moon.signNumber];
   const risingSignNumber = Math.floor((chart.asc % 360) / 30);
   const risingSlug = SIGN_SLUGS[risingSignNumber];
-  const risingName = ZODIAC_NAMES_AR[risingSignNumber];
+  const risingName = ZODIAC_NAMES_EN[risingSignNumber];
 
   const sunVoice = getPlacementContent('planet', `sun:${sunSlug}`);
   const moonVoice = getPlacementContent('planet', `moon:${moonSlug}`);
@@ -246,7 +246,7 @@ function ChartVoiceIntro({ chart }: { chart: AstralChart }) {
                   {it.label} · {it.signName}
                 </div>
                 <div className="font-serif text-[15px] text-ink leading-[1.55]">
-                  {it.meaning ?? 'سيظهر هنا صوت هذا المسار قريبًا.'}
+                  {it.meaning ?? 'Placement reading coming soon.'}
                 </div>
               </div>
             </div>
@@ -278,7 +278,7 @@ function FixedStarsView({ chart, onNavigate }: { chart: AstralChart | null; onNa
     <div className="flex flex-col gap-3 px-5 pb-6">
       {/* Filter chips */}
       <div className="flex gap-2 pt-1">
-        {([['active', 'في My Chart'], ['all', 'All']] as const).map(([k, label]) => (
+        {([['active', 'In my chart'], ['all', 'All']] as const).map(([k, label]) => (
           <button
             key={k}
             onClick={() => setFilter(k)}
@@ -367,7 +367,7 @@ const ELEMENT_AR: Record<string, string> = {
   fire: 'نار', earth: 'تراب', air: 'هواء', water: 'ماء',
 };
 
-const AR_MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 function ChartView({ chart }: { chart: AstralChart | null }) {
   const [activeSubtab, setActiveSubtab] = useState<string>('planets');
@@ -422,7 +422,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
   if (!chart) {
     return (
       <div className="px-5 py-12 text-center">
-        <Body muted>حمّل خريطتك أولاً من خلال الإدراج</Body>
+        <Body muted>Complete your chart setup first.</Body>
       </div>
     );
   }
@@ -450,7 +450,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
       {activeSubtab === 'planets' && (() => {
         const angleLon = (lon: number) => {
           const norm = ((lon % 360) + 360) % 360;
-          return `${ZODIAC_NAMES_AR[Math.floor(norm / 30)]} ⁦${toAr(Math.floor(norm % 30))}°⁩`;
+          return `${Math.floor(norm % 30)}° ${ZODIAC_NAMES_EN[Math.floor(norm / 30)]}`;
         };
         const angleSign = (lon: number) => ZODIAC_SVG_KEYS[Math.floor(((lon % 360) + 360) % 360 / 30)];
         const risingIdx = Math.floor(((chart.asc % 360) + 360) % 360 / 30);
@@ -473,20 +473,20 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
           { key: 'uranus',    name: 'Uranus',       svgKey: 'uranus',                   pos: formatPosition(chart.uranus),    href: '/self/planet/uranus',    rx: !!chart.uranus.retrograde },
           { key: 'neptune',   name: 'Neptune',         svgKey: 'neptune',                  pos: formatPosition(chart.neptune),   href: '/self/planet/neptune',   rx: !!chart.neptune.retrograde },
           { key: 'pluto',     name: 'Pluto',         svgKey: 'pluto',                    pos: formatPosition(chart.pluto),     href: '/self/planet/pluto',     rx: !!chart.pluto.retrograde },
-          { key: 'northNode', name: 'شمال Moon',    svgKey: planetSvgKey('northNode'),  pos: formatPosition(chart.northNode), href: '/self/planet/northNode', rx: true },
-          { key: 'southNode', name: 'جنوب Moon',    svgKey: planetSvgKey('southNode'),  pos: formatPosition(chart.southNode), href: '/self/planet/southNode', rx: false },
+          { key: 'northNode', name: 'North Node',    svgKey: planetSvgKey('northNode'),  pos: formatPosition(chart.northNode), href: '/self/planet/northNode', rx: true },
+          { key: 'southNode', name: 'South Node',    svgKey: planetSvgKey('southNode'),  pos: formatPosition(chart.southNode), href: '/self/planet/southNode', rx: false },
           ...(!birthData?.timeUnknown ? [
             { key: 'ac', name: 'Ascendant (AC)',      svgKey: ZODIAC_SVG_KEYS[risingIdx],       pos: angleLon(chart.asc),              href: '/self/house/1',  rx: false },
-            { key: 'ic', name: 'القاع (IC)',        svgKey: angleSign(chart.houses[3].cusp),  pos: angleLon(chart.houses[3].cusp),   href: '/self/house/4',  rx: false },
-            { key: 'dc', name: 'الغارب (DC)',       svgKey: angleSign(chart.houses[6].cusp),  pos: angleLon(chart.houses[6].cusp),   href: '/self/house/7',  rx: false },
-            { key: 'mc', name: 'وسط السماء (MC)',   svgKey: angleSign(chart.mc),              pos: angleLon(chart.mc),               href: '/self/house/10', rx: false },
+            { key: 'ic', name: 'IC',             svgKey: angleSign(chart.houses[3].cusp),  pos: angleLon(chart.houses[3].cusp),   href: '/self/house/4',  rx: false },
+            { key: 'dc', name: 'DC',             svgKey: angleSign(chart.houses[6].cusp),  pos: angleLon(chart.houses[6].cusp),   href: '/self/house/7',  rx: false },
+            { key: 'mc', name: 'MC',             svgKey: angleSign(chart.mc),              pos: angleLon(chart.mc),               href: '/self/house/10', rx: false },
           ] : []),
         ];
         // Birth info header
         const bd = birthData;
-        const dateStr = bd?.year ? `${toAr(bd.day ?? 0)} ${AR_MONTHS[(bd.month ?? 1) - 1]} ${toAr(bd.year)}` : '';
+        const dateStr = bd?.year ? `${bd.day ?? 0} ${EN_MONTHS[(bd.month ?? 1) - 1]} ${bd.year}` : '';
         const timeStr = bd && !bd.timeUnknown && bd.hour !== undefined
-          ? `${toAr(String(bd.hour).padStart(2,'0'))}:${toAr(String(bd.minute ?? 0).padStart(2,'0'))}`
+          ? `${String(bd.hour).padStart(2,'0')}:${String(bd.minute ?? 0).padStart(2,'0')}`
           : '';
         return (
           <>
@@ -510,10 +510,10 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
             <div className="px-5 pb-6">
               {/* Modality + Element summary — 2 columns */}
               {(() => {
-                const SIGN_ELEMENT: Record<number, string> = { 0:'نار',3:'ماء',1:'تراب',2:'هواء',4:'نار',5:'تراب',6:'هواء',7:'ماء',8:'نار',9:'تراب',10:'هواء',11:'ماء' };
-                const SIGN_MODALITY: Record<number, string> = { 0:'متحرك',1:'ثابت',2:'متغيّر',3:'متحرك',4:'ثابت',5:'متغيّر',6:'متحرك',7:'ثابت',8:'متغيّر',9:'متحرك',10:'ثابت',11:'متغيّر' };
-                const ELEM_COLOR: Record<string, string> = { 'نار':'#E9785E','تراب':'#BDAA82','هواء':'#C2D3E2','ماء':'#7E97B8' };
-                const MODAL_COLOR: Record<string, string> = { 'متحرك':'#E9785E','ثابت':'#7E97B8','متغيّر':'#8FA084' };
+                const SIGN_ELEMENT: Record<number, string> = { 0:'Fire',3:'Water',1:'Earth',2:'Air',4:'Fire',5:'Earth',6:'Air',7:'Water',8:'Fire',9:'Earth',10:'Air',11:'Water' };
+                const SIGN_MODALITY: Record<number, string> = { 0:'Cardinal',1:'Fixed',2:'Mutable',3:'Cardinal',4:'Fixed',5:'Mutable',6:'Cardinal',7:'Fixed',8:'Mutable',9:'Cardinal',10:'Fixed',11:'Mutable' };
+                const ELEM_COLOR: Record<string, string> = { 'Fire':'#E9785E','Earth':'#BDAA82','Air':'#C2D3E2','Water':'#7E97B8' };
+                const MODAL_COLOR: Record<string, string> = { 'Cardinal':'#E9785E','Fixed':'#7E97B8','Mutable':'#8FA084' };
                 const pKeys = ['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto'] as const;
                 const elemCount: Record<string,number> = {};
                 const modCount: Record<string,number> = {};
@@ -530,7 +530,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                 return (
                   <div className="grid grid-cols-2 gap-3 mb-5">
                     <div className="rounded-[14px] p-3" style={{ background: '#F5F2EA', border: '1px solid #E5E1D8' }}>
-                      <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-2">العناصر</div>
+                      <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-2">ELEMENTS</div>
                       <div className="flex flex-col gap-1.5">
                         {sortedElem.map(([el, cnt]) => (
                           <div key={el} className="flex items-center justify-between gap-2">
@@ -544,7 +544,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                       </div>
                     </div>
                     <div className="rounded-[14px] p-3" style={{ background: '#F5F2EA', border: '1px solid #E5E1D8' }}>
-                      <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-2">الطبائع</div>
+                      <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-2">MODALITIES</div>
                       <div className="flex flex-col gap-1.5">
                         {sortedMod.map(([mo, cnt]) => (
                           <div key={mo} className="flex items-center justify-between gap-2">
@@ -560,7 +560,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                   </div>
                 );
               })()}
-              <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-3">مواضع Planets</div>
+              <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-3">PLANET POSITIONS</div>
               {/* Planet cards with photo backgrounds */}
               {(() => {
                 // Image backgrounds for all planets that have a photo
@@ -1447,7 +1447,7 @@ function buildIntroSteps(chart: AstralChart): IntroStep[] {
     },
     {
       label: 'Your Ascendant',
-      signName: ZODIAC_NAMES_AR[risingSignNumber],
+      signName: ZODIAC_NAMES_EN[risingSignNumber],
       svgKey: risingSlug,
       title: 'Your ascendant',
       body: risingVoice?.evolutionary ?? 'The face the world meets first.',
