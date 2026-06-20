@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAFAF7;
+  --color-cream-soft: #F5F2EA;
+  --color-sand: #EDE9E0;
+  --color-ink: #1C1917;
+  --color-ink-soft: #292524;
+  --color-ink-muted: #78716C;
+  --color-gold: #C9A84C;
+  --color-gold-soft: #E8D5A3;
+  --color-silver: #A8B4C0;
+  --color-coral: #E9785E;
+  --color-coral-soft: #F3B8A6;
+  --color-amber: #D4A04C;
+  --color-midnight: #0F1228;
+  --color-midnight-2: #1B1F47;
+  --color-rule-soft: #E5E1D8;
+  --color-cosmic-blue: #1E3A5F;
+  --color-sage: #8FA084;
+  --color-lake: #7E97B8;
+
+  --radius-chip: 14px;
+  --radius-card: 18px;
+  --radius-modal: 22px;
+  --radius-button: 26px;
+
+  --font-prose: 'EB Garamond', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-mono: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-ui);
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}

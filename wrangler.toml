@@ -1,0 +1,16 @@
+name = "sukoon"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat", "nodejs_compat_populate_process_env"]
+main = ".open-next/worker.js"
+routes = [
+  { pattern = "sukoon.arabic-astro.com/*", zone_name = "arabic-astro.com" }
+]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[vars]
+NEXT_PUBLIC_SUPABASE_URL = "https://hslrzpgjnsgylmyjcpqs.supabase.co"
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_AhRZTClN3XNE59yF9OEBxg_UZVYHNuJ"
+NEXT_PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAAADZm32ijpTAk7MWU"
