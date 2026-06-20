@@ -23,7 +23,7 @@ export function EventDetailClient({ id }: { id: string }) {
     return (
       <div className="max-w-[430px] mx-auto w-full px-5 py-16 text-center flex flex-col gap-4">
         <div className="text-ink-muted text-sm">لم يُعثر على هذا الحدث.</div>
-        <Link href="/self" className="text-coral text-sm font-medium">العودة ←</Link>
+        <Link href="/self" className="text-coral text-sm font-medium">الBack ←</Link>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export function EventDetailClient({ id }: { id: string }) {
   return (
     <div className="max-w-[430px] mx-auto w-full pb-10">
       <div className="pt-4 px-5 flex justify-between">
-        <Link href="/self" className="text-ink-muted hover:text-ink" aria-label="إغلاق">
+        <Link href="/self" className="text-ink-muted hover:text-ink" aria-label="Close">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -72,8 +72,8 @@ export function EventDetailClient({ id }: { id: string }) {
         <div className="mt-2.5 flex flex-col gap-2">
           {[
             ['يوم الكوكب', event.stamp.dayRuler],
-            ['طور القمر', event.stamp.moonPhase],
-            ['درجة الشمس', event.stamp.sunPosition],
+            ['طور Moon', event.stamp.moonPhase],
+            ['درجة Sun', event.stamp.sunPosition],
             ...(event.placement ? [['الموضع المرتبط', event.placement.label] as [string, string]] : []),
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between">

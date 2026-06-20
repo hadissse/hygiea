@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'البيوت الفلكية',
-  description: 'اكتشف بيوتك الفلكية الاثني عشر — كل بيت يكشف جانبًا من حياتك مع سُكون.',
+  title: 'Astrological Houses',
+  description: 'Discover your twelve astrological houses — each one reveals a dimension of your life.',
 };
 
 export default function HouseLayout({ children }: { children: React.ReactNode }) {

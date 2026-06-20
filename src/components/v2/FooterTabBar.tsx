@@ -5,9 +5,9 @@ import Link from 'next/link';
 type TabKey = 'self' | 'explore' | 'today';
 
 const TABS: { key: TabKey; label: string; href: string }[] = [
-  { key: 'self', label: 'ذاتك', href: '/self' },
-  { key: 'explore', label: 'استكشاف', href: '/explore' },
-  { key: 'today', label: 'اليوم', href: '/today' },
+  { key: 'self', label: 'Self', href: '/self' },
+  { key: 'explore', label: 'Explore', href: '/explore' },
+  { key: 'today', label: 'Day', href: '/today' },
 ];
 
 function Icon({ tab, active, dark }: { tab: TabKey; active: boolean; dark: boolean }) {
@@ -39,7 +39,7 @@ function Icon({ tab, active, dark }: { tab: TabKey; active: boolean; dark: boole
 
 /**
  * Standalone bottom tab bar used by the V2 contemplative full-screen views.
- * Mirrors the design's TabBarV2 (ذاتك · استكشاف · اليوم) but is link-based.
+ * Mirrors the design's TabBarV2 (ذاتك · استكشاف · Day) but is link-based.
  */
 export function FooterTabBar({ active = 'today', dark = false }: { active?: TabKey; dark?: boolean }) {
   const bg = dark ? 'rgba(15,18,40,0.85)' : 'rgba(255,255,255,0.96)';

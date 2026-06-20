@@ -10,7 +10,7 @@ import { TEACHERS } from '@/content/courses';
 
 const BIOS: Record<string, string> = {
   'مايا كول':
-    'تُعلّم مايا الممارسة التأمّليّة منذ أربعة عشر عامًا. صوتها دافئ ومتجذّر، مع روح دعابة هادئة تجدك حين تحتاجها.',
+    'Maya has taught contemplative practice for fourteen years. Her voice is warm and grounded, with a quiet humor that finds you when you need it.',
 };
 
 export default function TeacherPage({ params }: { params: Promise<{ name: string }> }) {
@@ -18,7 +18,7 @@ export default function TeacherPage({ params }: { params: Promise<{ name: string
   const decoded = decodeURIComponent(name);
   const teacher = TEACHERS.find((t) => t.name === decoded) ?? TEACHERS[0];
   const initials = teacher.name.split(' ').map((w) => w[0]).join('.');
-  const bio = BIOS[teacher.name] ?? `${teacher.blurb} — ${teacher.count} في سُكون.`;
+  const bio = BIOS[teacher.name] ?? `${teacher.blurb} — ${teacher.count} at Hygiea.`;
 
   return (
     <div className="px-5 pt-4 pb-28">

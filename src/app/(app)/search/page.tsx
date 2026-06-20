@@ -48,14 +48,14 @@ const BREATH_LIST: [string, string][] = [
 ];
 
 const TEACHER_SESSIONS: [string, string][] = [
-  ['الدرب الهادئ · اليوم ١', '١٠ دقائق'],
+  ['The Quiet Path · Day 1', '١٠ دقائق'],
   ['مراسي لطيفة', '٧ دقائق'],
-  ['عن العودة', '٥ دقائق'],
+  ['On Returning', '٥ دقائق'],
 ];
 
 const FILTER_GROUPS: [string, string[], number][] = [
   ['المدة', ['أقل من ٥ دقائق', '٥–١٠', '١٠–٢٠', '٢٠+'], 1],
-  ['النوع', ['تأمل', 'حكاية نوم', 'مشهد صوتي', 'قراءة'], 0],
+  ['النوع', ['Reflect', 'حكاية نوم', 'مشهد صوتي', 'قراءة'], 0],
   ['المعلم', ['أي', 'مايا كول', 'جوناس بارك', 'بريا شاه', 'ثيو ريد'], 1],
 ];
 
@@ -132,8 +132,8 @@ export default function SearchPage() {
     return (
       <div className="pb-28 px-5 pt-4">
         <div className="flex items-center justify-between">
-          <h1 className="font-serif text-[28px] text-ink -tracking-[0.5px]">ابحث بالشعور</h1>
-          <button className="text-sm text-coral font-medium" onClick={() => setFeelings(false)}>رجوع</button>
+          <h1 className="font-serif text-[28px] text-ink -tracking-[0.5px]">اSearch بالشعور</h1>
+          <button className="text-sm text-coral font-medium" onClick={() => setFeelings(false)}>‹ Back</button>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2.5">
           {FEELINGS.map(([l, v, onLight]) => (
@@ -153,7 +153,7 @@ export default function SearchPage() {
   return (
     <div className="pb-28 px-5 pt-4">
       {!committed && query.trim().length === 0 && (
-        <h1 className="font-serif text-[28px] text-ink mb-3.5 -tracking-[0.5px]">بحث</h1>
+        <h1 className="font-serif text-[28px] text-ink mb-3.5 -tracking-[0.5px]">Search</h1>
       )}
 
       {/* search bar */}
@@ -161,14 +161,14 @@ export default function SearchPage() {
         <div className="flex-1 flex items-center gap-2.5 bg-white rounded-[12px] px-3.5 py-2.5 border border-sand">
           <span className="text-ink-muted"><SearchIcon /></span>
           <input
-            dir="rtl"
+            dir="ltr"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
               setCommitted(false);
             }}
             onKeyDown={(e) => e.key === 'Enter' && setCommitted(true)}
-            placeholder="بحث"
+            placeholder="Search"
             className="flex-1 bg-transparent text-[15px] text-ink focus:outline-none placeholder:text-ink-muted"
           />
           {query && (
@@ -179,7 +179,7 @@ export default function SearchPage() {
         </div>
         {(query || committed) && (
           <button onClick={() => { setQuery(''); setCommitted(false); }} className="text-sm text-coral font-medium shrink-0">
-            إلغاء
+            Cancel
           </button>
         )}
       </div>
@@ -216,7 +216,7 @@ export default function SearchPage() {
             onClick={() => setFeelings(true)}
             className="mt-6 w-full flex items-center justify-between bg-cream-soft rounded-[14px] px-4 py-3.5"
           >
-            <span className="text-sm text-ink font-medium">ابحث بالشعور</span>
+            <span className="text-sm text-ink font-medium">اSearch بالشعور</span>
             <ChevronEnd className="text-ink-muted" />
           </button>
         </div>

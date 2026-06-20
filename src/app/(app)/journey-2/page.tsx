@@ -13,10 +13,10 @@ import { Body } from '@/components/Body';
 type FilterKey = 'all' | 'planets' | 'signs' | 'houses';
 
 const FILTER_LABELS: Record<FilterKey, string> = {
-  all: 'الكل',
-  planets: 'بالكواكب',
-  signs: 'بالأبراج',
-  houses: 'بالبيوت',
+  all: 'All',
+  planets: 'By planets',
+  signs: 'By signs',
+  houses: 'By houses',
 };
 
 function formatDateAr(iso: string): string {
@@ -54,8 +54,8 @@ export default function Journey2Page() {
       {/* Header — full width, outside grid */}
       <div className="px-5 pt-6 pb-3">
         <div className="text-xs text-ink-muted mb-1">{formatDateAr(new Date().toISOString())}</div>
-        <Headline>التتبّع اليومي</Headline>
-        <Body muted className="mt-1 text-sm">السماء الآن × خريطتك الداخلية</Body>
+        <Headline>التتبّع Dayي</Headline>
+        <Body muted className="mt-1 text-sm">The sky now × your inner chart</Body>
       </div>
 
       {/* Two-column grid on desktop: sky card on right, events on left */}
@@ -74,11 +74,11 @@ export default function Journey2Page() {
                     {stamp.moonPhase} · {stamp.sunPosition}
                   </div>
                   <div className="text-xs text-ink-muted mt-0.5">
-                    حاكم اليوم: {stamp.dayRuler}
+                    Day ruler: {stamp.dayRuler}
                   </div>
                 </div>
                 <Link href="/explore" className="text-xs text-coral font-medium whitespace-nowrap">
-                  الكل ←
+                  All ←
                 </Link>
               </div>
             </Card>
@@ -91,7 +91,7 @@ export default function Journey2Page() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
-                <span className="text-sm font-medium">سجّل لحظة</span>
+                <span className="text-sm font-medium">سجّل moment</span>
               </div>
             </Link>
           </div>
@@ -114,8 +114,8 @@ export default function Journey2Page() {
               <div className="py-12 text-center">
                 <Body muted>
                   {filter === 'all'
-                    ? 'لم تسجّل أي لحظات بعد. سجّل أول لحظة لك.'
-                    : 'لا لحظات مُصنَّفة بهذا الفلتر.'}
+                    ? 'لم تسجّل أي لحظات بعد. سجّل أول moment لك.'
+                    : 'No moments with this filter.'}
                 </Body>
               </div>
             ) : (

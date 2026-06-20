@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { BirthDateStep } from '@/components/onboarding/BirthDateStep';
 import { BirthTimeStep } from '@/components/onboarding/BirthTimeStep';
 import { LocationStep } from '@/components/onboarding/LocationStep';
@@ -90,19 +91,19 @@ export default function OnboardingPage() {
     return (
       <div className="flex flex-col items-center justify-center min-h-dvh px-5 py-12">
         <div className="text-center max-w-sm">
-          <h1 className="font-serif text-4xl text-ink mb-4">سُكون</h1>
-          <p className="text-lg text-ink-muted mb-8">خريطتك. سماؤك. سُكونك.</p>
+          <Image src="/hygiea-logo.png" alt="Hygiea" width={80} height={80} className="object-contain mx-auto mb-6" />
+          <p className="text-lg text-ink-muted mb-8">Your spheres. Your practice.</p>
           <p className="text-sm text-ink mb-12 leading-relaxed">
-            لنبدأ بفهم خريطتك الفلكية. ستحتاج إلى تاريخ ميلادك، ووقته، ومكانه.
+            We&apos;ll begin with your natal chart. You&apos;ll need your birth date, time, and place.
           </p>
           <button
             onClick={handleStartOnboarding}
             className="w-full px-6 py-3 rounded-[14px] bg-ink text-cream font-medium transition-colors hover:bg-ink-soft"
           >
-            ابدأ الآن
+            Begin
           </button>
           <p className="text-xs text-ink-muted mt-8">
-            لا تقلق إذا لم تكن تعرف وقتك بالضبط — يمكنك تركه فارغًا.
+            Don&apos;t know your exact birth time? You can leave it blank.
           </p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تأمل',
-  description: 'لحظة تأمل مع سُكون — تواصل مع ذاتك الداخلية من خلال أسئلة روحية مستوحاة من خريطتك الفلكية.',
+  title: 'Reflect',
+  description: 'Evening reflection with Hygiea — connect with your inner self through questions inspired by your natal chart.',
 };
 
 export default function ReflectLayout({

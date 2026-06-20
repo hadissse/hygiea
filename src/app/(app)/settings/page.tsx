@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { createClient } from '@/utils/supabase/client';
 import { useUser } from '@/components/AuthProvider';
 import { syncProfile } from '@/lib/sync';
 
@@ -114,18 +113,14 @@ export default function SettingsPage() {
   };
 
   const handleSignOut = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
     clearLocalData();
-    router.push('/login');
+    router.push('/');
     router.refresh();
   };
 
   const handleDeleteAccount = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
     clearLocalData();
-    router.push('/login');
+    router.push('/');
     router.refresh();
   };
 

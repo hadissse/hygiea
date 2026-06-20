@@ -9,7 +9,7 @@ export function SukoonIcon({ size = 36, className }: SukoonIconProps) {
       src="/sukoon-logo-icon.svg"
       width={size}
       height={size}
-      alt="سُكون"
+      alt="Hygiea"
       className={className}
       style={{ display: 'inline-block', flexShrink: 0 }}
     />

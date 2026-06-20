@@ -29,7 +29,7 @@ export function Logo({ height = 28, color = 'currentColor', className }: LogoPro
         WebkitMaskPosition: 'center',
         flexShrink: 0,
       }}
-      aria-label="سُكون"
+      aria-label="Hygiea"
       role="img"
     />
   );

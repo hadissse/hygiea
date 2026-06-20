@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تفاصيل الحدث',
-  description: 'تفاصيل الحدث المسجّل — اكتشف الارتباط بين لحظاتك ومواضع الكواكب مع سُكون.',
+  title: 'Event details',
+  description: 'Logged event details — discover the connection between your moments and planetary positions.',
 };
 
 export default function EventLayout({

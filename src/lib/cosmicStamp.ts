@@ -2,7 +2,7 @@ import * as Astronomy from 'astronomy-engine';
 
 const ZODIAC_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
 const DAY_NAMES_AR = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-const DAY_RULERS_AR = ['الشمس', 'القمر', 'المريخ', 'عطارد', 'المشتري', 'الزهرة', 'زحل'];
+const DAY_RULERS_AR = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
 
 function toArabicDigits(input: string | number): string {
   return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
@@ -27,7 +27,7 @@ function moonPhaseName(angle: number): string {
 }
 
 export interface CosmicStamp {
-  dayRuler: string;   // "السبت · زحل"
+  dayRuler: string;   // "السبت · Saturn"
   moonPhase: string;  // "هلال متزايد في الجدي"
   sunPosition: string; // "٢٧° الثور"
 }

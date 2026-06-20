@@ -13,7 +13,7 @@ export default function EditBirthPage() {
   }
 
   return (
-    <div className="max-w-[430px] mx-auto min-h-screen bg-cream" dir="rtl">
+    <div className="max-w-[430px] mx-auto min-h-screen bg-cream" dir="ltr">
       {/* Header */}
       <div className="flex items-center gap-3 px-5 pt-5 pb-2">
         <Link
@@ -37,7 +37,7 @@ export default function EditBirthPage() {
       </div>
 
       <div className="px-5 pb-2">
-        <h1 className="font-serif text-2xl text-ink">تعديل بيانات الميلاد</h1>
+        <h1 className="font-serif text-2xl text-ink">Edit birth data</h1>
       </div>
 
       <NatalChartSetupForm onComplete={handleComplete} />

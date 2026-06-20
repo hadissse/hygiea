@@ -18,12 +18,12 @@ const ZODIAC_SVG_KEYS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 
 const ZODIAC_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
 const SIGN_ELEMENT_AR = ['نار', 'تراب', 'هواء', 'ماء', 'نار', 'تراب', 'هواء', 'ماء', 'نار', 'تراب', 'هواء', 'ماء'];
 const HOUSE_ORDINALS = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر'];
-const HOUSE_THEMES = ['الذات · الجسد', 'المورد · الميدان', 'العقل · القريب', 'الأصول · الموقد', 'الإبداع · الشرارة', 'العمل · اليومي', 'الآخر · المرآة', 'الأعماق · المشترك', 'المعنى · البعيد', 'الذروة · العمل', 'الجماعة · المستقبل', 'الخفاء · الانحلال'];
+const HOUSE_THEMES = ['الذات · الجسد', 'المورد · الميدان', 'العقل · القريب', 'الأصول · الموقد', 'الإبداع · الشرارة', 'العمل · Dayي', 'الآخر · المرآة', 'الأعماق · المشترك', 'المعنى · البعيد', 'الذروة · العمل', 'الجماعة · المستقبل', 'الخفاء · الانحلال'];
 
 const PLANET_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'كيرون', northNode: 'شمال Moon', southNode: 'جنوب Moon',
 };
 
 const ELEMENT_AR: Record<string, { name: string; glyph: string }> = {

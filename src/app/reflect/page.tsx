@@ -29,7 +29,7 @@ const MOODS: [string, string][] = [
 ];
 
 const REFLECTIONS: [string, string, string][] = [
-  ['اليوم', 'صباح هادئ. ساعدني الجرس.', 'dawn'],
+  ['Day', 'صباح هادئ. ساعدني الجرس.', 'dawn'],
   ['الأمس', 'شعرت بالقلق — لم أستقرّ.', 'dusk'],
   ['الثلاثاء 5 مايو', 'أفضل. لاحظت التشتّت أسرع.', 'sage'],
   ['الأحد 3 مايو', 'جلسة طويلة. عدتُ أخفّ.', 'lake'],
@@ -71,15 +71,15 @@ function ReflectInner() {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14">
         <div className="flex items-center justify-between h-11">
-          <button onClick={close} aria-label="إغلاق" className="text-ink-muted">
+          <button onClick={close} aria-label="Close" className="text-ink-muted">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
           </button>
-          <button onClick={close} className="text-sm text-coral font-medium">حفظ</button>
+          <button onClick={close} className="text-sm text-coral font-medium">Save</button>
         </div>
         <div className="font-serif text-2xl mt-4">ملاحظة سريعة</div>
-        <div className="text-[13px] text-ink-muted mt-1">عن جلسة اليوم — لك وحدك</div>
+        <div className="text-[13px] text-ink-muted mt-1">عن جلسة Day — لك وحدك</div>
         <textarea
-          dir="rtl"
+          dir="ltr"
           autoFocus
           placeholder="ما الذي يخطر ببالك؟"
           className="w-full mt-5 bg-white rounded-[16px] border border-sand p-4 min-h-[160px] text-[15px] leading-[1.8] focus:outline-none focus:ring-1 focus:ring-coral/20 placeholder:text-ink-muted placeholder:italic"
@@ -155,7 +155,7 @@ function ReflectInner() {
           <div className="font-serif text-2xl mt-4">دوّن ملاحظة</div>
           <div className="text-sm text-ink-muted mt-2">لك وحدك — لن تُشارَك.</div>
           <textarea
-            dir="rtl"
+            dir="ltr"
             autoFocus
             placeholder="ما الذي يخطر ببالك؟"
             className="w-full mt-5 bg-white rounded-[16px] border border-sand p-4 min-h-[180px] text-[15px] leading-[1.8] focus:outline-none focus:ring-1 focus:ring-coral/20 placeholder:text-ink-muted placeholder:italic"
@@ -164,7 +164,7 @@ function ReflectInner() {
       )}
 
       <div className="absolute bottom-14 inset-x-5">
-        <PrimaryBtn onClick={() => setStep((s) => s + 1)}>{step === 3 ? 'حفظ' : 'متابعة'}</PrimaryBtn>
+        <PrimaryBtn onClick={() => setStep((s) => s + 1)}>{step === 3 ? 'Save' : 'Continue'}</PrimaryBtn>
       </div>
     </div>
   );

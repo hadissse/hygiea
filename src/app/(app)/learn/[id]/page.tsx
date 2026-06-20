@@ -64,9 +64,9 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* tab switch */}
           <div className="mt-5 md:mt-0 flex gap-2">
             {([
-              ['about', 'نظرة عامة'],
-              ['learn', 'ماذا ستتعلّم'],
-              ['lessons', 'الجلسات'],
+              ['about', 'Overview'],
+              ['learn', 'What you\'ll learn'],
+              ['lessons', 'Sessions'],
             ] as [typeof tab, string][]).map(([key, label]) => (
               <button
                 key={key}
@@ -83,7 +83,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* Scr42 — overview */}
           {tab === 'about' && (
             <div className="mt-5">
-              <div className="font-serif text-[22px]">تعلّم أسس اليقظة، عشر دقائق كل مرة.</div>
+              <div className="font-serif text-[22px]">Learn the fundamentals of mindfulness, ten minutes at a time.</div>
               <p className="text-sm text-ink-muted mt-3 leading-[1.8]">{course.blurb}</p>
               <div className="mt-5 flex gap-3 flex-wrap">
                 {course.tags.map((t) => (
@@ -98,7 +98,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* Scr43 — what you'll learn */}
           {tab === 'learn' && (
             <div className="mt-5">
-              <div className="font-serif text-xl">ماذا ستتعلّم</div>
+              <div className="font-serif text-xl">ماذا ستLearn</div>
               <div className="mt-3 flex flex-col gap-3.5">
                 {COURSE_OUTCOMES.map(([t, s], i) => (
                   <div key={t} className="flex gap-3.5 items-start">
@@ -118,7 +118,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* Scr44 — lesson list */}
           {tab === 'lessons' && (
             <div className="mt-5">
-              <div className="font-serif text-[15px] text-ink-muted">{course.lessons.length} جلسات · {course.teacher}</div>
+              <div className="font-serif text-[15px] text-ink-muted">{course.lessons.length} sessions · {course.teacher}</div>
               <div className="mt-3.5 flex flex-col gap-2 md:max-w-xl md:grid md:grid-cols-1">
                 {course.lessons.map((t, i) => {
                   const done = i < 2;
@@ -151,7 +151,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                         >
                           {t}
                         </div>
-                        <div className="text-xs text-ink-muted mt-0.5">10 دقائق</div>
+                        <div className="text-xs text-ink-muted mt-0.5">10 min</div>
                       </div>
                     </div>
                   );
@@ -166,7 +166,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               href={`/play/${course.id}`}
               className="block w-full md:w-auto md:px-12 md:inline-block text-center py-3.5 rounded-[14px] bg-ink text-cream text-sm font-medium hover:bg-ink-soft transition-colors"
             >
-              {tab === 'lessons' ? 'تشغيل · 10 دقائق' : 'ابدأ اليوم الأول'}
+              {tab === 'lessons' ? 'Play · 10 min' : 'Begin day one'}
             </Link>
           </div>
         </div>

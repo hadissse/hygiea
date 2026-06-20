@@ -63,16 +63,16 @@ const MINERALS: Record<string, { mineral: string; color: string }> = {
 };
 
 const PLANET_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة',
-  mars: 'المريخ', jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس',
-  neptune: 'نبتون', pluto: 'بلوتو', chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus',
+  mars: 'Mars', jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus',
+  neptune: 'Neptune', pluto: 'Pluto', chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const ORGANS: Record<string, { organ: string; theme: string }> = {
   sun:     { organ: 'القلب',    theme: 'مركز الحياة والإشعاع' },
   moon:    { organ: 'الدماغ',   theme: 'الاستقبال والانعكاس' },
   mercury: { organ: 'الرئتان',  theme: 'التنفس والتبادل' },
-  venus:   { organ: 'الكليتان', theme: 'التوازن والجمال' },
+  venus:   { organ: 'Kidneys', theme: 'التوازن والجمال' },
   mars:    { organ: 'المرارة',  theme: 'الإرادة والاندفاع' },
   jupiter: { organ: 'الكبد',    theme: 'التوسع والسعة' },
   saturn:  { organ: 'الطحال',   theme: 'التمييز والبنية' },

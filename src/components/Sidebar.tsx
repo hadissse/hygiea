@@ -6,7 +6,7 @@ import { SukoonIcon } from './SukoonIcon';
 import { Logo } from './Logo';
 
 const tabs = [
-  { key: 'today', label: 'اليوم', href: '/today', icon: TodayIcon },
+  { key: 'today', label: 'Day', href: '/today', icon: TodayIcon },
   // { key: 'library', label: 'مكتبتي', href: '/library', icon: LibraryIcon }, // hidden — re-enable when ready
   { key: 'self', label: 'أنت', href: '/self', icon: SelfIcon },
 ] as const;
@@ -46,7 +46,7 @@ export function Sidebar() {
     <aside className="hidden md:flex md:flex-col md:shrink-0 md:w-[248px] lg:w-[272px] md:sticky md:top-0 md:h-dvh border-e border-rule-soft bg-cream-soft/40 backdrop-blur-xl">
       <div className="flex flex-col h-full px-5 py-6">
         {/* Brand */}
-        <Link href="/today" className="flex items-center gap-3 px-2 mb-8" aria-label="سُكون">
+        <Link href="/today" className="flex items-center gap-3 px-2 mb-8" aria-label="Hygiea">
           <SukoonIcon size={72} />
           <Logo height={28} color="#171B3A" />
         </Link>
@@ -83,7 +83,7 @@ export function Sidebar() {
               <line x1="12" y1="5" x2="12" y2="19" />
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
-            <span>تسجيل لحظة</span>
+            <span>Log event</span>
           </Link>
           <Link
             href="/journey-2"
@@ -92,7 +92,7 @@ export function Sidebar() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 3v18l7-4 7 4V3z" />
             </svg>
-            <span>تتبّع وحفظ</span>
+            <span>تتبّع وSave</span>
           </Link>
         </div>
 
@@ -111,7 +111,7 @@ export function Sidebar() {
               <circle cx="16" cy="12" r="2" fill="currentColor" stroke="none" />
               <circle cx="10" cy="18" r="2" fill="currentColor" stroke="none" />
             </svg>
-            <span>الإعدادات</span>
+            <span>Settings</span>
           </Link>
         </div>
       </div>

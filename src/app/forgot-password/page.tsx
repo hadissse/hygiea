@@ -47,7 +47,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="rtl">
+    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="ltr">
       <div className="flex flex-col items-center mb-10 gap-3">
         <Logo color="#171B3A" height={40} />
       </div>
@@ -62,23 +62,23 @@ export default function ForgotPasswordPage() {
             </div>
             <h2 className="text-lg font-semibold text-[#171B3A] mb-2">تم الإرسال</h2>
             <p className="text-sm text-[#5C5C7A] leading-relaxed mb-6">
-              تم إرسال رابط إعادة تعيين كلمة المرور إلى <span dir="ltr" className="font-medium">{email}</span>
+              تم إرسال رابط إعادة تعيين Password إلى <span dir="ltr" className="font-medium">{email}</span>
             </p>
             <Link href="/login" className="text-sm text-[#E9785E] font-medium">
-              العودة لتسجيل الدخول
+              الBack لSign In
             </Link>
           </div>
         ) : (
           <>
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-[#171B3A] mb-1">نسيت كلمة المرور؟</h2>
+              <h2 className="text-xl font-semibold text-[#171B3A] mb-1">نسيت Password؟</h2>
               <p className="text-sm text-[#5C5C7A]">أدخل بريدك وسنرسل لك رابط إعادة التعيين</p>
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div>
                 <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-                  البريد الإلكتروني
+                  Email
                 </label>
                 <input
                   type="email"
@@ -109,7 +109,7 @@ export default function ForgotPasswordPage() {
                 disabled={loading || !captchaToken}
                 className="w-full py-3.5 rounded-[26px] bg-[#171B3A] text-white font-semibold text-sm disabled:opacity-40 transition-opacity"
               >
-                {loading ? '...' : 'إرسال رابط الاستعادة'}
+                {loading ? '...' : 'Send reset link'}
               </button>
             </form>
 
@@ -117,7 +117,7 @@ export default function ForgotPasswordPage() {
               href="/login"
               className="w-full mt-4 text-center text-xs text-[#5C5C7A] block hover:text-[#171B3A] transition-colors"
             >
-              العودة لتسجيل الدخول
+              الBack لSign In
             </Link>
           </>
         )}

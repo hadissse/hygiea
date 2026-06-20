@@ -65,7 +65,7 @@ export function ReflectionInsights() {
     <div className="rounded-[20px] bg-cream-soft p-5 border border-rule-soft flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <Meta>أنماطك</Meta>
-        <span className="text-[11px] text-ink-muted">{insights.totalEvents} لحظة</span>
+        <span className="text-[11px] text-ink-muted">{insights.totalEvents} moment</span>
       </div>
       {stream && (
         <div className="flex flex-col gap-2">

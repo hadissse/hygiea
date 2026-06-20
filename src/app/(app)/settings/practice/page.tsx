@@ -10,12 +10,12 @@ const CONSULTATION_URL = process.env.NEXT_PUBLIC_CONSULTATION_URL ?? '';
 export default function PracticePage() {
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="الاستشارات والممارسة" />
+      <SettingsSubHeader title="Practice Settings" />
       <div className="px-5 flex flex-col gap-4">
         <Card>
           <div className="flex flex-col gap-3">
             <div className="font-serif text-lg text-ink">جلسة مع مُرشد</div>
-            <Body muted>محادثةٌ هادئة حول خريطتك مع أحد المرشدين.</Body>
+            <Body muted>A quiet conversation about your chart with one of our guides.</Body>
             {CONSULTATION_URL ? (
               <Link
                 href={CONSULTATION_URL}
@@ -26,15 +26,15 @@ export default function PracticePage() {
                 احجز جلسة
               </Link>
             ) : (
-              <span className="text-sm text-ink-muted">تُفتح الحجوزات قريبًا.</span>
+              <span className="text-sm text-ink-muted">Bookings opening soon.</span>
             )}
           </div>
         </Card>
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="font-serif text-lg text-ink">ممارستك اليومية</div>
+            <div className="font-serif text-lg text-ink">ممارستك Dayية</div>
             <Body muted>
-              تتبّع جلساتك وتأمّلاتك. سيظهر هنا سجلّ ممارستك مع الوقت.
+              Track your sessions and reflections. Your practice log will appear here over time.
             </Body>
           </div>
         </Card>

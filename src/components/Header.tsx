@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { SukoonIcon } from './SukoonIcon';
+import Image from 'next/image';
 
 export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur-xl safe-top">
       <div className="flex items-center justify-between max-w-[430px] mx-auto h-12 px-5">
         {/* Left: settings */}
-        <Link href="/settings" className="p-1 -m-1 text-ink-muted hover:text-ink transition-colors" aria-label="الإعدادات">
+        <Link href="/settings" className="p-1 -m-1 text-ink-muted hover:text-ink transition-colors" aria-label="Settings">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <line x1="4" y1="6" x2="20" y2="6" />
             <line x1="4" y1="12" x2="20" y2="12" />
@@ -20,15 +20,15 @@ export function Header() {
         </Link>
 
         {/* Center: logo */}
-        <Link href="/today" aria-label="سُكون">
-          <SukoonIcon size={44} />
+        <Link href="/today" aria-label="Hygiea">
+          <Image src="/hygiea-logo.png" alt="Hygiea" width={44} height={44} className="object-contain" />
         </Link>
 
         {/* Right: plus */}
         <Link
           href="/log"
           className="p-1 -m-1 text-coral hover:text-coral/80 transition-colors"
-          aria-label="تسجيل لحظة"
+          aria-label="Log event"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="12" y1="5" x2="12" y2="19" />

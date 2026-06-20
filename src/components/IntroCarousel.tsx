@@ -12,13 +12,13 @@ export interface IntroSlide {
 }
 
 export const INTRO_SLIDES: IntroSlide[] = [
-  { orb: 'dawn', title: 'سكون لكل لحظة', subtitle: 'دقائق من اليقظة — بين الاجتماعات، قبل النوم، أو حين تعلو ضوضاء الحياة.' },
-  { orb: 'sage', title: 'مبنيّة على البحث', subtitle: 'تستند ممارساتنا إلى ثلاثة عقود من العمل السريري على اليقظة، وأكثر من 150 دراسة محكّمة.' },
+  { orb: 'dawn', title: 'سكون لكل moment', subtitle: 'دقائق من اليقظة — بين الاجتماعات، قبل النوم، أو حين تعلو ضوضاء الحياة.' },
+  { orb: 'sage', title: 'مبنيّة على الSearch', subtitle: 'تستند ممارساتنا إلى ثلاثة عقود من العمل السريري على اليقظة، وأكثر من 150 دراسة محكّمة.' },
   { orb: 'lake', title: 'مفصّلة على يومك', subtitle: 'ممارسة تتكيّف مع مزاجك، وطاقتك، والوقت المتاح لديك.' },
   { orb: 'ember', title: 'شاهد رحلتك تتفتّح', subtitle: 'سلاسل من الأيام، وتأمّلات، وسجلّ هادئ لحضورك.' },
   { orb: 'night', title: 'انجرف إلى النوم', subtitle: 'حكايات للنوم، ومشاهد صوتية، وقصص بطيئة تعينك على الراحة.', dark: true },
   { orb: 'dusk', title: 'وتحدّث إلى أحدهم كذلك', subtitle: 'حين تحتاج إلى أكثر من التأمّل، معالجونا المعتمدون على بُعد لمسة.' },
-  { orb: 'sage', media: '/media/crowd.jpg', title: 'لستَ وحدك', subtitle: 'أكثر من 80 مليون شخص يمارسون مع سُكون — في كل منطقة زمنية.' },
+  { orb: 'sage', media: '/media/crowd.jpg', title: 'لستَ وحدك', subtitle: 'أكثر من 80 مليون شخص يمارسون مع Hygiea — في كل منطقة زمنية.' },
   { orb: 'dawn', media: '/media/color-wheel.webp', title: 'لنبدأ', subtitle: 'بضعة أسئلة سريعة لنرسم ممارستك.', cta: 'ابدأ الآن' },
 ];
 
@@ -68,7 +68,7 @@ export function IntroCarousel({ slide, progress, onBack, onSkip, onNext }: {
         </div>
       </div>
       <div className="relative px-5 pb-14">
-        <PrimaryBtn dark={dark} onClick={onNext}>{slide.cta ?? 'متابعة'}</PrimaryBtn>
+        <PrimaryBtn dark={dark} onClick={onNext}>{slide.cta ?? 'Continue'}</PrimaryBtn>
       </div>
     </div>
   );

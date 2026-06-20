@@ -2,17 +2,17 @@ import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { Card } from '@/components/Card';
 import { Rule } from '@/components/Rule';
 
-const links = ['شروط الخدمة', 'سياسة الخصوصية', 'شكر وتقدير'];
+const links = ['Terms of Service', 'Privacy Policy', 'Credits'];
 
 export default function AboutPage() {
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="عن سُكون" />
+      <SettingsSubHeader title="About Hygiea" />
       <div className="px-5 flex flex-col items-center text-center mt-6">
-        <div className="font-serif text-3xl text-ink">سُكون</div>
-        <div className="text-[13px] text-ink-muted mt-4">الإصدار ٠.١ · بناء ٢٠٢٦.٥</div>
+        <div className="font-serif text-3xl text-ink">Hygiea</div>
+        <div className="text-[13px] text-ink-muted mt-4">Version 0.1 · Build 2026.5</div>
         <p className="text-sm text-ink-muted mt-7 leading-[1.7] max-w-xs">
-          صُنعت سُكون من فريق صغير من المتأمّلين والمصمّمين والباحثين، رفقةً هادئة في يومك.
+          Hygiea is made by a small team of contemplatives, designers, and researchers — a quiet companion for your day.
         </p>
       </div>
       <div className="px-5 mt-8">

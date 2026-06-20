@@ -13,7 +13,7 @@ import {
 } from './calendarData';
 
 const LEGEND: [string, string][] = [
-  ['اقتران/عودة', '#E9785E'],
+  ['اقتران/Back', '#E9785E'],
   ['تثليث/تناغم', '#8FA084'],
   ['دخول/قمر', '#7E97B8'],
   ['محطّ/سكون', '#D4A04C'],
@@ -145,7 +145,7 @@ export function CalendarMonthView({ initialYear = 2026, initialMonth = TODAY_MON
         </div>
         <button onClick={goToday}
           className="px-3 py-1.5 rounded-full bg-cream-soft text-xs text-coral font-semibold">
-          اليوم
+          Day
         </button>
       </div>
 

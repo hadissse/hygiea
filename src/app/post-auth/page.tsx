@@ -22,7 +22,7 @@ export default function PostAuthPage() {
   }, [router]);
 
   return (
-    <div className="min-h-dvh bg-cream flex items-center justify-center" dir="rtl">
+    <div className="min-h-dvh bg-cream flex items-center justify-center" dir="ltr">
       <p className="text-sm text-ink-muted animate-pulse">جاري تجهيز حسابك...</p>
     </div>
   );

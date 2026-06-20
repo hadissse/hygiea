@@ -5,14 +5,14 @@ import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { Body } from '@/components/Body';
 
 const TYPE_AR: Record<string, string> = {
-  planet: 'كوكب',
-  sign: 'برج',
-  house: 'بيت',
-  aspect: 'جانب',
-  element: 'عنصر',
+  planet: 'Planet',
+  sign: 'Sign',
+  house: 'House',
+  aspect: 'Aspect',
+  element: 'Element',
 };
 
-const VALUE_AR: Record<string, string> = { yes: 'نعم', partial: 'جزئيًا', no: 'لا' };
+const VALUE_AR: Record<string, string> = { yes: 'Yes', partial: 'Partial', no: 'No' };
 
 interface CalEntry {
   label: string;
@@ -20,7 +20,7 @@ interface CalEntry {
 }
 
 function toArabicDigits(input: string | number): string {
-  return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+  return String(input);
 }
 
 export default function CalibrationPage() {
@@ -47,10 +47,10 @@ export default function CalibrationPage() {
 
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="المعايرة" />
+      <SettingsSubHeader title="Calibration" />
       {loaded && total === 0 ? (
         <div className="px-5 py-12 text-center">
-          <Body muted>لم تعايِر أي وضعية بعد. افتح وضعيةً من خريطتك واختر «ينطبق؟».</Body>
+          <Body muted>No calibrations yet. Open a placement from your chart and choose "Resonates?".</Body>
         </div>
       ) : (
         <>
@@ -58,7 +58,7 @@ export default function CalibrationPage() {
             <div className="font-serif text-[44px] text-ink leading-none">
               {toArabicDigits(yesCount)} / {toArabicDigits(total)}
             </div>
-            <div className="text-[13px] text-ink-muted mt-2">ينطبق · من {toArabicDigits(total)} مواضع</div>
+            <div className="text-[13px] text-ink-muted mt-2">resonates · of {toArabicDigits(total)} placements</div>
           </div>
           <div className="px-5 mt-5 flex flex-col gap-2 md:grid md:grid-cols-2 md:gap-2">
             {entries.map((e) => {

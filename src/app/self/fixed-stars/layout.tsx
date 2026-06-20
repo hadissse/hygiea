@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'النجوم الثابتة',
-  description: 'استكشف النجوم الثابتة في خريطتك الفلكية — تراث فلكي عربي أصيل مع سُكون.',
+  title: 'Fixed Stars',
+  description: 'Explore fixed stars in your natal chart with Hygiea.',
 };
 
 export default function FixedStarsLayout({ children }: { children: React.ReactNode }) {

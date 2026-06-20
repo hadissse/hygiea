@@ -6,7 +6,7 @@ import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { loadEvents } from '@/lib/events';
 
 function toArabicDigits(input: string | number): string {
-  return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+  return String(input);
 }
 
 export default function ProfilePage() {
@@ -28,18 +28,18 @@ export default function ProfilePage() {
   const cells = [
     [toArabicDigits(stats.events), 'أحداث مسجّلة'],
     [toArabicDigits(stats.calibrations), 'معايرات'],
-    [stats.hasChart ? 'نعم' : '—', 'خريطتك'],
+    [stats.hasChart ? 'Yes' : '—', 'Your chart'],
   ];
 
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="الملف الشخصي" />
+      <SettingsSubHeader title="Profile" />
       <div className="px-5 flex items-center gap-3.5 mt-2">
         <div className="w-16 h-16 rounded-full flex items-center justify-center shrink-0" style={{ background: '#F8D6BE' }}>
-          <span className="font-serif text-2xl text-cream">س</span>
+          <span className="font-serif text-2xl text-cream">H</span>
         </div>
         <div>
-          <div className="font-serif text-[22px] text-ink">رفيق سُكون</div>
+          <div className="font-serif text-[22px] text-ink">رفيق Hygiea</div>
           <div className="text-[13px] text-ink-muted mt-0.5">حسابٌ محلي على هذا الجهاز</div>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function ProfilePage() {
             href="/settings/edit-birth"
             className="flex items-center justify-between p-4 rounded-[14px] bg-white border border-rule-soft"
           >
-            <span className="text-sm text-ink">تعديل بيانات الميلاد</span>
+            <span className="text-sm text-ink">Edit birth data</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C5C7A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="rotate-180">
               <path d="M9 18l6-6-6-6" />
             </svg>

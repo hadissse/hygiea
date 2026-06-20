@@ -23,13 +23,13 @@ function CloudSyncToggle() {
   return (
     <div className="flex items-center justify-between py-3">
       <div>
-        <div className="text-sm font-medium text-ink">مزامنة الخريطة سحابيًّا</div>
-        <div className="text-xs text-ink-muted mt-0.5">يتيح الوصول من أجهزة متعددة</div>
+        <div className="text-sm font-medium text-ink">Cloud chart sync</div>
+        <div className="text-xs text-ink-muted mt-0.5">Enables access across devices</div>
       </div>
       <button
         onClick={toggle}
         className={`relative w-11 h-6 rounded-full transition-colors ${enabled ? 'bg-coral' : 'bg-rule-soft'}`}
-        aria-label="تبديل المزامنة السحابية"
+        aria-label="Toggle cloud sync"
       >
         <span
           className="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform"
@@ -43,26 +43,26 @@ function CloudSyncToggle() {
 export default function PrivacyPage() {
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="سياسة الخصوصية" />
+      <SettingsSubHeader title="Privacy Policy" />
       <div className="px-5 flex flex-col gap-4 text-sm text-ink-muted leading-[1.8] mt-2">
         <p>
-          خصوصيتك أساسٌ في سُكون. تُحفظ بيانات ميلادك وخريطتك وأحداثك على جهازك أولًا،
-          ولا تُشارك دون إذنك.
+          Your privacy is foundational to Hygiea. Your birth data, chart, and events are stored on your device first,
+          and never shared without your consent.
         </p>
         <p>
-          قبل تسجيل الدخول: تُحسب خريطتك محليًّا ولا تُرسل إلى أي خادم.
+          Before signing in: your chart is calculated locally and never sent to any server.
         </p>
         <p>
-          بعد تسجيل الدخول مع تفعيل المزامنة: تُحفَظ خريطتك وبياناتها الفلكية على خوادم آمنة لتتمكّن من الوصول إليها من أجهزة متعددة.
+          After signing in with sync enabled: your chart is stored on secure servers so you can access it from multiple devices.
         </p>
         <p>
-          يمكنك تصدير بياناتك أو حذفها في أي وقت من شاشة «البيانات».
+          You can export or delete your data at any time from the Data screen.
         </p>
         <div className="border-t border-sand pt-2">
           <CloudSyncToggle />
         </div>
         <p className="text-ink">
-          باستخدامك سُكون فأنت توافق على هذه السياسة. نحدّثها عند الحاجة وننبّهك بأي تغيير جوهري.
+          By using Hygiea you agree to this policy. We update it as needed and notify you of any material changes.
         </p>
       </div>
     </div>

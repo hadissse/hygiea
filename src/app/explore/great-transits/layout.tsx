@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'العبورات الكبرى',
-  description: 'العبورات الكوكبية الكبرى في حياتك — عودة زحل وعودة المشتري ومحطات فلكية مهمة مع سُكون.',
+  title: 'Great Transits',
+  description: 'The great planetary transits of your life — Saturn Return, Jupiter Return, and key celestial milestones.',
 };
 
 export default function GreatTransitsLayout({ children }: { children: React.ReactNode }) {

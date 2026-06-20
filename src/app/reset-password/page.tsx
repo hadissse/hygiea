@@ -17,7 +17,7 @@ export default function ResetPasswordPage() {
     setError('')
 
     if (password.length < 6) {
-      setError('كلمة المرور يجب أن تكون 6 أحرف على الأقل')
+      setError('Password يجب أن تكون 6 أحرف على الأقل')
       return
     }
     if (password !== confirm) {
@@ -33,8 +33,8 @@ export default function ResetPasswordPage() {
     if (error) {
       setError(
         error.code === 'same_password'
-          ? 'كلمة المرور الجديدة مطابقة للقديمة — اختر كلمة مختلفة'
-          : 'حدث خطأ، حاول مرة أخرى أو اطلب رابطًا جديدًا'
+          ? 'Password الجديدة مطابقة للقديمة — اختر كلمة مختلفة'
+          : 'حدث Error، حاول مرة أخرى أو اطلب رابطًا جديدًا'
       )
     } else {
       router.push('/')
@@ -43,7 +43,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="rtl">
+    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="ltr">
       <div className="flex flex-col items-center mb-10 gap-3">
         <Logo color="#171B3A" height={40} />
       </div>
@@ -57,7 +57,7 @@ export default function ResetPasswordPage() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
             <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              كلمة المرور الجديدة
+              Password الجديدة
             </label>
             <input
               type="password"
@@ -72,7 +72,7 @@ export default function ResetPasswordPage() {
 
           <div>
             <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              تأكيد كلمة المرور
+              Confirm Password
             </label>
             <input
               type="password"
@@ -92,7 +92,7 @@ export default function ResetPasswordPage() {
             disabled={loading}
             className="w-full py-3.5 rounded-[26px] bg-[#171B3A] text-white font-semibold text-sm disabled:opacity-40 transition-opacity"
           >
-            {loading ? '...' : 'حفظ كلمة المرور'}
+            {loading ? '...' : 'Save Password'}
           </button>
         </form>
       </div>

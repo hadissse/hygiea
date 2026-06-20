@@ -30,7 +30,7 @@ const CHAPTERS: [string, string][] = [
   ['الاستقرار', '0:00'],
   ['أول نَفَس', '1:30'],
   ['الملاحظة', '4:00'],
-  ['العودة', '7:00'],
+  ['الBack', '7:00'],
   ['الختام', '9:00'],
 ];
 const SETTINGS: [string, string | null, boolean][] = [
@@ -344,7 +344,7 @@ function PlayerInner({ id }: { id: string }) {
   // ── Scr50 (default): standard player (dusk) ──
   return (
     <PlayerShell bg="dusk">
-      <PlayerHeader course={course?.title ?? 'الطريق الهادئ'} day="اليوم 3" onClose={close} />
+      <PlayerHeader course={course?.title ?? 'الطريق الهادئ'} day="Day 3" onClose={close} />
       <PlayerArt variant={course?.variant ?? 'dawn'} />
       <div className="text-center text-cream mt-8 px-8">
         <div className="font-serif text-2xl">{title}</div>

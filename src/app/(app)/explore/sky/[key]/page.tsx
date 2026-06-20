@@ -9,9 +9,9 @@ import { FrameworkLabel } from '@/components/FrameworkLabel';
 import type { AstralChart } from '@/lib/chartCalculator';
 
 const PLANET_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const ZODIAC_NAMES_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -39,7 +39,7 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
   const degreeStr = planet ? `${toArabicDigits(planet.degree)}°` : '';
 
   return (
-    <div className="max-w-[430px] mx-auto w-full pb-28" dir="rtl">
+    <div className="max-w-[430px] mx-auto w-full pb-28" dir="ltr">
       {/* Back */}
       <div className="px-5 pt-5">
         <button

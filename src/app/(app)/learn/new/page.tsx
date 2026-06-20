@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { BackIcon, FilterIcon } from '@/components/learn/primitives';
 
 const NEW_ITEMS: [string, string, string][] = [
-  ['المرساة اللطيفة', 'دورة · مايا كول', '#C9D2BE'],
-  ['صعوبات الراحة', 'سلسلة · جوناس بارك', '#9C8AB8'],
-  ['عن الفرح', 'منفردة · ٥ دقائق · بريا', '#F8D6BE'],
-  ['المشي اليقظ', 'سلسلة · ثيو', '#C2D3E2'],
+  ['The Gentle Anchor', 'Course · Maya Cole', '#C9D2BE'],
+  ['The Difficulty of Rest', 'Series · Jonas Park', '#9C8AB8'],
+  ['On Joy', 'Solo · 5 min · Priya', '#F8D6BE'],
+  ['Mindful Walking', 'Series · Theo', '#C2D3E2'],
 ];
 
 export default function NewThisWeekPage() {
@@ -30,7 +30,7 @@ export default function NewThisWeekPage() {
           <div key={t} className="bg-white rounded-[16px] p-3.5 border border-sand flex gap-3.5 items-center">
             <div className="w-[70px] h-[70px] rounded-[12px] shrink-0" style={{ background: c }} />
             <div className="flex-1">
-              <div className="text-xs text-coral font-semibold">جديد</div>
+              <div className="text-xs text-coral font-semibold">New</div>
               <div className="font-serif text-[17px] text-ink mt-0.5">{t}</div>
               <div className="text-xs text-ink-muted mt-1">{s}</div>
             </div>

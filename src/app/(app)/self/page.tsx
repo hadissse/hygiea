@@ -45,11 +45,11 @@ function lonToSignDeg(lon: number): string {
 }
 
 const chartSubtabs = [
-  { key: 'planets', label: 'الكواكب' },
-  { key: 'houses', label: 'البيوت' },
+  { key: 'planets', label: 'Planets' },
+  { key: 'houses', label: 'Houses' },
   { key: 'aspects', label: 'الجوانب' },
   { key: 'organs', label: 'الأعضاء' },
-  { key: 'stars', label: 'النجوم الثابتة' },
+  { key: 'stars', label: 'Fixed Stars' },
 ] as const;
 
 const ZODIAC_SVG_KEYS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sag', 'cap', 'aqua', 'pisces'];
@@ -60,9 +60,9 @@ function formatPosition(planet: any): string {
 }
 
 const PLANET_DISPLAY_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'كيرون', northNode: 'شمال Moon', southNode: 'جنوب Moon',
 };
 
 function transformChartToPlanets(chart: AstralChart | null): any[] {
@@ -91,7 +91,7 @@ function transformChartToSigns(chart: AstralChart | null): any[] {
   if (!chart) return [];
 
   const elements = ['نار', 'تراب', 'هواء', 'ماء'];
-  const houseNames = ['بيت الطالع', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع — طالع', 'الثامن', 'التاسع', 'العاشر — الشمس', 'الحادي عشر — عناقيد', 'الثاني عشر'];
+  const houseNames = ['بيت Ascendant', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع — طالع', 'الثامن', 'التاسع', 'العاشر — Sun', 'الحادي عشر — عناقيد', 'الثاني عشر'];
 
   return ZODIAC_NAMES_AR.map((name, idx) => ({
     name,
@@ -110,7 +110,7 @@ function transformChartToHouses(chart: AstralChart | null): any[] {
     'العقل · القريب',
     'الأصول · الموقد',
     'الإبداع · الشرارة',
-    'العمل · اليومي',
+    'العمل · Dayي',
     'الآخر · المرآة',
     'الأعماق · المشترك',
     'الأفق · المعنى',
@@ -190,7 +190,7 @@ function ChartVoiceIntro({ chart }: { chart: AstralChart }) {
 
   const items: Array<{ label: string; signName: string; svgKey: string; meaning: string | undefined; bg: string; accent: string }> = [
     {
-      label: 'شمسك',
+      label: 'Your Sun',
       signName: chart.sun.sign,
       svgKey: 'sun',
       meaning: sunVoice?.evolutionary,
@@ -198,7 +198,7 @@ function ChartVoiceIntro({ chart }: { chart: AstralChart }) {
       accent: '#9A3F30',
     },
     {
-      label: 'طالعك',
+      label: 'Your Ascendant',
       signName: risingName,
       svgKey: risingSlug,
       meaning: risingVoice?.evolutionary,
@@ -206,7 +206,7 @@ function ChartVoiceIntro({ chart }: { chart: AstralChart }) {
       accent: '#475A3F',
     },
     {
-      label: 'قمرك',
+      label: 'Your Moon',
       signName: chart.moon.sign,
       svgKey: 'moon',
       meaning: moonVoice?.evolutionary,
@@ -278,7 +278,7 @@ function FixedStarsView({ chart, onNavigate }: { chart: AstralChart | null; onNa
     <div className="flex flex-col gap-3 px-5 pb-6">
       {/* Filter chips */}
       <div className="flex gap-2 pt-1">
-        {([['active', 'في خريطتي'], ['all', 'الكل']] as const).map(([k, label]) => (
+        {([['active', 'في My Chart'], ['all', 'All']] as const).map(([k, label]) => (
           <button
             key={k}
             onClick={() => setFilter(k)}
@@ -298,10 +298,10 @@ function FixedStarsView({ chart, onNavigate }: { chart: AstralChart | null; onNa
       </div>
 
       {filter === 'active' && conjunctions.length === 0 && !chart && (
-        <p className="text-sm text-ink-muted">حمّل خريطتك لتظهر التلاقيات.</p>
+        <p className="text-sm text-ink-muted">Load your chart to see conjunctions.</p>
       )}
       {filter === 'active' && chart && conjunctions.length === 0 && (
-        <p className="text-sm text-ink-muted">لا تلاقيات ضمن الدرجة المعيارية لكل نجم في هذه الخريطة.</p>
+        <p className="text-sm text-ink-muted">No conjunctions within the standard orb for this chart.</p>
       )}
 
       {visibleStars.map((star) => {
@@ -338,7 +338,7 @@ function FixedStarsView({ chart, onNavigate }: { chart: AstralChart | null; onNa
                 </div>
                 <div className="text-end shrink-0">
                   <div className="text-xs text-ink font-serif">{lonToSignDeg(currentLon)}</div>
-                  <div className="text-[10px] text-ink-muted mt-0.5">قدر {star.magnitude.toFixed(1)}</div>
+                  <div className="text-[10px] text-ink-muted mt-0.5">mag {star.magnitude.toFixed(1)}</div>
                 </div>
               </div>
               {conj.length > 0 && (
@@ -372,7 +372,7 @@ const AR_MONTHS = ['يناير','فبراير','مارس','أبريل','مايو
 function ChartView({ chart }: { chart: AstralChart | null }) {
   const [activeSubtab, setActiveSubtab] = useState<string>('planets');
   const [transits, setTransits] = useState<Transit[]>([]);
-  const [aspectFilter, setAspectFilter] = useState<string>('الكل');
+  const [aspectFilter, setAspectFilter] = useState<string>('All');
   const [birthData, setBirthData] = useState<{ name?: string; year?: number; month?: number; day?: number; hour?: number; minute?: number; timeUnknown?: boolean } | null>(null);
 
   const [notedTransitKeys, setNotedTransitKeys] = useState<Set<string>>(new Set());
@@ -463,20 +463,20 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
           background: '#E9785E',
         });
         const gridItems = [
-          { key: 'sun',       name: 'الشمس',        svgKey: 'sun',                      pos: formatPosition(chart.sun),       href: '/self/planet/sun',       rx: false },
-          { key: 'moon',      name: 'القمر',         svgKey: 'moon',                     pos: formatPosition(chart.moon),      href: '/self/planet/moon',      rx: false },
-          { key: 'mercury',   name: 'عطارد',         svgKey: 'mercury',                  pos: formatPosition(chart.mercury),   href: '/self/planet/mercury',   rx: !!chart.mercury.retrograde },
-          { key: 'venus',     name: 'الزهرة',        svgKey: 'venus',                    pos: formatPosition(chart.venus),     href: '/self/planet/venus',     rx: !!chart.venus.retrograde },
-          { key: 'mars',      name: 'المريخ',        svgKey: 'mars',                     pos: formatPosition(chart.mars),      href: '/self/planet/mars',      rx: !!chart.mars.retrograde },
-          { key: 'jupiter',   name: 'المشتري',       svgKey: 'jupiter',                  pos: formatPosition(chart.jupiter),   href: '/self/planet/jupiter',   rx: !!chart.jupiter.retrograde },
-          { key: 'saturn',    name: 'زحل',           svgKey: 'saturn',                   pos: formatPosition(chart.saturn),    href: '/self/planet/saturn',    rx: !!chart.saturn.retrograde },
-          { key: 'uranus',    name: 'أورانوس',       svgKey: 'uranus',                   pos: formatPosition(chart.uranus),    href: '/self/planet/uranus',    rx: !!chart.uranus.retrograde },
-          { key: 'neptune',   name: 'نبتون',         svgKey: 'neptune',                  pos: formatPosition(chart.neptune),   href: '/self/planet/neptune',   rx: !!chart.neptune.retrograde },
-          { key: 'pluto',     name: 'بلوتو',         svgKey: 'pluto',                    pos: formatPosition(chart.pluto),     href: '/self/planet/pluto',     rx: !!chart.pluto.retrograde },
-          { key: 'northNode', name: 'شمال القمر',    svgKey: planetSvgKey('northNode'),  pos: formatPosition(chart.northNode), href: '/self/planet/northNode', rx: true },
-          { key: 'southNode', name: 'جنوب القمر',    svgKey: planetSvgKey('southNode'),  pos: formatPosition(chart.southNode), href: '/self/planet/southNode', rx: false },
+          { key: 'sun',       name: 'Sun',        svgKey: 'sun',                      pos: formatPosition(chart.sun),       href: '/self/planet/sun',       rx: false },
+          { key: 'moon',      name: 'Moon',         svgKey: 'moon',                     pos: formatPosition(chart.moon),      href: '/self/planet/moon',      rx: false },
+          { key: 'mercury',   name: 'Mercury',         svgKey: 'mercury',                  pos: formatPosition(chart.mercury),   href: '/self/planet/mercury',   rx: !!chart.mercury.retrograde },
+          { key: 'venus',     name: 'Venus',        svgKey: 'venus',                    pos: formatPosition(chart.venus),     href: '/self/planet/venus',     rx: !!chart.venus.retrograde },
+          { key: 'mars',      name: 'Mars',        svgKey: 'mars',                     pos: formatPosition(chart.mars),      href: '/self/planet/mars',      rx: !!chart.mars.retrograde },
+          { key: 'jupiter',   name: 'Jupiter',       svgKey: 'jupiter',                  pos: formatPosition(chart.jupiter),   href: '/self/planet/jupiter',   rx: !!chart.jupiter.retrograde },
+          { key: 'saturn',    name: 'Saturn',           svgKey: 'saturn',                   pos: formatPosition(chart.saturn),    href: '/self/planet/saturn',    rx: !!chart.saturn.retrograde },
+          { key: 'uranus',    name: 'Uranus',       svgKey: 'uranus',                   pos: formatPosition(chart.uranus),    href: '/self/planet/uranus',    rx: !!chart.uranus.retrograde },
+          { key: 'neptune',   name: 'Neptune',         svgKey: 'neptune',                  pos: formatPosition(chart.neptune),   href: '/self/planet/neptune',   rx: !!chart.neptune.retrograde },
+          { key: 'pluto',     name: 'Pluto',         svgKey: 'pluto',                    pos: formatPosition(chart.pluto),     href: '/self/planet/pluto',     rx: !!chart.pluto.retrograde },
+          { key: 'northNode', name: 'شمال Moon',    svgKey: planetSvgKey('northNode'),  pos: formatPosition(chart.northNode), href: '/self/planet/northNode', rx: true },
+          { key: 'southNode', name: 'جنوب Moon',    svgKey: planetSvgKey('southNode'),  pos: formatPosition(chart.southNode), href: '/self/planet/southNode', rx: false },
           ...(!birthData?.timeUnknown ? [
-            { key: 'ac', name: 'الطالع (AC)',      svgKey: ZODIAC_SVG_KEYS[risingIdx],       pos: angleLon(chart.asc),              href: '/self/house/1',  rx: false },
+            { key: 'ac', name: 'Ascendant (AC)',      svgKey: ZODIAC_SVG_KEYS[risingIdx],       pos: angleLon(chart.asc),              href: '/self/house/1',  rx: false },
             { key: 'ic', name: 'القاع (IC)',        svgKey: angleSign(chart.houses[3].cusp),  pos: angleLon(chart.houses[3].cusp),   href: '/self/house/4',  rx: false },
             { key: 'dc', name: 'الغارب (DC)',       svgKey: angleSign(chart.houses[6].cusp),  pos: angleLon(chart.houses[6].cusp),   href: '/self/house/7',  rx: false },
             { key: 'mc', name: 'وسط السماء (MC)',   svgKey: angleSign(chart.mc),              pos: angleLon(chart.mc),               href: '/self/house/10', rx: false },
@@ -500,7 +500,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                   </div>
                 </div>
                 <Link href="/settings/edit-birth" className="text-[11px] text-ink-muted underline underline-offset-2">
-                  تعديل
+                  Edit
                 </Link>
               </div>
             )}
@@ -560,7 +560,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                   </div>
                 );
               })()}
-              <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-3">مواضع الكواكب</div>
+              <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-3">مواضع Planets</div>
               {/* Planet cards with photo backgrounds */}
               {(() => {
                 // Image backgrounds for all planets that have a photo
@@ -696,7 +696,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
         <>
           <div className="px-5 flex gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {[
-              { label: 'الكل',    color: null },
+              { label: 'All',    color: null },
               { label: 'تربيع',   color: '#C0392B' },
               { label: 'اقتران',  color: '#5C5C7A' },
               { label: 'سُداس',   color: '#4A7FB5' },
@@ -723,7 +723,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                 'تربيع': 1, 'اقتران': 2, 'سُداس': 3, 'تثليث': 4, 'تقابل': 5,
               };
               const filtered = aspects
-                .filter((a) => aspectFilter === 'الكل' || a.type === aspectFilter)
+                .filter((a) => aspectFilter === 'All' || a.type === aspectFilter)
                 .sort((a, b) => (ASPECT_ORDER[a.type] ?? 99) - (ASPECT_ORDER[b.type] ?? 99));
               return filtered.length > 0 ? (
                 filtered.map((aspect) => (
@@ -841,20 +841,20 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
 }
 
 const organs = [
-  { name: 'القلب · الشمس', status: 'مفتوح ومُضخِّم', color: '#FFC78A' },
-  { name: 'الدماغ · القمر', status: 'انعكاسٌ هادئ', color: '#C2D3E2' },
-  { name: 'الرئتان · عطارد', status: 'يقظ ومتسائل', color: '#C9D2BE' },
-  { name: 'الكليتان · الزهرة', status: 'تليّن اليوم', color: '#F8D6BE' },
-  { name: 'المرارة · المريخ', status: 'حدّةٌ تحتاج اتجاهًا', color: '#E9785E' },
-  { name: 'الكبد · المشتري', status: 'سعةٌ تطلب حدًّا', color: '#9C8AB8' },
-  { name: 'الطحال · زحل', status: 'تأمّلٌ بطيء', color: '#5A3E7A' },
+  { name: 'القلب · Sun', status: 'مفتوح ومُضخِّم', color: '#FFC78A' },
+  { name: 'الدماغ · Moon', status: 'انعكاسٌ هادئ', color: '#C2D3E2' },
+  { name: 'الرئتان · Mercury', status: 'يقظ ومتسائل', color: '#C9D2BE' },
+  { name: 'Allيتان · Venus', status: 'تليّن Day', color: '#F8D6BE' },
+  { name: 'المرارة · Mars', status: 'حدّةٌ تحتاج اتجاهًا', color: '#E9785E' },
+  { name: 'الكبد · Jupiter', status: 'سعةٌ تطلب حدًّا', color: '#9C8AB8' },
+  { name: 'الطحال · Saturn', status: 'تأمّلٌ بطيء', color: '#5A3E7A' },
 ];
 
 const elements = [
-  { name: 'نار', planets: 'الشمس · المريخ · المشتري', theme: 'حرارةٌ تتقدّم', color: '#E9785E', pct: 42 },
-  { name: 'هواء', planets: 'عطارد · الزهرة · زحل', theme: 'فكرٌ يتحرّك', color: '#C2D3E2', pct: 28 },
-  { name: 'ماء', planets: 'القمر · نبتون · بلوتو', theme: 'شعورٌ يتلقّى', color: '#7E97B8', pct: 18 },
-  { name: 'تراب', planets: 'أورانوس', theme: 'بنيةٌ تستقرّ', color: '#BDAA82', pct: 12 },
+  { name: 'نار', planets: 'Sun · Mars · Jupiter', theme: 'حرارةٌ تتقدّم', color: '#E9785E', pct: 42 },
+  { name: 'هواء', planets: 'Mercury · Venus · Saturn', theme: 'فكرٌ يتحرّك', color: '#C2D3E2', pct: 28 },
+  { name: 'ماء', planets: 'Moon · Neptune · Pluto', theme: 'شعورٌ يتلقّى', color: '#7E97B8', pct: 18 },
+  { name: 'تراب', planets: 'Uranus', theme: 'بنيةٌ تستقرّ', color: '#BDAA82', pct: 12 },
 ];
 
 function BodyView() {
@@ -1077,9 +1077,9 @@ function toArabicNumStr(n: number): string {
 }
 
 const TRANSIT_ESSAY_LINKS = [
-  { slug: 'jupiter-return', svgKey: 'jupiter', title: 'عودة المشتري', sub: 'كلّ ١٢ سنةً · التوسّع والأُفق', color: '#9C8AB8', readTime: '٦ دقائق' },
-  { slug: 'chiron-return', svgKey: 'chiron',   title: 'عودة كيرون',  sub: 'حوالي سن ٥٠ · الجرح المُعلِّم', color: '#A8A8A8', readTime: '٧ دقائق' },
-  { slug: 'uranus-opposition', svgKey: 'uranus', title: 'تقابل أورانوس', sub: 'حوالي سن ٤٢ · يقظة منتصف الحياة', color: '#7E97B8', readTime: '٧ دقائق' },
+  { slug: 'jupiter-return', svgKey: 'jupiter', title: 'Back Jupiter', sub: 'Every 12 years · Expansion & Horizon', color: '#9C8AB8', readTime: '٦ دقائق' },
+  { slug: 'chiron-return', svgKey: 'chiron',   title: 'Back كيرون',  sub: 'Around age 50 · The wounded healer', color: '#A8A8A8', readTime: '٧ دقائق' },
+  { slug: 'uranus-opposition', svgKey: 'uranus', title: 'تقابل Uranus', sub: 'Around age 42 · Midlife awakening', color: '#7E97B8', readTime: '٧ دقائق' },
 ];
 
 // ── Planet colour map for timeline dots ──────────────────────────────────
@@ -1156,7 +1156,7 @@ function UnifiedBiographyView() {
           <span className="text-[11px] text-ink-muted font-semibold tracking-wider">السيرة البانورامية</span>
         </div>
         <p className="text-xs text-ink-muted leading-[1.6] mt-1">
-          مراحل شتاينر السبعينية وعبورات الكواكب الكبرى — خطٌّ زمني واحد عبر حياتك.
+          مراحل شتاينر السبعينية وعبورات Planets الكبرى — خطٌّ زمني واحد عبر حياتك.
         </p>
       </div>
 
@@ -1325,7 +1325,7 @@ function UnifiedBiographyView() {
                       <p className="text-[13px] text-ink leading-[1.9]">{item.body}</p>
                       {item.prompt && (
                         <div className="mt-3.5 p-3 bg-cream-soft rounded-xl" style={{ borderInlineStart: '3px solid #E9785E' }}>
-                          <div className="text-[10px] text-coral font-bold tracking-wide mb-1">تأمل</div>
+                          <div className="text-[10px] text-coral font-bold tracking-wide mb-1">Reflect</div>
                           <div className="text-[13px] text-ink leading-[1.8] font-serif">{item.prompt}</div>
                         </div>
                       )}
@@ -1340,7 +1340,7 @@ function UnifiedBiographyView() {
 
       {/* Footer: essay links */}
       <div className="mt-2">
-        <div className="text-[11px] text-ink-muted font-bold tracking-wide mb-2.5">مقالات تأمليّة</div>
+        <div className="text-[11px] text-ink-muted font-bold tracking-wide mb-2.5">مقالات Reflectيّة</div>
         <div className="flex flex-col gap-2">
           {TRANSIT_ESSAY_LINKS.map((e) => (
             <Link key={e.slug} href={`/explore/transits/${e.slug}`}
@@ -1421,7 +1421,7 @@ interface IntroStep {
   label: string;     // small kicker — "شمسك"
   signName: string;  // Arabic sign name
   svgKey: string;    // which SVG glyph to render
-  title: string;     // "هذا مسار شمسك"
+  title: string;     // "Your sun's path"
   body: string;      // one-line meaning from placements.ts
   accent: string;
 }
@@ -1438,27 +1438,27 @@ function buildIntroSteps(chart: AstralChart): IntroStep[] {
 
   return [
     {
-      label: 'شمسك',
+      label: 'Your Sun',
       signName: chart.sun.sign,
       svgKey: 'sun',
-      title: 'هذا مسار شمسك',
-      body: sunVoice?.evolutionary ?? 'ضوءُك يتشكّل بطريقتك الخاصّة.',
+      title: "Your sun's path",
+      body: sunVoice?.evolutionary ?? 'Your light takes shape in its own unique way.',
       accent: '#E9785E',
     },
     {
-      label: 'طالعك',
+      label: 'Your Ascendant',
       signName: ZODIAC_NAMES_AR[risingSignNumber],
       svgKey: risingSlug,
-      title: 'هذا طالعك',
-      body: risingVoice?.evolutionary ?? 'هذه الواجهة التي يلمسها العالم فيك أولًا.',
+      title: 'Your ascendant',
+      body: risingVoice?.evolutionary ?? 'The face the world meets first.',
       accent: '#8FA084',
     },
     {
-      label: 'قمرك',
+      label: 'Your Moon',
       signName: chart.moon.sign,
       svgKey: 'moon',
-      title: 'هذا قمرك',
-      body: moonVoice?.evolutionary ?? 'ما يتحرّك تحت سطحك يأتي بإيقاعه الخاصّ.',
+      title: 'Your moon',
+      body: moonVoice?.evolutionary ?? 'What stirs beneath the surface has its own rhythm.',
       accent: '#7E97B8',
     },
   ];
@@ -1541,7 +1541,7 @@ function ChartIntroOverlay({ chart, onDone }: { chart: AstralChart; onDone: () =
 function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; onNavigate: () => void }) {
   const [transits, setTransits] = useState<Transit[]>([]);
   const [notedTransitKeys, setNotedTransitKeys] = useState<Set<string>>(new Set());
-  const [aspectFilter, setAspectFilter] = useState<string>('الكل');
+  const [aspectFilter, setAspectFilter] = useState<string>('All');
 
   useEffect(() => {
     if (!chart) return;
@@ -1556,7 +1556,7 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
   }, [chart]);
 
   const ASPECT_FILTERS = [
-    { label: 'الكل', name: null },
+    { label: 'All', name: null },
     { label: 'اقتران', name: 'اقتران', color: '#5C5C7A' },
     { label: 'سُداس', name: 'سُداس', color: '#4A7FB5' },
     { label: 'تربيع', name: 'تربيع', color: '#C0392B' },
@@ -1565,7 +1565,7 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
   ];
 
   const filtered = transits.filter(t =>
-    aspectFilter === 'الكل' || t.aspectName === aspectFilter
+    aspectFilter === 'All' || t.aspectName === aspectFilter
   );
 
   if (!chart) {
@@ -1750,7 +1750,7 @@ function SelfPageInner() {
                   <div className="flex items-center justify-between py-3 px-4 rounded-[18px] bg-ink text-cream opacity-70 cursor-default">
                     <div>
                       <div className="font-serif text-base">الرحلة الأسبوعية</div>
-                      <div className="text-xs text-cream/60 mt-0.5">معالجة شخصية · خطوة في اليوم</div>
+                      <div className="text-xs text-cream/60 mt-0.5">معالجة شخصية · خطوة في Day</div>
                     </div>
                     <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>قريبًا</span>
                   </div>
@@ -1765,11 +1765,11 @@ function SelfPageInner() {
                       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
                       <div className="absolute inset-0 flex flex-col justify-between p-5">
                         <div className="flex items-center justify-between">
-                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">تعلّم</div>
+                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">Learn</div>
                           <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>قريبًا</span>
                         </div>
                         <div>
-                          <div className="font-serif text-xl text-cream leading-snug">كيف تقرأ عبورك اليومي؟</div>
+                          <div className="font-serif text-xl text-cream leading-snug">كيف تقرأ عبورك Dayي؟</div>
                           <div className="text-xs text-cream/70 mt-1.5">ربط السماء بلحظتك الحياتية</div>
                         </div>
                       </div>
@@ -1798,7 +1798,7 @@ function SelfPageInner() {
                 <div className="px-5 mt-8">
                   <div className="mb-4">
                     <h2 className="font-serif text-2xl text-ink -tracking-[0.5px]">تقويم العبورات</h2>
-                    <p className="text-sm text-ink-muted mt-1">الأحداث الكونية الجماعية للشهر.</p>
+                    <p className="text-sm text-ink-muted mt-1">Events الكونية الجماعية للشهر.</p>
                   </div>
                   <CalendarMonthView />
                 </div>
@@ -1834,7 +1834,7 @@ function SelfPageInner() {
         {mainTab === 'saved' && (
           <>
             <div className="px-5 mb-6">
-              <Headline>ما حفظت</Headline>
+              <Headline>ما Saveت</Headline>
             </div>
             <SavedView />
           </>

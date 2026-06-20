@@ -31,7 +31,7 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
     const m = parseInt(minute, 10);
 
     if (isNaN(h) || isNaN(m) || h < 0 || h > 23 || m < 0 || m > 59) {
-      alert('الرجاء إدخال وقت صحيح');
+      alert('Please enter a valid time');
       return;
     }
 
@@ -45,15 +45,14 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
           onClick={() => router.back()}
           className="mb-8 text-ink-muted hover:text-ink transition-colors"
         >
-          رجوع ›
+          ‹ Back
         </button>
 
-        <h1 className="font-serif text-3xl text-ink mb-2">في أي وقت وُلدت؟</h1>
+        <h1 className="font-serif text-3xl text-ink mb-2">What time were you born?</h1>
         <p className="text-sm text-ink-muted mb-8">
-          الوقت بالساعات والدقائق، بالتوقيت المحلي
+          Hours and minutes in local time
         </p>
 
-        {/* Unknown Time Option */}
         <div className="mb-8">
           <button
             onClick={() => setTimeUnknown(!timeUnknown)}
@@ -63,17 +62,16 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
                 : 'bg-white border-rule-soft text-ink-muted hover:border-coral/40'
             }`}
           >
-            لا أعرف الوقت بالضبط{timeUnknown ? ' ·' : ''}
+            I don&apos;t know my exact birth time{timeUnknown ? ' ·' : ''}
           </button>
         </div>
 
         {!timeUnknown && (
           <div className="flex flex-col gap-4 mb-8">
             <div className="grid grid-cols-2 gap-3">
-              {/* Hour Input */}
               <div>
                 <label className="block text-xs text-ink-muted font-semibold mb-2">
-                  الساعة
+                  Hour
                 </label>
                 <input
                   type="number"
@@ -90,10 +88,9 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
                 />
               </div>
 
-              {/* Minute Input */}
               <div>
                 <label className="block text-xs text-ink-muted font-semibold mb-2">
-                  الدقيقة
+                  Minute
                 </label>
                 <input
                   type="number"
@@ -112,7 +109,7 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
             </div>
 
             <p className="text-xs text-ink-muted">
-              التوقيت المحلي في مكان ميلادك، لا التوقيت العالمي.
+              Use local time at your place of birth, not UTC.
             </p>
           </div>
         )}
@@ -121,12 +118,12 @@ export function BirthTimeStep({ initialData, onComplete }: BirthTimeStepProps) {
           onClick={handleContinue}
           className="w-full px-6 py-3 rounded-[14px] bg-ink text-cream font-medium transition-colors hover:bg-ink-soft"
         >
-          متابعة
+          Continue
         </button>
 
         {timeUnknown && (
           <p className="text-xs text-ink-muted text-center mt-4">
-            سيتم استخدام الظهيرة (١٢:٠٠) كوقت افتراضي. يمكنك تحسين هذا لاحقًا.
+            Noon (12:00) will be used as a default. You can refine this later.
           </p>
         )}
       </div>

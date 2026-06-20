@@ -2,9 +2,9 @@ import * as Astronomy from 'astronomy-engine';
 import type { AstralChart } from './chartCalculator';
 
 const PLANET_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const PLANET_GLYPH: Record<string, string> = {

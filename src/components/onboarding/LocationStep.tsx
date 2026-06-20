@@ -35,6 +35,7 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
     }, 500);
 
     return () => clearTimeout(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   const handleSearch = async () => {
@@ -78,27 +79,24 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
           onClick={() => router.back()}
           className="mb-8 text-ink-muted hover:text-ink transition-colors"
         >
-          رجوع ›
+          ‹ Back
         </button>
 
-        <h1 className="font-serif text-3xl text-ink mb-2">أين وُلدت؟</h1>
+        <h1 className="font-serif text-3xl text-ink mb-2">Where were you born?</h1>
         <p className="text-sm text-ink-muted mb-8">
-          المدينة أو المحافظة أو البلد
+          City, region, or country
         </p>
 
-        {/* Search Input */}
         <div className="mb-6">
           <input
             type="text"
-            placeholder="ابحث عن موقعك..."
+            placeholder="Search your birthplace..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full px-4 py-3 rounded-[14px] bg-cream-soft border border-rule-soft text-ink placeholder:text-ink-muted text-sm focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
-            dir="rtl"
           />
         </div>
 
-        {/* Search Results */}
         {results.length > 0 && (
           <div className="mb-6 max-h-64 overflow-y-auto flex flex-col gap-2">
             {results.map((location, idx) => (
@@ -106,7 +104,7 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
                 key={idx}
                 onClick={() => handleSelectLocation(location)}
                 disabled={isLoading}
-                className="text-right px-4 py-3 rounded-[14px] bg-white border border-rule-soft text-ink text-sm hover:bg-cream-soft transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="text-left px-4 py-3 rounded-[14px] bg-white border border-rule-soft text-ink text-sm hover:bg-cream-soft transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <div className="font-medium">{location.name}</div>
                 <div className="text-xs text-ink-muted">
@@ -119,13 +117,13 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
 
         {isSearching && (
           <div className="mb-6 text-center text-sm text-ink-muted">
-            جاري البحث...
+            Searching...
           </div>
         )}
 
         {query.trim().length > 2 && results.length === 0 && !isSearching && (
           <div className="mb-6 text-center text-sm text-ink-muted">
-            لم يتم العثور على نتائج
+            No results found
           </div>
         )}
 
@@ -140,7 +138,7 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
 
         {!selectedLocation && (
           <p className="text-xs text-ink-muted text-center mt-8">
-            اختر موقعًا من القائمة أعلاه للمتابعة
+            Select a location from the list above to continue
           </p>
         )}
       </div>

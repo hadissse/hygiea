@@ -47,16 +47,16 @@ export default function FixedStarsPage() {
     : FIXED_STARS;
 
   return (
-    <div className="max-w-[430px] mx-auto w-full pb-28" dir="rtl">
+    <div className="max-w-[430px] mx-auto w-full pb-28" dir="ltr">
       <div className="px-5 pt-6 pb-3">
-        <h1 className="font-serif text-2xl text-ink">النجوم الثابتة</h1>
+        <h1 className="font-serif text-2xl text-ink">Fixed Stars</h1>
         <p className="text-[13px] text-ink-muted mt-1.5 leading-[1.7]">
-          أسماءٌ عربية حُفظت في كتالوجات السماء الحديثة. تنحرف ~١° كل ٧٢ سنة.
+          Fixed stars precess ~1° every 72 years.
         </p>
       </div>
 
       <div className="flex gap-2 px-5 pt-1 pb-3">
-        {([['active', 'نشطة في خريطتي'], ['all', 'الكل']] as [FilterKey, string][]).map(([k, label]) => (
+        {([['active', 'نشطة في My Chart'], ['all', 'All']] as [FilterKey, string][]).map(([k, label]) => (
           <button
             key={k}
             onClick={() => setFilter(k)}
@@ -76,11 +76,11 @@ export default function FixedStarsPage() {
       </div>
 
       {filter === 'active' && conjunctions.length === 0 && !chart && (
-        <p className="text-sm text-ink-muted px-5">حمّل خريطتك لتظهر التلاقيات.</p>
+        <p className="text-sm text-ink-muted px-5">Load your chart to see conjunctions.</p>
       )}
 
       {filter === 'active' && chart && conjunctions.length === 0 && (
-        <p className="text-sm text-ink-muted px-5">لا تلاقيات ضمن الدرجة المعيارية لكل نجم في هذه الخريطة.</p>
+        <p className="text-sm text-ink-muted px-5">No conjunctions within the standard orb for this chart.</p>
       )}
 
       <div className="px-5 flex flex-col gap-2">
@@ -119,7 +119,7 @@ export default function FixedStarsPage() {
                 </div>
                 <div className="text-end shrink-0">
                   <div className="text-xs text-ink font-serif">{lonToSignDeg(currentLon)}</div>
-                  <div className="text-[10px] text-ink-muted mt-0.5">قدر {star.magnitude.toFixed(1)}</div>
+                  <div className="text-[10px] text-ink-muted mt-0.5">mag {star.magnitude.toFixed(1)}</div>
                 </div>
               </div>
 
@@ -145,7 +145,7 @@ export default function FixedStarsPage() {
       </div>
 
 <Link href="/self" className="flex items-center gap-2 px-5 pb-6 text-sm text-coral font-medium">
-        العودة للخريطة ›
+        الBack للخريطة ›
       </Link>
     </div>
   );

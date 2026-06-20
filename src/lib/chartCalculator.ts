@@ -237,16 +237,16 @@ export function calculateChart(birthData: BirthData): AstralChart {
 
   // ── Planets (astronomy-engine) ────────────────────────────────────────────
   const planetList = [
-    { body: Astronomy.Body.Sun,     key: 'sun',     name: 'الشمس' },
-    { body: Astronomy.Body.Moon,    key: 'moon',    name: 'القمر' },
-    { body: Astronomy.Body.Mercury, key: 'mercury', name: 'عطارد' },
-    { body: Astronomy.Body.Venus,   key: 'venus',   name: 'الزهرة' },
-    { body: Astronomy.Body.Mars,    key: 'mars',    name: 'المريخ' },
-    { body: Astronomy.Body.Jupiter, key: 'jupiter', name: 'المشتري' },
-    { body: Astronomy.Body.Saturn,  key: 'saturn',  name: 'زحل' },
-    { body: Astronomy.Body.Uranus,  key: 'uranus',  name: 'أورانوس' },
-    { body: Astronomy.Body.Neptune, key: 'neptune', name: 'نبتون' },
-    { body: Astronomy.Body.Pluto,   key: 'pluto',   name: 'بلوتو' },
+    { body: Astronomy.Body.Sun,     key: 'sun',     name: 'Sun' },
+    { body: Astronomy.Body.Moon,    key: 'moon',    name: 'Moon' },
+    { body: Astronomy.Body.Mercury, key: 'mercury', name: 'Mercury' },
+    { body: Astronomy.Body.Venus,   key: 'venus',   name: 'Venus' },
+    { body: Astronomy.Body.Mars,    key: 'mars',    name: 'Mars' },
+    { body: Astronomy.Body.Jupiter, key: 'jupiter', name: 'Jupiter' },
+    { body: Astronomy.Body.Saturn,  key: 'saturn',  name: 'Saturn' },
+    { body: Astronomy.Body.Uranus,  key: 'uranus',  name: 'Uranus' },
+    { body: Astronomy.Body.Neptune, key: 'neptune', name: 'Neptune' },
+    { body: Astronomy.Body.Pluto,   key: 'pluto',   name: 'Pluto' },
   ] as const;
 
   const planets: Record<string, PlanetPosition> = {};
@@ -275,8 +275,8 @@ export function calculateChart(birthData: BirthData): AstralChart {
 
   // ── Mean North Node (Mean Lunar Node) ────────────────────────────────────
   const northNodeLon = norm360(125.0445479 - 1934.1362608 * T + 0.0020762 * T * T);
-  planets.northNode = makePlanetPosition('شمال القمر', PLANET_GLYPHS.northNode, northNodeLon, 0);
-  planets.southNode = makePlanetPosition('جنوب القمر', PLANET_GLYPHS.southNode, norm360(northNodeLon + 180), 0);
+  planets.northNode = makePlanetPosition('North Node', PLANET_GLYPHS.northNode, northNodeLon, 0);
+  planets.southNode = makePlanetPosition('South Node', PLANET_GLYPHS.southNode, norm360(northNodeLon + 180), 0);
 
   // ── RAMC → MC → ASC (Placidus) ───────────────────────────────────────────
   const eps = meanObliquity(T);

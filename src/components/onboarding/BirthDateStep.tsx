@@ -24,7 +24,7 @@ export function BirthDateStep({ initialData, onComplete }: BirthDateStepProps) {
     const d = parseInt(day, 10);
 
     if (!y || !m || !d || m < 1 || m > 12 || d < 1 || d > 31) {
-      alert('الرجاء إدخال تاريخ صحيح');
+      alert('Please enter a valid date');
       return;
     }
 
@@ -41,26 +41,25 @@ export function BirthDateStep({ initialData, onComplete }: BirthDateStepProps) {
           onClick={() => router.back()}
           className="mb-8 text-ink-muted hover:text-ink transition-colors"
         >
-          رجوع ›
+          ‹ Back
         </button>
 
-        <h1 className="font-serif text-3xl text-ink mb-2">متى وُلدت؟</h1>
+        <h1 className="font-serif text-3xl text-ink mb-2">When were you born?</h1>
         <p className="text-sm text-ink-muted mb-8">
-          تاريخ ميلادك بالتقويم الميلادي
+          Your birth date in the Gregorian calendar
         </p>
 
         <div className="flex flex-col gap-4 mb-8">
-          {/* Year Input */}
           <div>
             <label className="block text-xs text-ink-muted font-semibold mb-2">
-              السنة
+              Year
             </label>
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
               className="w-full px-4 py-3 rounded-[14px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
             >
-              <option value="">اختر السنة</option>
+              <option value="">Select year</option>
               {years.map((y) => (
                 <option key={y} value={y}>
                   {y}
@@ -69,17 +68,16 @@ export function BirthDateStep({ initialData, onComplete }: BirthDateStepProps) {
             </select>
           </div>
 
-          {/* Month Input */}
           <div>
             <label className="block text-xs text-ink-muted font-semibold mb-2">
-              الشهر
+              Month
             </label>
             <select
               value={month}
               onChange={(e) => setMonth(e.target.value)}
               className="w-full px-4 py-3 rounded-[14px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
             >
-              <option value="">اختر الشهر</option>
+              <option value="">Select month</option>
               {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
                 <option key={m} value={m.toString().padStart(2, '0')}>
                   {m.toString().padStart(2, '0')}
@@ -88,20 +86,19 @@ export function BirthDateStep({ initialData, onComplete }: BirthDateStepProps) {
             </select>
           </div>
 
-          {/* Day Input */}
           <div>
             <label className="block text-xs text-ink-muted font-semibold mb-2">
-              اليوم
+              Day
             </label>
             <select
               value={day}
               onChange={(e) => setDay(e.target.value)}
               className="w-full px-4 py-3 rounded-[14px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none focus:ring-1 focus:ring-coral/20 transition-colors"
             >
-              <option value="">اختر اليوم</option>
+              <option value="">Select day</option>
               {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
                 <option key={d} value={d.toString().padStart(2, '0')}>
-                  {d.toString().padStart(2, '0')}
+                  {d.toString().padStart(2, '00')}
                 </option>
               ))}
             </select>
@@ -113,7 +110,7 @@ export function BirthDateStep({ initialData, onComplete }: BirthDateStepProps) {
           className="w-full px-6 py-3 rounded-[14px] bg-ink text-cream font-medium transition-colors hover:bg-ink-soft disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={!year || !month || !day}
         >
-          متابعة
+          Continue
         </button>
       </div>
     </div>

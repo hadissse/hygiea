@@ -15,21 +15,21 @@ const TURNSTILE_SITE_KEY =
 function errorMessage(error: { code?: string; message: string }): string {
   switch (error.code) {
     case 'invalid_credentials':
-      return 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
+      return 'Email أو Password غير صحيحة'
     case 'email_not_confirmed':
-      return 'لم يتم تأكيد بريدك الإلكتروني بعد — تحقق من صندوق الوارد'
+      return 'لم يتم Confirm بريدك الإلكتروني بعد — تحقق من صندوق الوارد'
     case 'user_already_exists':
     case 'email_exists':
-      return 'هذا البريد مسجّل مسبقًا — جرّب تسجيل الدخول'
+      return 'هذا البريد مسجّل مسبقًا — جرّب Sign In'
     case 'weak_password':
-      return 'كلمة المرور ضعيفة — استخدم ٦ أحرف على الأقل'
+      return 'Password ضعيفة — استخدم ٦ أحرف على الأقل'
     case 'over_request_rate_limit':
     case 'over_email_send_rate_limit':
       return 'محاولات كثيرة — انتظر قليلًا ثم حاول مجددًا'
     case 'captcha_failed':
       return 'فشل التحقق — أعد المحاولة'
     default:
-      return 'حدث خطأ، حاول مرة أخرى'
+      return 'حدث Error، حاول مرة أخرى'
   }
 }
 
@@ -167,7 +167,7 @@ function LoginForm() {
   // ── "Verify your email" panel (after successful signup) ──
   if (pendingEmail && !showResend) {
     return (
-      <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="rtl">
+      <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="ltr">
         <div className="flex flex-col items-center mb-10 gap-3">
           <Logo color="#171B3A" height={40} />
         </div>
@@ -175,7 +175,7 @@ function LoginForm() {
           <div className="text-4xl mb-4">✉️</div>
           <h1 className="font-serif text-2xl text-[#171B3A] mb-3">تحقق من بريدك</h1>
           <p className="text-sm text-[#5C5C7A] leading-relaxed mb-2">
-            أرسلنا رابط التأكيد إلى
+            أرسلنا رابط الConfirm إلى
           </p>
           <p className="text-sm font-semibold text-[#171B3A] mb-6" dir="ltr">{pendingEmail}</p>
           <p className="text-xs text-[#5C5C7A] leading-relaxed mb-8">
@@ -188,13 +188,13 @@ function LoginForm() {
             disabled={loading || resent}
             className="w-full py-3 rounded-[26px] border border-[#E5E1D8] text-[#171B3A] text-sm font-medium disabled:opacity-40 hover:bg-[#F8F8F8] transition-colors mb-3"
           >
-            {loading ? '...' : 'إعادة إرسال الرابط'}
+            {loading ? '...' : 'Resend link'}
           </button>
           <button
             onClick={() => { setPendingEmail(''); setMode('signin'); setError(''); }}
             className="w-full py-3 text-xs text-[#5C5C7A] hover:text-[#171B3A] transition-colors"
           >
-            العودة لتسجيل الدخول
+            الBack لSign In
           </button>
         </div>
       </div>
@@ -202,12 +202,12 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="rtl">
+    <div className="min-h-dvh bg-white flex flex-col items-center justify-center px-5 py-12" dir="ltr">
 
       {/* Logo */}
       <div className="flex flex-col items-center mb-10 gap-3">
         <Logo color="#171B3A" height={40} />
-        <p className="text-sm text-[#5C5C7A]">خريطتك. سماؤك. سُكونك.</p>
+        <p className="text-sm text-[#5C5C7A]">خريطتك. سماؤك. Hygieaك.</p>
       </div>
 
       <div className="w-full max-w-sm">
@@ -219,7 +219,7 @@ function LoginForm() {
               mode === 'signin' ? 'bg-white text-[#171B3A] shadow-sm' : 'text-[#5C5C7A]'
             }`}
           >
-            تسجيل الدخول
+            Sign In
           </button>
           <button
             onClick={() => switchMode('signup')}
@@ -237,7 +237,7 @@ function LoginForm() {
           className="w-full flex items-center justify-center gap-3 py-3 rounded-[14px] border border-[#E5E1D8] bg-white text-[#171B3A] text-sm font-medium hover:bg-[#F8F8F8] transition-colors mb-5"
         >
           <GoogleIcon />
-          متابعة بحساب Google
+          Continue بحساب Google
         </button>
 
         {/* Divider */}
@@ -251,7 +251,7 @@ function LoginForm() {
           {/* Email */}
           <div>
             <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              البريد الإلكتروني
+              Email
             </label>
             <input
               type="email"
@@ -267,7 +267,7 @@ function LoginForm() {
           {/* Password */}
           <div>
             <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              كلمة المرور
+              Password
             </label>
             <input
               type="password"
@@ -297,7 +297,7 @@ function LoginForm() {
             <p className="text-[#E9785E] text-xs text-center">
               {error || (urlError === 'auth_callback_error'
                 ? 'انتهت صلاحية الرابط أو هو غير صالح — أعد المحاولة'
-                : 'حدث خطأ، حاول مرة أخرى')}
+                : 'حدث Error، حاول مرة أخرى')}
             </p>
           )}
           {showResend && (
@@ -307,7 +307,7 @@ function LoginForm() {
               disabled={loading || resent}
               className="text-xs text-[#E9785E] underline disabled:opacity-40"
             >
-              {resent ? 'تم الإرسال ✓' : 'إعادة إرسال رابط التأكيد'}
+              {resent ? 'تم الإرسال ✓' : 'إعادة إرسال رابط الConfirm'}
             </button>
           )}
           {message && (
@@ -320,7 +320,7 @@ function LoginForm() {
             disabled={loading || !captchaToken}
             className="w-full py-3.5 rounded-[26px] bg-[#171B3A] text-white font-semibold text-sm disabled:opacity-40 transition-opacity"
           >
-            {loading ? '...' : mode === 'signin' ? 'دخول' : 'إنشاء حساب'}
+            {loading ? '...' : mode === 'signin' ? 'Sign in' : 'Create account'}
           </button>
         </form>
 
@@ -330,7 +330,7 @@ function LoginForm() {
             href="/forgot-password"
             className="w-full mt-4 text-center text-xs text-[#5C5C7A] block hover:text-[#171B3A] transition-colors"
           >
-            نسيت كلمة المرور؟
+            نسيت Password؟
           </Link>
         )}
       </div>

@@ -31,7 +31,7 @@ export default function DataPage() {
   };
 
   const handleClear = () => {
-    if (!window.confirm('سيُحذف كل ما سجّلته: خريطتك وأحداثك ومعايراتك. لا يمكن التراجع. متابعة؟')) return;
+    if (!window.confirm('This will delete everything: your chart, events, and calibrations. This cannot be undone. Continue?')) return;
     const keys: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
       const k = localStorage.key(i);
@@ -43,13 +43,13 @@ export default function DataPage() {
 
   return (
     <div className="py-4 md:max-w-lg md:mx-auto">
-      <SettingsSubHeader title="البيانات" />
+      <SettingsSubHeader title="Data" />
       <div className="px-5 flex flex-col gap-3">
         <button onClick={handleExport} className="text-right">
           <Card>
             <div className="flex flex-col gap-1">
               <div className="font-serif text-lg text-ink">تصدير بياناتك</div>
-              <Body muted>نزّل نسخةً من خريطتك وأحداثك ومعايراتك بصيغة JSON.</Body>
+              <Body muted>Download a copy of your chart, events, and calibrations as JSON.</Body>
             </div>
           </Card>
         </button>
@@ -57,17 +57,17 @@ export default function DataPage() {
         <button onClick={handleClear} className="text-right">
           <div className="rounded-[18px] bg-white border border-coral/30 p-4">
             <div className="flex flex-col gap-1">
-              <div className="font-serif text-lg text-coral">حذف كل البيانات</div>
-              <Body muted>يمسح كل ما سجّلته على هذا الجهاز. لا يمكن التراجع.</Body>
+              <div className="font-serif text-lg text-coral">Delete كل Data</div>
+              <Body muted>Erases everything stored on this device. This cannot be undone.</Body>
             </div>
           </div>
         </button>
 
         {cleared && (
           <div className="mt-2 p-4 rounded-[14px] bg-cream-soft border border-rule-soft text-center flex flex-col gap-3">
-            <Body>تم حذف بياناتك.</Body>
+            <Body>Your data has been deleted.</Body>
             <button onClick={() => router.push('/onboarding')} className="text-coral text-sm font-medium">
-              ابدأ من جديد ←
+              Start over →
             </button>
           </div>
         )}

@@ -251,9 +251,9 @@ export function FlowTopBar({
   return (
     <div className="flex items-center justify-between h-11">
       {closeHref ? (
-        <Link href={closeHref} aria-label="إغلاق">{btn}</Link>
+        <Link href={closeHref} aria-label="Close">{btn}</Link>
       ) : (
-        <button onClick={onClose} aria-label="إغلاق">{btn}</button>
+        <button onClick={onClose} aria-label="Close">{btn}</button>
       )}
       {right}
     </div>

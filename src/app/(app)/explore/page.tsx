@@ -17,9 +17,9 @@ function toAr(n: number | string): string {
 }
 
 const PLANET_KEYS_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', northNode: 'شمال القمر', southNode: 'جنوب القمر',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const ALL_PLANETS = [
@@ -59,7 +59,7 @@ function SkySection() {
 
           {/* Compact all-planets grid */}
           <div className="px-5">
-            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">مواضع الكواكب</div>
+            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">مواضع Planets</div>
             {!sky && <div className="text-sm text-ink-muted text-center py-4">جارٍ الحساب...</div>}
             {sky && (
               <div className="grid grid-cols-2 gap-2">
@@ -115,9 +115,9 @@ function SkySection() {
               (nowYear === 2026 && (month < nowMonth || (month === nowMonth && day <= nowDay)));
             return (
               <div className="px-5 mb-6">
-                <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">محطات الكواكب ٢٠٢٦</div>
+                <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">محطات Planets ٢٠٢٦</div>
                 <div className="text-[11px] text-ink-muted mb-3 leading-[1.7]">
-                  المحطات هي اللحظات التي يبدو فيها الكوكب ساكنًا قبل أن يغيّر اتجاهه.
+                  Stations are moments when a planet appears to stand still before changing direction.
                 </div>
                 <div className="flex flex-col gap-2">
                   {(['mercury','venus','jupiter','saturn','uranus','neptune','pluto'] as const).map(svgKey => {
@@ -234,7 +234,7 @@ function CalendarSection() {
     <div className="px-5 py-6 flex flex-col gap-4">
       <div>
         <h1 className="font-serif text-2xl text-ink -tracking-0.5">تقويم العبورات</h1>
-        <p className="text-sm text-ink-muted mt-1">الأحداث الكونية الجماعية للشهر.</p>
+        <p className="text-sm text-ink-muted mt-1">Events الكونية الجماعية للشهر.</p>
       </div>
       <CalendarMonthView />
     </div>

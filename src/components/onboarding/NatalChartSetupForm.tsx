@@ -101,39 +101,39 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
       syncAllLocalData();
       onComplete(chart);
     } catch {
-      setError('حدث خطأ، حاول مجدداً');
+      setError('An error occurred, please try again');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="px-5 pt-6 pb-10 flex flex-col gap-5" dir="rtl">
+    <div className="px-5 pt-6 pb-10 flex flex-col gap-5" dir="ltr">
       <div className="mb-2">
-        <h2 className="font-serif text-2xl text-ink mb-1">خريطتك الفلكية</h2>
-        <p className="text-sm text-ink-muted">أدخل بيانات ميلادك لتوليد خريطتك</p>
+        <h2 className="font-serif text-2xl text-ink mb-1">Your natal chart</h2>
+        <p className="text-sm text-ink-muted">Enter your birth data to generate your chart</p>
       </div>
 
       {/* ── Name ── */}
       <SectionCard>
-        <SectionLabel>الاسم</SectionLabel>
+        <SectionLabel>Name</SectionLabel>
         <input
           type="text"
-          placeholder="اسمك"
+          placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           className={inputFullCls}
-          dir="rtl"
+          dir="ltr"
         />
       </SectionCard>
 
       {/* ── Birth date ── */}
       <SectionCard>
-        <SectionLabel>تاريخ الميلاد</SectionLabel>
+        <SectionLabel>Date of birth</SectionLabel>
         {/* LTR so columns read: day | month | year left-to-right */}
         <div className="grid grid-cols-3 gap-4" style={{ direction: 'ltr' }}>
           <div className="flex flex-col items-center gap-1">
-            <label className="text-[11px] text-ink-muted">اليوم</label>
+            <label className="text-[11px] text-ink-muted">Day</label>
             <input
               type="number"
               min="1"
@@ -148,7 +148,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
             />
           </div>
           <div className="flex flex-col items-center gap-1">
-            <label className="text-[11px] text-ink-muted">الشهر</label>
+            <label className="text-[11px] text-ink-muted">Month</label>
             <input
               type="number"
               min="1"
@@ -163,7 +163,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
             />
           </div>
           <div className="flex flex-col items-center gap-1">
-            <label className="text-[11px] text-ink-muted">السنة</label>
+            <label className="text-[11px] text-ink-muted">Year</label>
             <input
               type="number"
               min="1900"
@@ -183,7 +183,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
       {/* ── Birth time ── */}
       <SectionCard>
         <div className="flex items-center justify-between">
-          <SectionLabel>وقت الميلاد</SectionLabel>
+          <SectionLabel>Time of birth</SectionLabel>
           <button
             type="button"
             onClick={() => setTimeUnknown(!timeUnknown)}
@@ -193,14 +193,14 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
                 : 'border-stone-200 text-ink-muted'
             }`}
           >
-            لا أعرف وقت ميلادي
+            I don't know my birth time
           </button>
         </div>
         {/* LTR so fields read: hour | minute | AM/PM left-to-right */}
         {!timeUnknown && (
           <div className="flex gap-4 items-end" style={{ direction: 'ltr' }}>
             <div className="flex-1 flex flex-col items-center gap-1">
-              <label className="text-[11px] text-ink-muted">الساعة</label>
+              <label className="text-[11px] text-ink-muted">Hour</label>
               <input
                 type="number"
                 min="1"
@@ -215,7 +215,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
               />
             </div>
             <div className="flex-1 flex flex-col items-center gap-1">
-              <label className="text-[11px] text-ink-muted">الدقيقة</label>
+              <label className="text-[11px] text-ink-muted">Minute</label>
               <input
                 type="number"
                 min="0"
@@ -252,7 +252,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
 
       {/* ── Birth location ── */}
       <SectionCard>
-        <SectionLabel>مكان الميلاد</SectionLabel>
+        <SectionLabel>Place of birth</SectionLabel>
         {!selectedLocation ? (
           <>
             <input
@@ -266,7 +266,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
               className={inputFullCls}
             />
             {isSearching && (
-              <p className="text-xs text-ink-muted text-center">جاري البحث...</p>
+              <p className="text-xs text-ink-muted text-center">جاري الSearch...</p>
             )}
             {locationResults.length > 0 && (
               <div className="flex flex-col divide-y divide-stone-100 -mx-5 px-5">
@@ -313,7 +313,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
         disabled={!canSubmit}
         className="w-full h-[52px] rounded-[26px] bg-ink text-cream text-base font-medium transition-colors disabled:opacity-30 disabled:cursor-not-allowed mt-2"
       >
-        {isSubmitting ? 'جاري الحساب...' : 'أنشئ خريطتي'}
+        {isSubmitting ? 'Calculating...' : 'Create my chart'}
       </button>
     </div>
   );

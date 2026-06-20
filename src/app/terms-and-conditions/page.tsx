@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'الشروط والأحكام',
-  description: 'الشروط والأحكام لاستخدام تطبيق سُكون — خريطتك الفلكية وإرشادك الروحي.',
+  description: 'الشروط والأحكام لاستخدام تطبيق Hygiea — Your natal chart وإرشادك الروحي.',
   alternates: { canonical: '/terms-and-conditions' },
 };
 
@@ -37,7 +37,7 @@ export default function TermsPage() {
             </svg>
             Back
           </Link>
-          <span className="font-serif text-base text-ink">سُكون</span>
+          <span className="font-serif text-base text-ink">Hygiea</span>
           <div className="w-10" />
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function TermsPage() {
             <section id="acceptance">
               <h2 className="font-serif text-2xl text-ink mb-3">1. Acceptance of Terms</h2>
               <p className="text-ink-muted">
-                By accessing, downloading, or using <strong>سُكون</strong> (the "App") — available at{' '}
+                By accessing, downloading, or using <strong>Hygiea</strong> (the "App") — available at{' '}
                 <span className="font-mono text-sm">hygiea.arabic-astro.com</span> — you agree to be bound by
                 these Terms &amp; Conditions ("Terms"). These Terms form a legally binding agreement between you
                 and <strong>Arabic Astrology Academy Inc.</strong> ("Company", "we", "us", or "our").
@@ -99,7 +99,7 @@ export default function TermsPage() {
             <section id="service">
               <h2 className="font-serif text-2xl text-ink mb-3">3. Description of Service</h2>
               <p className="text-ink-muted">
-                سُكون is an Arabic-first mobile web application offering natal astrology charts, daily sky
+                Hygiea is an Arabic-first mobile web application offering natal astrology charts, daily sky
                 readings, planetary transit tracking, personal reflection tools, and educational content rooted
                 in Western, Arabic, and spiritual astrological traditions.
               </p>
@@ -162,7 +162,7 @@ export default function TermsPage() {
               <p className="text-ink-muted">
                 All App content that is not User Content — including but not limited to astrological
                 interpretations, educational text, software code, design, graphics, icons, animations,
-                and the سُكون name and logo — is the exclusive property of Arabic Astrology Academy Inc.
+                and the Hygiea name and logo — is the exclusive property of Arabic Astrology Academy Inc.
                 or its licensors, and is protected by copyright, trademark, and other applicable
                 intellectual property laws.
               </p>

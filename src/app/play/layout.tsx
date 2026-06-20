@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'تعلّم تفاعلي',
-  description: 'تعلّم الفلك بطريقة تفاعلية وممتعة — دروس عملية مع سُكون.',
+  title: 'Interactive Learning',
+  description: 'Learn astrology in an interactive and engaging way — practical lessons with Hygiea.',
 };
 
 export default function PlayLayout({

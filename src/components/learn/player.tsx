@@ -29,7 +29,7 @@ export function PlayerShell({
 
 export function PlayerHeader({
   course = 'الطريق الهادئ',
-  day = 'اليوم 3',
+  day = 'Day 3',
   onClose,
 }: {
   course?: string;
@@ -38,7 +38,7 @@ export function PlayerHeader({
 }) {
   return (
     <div className="flex justify-between items-center px-5 pt-14 pb-0 h-[100px] box-border text-cream">
-      <button onClick={onClose} aria-label="إغلاق" className="opacity-90 hover:opacity-70">
+      <button onClick={onClose} aria-label="Close" className="opacity-90 hover:opacity-70">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M19 9l-7 7-7-7" />
         </svg>

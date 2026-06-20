@@ -37,16 +37,16 @@ const TRANSIT_FLAVOR: Record<string, string> = {
 const NATAL_POSSESSIVE: Record<string, string> = {
   sun: 'شمسك',
   moon: 'قمرك',
-  mercury: 'عطاردك',
+  mercury: 'Mercuryك',
   venus: 'زهرتك',
   mars: 'مرّيخك',
-  jupiter: 'المشتري في خريطتك',
-  saturn: 'زحل في خريطتك',
-  uranus: 'أورانوس في خريطتك',
-  neptune: 'نبتون في خريطتك',
-  pluto: 'بلوتو في خريطتك',
-  northNode: 'شمال القمر',
-  southNode: 'جنوب القمر',
+  jupiter: 'Jupiter في خريطتك',
+  saturn: 'Saturn في خريطتك',
+  uranus: 'Uranus في خريطتك',
+  neptune: 'Neptune في خريطتك',
+  pluto: 'Pluto في خريطتك',
+  northNode: 'شمال Moon',
+  southNode: 'جنوب Moon',
 };
 
 const VOTES = ['دافئ', 'هادئ', 'محرّك', 'ساكن'];
@@ -85,11 +85,11 @@ export function TransitHeroCard() {
     return (
       <Card>
         <div className="flex flex-col gap-2">
-          <Meta>ما يمسّك اليوم</Meta>
+          <Meta>ما يمسّك Day</Meta>
           <Body muted>
             {chart
-              ? 'لا يوجد عبور قويّ يلامس خريطتك اليوم — يومٌ هادئٌ نسبيًّا.'
-              : 'حمّل خريطتك لترى ما يمسّ سماءَك الداخلية اليوم.'}
+              ? 'لا يوجد عبور قويّ يلامس خريطتك Day — يومٌ هادئٌ نسبيًّا.'
+              : 'حمّل خريطتك لترى ما يمسّ سماءَك الداخلية Day.'}
           </Body>
         </div>
       </Card>
@@ -99,7 +99,7 @@ export function TransitHeroCard() {
   if (!transit || !chart) {
     return (
       <Card>
-        <Meta>ما يمسّك اليوم</Meta>
+        <Meta>ما يمسّك Day</Meta>
       </Card>
     );
   }
@@ -121,7 +121,7 @@ export function TransitHeroCard() {
     <div className="relative rounded-[20px] overflow-hidden p-5 bg-white border border-rule-soft">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between">
-          <Meta>ما يمسّك اليوم</Meta>
+          <Meta>ما يمسّك Day</Meta>
           <span className="text-xs font-medium" style={{ color: transit.aspectColor }}>
             {transit.aspectSymbol} {orbLabel(transit.orb)}
           </span>
@@ -167,7 +167,7 @@ export function TransitHeroCard() {
           href={`/self/aspect/${transit.transitKey}-${transit.natalKey}`}
           className="text-xs text-coral font-medium mt-1"
         >
-          اقرأ المزيد ←
+          Read more ←
         </Link>
       </div>
     </div>

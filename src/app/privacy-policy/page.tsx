@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'سياسة الخصوصية',
-  description: 'سياسة الخصوصية لتطبيق سُكون — كيف نحمي بياناتك ونحترم خصوصيتك.',
+  title: 'Privacy Policy',
+  description: 'Privacy Policy for Hygiea — how we protect your data and respect your privacy.',
   alternates: { canonical: '/privacy-policy' },
 };
 
@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
             </svg>
             Back
           </Link>
-          <span className="font-serif text-base text-ink">سُكون</span>
+          <span className="font-serif text-base text-ink">Hygiea</span>
           <div className="w-10" />
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <p className="text-ink-muted leading-[1.85] mb-10">
-            Arabic Astrology Academy Inc. ("we", "us", "our") operates <strong>سُكون</strong>, accessible
+            Arabic Astrology Academy Inc. ("we", "us", "our") operates <strong>Hygiea</strong>, accessible
             at <span className="font-mono text-sm">hygiea.arabic-astro.com</span>. This Privacy Policy
             explains what personal data we collect, why we collect it, how we use and protect it, and
             the rights you have over your data. Please read this policy carefully before using the App.
@@ -331,7 +331,7 @@ export default function PrivacyPolicyPage() {
             <section id="cookies">
               <h2 className="font-serif text-2xl text-ink mb-3">12. Cookies &amp; Local Storage</h2>
               <p className="text-ink-muted">
-                سُكون uses <strong>browser local storage</strong> (not cookies) as its primary
+                Hygiea uses <strong>browser local storage</strong> (not cookies) as its primary
                 client-side persistence mechanism. Local storage is used to save:
               </p>
               <ul className="list-disc list-inside text-ink-muted mt-3 space-y-1">
@@ -394,7 +394,7 @@ export default function PrivacyPolicyPage() {
                 <div><strong className="text-ink">Arabic Astrology Academy Inc.</strong></div>
                 <div>Data Controller</div>
                 <div className="mt-2">Email: <a href="mailto:info@arabic-astro.com" className="text-coral hover:underline">info@arabic-astro.com</a></div>
-                <div>Subject line: <span className="font-mono text-sm">Privacy Request — سُكون</span></div>
+                <div>Subject line: <span className="font-mono text-sm">Privacy Request — Hygiea</span></div>
               </address>
               <p className="text-ink-muted mt-4">
                 We aim to respond to all privacy requests within <strong>30 days</strong>. If you

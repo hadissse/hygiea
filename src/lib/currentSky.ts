@@ -74,16 +74,16 @@ export function getCurrentSky(): AstralChart {
   const T = astroNow.tt / 36525;
 
   const PLANETS = [
-    { body: Astronomy.Body.Sun,     name: 'الشمس' },
-    { body: Astronomy.Body.Moon,    name: 'القمر' },
-    { body: Astronomy.Body.Mercury, name: 'عطارد' },
-    { body: Astronomy.Body.Venus,   name: 'الزهرة' },
-    { body: Astronomy.Body.Mars,    name: 'المريخ' },
-    { body: Astronomy.Body.Jupiter, name: 'المشتري' },
-    { body: Astronomy.Body.Saturn,  name: 'زحل' },
-    { body: Astronomy.Body.Uranus,  name: 'أورانوس' },
-    { body: Astronomy.Body.Neptune, name: 'نبتون' },
-    { body: Astronomy.Body.Pluto,   name: 'بلوتو' },
+    { body: Astronomy.Body.Sun,     name: 'Sun' },
+    { body: Astronomy.Body.Moon,    name: 'Moon' },
+    { body: Astronomy.Body.Mercury, name: 'Mercury' },
+    { body: Astronomy.Body.Venus,   name: 'Venus' },
+    { body: Astronomy.Body.Mars,    name: 'Mars' },
+    { body: Astronomy.Body.Jupiter, name: 'Jupiter' },
+    { body: Astronomy.Body.Saturn,  name: 'Saturn' },
+    { body: Astronomy.Body.Uranus,  name: 'Uranus' },
+    { body: Astronomy.Body.Neptune, name: 'Neptune' },
+    { body: Astronomy.Body.Pluto,   name: 'Pluto' },
   ] as const;
 
   const p: Record<string, PlanetPosition> = {};
@@ -94,10 +94,10 @@ export function getCurrentSky(): AstralChart {
     p[keys[i]] = makePlanet(PLANETS[i].name, ecl.elon, ecl.elat);
   }
 
-  p.chiron = makePlanet('كيرون', chironsLongitude(astroNow), 0);
+  p.chiron = makePlanet('Chiron', chironsLongitude(astroNow), 0);
   const northNodeLon = meanNorthNodeLongitude(T);
-  p.northNode = makePlanet('شمال القمر', northNodeLon, 0);
-  p.southNode = makePlanet('جنوب القمر', norm360(northNodeLon + 180), 0);
+  p.northNode = makePlanet('North Node', northNodeLon, 0);
+  p.southNode = makePlanet('South Node', norm360(northNodeLon + 180), 0);
 
   // Empty houses — no location needed for the global sky chart
   const emptyHouses: HousePosition[] = Array.from({ length: 12 }, (_, i) => ({

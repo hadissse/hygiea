@@ -1,17 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
 
-const PUBLIC_PATHS = [
-  '/login',
-  '/auth',
-  '/post-auth',
-  '/forgot-password',
-  '/reset-password',
-  '/privacy-policy',
-  '/terms-and-conditions',
-]
-
-// Archived pages (see archive/pages/) — old links redirect somewhere sensible
 const ARCHIVED_REDIRECTS: Record<string, string> = {
   '/self/wheel': '/self',
   '/self/positions': '/self',
@@ -25,9 +13,8 @@ const ARCHIVED_REDIRECTS: Record<string, string> = {
   '/explore/calendar': '/explore',
 }
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  let response = NextResponse.next({ request })
 
   for (const [prefix, target] of Object.entries(ARCHIVED_REDIRECTS)) {
     if (pathname === prefix || pathname.startsWith(prefix + '/')) {
@@ -35,42 +22,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
-          response = NextResponse.next({ request })
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          )
-        },
-      },
-    }
-  )
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const isPublic = PUBLIC_PATHS.some(
-    (p) => pathname === p || pathname.startsWith(p + '/')
-  )
-
-  if (!user && !isPublic) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-
-  if (user && pathname === '/login') {
-    return NextResponse.redirect(new URL('/', request.url))
-  }
-
-  return response
+  return NextResponse.next()
 }
 
 export const config = {

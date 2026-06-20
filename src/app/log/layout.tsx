@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'سجّل لحظة',
-  description: 'سجّل لحظات حياتك المهمة وربطها بمواضع الكواكب — تتبّع أحداثك مع سُكون.',
+  title: 'Log an event',
+  description: 'Log meaningful moments and connect them to planetary positions.',
 };
 
 export default function LogLayout({
