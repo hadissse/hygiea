@@ -1,4 +1,5 @@
 import type { AstralChart } from './chartCalculator';
+import { STORAGE_KEYS } from './storageKeys';
 
 export interface ElementAllocation {
   fire: number;   // percentage 0-100
@@ -222,7 +223,7 @@ export function calculateTraits(chart: AstralChart, quiz: Record<string, string[
 export function loadTraits(): TraitProfile | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem('hygiea.traits.v1');
+    const raw = localStorage.getItem(STORAGE_KEYS.TRAITS);
     return raw ? (JSON.parse(raw) as TraitProfile) : null;
   } catch {
     return null;

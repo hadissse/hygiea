@@ -7,7 +7,9 @@ export interface Location {
   country: string;
 }
 
-const CACHE_KEY_PREFIX = 'hygiea.geocache.';
+import { STORAGE_KEYS } from './storageKeys';
+
+const CACHE_KEY_PREFIX = STORAGE_KEYS.GEOCACHE_PREFIX;
 const CACHE_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 function getCachedLocation(query: string): Location | null {
@@ -33,11 +35,12 @@ function setCachedLocation(query: string, location: Location): void {
   if (typeof window === 'undefined') return;
 
   const cacheKey = CACHE_KEY_PREFIX + query.toLowerCase();
-  const data = {
-    location,
-    timestamp: Date.now(),
-  };
-  localStorage.setItem(cacheKey, JSON.stringify(data));
+  const data = { location, timestamp: Date.now() };
+  try {
+    localStorage.setItem(cacheKey, JSON.stringify(data));
+  } catch {
+    // Storage full — skip caching
+  }
 }
 
 function detectLang(query: string): string {
@@ -95,6 +98,8 @@ async function searchOpenMeteo(query: string): Promise<Location[]> {
 }
 
 export async function searchLocation(query: string): Promise<Location[]> {
+  if (!query || query.length > 300) return [];
+
   const cached = getCachedLocation(query);
   if (cached) return [cached];
 

@@ -1,4 +1,5 @@
 import type { CosmicStamp } from './cosmicStamp';
+import { STORAGE_KEYS } from './storageKeys';
 
 export type StreamKey = 'thinking' | 'feeling' | 'willing';
 
@@ -12,7 +13,7 @@ export interface LoggedEvent {
   stamp: CosmicStamp;
 }
 
-const STORAGE_KEY = 'hygiea.events';
+const STORAGE_KEY = STORAGE_KEYS.EVENTS;
 
 export const STREAM_AR: Record<StreamKey, string> = {
   thinking: 'Thinking',
@@ -36,11 +37,25 @@ export function loadEvents(): LoggedEvent[] {
   }
 }
 
+const MAX_EVENTS = 200;
+
 export function saveEvent(event: LoggedEvent): void {
   if (typeof window === 'undefined') return;
   const events = loadEvents();
   events.unshift(event);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+  const toSave = events.slice(0, MAX_EVENTS);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+  } catch (e) {
+    if (e instanceof DOMException && e.name === 'QuotaExceededError') {
+      // Storage full — prune to 100 oldest and retry once
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave.slice(0, 100)));
+      } catch {
+        // Give up — storage is critically full
+      }
+    }
+  }
 }
 
 export function getEvent(id: string): LoggedEvent | null {

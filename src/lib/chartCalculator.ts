@@ -250,7 +250,7 @@ export function calculateChart(birthData: BirthData): AstralChart {
   ] as const;
 
   const planets: Record<string, PlanetPosition> = {};
-  const birthTimePlus1 = new Astronomy.AstroTime(new Date(birthTime.date.getTime() + 3600000));
+  const birthTimePlus1 = new Astronomy.AstroTime(new Date(birthTime.date.getTime() + 86400000)); // +1 day for reliable retrograde detection
   for (const { body, key, name } of planetList) {
     const geoVec = Astronomy.GeoVector(body, birthTime, true);
     const ecl = Astronomy.Ecliptic(geoVec);
@@ -269,7 +269,7 @@ export function calculateChart(birthData: BirthData): AstralChart {
   const chiron = chironsLongitude(jd, birthTime);
   const chiroPlanet = makePlanetPosition('كيرون', PLANET_GLYPHS.chiron, chiron.lon, chiron.lat);
   // Check chiron retrograde using position 1 day later
-  const chironNext = chironsLongitude(jd + (1/24), birthTimePlus1);
+  const chironNext = chironsLongitude(jd + 1, birthTimePlus1);
   chiroPlanet.retrograde = norm180(chironNext.lon - chiron.lon) < 0;
   planets.chiron = chiroPlanet;
 

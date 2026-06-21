@@ -23,6 +23,10 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [showManual, setShowManual] = useState(false);
+  const [manualLat, setManualLat] = useState('');
+  const [manualLon, setManualLon] = useState('');
+  const [manualOffset, setManualOffset] = useState('0');
   const router = useRouter();
 
   useEffect(() => {
@@ -50,6 +54,14 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
     } finally {
       setIsSearching(false);
     }
+  };
+
+  const handleManualSubmit = () => {
+    const lat = parseFloat(manualLat);
+    const lon = parseFloat(manualLon);
+    const offset = parseFloat(manualOffset);
+    if (isNaN(lat) || isNaN(lon) || lat < -90 || lat > 90 || lon < -180 || lon > 180) return;
+    onComplete({ latitude: lat, longitude: lon, utcOffsetHours: isNaN(offset) ? 0 : offset });
   };
 
   const handleSelectLocation = async (location: Location) => {
@@ -141,6 +153,68 @@ export function LocationStep({ initialData, onComplete }: LocationStepProps) {
             Select a location from the list above to continue
           </p>
         )}
+
+        <div className="mt-8 border-t border-rule-soft pt-6">
+          <button
+            onClick={() => setShowManual((v) => !v)}
+            className="text-xs text-ink-muted underline underline-offset-2 hover:text-ink transition-colors"
+          >
+            {showManual ? 'Hide manual entry' : "Can't find your location? Enter coordinates manually"}
+          </button>
+
+          {showManual && (
+            <div className="mt-4 flex flex-col gap-3">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs text-ink-muted block mb-1">Latitude (−90 to 90)</label>
+                  <input
+                    type="number"
+                    step="0.0001"
+                    min="-90"
+                    max="90"
+                    value={manualLat}
+                    onChange={(e) => setManualLat(e.target.value)}
+                    placeholder="e.g. 24.6877"
+                    className="w-full px-3 py-2 rounded-[10px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-ink-muted block mb-1">Longitude (−180 to 180)</label>
+                  <input
+                    type="number"
+                    step="0.0001"
+                    min="-180"
+                    max="180"
+                    value={manualLon}
+                    onChange={(e) => setManualLon(e.target.value)}
+                    placeholder="e.g. 46.7219"
+                    className="w-full px-3 py-2 rounded-[10px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-ink-muted block mb-1">UTC offset (hours, e.g. 3 for UTC+3)</label>
+                <input
+                  type="number"
+                  step="0.5"
+                  min="-14"
+                  max="14"
+                  value={manualOffset}
+                  onChange={(e) => setManualOffset(e.target.value)}
+                  placeholder="e.g. 3"
+                  className="w-full px-3 py-2 rounded-[10px] bg-cream-soft border border-rule-soft text-ink text-sm focus:outline-none"
+                />
+              </div>
+              <button
+                onClick={handleManualSubmit}
+                disabled={!manualLat || !manualLon}
+                className="w-full py-2.5 rounded-[14px] bg-ink text-cream text-sm font-medium disabled:opacity-40 transition-opacity"
+              >
+                Use these coordinates
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
