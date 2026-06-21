@@ -188,7 +188,7 @@ export async function loadRemoteEvents(): Promise<LoggedEvent[]> {
         stream: (row.mood as LoggedEvent['stream']) ?? null,
         rhythm: row.energy !== null ? Number(row.energy) : null,
         placement: extra?.placement ?? null,
-        stamp: extra?.stamp ?? { dayRuler: '', moonPhase: '', sunSign: '' } as CosmicStamp,
+        stamp: extra?.stamp ?? { dayRuler: '', moonPhase: '', sunPosition: '' } as CosmicStamp,
       };
     });
   } catch {
