@@ -3,12 +3,13 @@ const ar = {
 
   // Tabs
   tab_today: 'اليوم',
-  tab_explore: 'استكشاف',
+  tab_spheres: 'الأفلاك',
+  tab_events: 'اللحظات',
   tab_self: 'ذاتك',
+  tab_settings: 'الإعدادات',
 
   // Header
   header_settings: 'الإعدادات',
-  header_search: 'بحث',
   header_log_event: 'تسجيل لحظة',
   header_saved: 'المحفوظات',
 
@@ -28,71 +29,66 @@ const ar = {
   onboarding_calculating: 'جارٍ حساب خريطتك...',
 
   // Today
-  today_reflection_placeholder: 'ما الذي تحمله اليوم؟',
-  today_card_transit: 'العبور',
-  today_card_body: 'الجسد',
-  today_card_two_winds: 'الريحان',
-  today_card_question: 'سؤال اليوم',
-  today_card_learning: 'تعلّم',
+  today_sphere_of_day: 'فلك اليوم',
+  today_organ_focus: 'العضو المحوري',
+  today_daily_practice: 'الممارسة اليومية',
+  today_evening_reflection: 'التأمّل المسائي',
+  today_threshold: 'ادخل',
 
-  // Resonance voting
-  vote_warm: 'دافئ',
-  vote_quiet: 'هادئ',
-  vote_stirring: 'محرّك',
-  vote_flat: 'ساكن',
+  // Spheres
+  spheres_title: 'الأفلاك السبعة',
+  spheres_hierarchy: 'التسلسل',
+  spheres_body_member: 'عضو الجسد',
+  spheres_sense: 'الحاسّة الفلكية',
+  spheres_organ: 'العضو',
+  spheres_metal: 'المعدن',
+  spheres_luciferic: 'القطب اللوسيفيري',
+  spheres_ahrimanic: 'القطب الأهريماني',
+  spheres_your_placement: 'موضعك',
+  spheres_sign_reading: 'قراءة البرج',
+  spheres_house_reading: 'قراءة البيت',
 
-  // Self
-  self_chart: 'الخريطة',
-  self_subtab_planets: 'الكواكب',
-  self_subtab_signs: 'الأبراج',
-  self_subtab_houses: 'البيوت',
-  self_subtab_aspects: 'الجوانب',
-  self_subtab_fixed_stars: 'النجوم الثابتة',
-  self_subtab_active: 'التأثيرات النشطة',
-  self_body: 'الجسد',
-  self_saved: 'ما حفظت',
-
-  // Explore
-  explore_tonight_sky: 'السماء الليلة',
-  explore_life_arc: 'القوس الحياتي',
-  explore_landmark_transits: 'العبورات الكونية الكبرى',
-
-  // Event logger
+  // Events
   event_what_happened: 'ماذا حدث؟',
-  event_which_stream: 'أي تيار؟',
-  event_stream_feeling: 'شعور',
-  event_stream_thinking: 'تفكير',
-  event_stream_willing: 'إرادة',
-  event_rhythm: 'إيقاع',
-  event_placements: 'المواضع',
+  event_which_sphere: 'أي فلك؟',
   event_save: 'حفظ',
+  event_sphere_sun: 'الشمس',
+  event_sphere_moon: 'القمر',
+  event_sphere_mercury: 'عطارد',
+  event_sphere_venus: 'الزهرة',
+  event_sphere_mars: 'المريخ',
+  event_sphere_jupiter: 'المشتري',
+  event_sphere_saturn: 'زحل',
 
-  // Voice arc
-  voice_observation: 'ملاحظة',
-  voice_meaning: 'معنى',
-  voice_shadow: 'ظلّ',
-  voice_soul_question: 'سؤال الروح',
-  voice_practice: 'ممارسة',
+  // Voice arc (placement detail)
+  voice_traditional: 'التشكيل',
+  voice_evolutionary: 'تطوّر الروح',
+  voice_developmental: 'المهمّة',
+  voice_aphorism: '',
 
   // Settings
   settings_title: 'الإعدادات',
   settings_profile: 'الملف الشخصي',
-  settings_calibration: 'المعايرة',
-  settings_practice: 'الاستشارات والممارسة',
-  settings_language: 'اللغة',
-  settings_data: 'البيانات',
+  settings_data: 'بياناتك',
+  settings_privacy: 'الخصوصية',
   settings_about: 'عن سُكون',
-  settings_privacy: 'سياسة الخصوصية',
-  settings_delete_account: 'حذف الحساب',
+  settings_edit_birth: 'تعديل بيانات الميلاد',
+  settings_sovereignty: 'سيادة البيانات',
+  settings_export: 'تصدير البيانات',
+  settings_delete: 'حذف كل البيانات',
+  settings_ai_synthesis: 'التحليل الذكي',
+  settings_ai_off: 'معطّل',
+  settings_ai_on: 'مفعّل (◇)',
 
-  // General
-  general_loading: 'جارٍ التحميل...',
-  general_error: 'حدث خطأ',
-  general_retry: 'إعادة المحاولة',
-  general_cancel: 'إلغاء',
-  general_done: 'تمّ',
-  general_applies: 'ينطبق',
+  // Common
+  common_loading: 'جارٍ التحميل...',
+  common_save: 'حفظ',
+  common_cancel: 'إلغاء',
+  common_done: 'تمّ',
+  common_back: 'رجوع',
+  common_close: 'إغلاق',
+  common_unknown: 'غير معروف',
+  common_retrograde: 'راجع',
 } as const;
 
-export type TranslationKey = keyof typeof ar;
 export default ar;
