@@ -15,9 +15,9 @@ export interface LoggedEvent {
 const STORAGE_KEY = 'hygiea.events';
 
 export const STREAM_AR: Record<StreamKey, string> = {
-  thinking: 'الفكر',
-  feeling: 'الشعور',
-  willing: 'الإرادة',
+  thinking: 'Thinking',
+  feeling: 'Feeling',
+  willing: 'Willing',
 };
 
 export const STREAM_GLYPH: Record<StreamKey, string> = {

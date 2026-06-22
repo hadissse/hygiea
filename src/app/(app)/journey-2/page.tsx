@@ -20,7 +20,7 @@ const FILTER_LABELS: Record<FilterKey, string> = {
 };
 
 function formatDateAr(iso: string): string {
-  return new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'long', weekday: 'short' }).format(new Date(iso));
+  return new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', weekday: 'short' }).format(new Date(iso));
 }
 
 export default function Journey2Page() {
@@ -54,7 +54,7 @@ export default function Journey2Page() {
       {/* Header — full width, outside grid */}
       <div className="px-5 pt-6 pb-3">
         <div className="text-xs text-ink-muted mb-1">{formatDateAr(new Date().toISOString())}</div>
-        <Headline>التتبّع Dayي</Headline>
+        <Headline>Day Tracking</Headline>
         <Body muted className="mt-1 text-sm">The sky now × your inner chart</Body>
       </div>
 
@@ -91,7 +91,7 @@ export default function Journey2Page() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
-                <span className="text-sm font-medium">سجّل moment</span>
+                <span className="text-sm font-medium">Log a moment</span>
               </div>
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function Journey2Page() {
               <div className="py-12 text-center">
                 <Body muted>
                   {filter === 'all'
-                    ? 'لم تسجّل أي لحظات بعد. سجّل أول moment لك.'
+                    ? 'No moments logged yet. Log your first moment.'
                     : 'No moments with this filter.'}
                 </Body>
               </div>

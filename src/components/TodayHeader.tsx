@@ -1,9 +1,9 @@
 'use client';
 
 const greetings = [
-  { time: 0, text: 'صباح الخير' },
-  { time: 12, text: 'مساء الخير' },
-  { time: 18, text: 'مساء الخير' },
+  { time: 0, text: 'Good morning' },
+  { time: 12, text: 'Good afternoon' },
+  { time: 18, text: 'Good evening' },
 ];
 
 export function TodayHeader() {
