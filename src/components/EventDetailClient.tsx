@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { getEvent, STREAM_AR, type LoggedEvent } from '@/lib/events';
 
 const RHYTHM_LABEL = (r: number): string => {
-  if (r < 35) return 'مالَ إلى الحرارة';
-  if (r > 65) return 'مالَ إلى الحديد';
-  return 'متوازن';
+  if (r < 35) return 'Tends toward warmth';
+  if (r > 65) return 'Tends toward iron';
+  return 'Balanced';
 };
 
 export function EventDetailClient({ id }: { id: string }) {
@@ -22,8 +22,8 @@ export function EventDetailClient({ id }: { id: string }) {
   if (loaded && !event) {
     return (
       <div className="max-w-[430px] mx-auto w-full px-5 py-16 text-center flex flex-col gap-4">
-        <div className="text-ink-muted text-sm">لم يُعثر على هذا الحدث.</div>
-        <Link href="/self" className="text-coral text-sm font-medium">الBack ←</Link>
+        <div className="text-ink-muted text-sm">This event was not found.</div>
+        <Link href="/self" className="text-coral text-sm font-medium">Back ←</Link>
       </div>
     );
   }

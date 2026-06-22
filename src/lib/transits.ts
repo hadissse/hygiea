@@ -37,11 +37,11 @@ const TRANSIT_BODIES: { key: string; body: Astronomy.Body }[] = [
 ];
 
 export const ASPECTS = [
-  { angle: 0,   name: 'اقتران', symbol: '☌', orb: 6, color: '#5C5C7A' },
-  { angle: 60,  name: 'سُداس',  symbol: '⚹', orb: 4, color: '#4A7FB5' },
-  { angle: 90,  name: 'تربيع',  symbol: '▫', orb: 5, color: '#C0392B' },
-  { angle: 120, name: 'تثليث',  symbol: '△', orb: 5, color: '#27AE60' },
-  { angle: 180, name: 'تقابل',  symbol: '☍', orb: 6, color: '#C0392B' },
+  { angle: 0,   name: 'Conjunction', symbol: '☌', orb: 6, color: '#5C5C7A' },
+  { angle: 60,  name: 'Sextile',     symbol: '⚹', orb: 4, color: '#4A7FB5' },
+  { angle: 90,  name: 'Square',      symbol: '▫', orb: 5, color: '#C0392B' },
+  { angle: 120, name: 'Trine',       symbol: '△', orb: 5, color: '#27AE60' },
+  { angle: 180, name: 'Opposition',  symbol: '☍', orb: 6, color: '#C0392B' },
 ];
 
 const NATAL_KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'northNode', 'southNode'] as const;
@@ -61,17 +61,12 @@ export interface Transit {
   exactDate: Date | null; // date when orb = 0
 }
 
-function toArabicDigits(input: string | number): string {
-  return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
-}
-
 export function orbLabel(orb: number): string {
-  return `${toArabicDigits(Math.floor(orb))}°`;
+  return `${Math.floor(orb)}°`;
 }
 
-/** Format a date in Arabic: "٥ يونيو ٢٠٢٦" */
 export function formatExactDate(d: Date): string {
-  return new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+  return new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
 }
 
 /** Step through a time window to find the date with smallest orb (closest to exact hit). */

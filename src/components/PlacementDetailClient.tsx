@@ -15,34 +15,34 @@ function getContent(type: string, key: string): VoiceContent | null {
 }
 
 const ZODIAC_SVG_KEYS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sag', 'cap', 'aqua', 'pisces'];
-const ZODIAC_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
-const SIGN_ELEMENT_AR = ['نار', 'تراب', 'هواء', 'ماء', 'نار', 'تراب', 'هواء', 'ماء', 'نار', 'تراب', 'هواء', 'ماء'];
-const HOUSE_ORDINALS = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر'];
-const HOUSE_THEMES = ['الذات · الجسد', 'المورد · الميدان', 'العقل · القريب', 'الأصول · الموقد', 'الإبداع · الشرارة', 'العمل · Dayي', 'الآخر · المرآة', 'الأعماق · المشترك', 'المعنى · البعيد', 'الذروة · العمل', 'الجماعة · المستقبل', 'الخفاء · الانحلال'];
+const ZODIAC_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+const SIGN_ELEMENT_AR = ['Fire', 'Earth', 'Air', 'Water', 'Fire', 'Earth', 'Air', 'Water', 'Fire', 'Earth', 'Air', 'Water'];
+const HOUSE_ORDINALS = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th', '11th', '12th'];
+const HOUSE_THEMES = ['Self · Body', 'Resources · Field', 'Mind · Communication', 'Roots · Home', 'Creativity · Spark', 'Work · Daily Practice', 'Other · Mirror', 'Depths · Shared', 'Meaning · Horizon', 'Career · Legacy', 'Community · Future', 'Retreat · Dissolution'];
 
 const PLANET_AR: Record<string, string> = {
   sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
   jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
-  chiron: 'كيرون', northNode: 'شمال Moon', southNode: 'جنوب Moon',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const ELEMENT_AR: Record<string, { name: string; glyph: string }> = {
-  fire: { name: 'عنصر النار', glyph: '▲' },
-  air: { name: 'عنصر الهواء', glyph: '◇' },
-  water: { name: 'عنصر الماء', glyph: '▽' },
-  earth: { name: 'عنصر التراب', glyph: '■' },
+  fire: { name: 'Fire Element', glyph: '▲' },
+  air: { name: 'Air Element', glyph: '◇' },
+  water: { name: 'Water Element', glyph: '▽' },
+  earth: { name: 'Earth Element', glyph: '■' },
 };
 
 const ASPECTS: Record<number, { name: string; symbol: string; orb: number }> = {
-  0: { name: 'اقتران', symbol: '☌', orb: 8 },
-  60: { name: 'سُداس', symbol: '⚹', orb: 6 },
-  90: { name: 'تربيع', symbol: '▫', orb: 8 },
-  120: { name: 'تثليث', symbol: '△', orb: 8 },
-  180: { name: 'تقابل', symbol: '☍', orb: 8 },
+  0: { name: 'Conjunction', symbol: '☌', orb: 8 },
+  60: { name: 'Sextile',    symbol: '⚹', orb: 6 },
+  90: { name: 'Square',     symbol: '▫', orb: 8 },
+  120: { name: 'Trine',     symbol: '△', orb: 8 },
+  180: { name: 'Opposition',symbol: '☍', orb: 8 },
 };
 
 function toArabicDigits(input: string | number): string {
-  return String(input).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
+  return String(input);
 }
 
 interface HeaderData {
@@ -70,8 +70,8 @@ function buildHeaderAndContent(
         header: {
           glyph: '',
           svgKey: planetSvgKey(key),
-          title: `${PLANET_AR[key] ?? p.name} في ${ZODIAC_AR[p.signNumber]} · ${toArabicDigits(p.degree)}°`,
-          meta: `البيت ${HOUSE_ORDINALS[houseNum - 1]} · ${HOUSE_THEMES[houseNum - 1]}`,
+          title: `${PLANET_AR[key] ?? p.name} in ${ZODIAC_AR[p.signNumber]} · ${toArabicDigits(p.degree)}°`,
+          meta: `House ${HOUSE_ORDINALS[houseNum - 1]} · ${HOUSE_THEMES[houseNum - 1]}`,
           color: coral,
         },
         content: getContent('planet', `${key}:${slug}`),
@@ -88,7 +88,7 @@ function buildHeaderAndContent(
           glyph: '',
           svgKey: ZODIAC_SVG_KEYS[idx],
           title: ZODIAC_AR[idx],
-          meta: `البرج ${HOUSE_ORDINALS[idx]} · ${SIGN_ELEMENT_AR[idx]}`,
+          meta: `Sign ${HOUSE_ORDINALS[idx]} · ${SIGN_ELEMENT_AR[idx]}`,
           color: coral,
         },
         content: getContent('sign', key),
@@ -103,7 +103,7 @@ function buildHeaderAndContent(
       return {
         header: {
           glyph: toArabicDigits(num),
-          title: `البيت ${HOUSE_ORDINALS[num - 1]}`,
+          title: `House ${HOUSE_ORDINALS[num - 1]}`,
           meta: cusp ? `${HOUSE_THEMES[num - 1]} · ${cusp.sign} ${toArabicDigits(cusp.degree)}°` : HOUSE_THEMES[num - 1],
           color: lake,
         },
@@ -132,7 +132,7 @@ function buildHeaderAndContent(
         header: {
           glyph: best.symbol,
           title: `${PLANET_AR[a] ?? a} ${best.symbol} ${PLANET_AR[b] ?? b}`,
-          meta: best.name ? `${best.name} · فرق ${toArabicDigits(best.orb.toFixed(0))}°` : 'جانب',
+          meta: best.name ? `${best.name} · orb ${toArabicDigits(best.orb.toFixed(0))}°` : 'Aspect',
           color: coral,
         },
         content: aspectContent,
@@ -144,14 +144,14 @@ function buildHeaderAndContent(
     const el = ELEMENT_AR[key];
     if (el) {
       return {
-        header: { glyph: el.glyph, title: el.name, meta: 'عنصر في خريطتك', color: coral },
+        header: { glyph: el.glyph, title: el.name, meta: 'Element in your chart', color: coral },
         content: getContent('element', key),
       };
     }
   }
 
   return {
-    header: { glyph: '✦', title: 'وضعية', meta: '', color: coral },
+    header: { glyph: '✦', title: 'Placement', meta: '', color: coral },
     content: null,
   };
 }
@@ -179,19 +179,19 @@ function CalibrateBlock({ storageKey }: { storageKey: string }) {
   return (
     <div className="mx-5 mt-3.5 p-3.5 rounded-[12px] bg-white border border-rule-soft">
       <div className="flex items-center justify-between">
-        <div className="text-xs text-ink-muted font-semibold tracking-wide">ينطبق؟</div>
+        <div className="text-xs text-ink-muted font-semibold tracking-wide">Does this apply?</div>
         {locked && (
           <div className="flex items-center gap-1 text-[10px] text-[#8FA084] font-medium">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="11" width="18" height="11" rx="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
-            مُثبَّت
+            Saved
           </div>
         )}
       </div>
       <div className="flex gap-2 mt-2.5">
-        {[['نعم', 'yes'], ['جزئيًا', 'partial'], ['لا', 'no']].map(([label, v]) => {
+        {[['Yes', 'yes'], ['Partly', 'partial'], ['No', 'no']].map(([label, v]) => {
           const sel = selected === v;
           return (
             <button
@@ -242,11 +242,11 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
       {/* Header */}
       <div className="px-5 pt-4 flex flex-col gap-1">
         <div className="flex items-center justify-between">
-          <button onClick={() => router.back()} className="text-ink-muted hover:text-ink transition-colors flex items-center gap-1.5 text-sm" aria-label="رجوع">
+          <button onClick={() => router.back()} className="text-ink-muted hover:text-ink transition-colors flex items-center gap-1.5 text-sm" aria-label="Back">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
-            رجوع
+            Back
           </button>
         </div>
         <div className="flex gap-3.5 items-center mt-3">
@@ -301,21 +301,21 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
               </div>
             ))}
             <div>
-              <div className="text-[11px] text-ink-muted tracking-wide font-semibold">سؤال الروح</div>
+              <div className="text-[11px] text-ink-muted tracking-wide font-semibold">Soul Question</div>
               <div className="font-serif text-[17px] text-ink mt-1.5 leading-[1.5]">{content.aphorism}</div>
             </div>
           </div>
 
           {content.aphorism && (
             <div className="mx-5 mt-[18px] p-3.5 rounded-[12px]" style={{ backgroundColor: '#C9D2BE' }}>
-              <div className="text-xs text-ink font-semibold tracking-wide">ممارسة</div>
+              <div className="text-xs text-ink font-semibold tracking-wide">Practice</div>
               <div className="text-sm text-ink mt-1.5 leading-[1.7]">{content.aphorism}</div>
             </div>
           )}
 
           {content.cycles && content.cycles.length > 0 && (
             <div className="mx-5 mt-[18px] p-3.5 rounded-[12px] bg-white border border-rule-soft">
-              <div className="text-xs text-ink-muted font-semibold tracking-wide">الدورات</div>
+              <div className="text-xs text-ink-muted font-semibold tracking-wide">Cycles</div>
               <div className="mt-2 flex flex-col gap-2">
                 {content.cycles.map(([k, v]) => (
                   <div key={k} className="flex justify-between">
@@ -330,7 +330,7 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
           {houseContent && (
             <div className="px-5 mt-6 flex flex-col gap-4">
               <div className="h-px bg-rule-soft" />
-              <div className="text-[11px] text-ink-muted tracking-wide font-semibold">الكوكب في البيت</div>
+              <div className="text-[11px] text-ink-muted tracking-wide font-semibold">Planet in House</div>
               {[
                 ['The Configuration', houseContent.traditional],
                 ['Soul Development', houseContent.evolutionary],
@@ -346,7 +346,7 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
                 </div>
               ))}
               <div>
-                <div className="text-[11px] text-ink-muted tracking-wide font-semibold">سؤال الروح</div>
+                <div className="text-[11px] text-ink-muted tracking-wide font-semibold">Soul Question</div>
                 <div className="font-serif text-[17px] text-ink mt-1.5 leading-[1.5]">{houseContent.aphorism}</div>
               </div>
             </div>
@@ -355,7 +355,7 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
       ) : (
         <div className="mx-5 mt-[18px] p-4 rounded-[12px] bg-cream-soft border border-rule-soft">
           <div className="text-sm text-ink-muted leading-[1.7]">
-            المحتوى التفصيلي لهذه الوضعية قيد الإعداد. ستظهر هنا الملاحظة والمعنى والظل وسؤال الروح.
+            Detailed content for this placement is being prepared. The observation, meaning, shadow, and soul question will appear here.
           </div>
         </div>
       )}
@@ -374,14 +374,14 @@ export function PlacementDetailClient({ type, decodedKey }: { type: string; deco
                 <circle cx="6" cy="6" r="5.5" stroke="#8FA084" />
                 <path d="M3.5 6l1.8 1.8L8.5 4.5" stroke="#8FA084" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span style={{ color: '#8FA084' }}>مُدوَّن · سجّل مرّة أخرى</span>
+              <span style={{ color: '#8FA084' }}>Noted · Log again</span>
             </>
           ) : (
             <>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14M5 12h14" />
               </svg>
-              سجّل حدثًا مرتبطًا
+              Log a related event
             </>
           )}
         </Link>

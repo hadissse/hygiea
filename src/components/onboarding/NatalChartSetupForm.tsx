@@ -257,7 +257,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
           <>
             <input
               type="text"
-              placeholder="اكتب اسم المدينة"
+              placeholder="Type city name"
               value={locationQuery}
               onChange={(e) => {
                 setLocationQuery(e.target.value);
@@ -266,7 +266,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
               className={inputFullCls}
             />
             {isSearching && (
-              <p className="text-xs text-ink-muted text-center">جاري الSearch...</p>
+              <p className="text-xs text-ink-muted text-center">Searching...</p>
             )}
             {locationResults.length > 0 && (
               <div className="flex flex-col divide-y divide-stone-100 -mx-5 px-5">
@@ -279,7 +279,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
                       setLocationQuery(loc.name);
                       setLocationResults([]);
                     }}
-                    className="text-right py-3 text-ink text-sm hover:text-coral transition-colors"
+                    className="text-left py-3 text-ink text-sm hover:text-coral transition-colors"
                   >
                     <div className="font-medium">{loc.name}</div>
                     <div className="text-xs text-ink-muted">{loc.country}</div>
@@ -299,7 +299,7 @@ export function NatalChartSetupForm({ onComplete }: NatalChartSetupFormProps) {
               onClick={() => { setSelectedLocation(null); setLocationQuery(''); }}
               className="text-xs text-coral hover:text-coral/70 transition-colors"
             >
-              تغيير
+              Change
             </button>
           </div>
         )}

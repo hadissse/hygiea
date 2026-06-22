@@ -167,7 +167,7 @@ export function ZoomableWheel({ size = 377, tone = 'paper', chart: chartProp, sh
     >
       <svg
           width="100%" height="100%" viewBox={`0 0 ${VB} ${VB}`}
-          role="img" aria-label="الخريطة الفلكية"
+          role="img" aria-label="Natal Chart"
           style={{ display: 'block' }}
         >
           {/* Background fill — only inside zodiac ring (no outer degree arc) */}
@@ -314,7 +314,7 @@ export function ZoomableWheel({ size = 377, tone = 'paper', chart: chartProp, sh
           {hovered && chart && (() => {
             const planet = chart[hovered as (typeof PLANET_KEYS)[number]];
             if (!planet) return null;
-            const toAr = (n: number) => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+            const toAr = (n: number) => String(n);
             const label = `${planet.name} · ${toAr(planet.degree)}° ${planet.sign}`;
             const idx = PLANET_KEYS.indexOf(hovered as typeof PLANET_KEYS[number]);
             const spreadAngle = spread[idx]?.angle ?? lonToAngleDeg(planet.longitude);

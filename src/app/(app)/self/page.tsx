@@ -696,12 +696,12 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
         <>
           <div className="px-5 flex gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
             {[
-              { label: 'All',    color: null },
-              { label: 'تربيع',   color: '#C0392B' },
-              { label: 'اقتران',  color: '#5C5C7A' },
-              { label: 'سُداس',   color: '#4A7FB5' },
-              { label: 'تثليث',   color: '#27AE60' },
-              { label: 'تقابل',   color: '#C0392B' },
+              { label: 'All',         color: null },
+              { label: 'Square',      color: '#C0392B' },
+              { label: 'Conjunction', color: '#5C5C7A' },
+              { label: 'Sextile',     color: '#4A7FB5' },
+              { label: 'Trine',       color: '#27AE60' },
+              { label: 'Opposition',  color: '#C0392B' },
             ].map(({ label, color }) => (
               <button
                 key={label}
@@ -720,7 +720,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
           <div className="px-5 pb-6 flex flex-col gap-3 mt-1">
             {(() => {
               const ASPECT_ORDER: Record<string, number> = {
-                'تربيع': 1, 'اقتران': 2, 'سُداس': 3, 'تثليث': 4, 'تقابل': 5,
+                'Square': 1, 'Conjunction': 2, 'Sextile': 3, 'Trine': 4, 'Opposition': 5,
               };
               const filtered = aspects
                 .filter((a) => aspectFilter === 'All' || a.type === aspectFilter)
@@ -762,7 +762,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                   </Link>
                 ))
               ) : (
-                <div className="text-center py-8 text-ink-muted text-sm">لا توجد جوانب في هذا التصفية</div>
+                <div className="text-center py-8 text-ink-muted text-sm">No aspects match this filter</div>
               );
             })()}
           </div>
@@ -775,8 +775,8 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
         const traits = chart ? calculateTraits(chart) : loadTraits();
         if (!traits) return (
           <div className="px-5 py-12 text-center flex flex-col gap-3">
-            <Body muted>أكمل إدراج بياناتك أولًا لتظهر قراءة الأعضاء.</Body>
-            <Link href="/onboarding" className="text-coral text-sm font-medium">ابدأ الإدراج ←</Link>
+            <Body muted>Complete your birth data entry first to show organ readings.</Body>
+            <Link href="/onboarding" className="text-coral text-sm font-medium">Get started ←</Link>
           </div>
         );
         const PLANET_COLOR: Record<string, string> = {
@@ -785,9 +785,9 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
         };
         return (
           <div className="px-5 pb-6 flex flex-col gap-3 mt-4">
-            <FrameworkLabel label="طبّ نجومي · قراءة هرمسية" />
+            <FrameworkLabel label="Stellar Medicine · Hermetic Reading" />
             <p className="text-xs text-ink-muted leading-[1.7] -mt-1">
-              كلّ كوكبٍ يحكم عضوًا. برجُه في خريطتك يُلوِّن طريقةَ تعبير ذلك العضو عن صحّته.
+              Each planet rules an organ. Its sign in your chart colours how that organ expresses its health.
             </p>
             {traits.organs.map((o) => {
               const planetKey = (o as any).planetKey ?? o.planet;
@@ -816,7 +816,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                           <span className="text-xs font-semibold" style={{ color: accentColor }}>{(o as any).sign ?? ''}</span>
                           {(o as any).retrograde && <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cream-soft text-ink-muted font-mono">℞</span>}
                           {elementLabel && <><span className="text-ink-muted opacity-40 text-xs">·</span><span className="text-[11px] text-ink-muted">{elementLabel}</span></>}
-                          {houseLabel && <><span className="text-ink-muted opacity-40 text-xs">·</span><span className="text-[11px] text-ink-muted">بيت {houseLabel}</span></>}
+                          {houseLabel && <><span className="text-ink-muted opacity-40 text-xs">·</span><span className="text-[11px] text-ink-muted">House {houseLabel}</span></>}
                         </div>
                       </div>
                     </div>
@@ -841,20 +841,20 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
 }
 
 const organs = [
-  { name: 'القلب · Sun', status: 'مفتوح ومُضخِّم', color: '#FFC78A' },
-  { name: 'الدماغ · Moon', status: 'انعكاسٌ هادئ', color: '#C2D3E2' },
-  { name: 'الرئتان · Mercury', status: 'يقظ ومتسائل', color: '#C9D2BE' },
-  { name: 'Allيتان · Venus', status: 'تليّن Day', color: '#F8D6BE' },
-  { name: 'المرارة · Mars', status: 'حدّةٌ تحتاج اتجاهًا', color: '#E9785E' },
-  { name: 'الكبد · Jupiter', status: 'سعةٌ تطلب حدًّا', color: '#9C8AB8' },
-  { name: 'الطحال · Saturn', status: 'تأمّلٌ بطيء', color: '#5A3E7A' },
+  { name: 'Heart · Sun', status: 'Open & pumping', color: '#FFC78A' },
+  { name: 'Brain · Moon', status: 'Quiet reflection', color: '#C2D3E2' },
+  { name: 'Lungs · Mercury', status: 'Alert & questioning', color: '#C9D2BE' },
+  { name: 'Kidneys · Venus', status: 'Softening', color: '#F8D6BE' },
+  { name: 'Gallbladder · Mars', status: 'Sharpness needing direction', color: '#E9785E' },
+  { name: 'Liver · Jupiter', status: 'Expansion seeking limit', color: '#9C8AB8' },
+  { name: 'Spleen · Saturn', status: 'Slow contemplation', color: '#5A3E7A' },
 ];
 
 const elements = [
-  { name: 'نار', planets: 'Sun · Mars · Jupiter', theme: 'حرارةٌ تتقدّم', color: '#E9785E', pct: 42 },
-  { name: 'هواء', planets: 'Mercury · Venus · Saturn', theme: 'فكرٌ يتحرّك', color: '#C2D3E2', pct: 28 },
-  { name: 'ماء', planets: 'Moon · Neptune · Pluto', theme: 'شعورٌ يتلقّى', color: '#7E97B8', pct: 18 },
-  { name: 'تراب', planets: 'Uranus', theme: 'بنيةٌ تستقرّ', color: '#BDAA82', pct: 12 },
+  { name: 'Fire', planets: 'Sun · Mars · Jupiter', theme: 'Warmth advancing', color: '#E9785E', pct: 42 },
+  { name: 'Air', planets: 'Mercury · Venus · Saturn', theme: 'Thought in motion', color: '#C2D3E2', pct: 28 },
+  { name: 'Water', planets: 'Moon · Neptune · Pluto', theme: 'Feeling receiving', color: '#7E97B8', pct: 18 },
+  { name: 'Earth', planets: 'Uranus', theme: 'Structure settling', color: '#BDAA82', pct: 12 },
 ];
 
 function BodyView() {
@@ -864,8 +864,8 @@ function BodyView() {
   if (!traits) {
     return (
       <div className="px-5 py-12 text-center flex flex-col gap-3">
-        <Body muted>أكمل إدراج بياناتك أولًا لتظهر سماتك.</Body>
-        <Link href="/onboarding" className="text-coral text-sm font-medium">ابدأ الإدراج ←</Link>
+        <Body muted>Complete your birth data entry first to show your traits.</Body>
+        <Link href="/onboarding" className="text-coral text-sm font-medium">Get started ←</Link>
       </div>
     );
   }
@@ -874,7 +874,7 @@ function BodyView() {
     <div className="flex flex-col gap-5">
       {/* Sub-tabs */}
       <div className="px-5 pt-2 flex gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-        {([['organs', 'الأعضاء'], ['hd', 'مراكز HD']] as const).map(([key, label]) => (
+        {([['organs', 'Organs'], ['hd', 'HD Centres']] as const).map(([key, label]) => (
           <button
             key={key}
             onClick={() => setActiveBodyTab(key)}
@@ -895,7 +895,7 @@ function BodyView() {
             style={{ background: ELEMENT_COLORS[traits.elements.dominant] + '22' }}
           >
             <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
-              عنصرك السائد · {ELEMENT_AR[traits.elements.dominant]}
+              Your dominant element · {traits.elements.dominant}
             </div>
             <div className="font-serif text-[15px] text-ink leading-[1.75] mb-2">
               {ELEMENT_MEANING[traits.elements.dominant].essence}
@@ -906,7 +906,7 @@ function BodyView() {
             <Card key={el}>
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <div className="font-serif text-base text-ink">{ELEMENT_AR[el]}</div>
+                  <div className="font-serif text-base text-ink capitalize">{el}</div>
                   <div className="text-xs text-ink-muted mt-1">{traits.elements[el]}%</div>
                 </div>
                 <div className="w-10 h-10 rounded-full" style={{ backgroundColor: ELEMENT_COLORS[el] }} />
@@ -925,7 +925,7 @@ function BodyView() {
       {/* Minerals tab */}
       {activeBodyTab === 'minerals' && (
         <div className="px-5 pb-6 flex flex-col gap-3">
-          <FrameworkLabel label="قراءة هرمسية تقليدية" />
+          <FrameworkLabel label="Traditional Hermetic Reading" />
           {traits.minerals.map((m) => (
             <Card key={m.planet}>
               <div className="flex items-start gap-3">
@@ -948,9 +948,9 @@ function BodyView() {
       {/* Organs tab */}
       {activeBodyTab === 'organs' && (
         <div className="px-5 pb-6 flex flex-col gap-3">
-          <FrameworkLabel label="طبّ نجومي · قراءة هرمسية" />
+          <FrameworkLabel label="Stellar Medicine · Hermetic Reading" />
           <p className="text-xs text-ink-muted leading-[1.7] -mt-1">
-            كلّ كوكبٍ يحكم عضوًا. برجُه في خريطتك يُلوِّن طريقةَ تعبير ذلك العضو عن صحّته.
+            Each planet rules an organ. Its sign in your chart colours how that organ expresses its health.
           </p>
           {traits.organs.map((o) => {
             // Safe fallbacks for old localStorage data that may lack the new fields
@@ -1031,9 +1031,9 @@ function BodyView() {
       {/* HD Centres tab */}
       {activeBodyTab === 'hd' && (
         <div className="px-5 pb-6 flex flex-col gap-3">
-          <FrameworkLabel label="قراءة تصميم إنساني (Human Design)" />
+          <FrameworkLabel label="Human Design Reading" />
           <div className="text-xs text-ink-muted mb-1 leading-[1.7]">
-            المراكز المُعرَّفة تحمل طاقة ثابتة — غير المُعرَّفة مرنة ومتأثّرة بالمحيط.
+            Defined centres carry consistent energy — undefined centres are flexible and influenced by the environment.
           </div>
           {traits.hdCentres.map((c) => {
             const meaning = HD_CENTRE_MEANING[c.name];
@@ -1073,13 +1073,13 @@ function BodyView() {
 // UNIFIED_TIMELINE is imported from biographyData
 
 function toArabicNumStr(n: number): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 const TRANSIT_ESSAY_LINKS = [
-  { slug: 'jupiter-return', svgKey: 'jupiter', title: 'Back Jupiter', sub: 'Every 12 years · Expansion & Horizon', color: '#9C8AB8', readTime: '٦ دقائق' },
-  { slug: 'chiron-return', svgKey: 'chiron',   title: 'Back كيرون',  sub: 'Around age 50 · The wounded healer', color: '#A8A8A8', readTime: '٧ دقائق' },
-  { slug: 'uranus-opposition', svgKey: 'uranus', title: 'تقابل Uranus', sub: 'Around age 42 · Midlife awakening', color: '#7E97B8', readTime: '٧ دقائق' },
+  { slug: 'jupiter-return', svgKey: 'jupiter', title: 'Jupiter Return', sub: 'Every 12 years · Expansion & Horizon', color: '#9C8AB8', readTime: '6 min' },
+  { slug: 'chiron-return', svgKey: 'chiron',   title: 'Chiron Return', sub: 'Around age 50 · The wounded healer', color: '#A8A8A8', readTime: '7 min' },
+  { slug: 'uranus-opposition', svgKey: 'uranus', title: 'Uranus Opposition', sub: 'Around age 42 · Midlife awakening', color: '#7E97B8', readTime: '7 min' },
 ];
 
 // ── Planet colour map for timeline dots ──────────────────────────────────
@@ -1153,28 +1153,28 @@ function UnifiedBiographyView() {
       <div className="flex flex-col gap-0.5">
         <div className="flex items-center gap-2">
           <span className="text-coral text-xs font-semibold tracking-wider">✦</span>
-          <span className="text-[11px] text-ink-muted font-semibold tracking-wider">السيرة البانورامية</span>
+          <span className="text-[11px] text-ink-muted font-semibold tracking-wider">Panoramic Biography</span>
         </div>
         <p className="text-xs text-ink-muted leading-[1.6] mt-1">
-          مراحل شتاينر السبعينية وعبورات Planets الكبرى — خطٌّ زمني واحد عبر حياتك.
+          Steiner's sevenfold phases and the great planetary transits — one timeline through your life.
         </p>
       </div>
 
-      <FrameworkLabel label="قراءة العلم الروحاني" />
+      <FrameworkLabel label="Spiritual Science Reading" />
 
       {/* Current phase summary card */}
       {currentAge !== null && currentPhaseItem && phaseProgress !== null ? (
         <div className="bg-white rounded-[18px] p-4 border border-rule-soft">
           <div className="flex items-baseline justify-between mb-3">
             <div>
-              <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">عمرك الآن</div>
+              <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">Your Age</div>
               <div className="font-serif text-3xl text-ink">
                 {toArabicNumStr(currentAge)}{' '}
-                <span className="text-base text-ink-muted font-sans">سنة</span>
+                <span className="text-base text-ink-muted font-sans">years</span>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">المرحلة</div>
+              <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">Phase</div>
               <div className="font-serif text-xl text-coral">{currentPhaseItem.planet}</div>
             </div>
           </div>
@@ -1201,12 +1201,12 @@ function UnifiedBiographyView() {
         </div>
       ) : currentAge === null ? (
         <div className="bg-cream-soft rounded-[14px] p-4 text-sm text-ink-muted text-center">
-          أدخل بيانات ميلادك لحساب مرحلتك في الخطّ الزمني.
+          Enter your birth data to calculate your phase in the timeline.
         </div>
       ) : null}
 
       {/* Unified chronological timeline */}
-      <div className="font-serif text-base text-ink mb-1">الخطّ الزمني</div>
+      <div className="font-serif text-base text-ink mb-1">Timeline</div>
       <div className="flex flex-col gap-0">
         {UNIFIED_TIMELINE.map((item, idx) => {
           const status = itemStatus(item, currentAge);
@@ -1269,11 +1269,11 @@ function UnifiedBiographyView() {
               <div className="flex-1 pb-2 pt-1">
                 <button
                   onClick={() => setExpandedIdx(isExpanded ? null : idx)}
-                  className={`w-full text-right rounded-[14px] p-3.5 border transition-all ${cardBg}`}
+                  className={`w-full text-left rounded-[14px] p-3.5 border transition-all ${cardBg}`}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1 text-right">
-                      <div className="flex items-center gap-1.5 justify-end mb-0.5">
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center gap-1.5 mb-0.5">
                         {/* type badge */}
                         <span
                           className="text-[9px] font-semibold tracking-wide px-1.5 py-0.5 rounded-full"
@@ -1282,7 +1282,7 @@ function UnifiedBiographyView() {
                             color: isPhase ? '#9A8A6A' : '#5A7A9A',
                           }}
                         >
-                          {isPhase ? 'مرحلة' : 'عبور'}
+                          {isPhase ? 'Phase' : 'Transit'}
                         </span>
                       </div>
                       <div className="font-serif text-sm text-ink leading-[1.3]">{item.name}</div>
@@ -1303,14 +1303,14 @@ function UnifiedBiographyView() {
                           className="text-[10px] font-bold tracking-wide text-coral px-2 py-0.5 rounded-full"
                           style={{ background: 'rgba(233,120,94,0.10)' }}
                         >
-                          أنت هنا
+                          You are here
                         </div>
                       )}
                       {status === 'past' && (
-                        <div className="text-[10px] text-ink-muted font-semibold">مضى</div>
+                        <div className="text-[10px] text-ink-muted font-semibold">Past</div>
                       )}
                       {status === 'upcoming' && (
-                        <div className="text-[10px] text-ink-muted font-semibold">قادم</div>
+                        <div className="text-[10px] text-ink-muted font-semibold">Upcoming</div>
                       )}
                       <span className="text-ink-muted text-xs">{isExpanded ? '›' : '‹'}</span>
                     </div>
@@ -1318,9 +1318,9 @@ function UnifiedBiographyView() {
 
                   {/* Expanded body */}
                   {isExpanded && (
-                    <div className="mt-3 pt-3 border-t border-rule-soft text-right">
+                    <div className="mt-3 pt-3 border-t border-rule-soft text-left">
                       {status === 'current' && (
-                        <div className="text-[11px] text-coral font-semibold mb-1.5">أنت في هذه المرحلة الآن</div>
+                        <div className="text-[11px] text-coral font-semibold mb-1.5">You are in this phase now</div>
                       )}
                       <p className="text-[13px] text-ink leading-[1.9]">{item.body}</p>
                       {item.prompt && (
@@ -1340,7 +1340,7 @@ function UnifiedBiographyView() {
 
       {/* Footer: essay links */}
       <div className="mt-2">
-        <div className="text-[11px] text-ink-muted font-bold tracking-wide mb-2.5">مقالات Reflectيّة</div>
+        <div className="text-[11px] text-ink-muted font-bold tracking-wide mb-2.5">Reflective Articles</div>
         <div className="flex flex-col gap-2">
           {TRANSIT_ESSAY_LINKS.map((e) => (
             <Link key={e.slug} href={`/explore/transits/${e.slug}`}
@@ -1360,7 +1360,7 @@ function UnifiedBiographyView() {
       </div>
 
       <div className="text-center text-[11px] text-ink-muted pt-1 pb-2">
-        ٧٠ سنة · مراحل وعبورات · سَكنٌ كوكبيّ لكل فصل
+        70 years · Phases &amp; Transits · A planetary home for each season
       </div>
     </div>
   );
@@ -1377,14 +1377,14 @@ function SavedView() {
   if (events.length === 0) {
     return (
       <div className="px-5 py-12 text-center flex flex-col gap-3">
-        <Body muted>لم تسجّل أحداثًا بعد.</Body>
-        <Link href="/log" className="text-coral text-sm font-medium">سجّل لحظتك الأولى ←</Link>
+        <Body muted>No events logged yet.</Body>
+        <Link href="/log" className="text-coral text-sm font-medium">Log your first moment ←</Link>
       </div>
     );
   }
 
   const fmt = (iso: string) =>
-    new Intl.DateTimeFormat('ar', { day: 'numeric', month: 'long' }).format(new Date(iso));
+    new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long' }).format(new Date(iso));
 
   return (
     <div className="px-5 pb-6 flex flex-col gap-3">
@@ -1527,10 +1527,10 @@ function ChartIntroOverlay({ chart, onDone }: { chart: AstralChart; onDone: () =
           onClick={next}
           className="mt-7 w-full h-[50px] rounded-[25px] bg-ink text-cream text-base font-medium"
         >
-          {step < steps.length - 1 ? 'تابع' : 'ادخل خريطتك'}
+          {step < steps.length - 1 ? 'Continue' : 'Enter your chart'}
         </button>
         <button onClick={onDone} className="mt-3 w-full text-center text-sm text-ink-muted py-2">
-          تخطّى
+          Skip
         </button>
       </div>
     </div>
@@ -1556,12 +1556,12 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
   }, [chart]);
 
   const ASPECT_FILTERS = [
-    { label: 'All', name: null },
-    { label: 'اقتران', name: 'اقتران', color: '#5C5C7A' },
-    { label: 'سُداس', name: 'سُداس', color: '#4A7FB5' },
-    { label: 'تربيع', name: 'تربيع', color: '#C0392B' },
-    { label: 'تثليث', name: 'تثليث', color: '#27AE60' },
-    { label: 'تقابل', name: 'تقابل', color: '#C0392B' },
+    { label: 'All',         name: null },
+    { label: 'Conjunction', name: 'Conjunction', color: '#5C5C7A' },
+    { label: 'Sextile',     name: 'Sextile',     color: '#4A7FB5' },
+    { label: 'Square',      name: 'Square',      color: '#C0392B' },
+    { label: 'Trine',       name: 'Trine',       color: '#27AE60' },
+    { label: 'Opposition',  name: 'Opposition',  color: '#C0392B' },
   ];
 
   const filtered = transits.filter(t =>
@@ -1571,22 +1571,22 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
   if (!chart) {
     return (
       <div className="px-5 pt-8 text-center text-sm text-ink-muted">
-        أضف خريطتك أولًا لعرض العبورات.
+        Add your chart first to view transits.
       </div>
     );
   }
 
   return (
     <div className="px-5 pt-6 pb-8">
-      <Headline>العبورات</Headline>
-      <p className="text-sm text-ink-muted mt-1 mb-4">ما يلامس خريطتك الآن، مرتّبًا بالقرب.</p>
+      <Headline>Transits</Headline>
+      <p className="text-sm text-ink-muted mt-1 mb-4">What&apos;s touching your chart now, sorted by proximity.</p>
 
       {/* Transit hero — same card from Today page, now lives here */}
       <div className="mb-5 -mx-5">
         <TransitHeroCard />
       </div>
 
-      <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">العبورات على خريطتك</div>
+      <div className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">Transits on your chart</div>
 
       {/* Aspect filter chips */}
       <div className="flex gap-2 overflow-x-auto pb-1 mb-3" style={{ scrollbarWidth: 'none' }}>
@@ -1608,7 +1608,7 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
 
       {filtered.length === 0 ? (
         <p className="text-sm text-ink-muted text-center py-6">
-          {transits.length === 0 ? 'لا توجد عبورات نشطة ضمن المدى الآن.' : 'لا عبورات بهذا النوع حالياً.'}
+          {transits.length === 0 ? 'No active transits in range now.' : 'No transits of this type currently.'}
         </p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -1661,7 +1661,7 @@ function ActiveTransitsView({ chart, onNavigate }: { chart: AstralChart | null; 
                         <circle cx="6" cy="6" r="5.5" stroke="#8FA084" />
                         <path d="M3.5 6l1.8 1.8L8.5 4.5" stroke="#8FA084" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                      مُدوَّن
+                      Noted
                     </div>
                   )}
                 </div>
@@ -1707,21 +1707,20 @@ function SelfPageInner() {
 
   return (
     <div className="pb-32">
-      {showGuide && chart && <ChartIntroOverlay chart={chart} onDone={dismissGuide} />}
       <div className="pt-0">
-        {/* Main tabs — sticky header with underline style (Image #20) */}
+        {/* Main tabs — sticky header with underline style */}
         <div className="sticky top-0 z-40 bg-cream/95 backdrop-blur-xl border-b border-rule-soft">
           <div className="flex items-baseline justify-between px-5 pt-5 pb-0">
-            <div className="font-serif text-[28px] text-ink -tracking-[0.5px]">أنت</div>
+            <div className="font-serif text-[28px] text-ink -tracking-[0.5px]">You</div>
             <Link href="/journey-2" className="text-[13px] text-coral font-medium">
-              سجلّاتك
+              Your Logs
             </Link>
           </div>
           <div className="flex gap-0 overflow-x-auto px-5 mt-2" style={{ scrollbarWidth: 'none' }}>
             {[
-              { key: 'chart',   label: 'الخريطة' },
-              { key: 'active',  label: 'العبورات' },
-              ...(chart ? [{ key: 'transits', label: 'السيرة' }] : []),
+              { key: 'chart',   label: 'Chart' },
+              { key: 'active',  label: 'Transits' },
+              ...(chart ? [{ key: 'transits', label: 'Biography' }] : []),
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -1749,10 +1748,10 @@ function SelfPageInner() {
                 <div className="px-5 mt-6">
                   <div className="flex items-center justify-between py-3 px-4 rounded-[18px] bg-ink text-cream opacity-70 cursor-default">
                     <div>
-                      <div className="font-serif text-base">الرحلة الأسبوعية</div>
-                      <div className="text-xs text-cream/60 mt-0.5">معالجة شخصية · خطوة في Day</div>
+                      <div className="font-serif text-base">Weekly Journey</div>
+                      <div className="text-xs text-cream/60 mt-0.5">Personal processing · A step each day</div>
                     </div>
-                    <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>قريبًا</span>
+                    <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Coming soon</span>
                   </div>
                 </div>
 
@@ -1766,11 +1765,11 @@ function SelfPageInner() {
                       <div className="absolute inset-0 flex flex-col justify-between p-5">
                         <div className="flex items-center justify-between">
                           <div className="text-[11px] text-cream/60 font-semibold tracking-wider">Learn</div>
-                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>قريبًا</span>
+                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Coming soon</span>
                         </div>
                         <div>
-                          <div className="font-serif text-xl text-cream leading-snug">كيف تقرأ عبورك Dayي؟</div>
-                          <div className="text-xs text-cream/70 mt-1.5">ربط السماء بلحظتك الحياتية</div>
+                          <div className="font-serif text-xl text-cream leading-snug">How do you read your daily transit?</div>
+                          <div className="text-xs text-cream/70 mt-1.5">Connecting the sky to your life moment</div>
                         </div>
                       </div>
                     </div>
@@ -1782,12 +1781,12 @@ function SelfPageInner() {
                       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
                       <div className="absolute inset-0 flex flex-col justify-between p-5">
                         <div className="flex items-center justify-between">
-                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">قبل النوم</div>
-                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>قريبًا</span>
+                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">Before Sleep</div>
+                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Coming soon</span>
                         </div>
                         <div>
-                          <div className="font-serif text-xl text-cream leading-snug">المراجعة المسائية</div>
-                          <div className="text-xs text-cream/70 mt-1.5">ثلاث لحظات من يومك</div>
+                          <div className="font-serif text-xl text-cream leading-snug">Evening Review</div>
+                          <div className="text-xs text-cream/70 mt-1.5">Three moments from your day</div>
                         </div>
                       </div>
                     </div>
@@ -1797,8 +1796,8 @@ function SelfPageInner() {
                 {/* تقويم العبورات — moved from the Today page */}
                 <div className="px-5 mt-8">
                   <div className="mb-4">
-                    <h2 className="font-serif text-2xl text-ink -tracking-[0.5px]">تقويم العبورات</h2>
-                    <p className="text-sm text-ink-muted mt-1">Events الكونية الجماعية للشهر.</p>
+                    <h2 className="font-serif text-2xl text-ink -tracking-[0.5px]">Transit Calendar</h2>
+                    <p className="text-sm text-ink-muted mt-1">Collective cosmic events for the month.</p>
                   </div>
                   <CalendarMonthView />
                 </div>
@@ -1818,12 +1817,12 @@ function SelfPageInner() {
           <>
             {!chart ? (
               <div className="px-5 pt-10 text-center text-sm text-ink-muted">
-                أدخل بيانات مولدك أولاً لعرض السيرة البانورامية.
+                Enter your birth data first to view the panoramic biography.
               </div>
             ) : (
               <>
                 <div className="px-5 mb-4">
-                  <Headline>السيرة البانورامية</Headline>
+                  <Headline>Panoramic Biography</Headline>
                 </div>
                 <UnifiedBiographyView />
               </>
@@ -1834,7 +1833,7 @@ function SelfPageInner() {
         {mainTab === 'saved' && (
           <>
             <div className="px-5 mb-6">
-              <Headline>ما Saveت</Headline>
+              <Headline>Saved</Headline>
             </div>
             <SavedView />
           </>

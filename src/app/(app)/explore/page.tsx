@@ -13,7 +13,7 @@ import { CalendarMonthView } from '@/app/explore/CalendarMonthView';
 import { STATIONS_2026 } from '@/app/explore/calendarData';
 
 function toAr(n: number | string): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 const PLANET_KEYS_AR: Record<string, string> = {
@@ -38,16 +38,16 @@ function SkySection() {
   }, []);
 
   const now = new Date();
-  const timeStr = now.toLocaleTimeString('ar', { hour: '2-digit', minute: '2-digit' });
-  const dateStr = now.toLocaleDateString('ar', { weekday: 'long', day: 'numeric', month: 'long' });
+  const timeStr = now.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' });
+  const dateStr = now.toLocaleDateString('en', { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
     <div className="bg-cream min-h-screen pb-8">
       <div className="px-5 pt-6 flex items-baseline justify-between">
-        <h1 className="font-serif text-2xl text-ink">السماء الآن</h1>
+        <h1 className="font-serif text-2xl text-ink">The Sky Now</h1>
         <div className="text-[11px] text-ink-muted font-mono" dir="ltr">{timeStr}</div>
       </div>
-      <div className="text-[11px] text-ink-muted px-5 mb-4">{dateStr} · تحديث كل دقيقة</div>
+      <div className="text-[11px] text-ink-muted px-5 mb-4">{dateStr} · Updates every minute</div>
 
       <div className="md:grid md:grid-cols-2 md:gap-8">
         {/* Left col on desktop: wheel + planet grid */}
@@ -59,8 +59,8 @@ function SkySection() {
 
           {/* Compact all-planets grid */}
           <div className="px-5">
-            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">مواضع Planets</div>
-            {!sky && <div className="text-sm text-ink-muted text-center py-4">جارٍ الحساب...</div>}
+            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">Planet Positions</div>
+            {!sky && <div className="text-sm text-ink-muted text-center py-4">Calculating...</div>}
             {sky && (
               <div className="grid grid-cols-2 gap-2">
                 {ALL_PLANETS.map((key) => {
@@ -86,7 +86,7 @@ function SkySection() {
                             {planet.sign} · {toAr(planet.degree)}°
                           </div>
                         </div>
-                        <div className="text-ink-muted text-xs shrink-0">‹</div>
+                        <div className="text-ink-muted text-xs shrink-0">›</div>
                       </div>
                     </Link>
                   );
@@ -100,7 +100,7 @@ function SkySection() {
         <div>
           {/* Full-year navigable calendar */}
           <div className="px-5 mb-6">
-            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">التقويم الفلكي ٢٠٢٦</div>
+            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">Astro Calendar 2026</div>
             <CalendarMonthView />
           </div>
 
@@ -108,14 +108,14 @@ function SkySection() {
           {(() => {
             const now = new Date();
             const nowYear = now.getFullYear();
-            const nowMonth = now.getMonth() + 1; // 1-indexed
+            const nowMonth = now.getMonth() + 1;
             const nowDay = now.getDate();
             const isPast = (month: number, day: number) =>
               nowYear > 2026 ||
               (nowYear === 2026 && (month < nowMonth || (month === nowMonth && day <= nowDay)));
             return (
               <div className="px-5 mb-6">
-                <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">محطات Planets ٢٠٢٦</div>
+                <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">Planet Stations 2026</div>
                 <div className="text-[11px] text-ink-muted mb-3 leading-[1.7]">
                   Stations are moments when a planet appears to stand still before changing direction.
                 </div>
@@ -147,7 +147,7 @@ function SkySection() {
                                   textDecoration: past ? 'line-through' : 'none',
                                   opacity: past ? 0.6 : 1,
                                 }}>
-                                {s.type === 'sR' ? 'راجع' : 'مباشر'} · {s.dateLabel}
+                                {s.type === 'sR' ? 'Retrograde' : 'Direct'} · {s.dateLabel}
                               </span>
                             );
                           })}
@@ -169,8 +169,8 @@ function KnowledgeSection() {
   return (
     <div className="px-5 py-6 flex flex-col gap-4">
       <div>
-        <h1 className="font-serif text-2xl text-ink -tracking-0.5">المعرفة</h1>
-        <p className="text-sm text-ink-muted mt-1">ابنِ فهمك بدروس موجّهة.</p>
+        <h1 className="font-serif text-2xl text-ink -tracking-0.5">Knowledge</h1>
+        <p className="text-sm text-ink-muted mt-1">Build your understanding with guided lessons.</p>
       </div>
 
       {/* Knowledge topics grid */}
@@ -187,7 +187,7 @@ function KnowledgeSection() {
                 <div className="font-serif text-sm text-ink">{item.title}</div>
                 <div className="text-xs text-ink-muted mt-0.5">{item.subtitle}</div>
               </div>
-              <span className="absolute top-2 left-2 text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>قريبًا</span>
+              <span className="absolute top-2 left-2 text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
             </div>
           </div>
         ))}
@@ -196,8 +196,8 @@ function KnowledgeSection() {
       {/* Featured astrology courses */}
       <div className="mt-2">
         <div className="flex items-center justify-between mb-3">
-          <div className="font-serif text-base text-ink">دورات نجمية</div>
-          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>قريبًا</span>
+          <div className="font-serif text-base text-ink">Astro Courses</div>
+          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
         </div>
         <div className="md:grid md:grid-cols-2 md:gap-2.5 flex flex-col gap-2.5">
           {ASTRO_COURSES.slice(0, 4).map((c) => (
@@ -222,8 +222,8 @@ function KnowledgeSection() {
 
       {/* Library link */}
       <div className="mx-5 mt-2 flex items-center justify-between p-3.5 rounded-[14px] bg-cream-soft border border-rule-soft cursor-default opacity-70">
-        <span className="text-sm font-serif text-ink">مكتبتي · المحفوظة والسجل</span>
-        <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>قريبًا</span>
+        <span className="text-sm font-serif text-ink">My Library · Saved &amp; Log</span>
+        <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
       </div>
     </div>
   );
@@ -233,8 +233,8 @@ function CalendarSection() {
   return (
     <div className="px-5 py-6 flex flex-col gap-4">
       <div>
-        <h1 className="font-serif text-2xl text-ink -tracking-0.5">تقويم العبورات</h1>
-        <p className="text-sm text-ink-muted mt-1">Events الكونية الجماعية للشهر.</p>
+        <h1 className="font-serif text-2xl text-ink -tracking-0.5">Transit Calendar</h1>
+        <p className="text-sm text-ink-muted mt-1">Collective cosmic events for the month.</p>
       </div>
       <CalendarMonthView />
     </div>
@@ -250,11 +250,11 @@ export default function ExplorePage() {
       {view === 'sky' && <SkySection />}
       {view === 'calendar' && <CalendarSection />}
 
-      {/* Tab switcher — السماء · التقويم only */}
+      {/* Tab switcher */}
       <div className="px-5 py-4 flex gap-2 justify-center" style={{ scrollbarWidth: 'none' }}>
         {([
-          ['sky', 'السماء'],
-          ['calendar', 'التقويم'],
+          ['sky', 'Sky'],
+          ['calendar', 'Calendar'],
         ] as const).map(([key, label]) => (
           <button
             key={key}
@@ -271,7 +271,7 @@ export default function ExplorePage() {
       {/* Divider */}
       <div className="h-px bg-rule-soft mx-5 my-2" />
 
-      {/* المعرفة — always shown as a separate section below */}
+      {/* Knowledge — always shown as a separate section below */}
       <KnowledgeSection />
     </div>
   );

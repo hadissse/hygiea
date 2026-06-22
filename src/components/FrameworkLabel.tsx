@@ -4,7 +4,7 @@ interface FrameworkLabelProps {
 }
 
 export function FrameworkLabel({
-  label = 'قراءة علم الفلك الغربي الاستوائي',
+  label = 'Tropical Western Astrology Reading',
   className = '',
 }: FrameworkLabelProps) {
   return (
