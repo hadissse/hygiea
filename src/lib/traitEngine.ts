@@ -1,4 +1,5 @@
 import type { AstralChart } from './chartCalculator';
+import { STORAGE_KEYS } from './storageKeys';
 
 export interface ElementAllocation {
   fire: number;   // percentage 0-100
@@ -72,7 +73,7 @@ const ORGANS: Record<string, { organ: string; theme: string }> = {
   sun:     { organ: 'القلب',    theme: 'مركز الحياة والإشعاع' },
   moon:    { organ: 'الدماغ',   theme: 'الاستقبال والانعكاس' },
   mercury: { organ: 'الرئتان',  theme: 'التنفس والتبادل' },
-  venus:   { organ: 'Kidneys', theme: 'التوازن والجمال' },
+  venus:   { organ: 'الكليتان', theme: 'التوازن والجمال' },
   mars:    { organ: 'المرارة',  theme: 'الإرادة والاندفاع' },
   jupiter: { organ: 'الكبد',    theme: 'التوسع والسعة' },
   saturn:  { organ: 'الطحال',   theme: 'التمييز والبنية' },
@@ -222,7 +223,7 @@ export function calculateTraits(chart: AstralChart, quiz: Record<string, string[
 export function loadTraits(): TraitProfile | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem('hygiea.traits.v1');
+    const raw = localStorage.getItem(STORAGE_KEYS.TRAITS);
     return raw ? (JSON.parse(raw) as TraitProfile) : null;
   } catch {
     return null;

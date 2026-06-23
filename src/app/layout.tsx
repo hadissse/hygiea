@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ar_SA",
     url: SITE_URL,
     siteName: SITE_NAME,
     title: "Hygiea — Your spheres. Your practice.",
@@ -83,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="ar" dir="rtl">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
@@ -104,7 +104,7 @@ export default function RootLayout({
               description: SITE_DESC,
               applicationCategory: "LifestyleApplication",
               operatingSystem: "Web",
-              inLanguage: "en",
+              inLanguage: "ar",
               offers: {
                 "@type": "Offer",
                 price: "0",

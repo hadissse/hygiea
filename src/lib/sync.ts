@@ -1,12 +1,14 @@
 import type { LoggedEvent } from './events';
+import type { CosmicStamp } from './cosmicStamp';
 import type { TraitProfile } from './traitEngine';
 import { createClient } from '@/utils/supabase/client';
+import { STORAGE_KEYS } from './storageKeys';
 
-const CHART_KEY = 'hygiea.primary-chart.v1';
-const BIRTH_KEY = 'hygiea.birth-data';
-const FIRST_NAME_KEY = 'hygiea.first-name';
-const LAST_NAME_KEY = 'hygiea.last-name';
-const USER_NAME_KEY = 'hygiea.user-name';
+const CHART_KEY = STORAGE_KEYS.CHART;
+const BIRTH_KEY = STORAGE_KEYS.BIRTH_DATA;
+const FIRST_NAME_KEY = STORAGE_KEYS.FIRST_NAME;
+const LAST_NAME_KEY = STORAGE_KEYS.LAST_NAME;
+const USER_NAME_KEY = STORAGE_KEYS.USER_NAME;
 
 // Primary natal chart row in public.charts — upserted on (user_id, label).
 const NATAL_LABEL = 'natal';
@@ -142,18 +144,74 @@ export async function loadAllRemote(): Promise<{ hasChart: boolean }> {
   return { hasChart };
 }
 
-// ─── Deferred sync targets (journal, quiz, journey, …) — still local-only ────
+// ─── Events: localStorage ⇄ public.events ────────────────────────────────────
 
-export async function syncEvent(event: LoggedEvent): Promise<void> {}
-export async function loadRemoteEvents(): Promise<LoggedEvent[]> { return []; }
-export async function syncQuiz(): Promise<void> {}
-export async function loadRemoteQuiz(): Promise<boolean> { return false; }
-export async function syncJourney(weekStart: string, state: object): Promise<void> {}
-export async function loadRemoteJourney(weekStart: string): Promise<object | null> { return null; }
-export async function syncTraits(profile: TraitProfile): Promise<void> {}
-export async function loadRemoteTraits(): Promise<boolean> { return false; }
-export async function syncCalibration(calType: string, calKey: string, value: string): Promise<void> {}
-export async function loadRemoteCalibrations(): Promise<boolean> { return false; }
+export async function syncEvent(event: LoggedEvent): Promise<void> {
+  if (typeof window === 'undefined') return;
+  try {
+    const userId = await getUserId();
+    if (!userId) return;
+    const supabase = createClient();
+    await supabase.from('events').insert({
+      user_id: userId,
+      note: event.text,
+      mood: event.stream ?? null,
+      energy: event.rhythm !== null ? String(event.rhythm) : null,
+      placement_key: event.placement?.key ?? null,
+      tags: event.placement ? [event.placement.type, event.placement.label] : [],
+      extra: { localId: event.id, stamp: event.stamp, placement: event.placement },
+      created_at: event.date,
+    });
+  } catch {
+    // fire-and-forget
+  }
+}
+
+export async function loadRemoteEvents(): Promise<LoggedEvent[]> {
+  if (typeof window === 'undefined') return [];
+  try {
+    const userId = await getUserId();
+    if (!userId) return [];
+    const supabase = createClient();
+    const { data } = await supabase
+      .from('events')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
+    if (!data) return [];
+    return data.map((row) => {
+      const extra = row.extra as { localId?: string; stamp?: CosmicStamp; placement?: LoggedEvent['placement'] } | null;
+      return {
+        id: extra?.localId ?? row.id,
+        text: row.note ?? '',
+        date: row.created_at,
+        stream: (row.mood as LoggedEvent['stream']) ?? null,
+        rhythm: row.energy !== null ? Number(row.energy) : null,
+        placement: extra?.placement ?? null,
+        stamp: extra?.stamp ?? { dayRuler: '', moonPhase: '', sunPosition: '' } as CosmicStamp,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
+// ─── Deferred sync targets (quiz, journey, …) — still local-only ─────────────
+
+function warnStub(name: string) {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(`[sync] ${name} is not yet implemented — data stays local only`);
+  }
+}
+
+export async function syncQuiz(): Promise<void> { warnStub('syncQuiz'); }
+export async function loadRemoteQuiz(): Promise<boolean> { warnStub('loadRemoteQuiz'); return false; }
+export async function syncJourney(weekStart: string, state: object): Promise<void> { warnStub('syncJourney'); void weekStart; void state; }
+export async function loadRemoteJourney(weekStart: string): Promise<object | null> { warnStub('loadRemoteJourney'); void weekStart; return null; }
+export async function syncTraits(profile: TraitProfile): Promise<void> { warnStub('syncTraits'); void profile; }
+export async function loadRemoteTraits(): Promise<boolean> { warnStub('loadRemoteTraits'); return false; }
+export async function syncCalibration(calType: string, calKey: string, value: string): Promise<void> { warnStub('syncCalibration'); void calType; void calKey; void value; }
+export async function loadRemoteCalibrations(): Promise<boolean> { warnStub('loadRemoteCalibrations'); return false; }
 
 export interface TransitFeedback {
   transitId: string;
@@ -162,8 +220,8 @@ export interface TransitFeedback {
   reflection?: string;
 }
 
-export async function syncTransitFeedback(fb: TransitFeedback): Promise<void> {}
-export async function loadRemoteTransitFeedback(): Promise<Record<string, TransitFeedback>> { return {}; }
-export async function syncPreferences(): Promise<void> {}
-export async function loadRemotePreferences(): Promise<boolean> { return false; }
-export async function syncVote(args: { cardId: string; vote: string; note?: string; transitPlanet?: string; natalPlanet?: string }): Promise<void> {}
+export async function syncTransitFeedback(fb: TransitFeedback): Promise<void> { warnStub('syncTransitFeedback'); void fb; }
+export async function loadRemoteTransitFeedback(): Promise<Record<string, TransitFeedback>> { warnStub('loadRemoteTransitFeedback'); return {}; }
+export async function syncPreferences(): Promise<void> { warnStub('syncPreferences'); }
+export async function loadRemotePreferences(): Promise<boolean> { warnStub('loadRemotePreferences'); return false; }
+export async function syncVote(args: { cardId: string; vote: string; note?: string; transitPlanet?: string; natalPlanet?: string }): Promise<void> { warnStub('syncVote'); void args; }
