@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ZoomableWheel } from '@/components/ZoomableWheel';
+import { ZodiacBelt } from '@/components/ZodiacBelt';
+import { ElevatedPlanetsCard } from '@/components/ElevatedPlanetsCard';
+import { FIXED_STARS } from '@/content/reportData';
 import type { AstralChart } from '@/lib/chartCalculator';
 
 interface BirthData {
@@ -152,6 +155,33 @@ export default function BiographyPage() {
             </Link>{' '}
             to generate your biography.
           </p>
+        </div>
+      )}
+
+      {/* ── Zodiac Belt & Fixed Stars ─────────────────────────────────────── */}
+      {chart && (
+        <div className="px-5 mb-6">
+          <div className="bg-white rounded-[18px] border border-[#E5E1D8] px-5 py-5">
+            <h2 className="font-serif text-[17px] text-ink mb-0.5">The Zodiac Belt</h2>
+            <p className="text-[12px] text-ink-muted mb-4">Click any gold star to see its interpretation</p>
+            <ZodiacBelt
+              chart={chart}
+              fixedStars={FIXED_STARS.map(s => ({ ...s, longitude: 0 }))}
+            />
+            <p className="text-[11px] text-ink-muted mt-3 leading-relaxed">
+              Gold stars are within 2° of a natal planet. Click to reveal their biography.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ── Angular Planets ───────────────────────────────────────────────── */}
+      {chart && (
+        <div className="px-5 mb-6">
+          <div className="bg-white rounded-[18px] border border-[#E5E1D8] px-5 py-5">
+            <h2 className="font-serif text-[17px] text-ink mb-4">Angular Planets — The Constitutionally Elevated</h2>
+            <ElevatedPlanetsCard chart={chart} />
+          </div>
         </div>
       )}
 

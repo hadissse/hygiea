@@ -680,3 +680,81 @@ export const DEATH_REBIRTH: DeathRebirthEntry[] = [
     content: "We pass through death with a mineral consciousness colored by moral experience, then successively work upon the mineral, plant, and animal kingdoms as the inner side of our after-death life. From the animal group-souls we build our own future organs (brain, heart, lungs as forces). The fertilized germ-cell is not complex structure but chaos: into this disintegrating chaos pours the human being. The embryo is not inherited form — substance is thrown into chaos in the maternal body and the form is implanted out of the universe; only the bed for the new human being is created in the maternal body. The four elements reverse after death: Warmth (living) is experienced as Scent; Light as Smoke/Air (Hebrew Ruach); Chemical workings as Water; Life as Earth (the whole earth perceived as one living being)."
   }
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. ORGAN_DEVELOPMENT
+// Planetary organ correspondences from spiritual science
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface OrganDevelopment {
+  planet: string;
+  organ: string;
+  glyph: string;
+  sevenYear: string;
+  function_en: string;
+  developmental_task: string;
+  pathology_note?: string;
+}
+
+export const ORGAN_DEVELOPMENT: OrganDevelopment[] = [
+  {
+    planet: 'Moon',
+    organ: 'Brain & Reproductive Organs',
+    glyph: '☽',
+    sevenYear: '0–7',
+    function_en: 'The Moon forces shape the brain during the first seven-year period and stand in polarity with the reproductive organs — the forces of growth and memory are concentrated in the head during childhood and later freed for thinking.',
+    developmental_task: 'Allowing the etheric forces to complete their brain-building work before intellectual demands are imposed. The tooth change signals this release.',
+    pathology_note: 'Premature intellectual forcing before the seventh year redirects formative forces away from organ development.',
+  },
+  {
+    planet: 'Mercury',
+    organ: 'Lungs & Speech Organs',
+    glyph: '☿',
+    sevenYear: '7–14',
+    function_en: 'Mercury governs the respiratory system and the mediating function of the nervous system. Breath and speech are the organs of Mercury — the in-breathing of the world and the out-breathing of thought.',
+    developmental_task: 'Developing rhythm in breathing and speaking; cultivating the musical sense as a preparation for thinking.',
+  },
+  {
+    planet: 'Venus',
+    organ: 'Kidneys & Venous Blood',
+    glyph: '♀',
+    sevenYear: '14–21',
+    function_en: 'Venus governs the kidney-bladder polarity and the venous blood return — the assimilation of the world into the organism and the aesthetic organization of the body fluids.',
+    developmental_task: 'The development of aesthetic sensitivity and harmonizing forces as the astral body descends more fully into the organism.',
+  },
+  {
+    planet: 'Sun',
+    organ: 'Heart',
+    glyph: '☉',
+    sevenYear: '21–28',
+    function_en: 'The Sun stands at the center of the organism as the heart stands at the center of the circulatory system. The heart is not a pump but a sense organ — it senses the rhythm of the blood and responds to the I.',
+    developmental_task: 'Developing a conscious relationship to the rhythmic system — finding the balance between thinking (nerve-sense) and willing (metabolic).',
+    pathology_note: 'Heart conditions in the spiritual-scientific picture reflect disturbances in the soul\'s capacity to find its equilibrium.',
+  },
+  {
+    planet: 'Mars',
+    organ: 'Gallbladder & Bile',
+    glyph: '♂',
+    sevenYear: '28–35',
+    function_en: 'Mars governs the bile-secreting function of the liver-gallbladder system. Bile is the outer expression of the forces of courage, confrontation, and will that Mars carries spiritually.',
+    developmental_task: 'Learning to direct the martial impulse consciously — transforming aggression into purposeful initiative.',
+    pathology_note: 'Blocked Mars energy may appear as bitterness, resentment, or gallbladder inflammation.',
+  },
+  {
+    planet: 'Jupiter',
+    organ: 'Liver',
+    glyph: '♃',
+    sevenYear: '35–42',
+    function_en: 'Jupiter governs the liver as the great organ of assimilation and distribution — transforming what is taken in from the world into substance the organism can use. The liver is the central metabolic organ.',
+    developmental_task: 'Developing wisdom as a metabolic faculty — digesting experience and transforming it into insight that nourishes others.',
+  },
+  {
+    planet: 'Saturn',
+    organ: 'Spleen & Skeleton',
+    glyph: '♄',
+    sevenYear: '42–49',
+    function_en: 'Saturn governs the bony skeleton and the spleen\'s blood-forming function. The skeleton is the most mineralized and Saturnine structure in the human body — it is the outer limit, the crystallized form.',
+    developmental_task: 'Making peace with form and limitation; allowing the Saturnine wisdom of time and structure to become an inner resource rather than an external prison.',
+    pathology_note: 'Sclerotic or calcifying conditions reflect Saturnine forces operating without sufficient Jupiterian warmth.',
+  },
+];

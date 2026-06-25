@@ -501,3 +501,83 @@ export const FIXED_STARS_BY_SIGN: Record<string, FixedStarData[]> = FIXED_STARS.
   (acc, s) => { (acc[s.sign] ??= []).push(s); return acc; },
   {} as Record<string, FixedStarData[]>
 );
+
+// ── Earth Stars ────────────────────────────────────────────────────────────────
+// Stars outside the ecliptic proper — polar, galactic, and Cherubic stars.
+// These are not zodiacal fixed stars but cosmic orientation points.
+
+export interface EarthStarData {
+  name: string;
+  constellation: string;
+  longitude: number;
+  type?: string;
+  bodyConnection?: string;
+  earthConnection?: string;
+  interpretation_en?: string;
+}
+
+export const EARTH_STARS: EarthStarData[] = [
+  {
+    name: 'Polaris',
+    constellation: 'Ursa Minor',
+    longitude: 28.5, // ~28° Gemini
+    type: 'Polar',
+    bodyConnection: 'The axis of the physical body — the spine as the polar axis that holds the uprightness of the human form.',
+    earthConnection: 'The North Pole of the Earth corresponds to the spiritual pole of human existence: the direction toward which the I orients itself in its upward striving.',
+    interpretation_en: 'Polaris conjunct a natal planet indicates a soul carrying a strong sense of inner orientation — one who finds their direction from within rather than from the collective current.',
+  },
+  {
+    name: 'Galactic Center',
+    constellation: 'Sagittarius',
+    longitude: 266.0, // ~26° Sagittarius
+    type: 'Galactic',
+    bodyConnection: 'The solar plexus and enteric nervous system — the deep instinctual intelligence of the body that receives cosmic information below the threshold of ordinary consciousness.',
+    earthConnection: 'The center of our galaxy corresponds to the source of solar-spiritual impulses that have fashioned the conditions for human development on Earth.',
+    interpretation_en: 'A planet conjunct the Galactic Center carries enormous spiritual charge — it is connected to impulses that exceed the merely personal and touch the evolutionary destiny of the human being as a species.',
+  },
+  {
+    name: 'Regulus',
+    constellation: 'Leo',
+    longitude: 150.0, // ~0° Virgo
+    type: 'Royal Star',
+    bodyConnection: 'The heart and the upper dorsal region — the seat of solar fire and the courage that flows from true knowing.',
+    earthConnection: 'The heart of the Lion corresponds to the royal-spiritual impulse that awakens when the I takes its place as a sovereign force in the biography.',
+    interpretation_en: 'Regulus conjunct a planet intensifies the qualities of leadership, nobility, and the capacity to become a center around which others gather — but also carries the test of pride and the fall that follows misuse of power.',
+  },
+  {
+    name: 'Aldebaran',
+    constellation: 'Taurus',
+    longitude: 69.7, // ~9° Gemini
+    type: 'Cherubic',
+    bodyConnection: 'The throat and larynx — the organs of the creative word and the capacity to give form to inner content.',
+    earthConnection: 'Aldebaran is one of the four Cherubic stars marking the solstice and equinox points of an earlier cosmic epoch. Its energy corresponds to the Bull-Cherub, guardian of the south.',
+    interpretation_en: 'Planets conjunct Aldebaran carry the task of integrity — this star tests whether the individual can maintain their spiritual direction in the face of worldly temptation and material comfort.',
+  },
+  {
+    name: 'Antares',
+    constellation: 'Scorpius',
+    longitude: 249.7, // ~9° Sagittarius
+    type: 'Cherubic',
+    bodyConnection: 'The reproductive and eliminative organs — the seat of the transformative will that can either destroy or regenerate.',
+    earthConnection: 'Antares is the Scorpion-Cherub, the guardian of the west in the ancient cosmic orientation. It holds the forces of death and transformation.',
+    interpretation_en: 'Planets conjunct Antares carry the task of transformation — of passing through the death of one form to find the new life on the other side. The soul must face what it fears.',
+  },
+  {
+    name: 'Fomalhaut',
+    constellation: 'Piscis Austrinus',
+    longitude: 333.9, // ~3° Pisces
+    type: 'Cherubic',
+    bodyConnection: 'The feet and the lymphatic system — the organs of spiritual-earthly connection and the assimilation of cosmic moisture.',
+    earthConnection: 'Fomalhaut is the Water-Cherub, guardian of the north in the ancient cosmic scheme. It carries the forces of spiritual vision and idealism.',
+    interpretation_en: 'Planets conjunct Fomalhaut carry the possibility of spiritual idealism turned into earthly service — but also the test of disillusionment when the ideal meets the real.',
+  },
+  {
+    name: 'Wega (Vega)',
+    constellation: 'Lyra',
+    longitude: 284.7, // ~14° Capricorn
+    type: 'Cherubic',
+    bodyConnection: 'The inner ear and the vestibular system — the organ of cosmic music and the sense of spiritual balance.',
+    earthConnection: 'Vega as the former pole star carries in it the memory of a previous cosmic epoch when spiritual orientation was given differently. It activates ancient soul-faculties.',
+    interpretation_en: 'Planets conjunct Vega carry gifts of artistic sensitivity, inner listening, and the capacity to receive spiritual communication through beauty and music.',
+  },
+];

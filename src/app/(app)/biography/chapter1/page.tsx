@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { AstralChart } from '@/lib/chartCalculator';
 import { NinefoldConstitution } from '@/components/NinefoldConstitution';
+import { FourfoldToggle } from '@/components/FourfoldToggle';
+import { LifeArcColors, SaturnReturn } from '@/components/LifeArcPanel';
 import {
   CHAPTER_SECTIONS,
   ASC_IN_SIGN_MAP,
@@ -298,6 +300,14 @@ export default function Chapter1Page() {
 
       <div className="px-5 space-y-5">
 
+        {/* ── Fourfold & Ninefold Human Being ── */}
+        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
+          <h2 className="font-prose text-xl font-semibold text-ink mb-1">
+            The Fourfold &amp; Ninefold Human Being
+          </h2>
+          {chart && <FourfoldToggle chart={chart} />}
+        </div>
+
         {/* ── Ninefold Constitution diagram ── */}
         <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
           <h2 className="font-prose text-xl font-semibold text-ink mb-1">
@@ -450,6 +460,25 @@ export default function Chapter1Page() {
             />
           </div>
         )}
+
+        {/* ── Life Arc — Seven-Year Phases ── */}
+        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
+          <h2 className="font-prose text-xl font-semibold text-ink mb-1">
+            Life Arc — The Seven-Year Phases
+          </h2>
+          <LifeArcColors birthYear={birthData?.year ?? new Date().getFullYear() - 30} />
+        </div>
+
+        {/* ── The Saturn Return ── */}
+        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
+          <h2 className="font-prose text-xl font-semibold text-ink mb-1">
+            The Saturn Return
+          </h2>
+          <SaturnReturn
+            birthYear={birthData?.year ?? new Date().getFullYear() - 30}
+            birthMonth={birthData?.month ?? 1}
+          />
+        </div>
 
         {/* ── No chart state ── */}
         {!chart && (

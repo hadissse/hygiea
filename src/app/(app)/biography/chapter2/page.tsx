@@ -11,6 +11,8 @@ import {
   PLANET_IN_HOUSE_MAP,
   SPHERE_BY_PLANET,
 } from '@/content/reportData';
+import { OrganDevelopmentCard } from '@/components/OrganDevelopmentCard';
+import { ORGAN_DEVELOPMENT } from '@/content/reportData/cosmology';
 
 interface BirthData {
   name?: string;
@@ -349,6 +351,12 @@ export default function Chapter2Page() {
                   )}
                 </div>
               </div>
+
+              {/* Organ Development */}
+              {(() => {
+                const orgDev = ORGAN_DEVELOPMENT.find(o => o.planet === planet.label);
+                return orgDev ? <OrganDevelopmentCard {...orgDev} /> : null;
+              })()}
             </section>
           );
         })}

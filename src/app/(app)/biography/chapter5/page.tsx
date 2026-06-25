@@ -10,6 +10,7 @@ import {
   FIXED_STARS,
   FIXED_STARS_BY_SIGN,
   ASPECTS,
+  EARTH_STARS,
   type PlacementContent,
   type FixedStarData,
 } from '@/content/reportData';
@@ -427,6 +428,87 @@ export default function Chapter5Page() {
               ))}
             </div>
           )}
+        </SectionCard>
+
+        {/* Earth Stars */}
+        <SectionCard title="Earth Stars — Fixed Stars Beyond the Zodiac">
+          <p className="text-sm text-ink-muted font-prose leading-relaxed">
+            Earth Stars are fixed stars outside the ecliptic belt — polar stars, galactic center, and Cherubic stars.
+            Their influence is not of fate but of cosmic orientation: the pre-incarnational intentions that precede the zodiacal arc.
+          </p>
+
+          {(() => {
+            const earthStarContacts = EARTH_STARS.flatMap((s) => {
+              const contacts = planetNodes.filter((planet) => {
+                const diff = Math.abs(((planet.longitude - s.longitude + 360) % 360));
+                const dist = diff > 180 ? 360 - diff : diff;
+                return dist <= 3;
+              });
+              return contacts.map((planet) => {
+                const diff = Math.abs(((planet.longitude - s.longitude + 360) % 360));
+                const orb = diff > 180 ? 360 - diff : diff;
+                return { star: s, planet, orb };
+              });
+            });
+
+            if (earthStarContacts.length === 0) {
+              return (
+                <p className="text-sm text-ink-muted font-prose italic">
+                  No Earth Star contacts within 3°.
+                </p>
+              );
+            }
+
+            return (
+              <div className="space-y-5">
+                {earthStarContacts.map((ec, i) => (
+                  <div key={i} className="border-t border-[#E5E1D8] pt-5 first:border-0 first:pt-0">
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <div>
+                        <p className="font-prose text-ink text-[15px] font-medium">
+                          {ec.star.name}
+                        </p>
+                        <p className="text-xs font-ui text-ink-muted">
+                          {ec.star.constellation}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {ec.star.type && (
+                          <span className="text-[10px] uppercase tracking-widest font-ui px-2 py-0.5 rounded-full bg-[#FAF6EF] border border-[#E5E1D8] text-ink-muted">
+                            {ec.star.type}
+                          </span>
+                        )}
+                        <div className="text-right">
+                          <p className="text-xs font-ui text-ink-muted">conjunct</p>
+                          <p className="font-prose text-ink text-sm">
+                            {PLANET_GLYPHS_MAP[ec.planet.key] ?? ''} {ec.planet.label}
+                          </p>
+                          <p className="text-xs text-ink-muted font-ui">orb {ec.orb.toFixed(2)}°</p>
+                        </div>
+                      </div>
+                    </div>
+                    {ec.star.bodyConnection && (
+                      <div className="mb-2">
+                        <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-0.5">Body Connection</p>
+                        <p className="font-prose text-ink text-[14px] leading-relaxed">{ec.star.bodyConnection}</p>
+                      </div>
+                    )}
+                    {ec.star.earthConnection && (
+                      <div className="mb-2">
+                        <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-0.5">Earth Connection</p>
+                        <p className="font-prose text-ink text-[14px] leading-relaxed">{ec.star.earthConnection}</p>
+                      </div>
+                    )}
+                    {ec.star.interpretation_en && (
+                      <p className="font-prose text-ink leading-relaxed text-[15px] mt-2">
+                        {ec.star.interpretation_en}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
         </SectionCard>
 
         {/* Navigation */}

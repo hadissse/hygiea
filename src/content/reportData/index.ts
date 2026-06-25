@@ -2,3 +2,4 @@
 export * from './spheres';
 export * from './fixedStars';
 export * from './placements';
+export * from './earthStars';
