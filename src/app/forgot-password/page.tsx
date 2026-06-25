@@ -1,49 +1,30 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { useRouter } from 'next/navigation'
-import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
-import { createClient } from '@/utils/supabase/client'
+import { useState } from 'react'
+import { getAccount } from '@/utils/appwrite/client'
 import { Logo } from '@/components/Logo'
 import Link from 'next/link'
 
-const TURNSTILE_SITE_KEY =
-  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'
-
 export default function ForgotPasswordPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
-  const [captchaToken, setCaptchaToken] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
-  const captchaRef = useRef<TurnstileInstance>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-
-    if (!captchaToken) {
-      setError('يرجى إكمال التحقق أولاً')
-      return
-    }
-
     setLoading(true)
-    const supabase = createClient()
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${location.origin}/auth/callback?next=/reset-password`,
-      captchaToken,
-    } as Parameters<typeof supabase.auth.resetPasswordForEmail>[1])
 
-    setCaptchaToken('')
-    captchaRef.current?.reset()
-    setLoading(false)
-
-    if (error) {
-      setError(error.message)
-    } else {
+    try {
+      const account = getAccount()
+      await account.createRecovery(email, `${location.origin}/reset-password`)
       setSent(true)
+    } catch {
+      setError('Something went wrong, please try again')
     }
+
+    setLoading(false)
   }
 
   return (
@@ -60,26 +41,24 @@ export default function ForgotPasswordPage() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h2 className="text-lg font-semibold text-[#171B3A] mb-2">تم الإرسال</h2>
+            <h2 className="text-lg font-semibold text-[#171B3A] mb-2">Email sent</h2>
             <p className="text-sm text-[#5C5C7A] leading-relaxed mb-6">
-              تم إرسال رابط إعادة تعيين Password إلى <span dir="ltr" className="font-medium">{email}</span>
+              We sent a password reset link to <span dir="ltr" className="font-medium">{email}</span>
             </p>
             <Link href="/login" className="text-sm text-[#E9785E] font-medium">
-              الBack لSign In
+              Back to Sign In
             </Link>
           </div>
         ) : (
           <>
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-[#171B3A] mb-1">نسيت Password؟</h2>
-              <p className="text-sm text-[#5C5C7A]">أدخل بريدك وسنرسل لك رابط إعادة التعيين</p>
+              <h2 className="text-xl font-semibold text-[#171B3A] mb-1">Forgot your password?</h2>
+              <p className="text-sm text-[#5C5C7A]">Enter your email and we&apos;ll send you a reset link</p>
             </div>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div>
-                <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-                  Email
-                </label>
+                <label className="text-xs font-semibold text-[#E9785E] block mb-2">Email</label>
                 <input
                   type="email"
                   value={email}
@@ -91,22 +70,11 @@ export default function ForgotPasswordPage() {
                 />
               </div>
 
-              <div className="flex justify-center">
-                <Turnstile
-                  ref={captchaRef}
-                  siteKey={TURNSTILE_SITE_KEY}
-                  onSuccess={setCaptchaToken}
-                  onExpire={() => setCaptchaToken('')}
-                  onError={() => setCaptchaToken('')}
-                  options={{ language: 'ar', theme: 'light' }}
-                />
-              </div>
-
               {error && <p className="text-[#E9785E] text-xs text-center">{error}</p>}
 
               <button
                 type="submit"
-                disabled={loading || !captchaToken}
+                disabled={loading}
                 className="w-full py-3.5 rounded-[26px] bg-[#171B3A] text-white font-semibold text-sm disabled:opacity-40 transition-opacity"
               >
                 {loading ? '...' : 'Send reset link'}
@@ -117,7 +85,7 @@ export default function ForgotPasswordPage() {
               href="/login"
               className="w-full mt-4 text-center text-xs text-[#5C5C7A] block hover:text-[#171B3A] transition-colors"
             >
-              الBack لSign In
+              Back to Sign In
             </Link>
           </>
         )}

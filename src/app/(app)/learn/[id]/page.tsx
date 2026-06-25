@@ -98,7 +98,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
           {/* Scr43 — what you'll learn */}
           {tab === 'learn' && (
             <div className="mt-5">
-              <div className="font-serif text-xl">ماذا ستLearn</div>
+              <div className="font-serif text-xl">What You'll Learn</div>
               <div className="mt-3 flex flex-col gap-3.5">
                 {COURSE_OUTCOMES.map(([t, s], i) => (
                   <div key={t} className="flex gap-3.5 items-start">

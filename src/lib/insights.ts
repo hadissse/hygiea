@@ -11,10 +11,10 @@ export interface ReflectionInsights {
   mostCommonLightSky: string | null;
 }
 
-// Cosmic stamp moonPhase looks like "هلال متزايد في الجدي" — we just want
+// Cosmic stamp moonPhase looks like "Waxing Crescent in Capricorn" — we just want
 // the phase, not the sign, since the sign rotates faster than patterns appear.
 function moonPhaseOnly(stamp: string): string {
-  return stamp.split(' في ')[0];
+  return stamp.split(' in ')[0];
 }
 
 export function computeInsights(events: LoggedEvent[]): ReflectionInsights {

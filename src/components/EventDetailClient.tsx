@@ -31,7 +31,7 @@ export function EventDetailClient({ id }: { id: string }) {
   if (!event) return <div className="min-h-dvh" />;
 
   const dt = new Date(event.date);
-  const dateLabel = new Intl.DateTimeFormat('ar', {
+  const dateLabel = new Intl.DateTimeFormat('en', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -56,11 +56,11 @@ export function EventDetailClient({ id }: { id: string }) {
 
       <div className="mx-5 mt-[18px] p-3.5 rounded-[14px] bg-white border border-rule-soft flex justify-between">
         <div>
-          <div className="text-[11px] text-ink-muted font-semibold">المجرى</div>
+          <div className="text-[11px] text-ink-muted font-semibold">Stream</div>
           <div className="text-sm text-ink mt-1">{event.stream ? STREAM_AR[event.stream] : '—'}</div>
         </div>
         <div className="text-left">
-          <div className="text-[11px] text-ink-muted font-semibold">الإيقاع</div>
+          <div className="text-[11px] text-ink-muted font-semibold">Rhythm</div>
           <div className="text-sm mt-1" style={{ color: '#7E97B8' }}>
             {event.rhythm === null ? '—' : RHYTHM_LABEL(event.rhythm)}
           </div>
@@ -68,13 +68,13 @@ export function EventDetailClient({ id }: { id: string }) {
       </div>
 
       <div className="mx-5 mt-3.5 p-3.5 rounded-[14px] bg-white border border-rule-soft">
-        <div className="text-[11px] text-ink-muted font-semibold tracking-wide">السياق الفلكي</div>
+        <div className="text-[11px] text-ink-muted font-semibold tracking-wide">Celestial Context</div>
         <div className="mt-2.5 flex flex-col gap-2">
           {[
-            ['يوم الكوكب', event.stamp.dayRuler],
-            ['طور Moon', event.stamp.moonPhase],
-            ['درجة Sun', event.stamp.sunPosition],
-            ...(event.placement ? [['الموضع المرتبط', event.placement.label] as [string, string]] : []),
+            ['Planet Day', event.stamp.dayRuler],
+            ['Moon Phase', event.stamp.moonPhase],
+            ['Sun Degree', event.stamp.sunPosition],
+            ...(event.placement ? [['Related Placement', event.placement.label] as [string, string]] : []),
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between">
               <span className="text-[13px] text-ink-muted">{k}</span>
@@ -90,7 +90,7 @@ export function EventDetailClient({ id }: { id: string }) {
             href={`/self/${event.placement.type}/${encodeURIComponent(event.placement.key)}`}
             className="block w-full text-center py-3.5 rounded-[14px] bg-ink text-cream text-sm font-medium hover:bg-ink-soft transition-colors"
           >
-            افتح الموضع
+            Open Placement
           </Link>
         </div>
       )}

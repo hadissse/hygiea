@@ -54,8 +54,8 @@ export interface AstralChart {
 
 const ZODIAC_SIGNS = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
 const ZODIAC_NAMES_AR = [
-  'الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء',
-  'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت',
+  'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+  'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces',
 ];
 
 const PLANET_GLYPHS = {
@@ -267,7 +267,7 @@ export function calculateChart(birthData: BirthData): AstralChart {
 
   // ── Chiron (Keplerian) ────────────────────────────────────────────────────
   const chiron = chironsLongitude(jd, birthTime);
-  const chiroPlanet = makePlanetPosition('كيرون', PLANET_GLYPHS.chiron, chiron.lon, chiron.lat);
+  const chiroPlanet = makePlanetPosition('Chiron', PLANET_GLYPHS.chiron, chiron.lon, chiron.lat);
   // Check chiron retrograde using position 1 day later
   const chironNext = chironsLongitude(jd + 1, birthTimePlus1);
   chiroPlanet.retrograde = norm180(chironNext.lon - chiron.lon) < 0;

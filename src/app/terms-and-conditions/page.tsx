@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'الشروط والأحكام',
-  description: 'الشروط والأحكام لاستخدام تطبيق Hygiea — Your natal chart وإرشادك الروحي.',
+  title: 'Terms and Conditions',
+  description: 'Terms and Conditions for using the Hygiea app.',
   alternates: { canonical: '/terms-and-conditions' },
 };
 

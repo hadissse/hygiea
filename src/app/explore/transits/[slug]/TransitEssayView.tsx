@@ -36,7 +36,7 @@ export function TransitEssayView({ essay }: { essay: TransitEssay }) {
     <div className="max-w-[430px] mx-auto w-full pb-8">
       {/* header */}
       <div className="pt-4 px-5 flex justify-between items-center">
-        <button onClick={() => router.back()} aria-label="إغلاق" className="text-ink">
+        <button onClick={() => router.back()} aria-label="Close" className="text-ink">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             <path d="M6 6l12 12M18 6l-12 12" />
           </svg>
@@ -66,9 +66,9 @@ export function TransitEssayView({ essay }: { essay: TransitEssay }) {
       </div>
 
       <div className="flex gap-3.5 px-5 mt-3 text-[11px] text-ink-soft tracking-wide font-mono">
-        <span>قراءة · {essay.readTime}</span>
+        <span>Read · {essay.readTime}</span>
         <span className="opacity-50">—</span>
-        <span>{essay.words} كلمة</span>
+        <span>{essay.words} words</span>
       </div>
 
 
@@ -95,7 +95,7 @@ export function TransitEssayView({ essay }: { essay: TransitEssay }) {
 
       <div className="px-5 mt-[18px] pb-6">
         <div className="p-4 bg-white rounded-[16px] border border-rule-soft">
-          <div className="text-xs text-ink-muted font-semibold tracking-wide mb-3">هل ينطبق هذا عليك الآن؟</div>
+          <div className="text-xs text-ink-muted font-semibold tracking-wide mb-3">Does this resonate with you now?</div>
           <div className="flex gap-2 mb-4">
             {[1, 2, 3, 4, 5].map((n) => (
               <button
@@ -114,9 +114,8 @@ export function TransitEssayView({ essay }: { essay: TransitEssay }) {
           <textarea
             value={reflection}
             onChange={(e) => setReflection(e.target.value)}
-            placeholder="اكتب ملاحظتك..."
+            placeholder="Write your reflection..."
             className="w-full h-[80px] rounded-xl bg-cream-soft border border-rule-soft px-3.5 py-2.5 text-sm text-ink resize-none focus:outline-none focus:border-coral"
-            dir="rtl"
           />
           <button
             onClick={handleSave}
@@ -124,7 +123,7 @@ export function TransitEssayView({ essay }: { essay: TransitEssay }) {
             className="mt-3 w-full h-[48px] rounded-[24px] text-base font-medium transition-colors"
             style={{ background: saved ? '#8FA084' : '#171B3A', color: '#F5F2EA' }}
           >
-            {saved ? 'حُفظ' : 'احفظ تأمّلك'}
+            {saved ? 'Saved' : 'Save your reflection'}
           </button>
         </div>
       </div>

@@ -6,8 +6,8 @@ import * as Astronomy from 'astronomy-engine';
 import type { AstralChart, PlanetPosition, HousePosition } from './chartCalculator';
 
 const ZODIAC_NAMES_AR = [
-  'الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء',
-  'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت',
+  'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+  'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces',
 ];
 
 function norm360(d: number): number { return ((d % 360) + 360) % 360; }

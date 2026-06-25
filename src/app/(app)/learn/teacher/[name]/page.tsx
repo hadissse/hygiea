@@ -9,7 +9,7 @@ import { GradientTile, BackIcon, gradientCss } from '@/components/learn/primitiv
 import { TEACHERS } from '@/content/courses';
 
 const BIOS: Record<string, string> = {
-  'مايا كول':
+  'Maya Cole':
     'Maya has taught contemplative practice for fourteen years. Her voice is warm and grounded, with a quiet humor that finds you when you need it.',
 };
 
@@ -34,15 +34,15 @@ export default function TeacherPage({ params }: { params: Promise<{ name: string
           {initials}
         </div>
         <div className="font-serif text-[26px] mt-[18px]">{teacher.name}</div>
-        <div className="text-[13px] text-ink-muted mt-1">معلّمة · بروكلين</div>
+        <div className="text-[13px] text-ink-muted mt-1">Teacher · Brooklyn</div>
       </div>
 
       <p className="text-sm text-ink-muted mt-[22px] leading-[1.8]">{bio}</p>
 
-      <div className="font-serif text-lg mt-[22px]">مقرّرات</div>
+      <div className="font-serif text-lg mt-[22px]">Courses</div>
       <div className="grid grid-cols-2 gap-2.5 mt-3">
-        <GradientTile title="الطريق الهادئ" subtitle="10 أيام" variant="dawn" href="/learn/quiet-path" />
-        <GradientTile title="مراسٍ لطيفة" subtitle="5 أيام" variant="sage" href="/learn/gentle-anchors" />
+        <GradientTile title="The Quiet Path" subtitle="10 days" variant="dawn" href="/learn/quiet-path" />
+        <GradientTile title="Gentle Anchors" subtitle="5 days" variant="sage" href="/learn/gentle-anchors" />
       </div>
     </div>
   );

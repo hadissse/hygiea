@@ -23,7 +23,7 @@ export default function PostAuthPage() {
 
   return (
     <div className="min-h-dvh bg-cream flex items-center justify-center" dir="ltr">
-      <p className="text-sm text-ink-muted animate-pulse">جاري تجهيز حسابك...</p>
+      <p className="text-sm text-ink-muted animate-pulse">Setting up your account...</p>
     </div>
   );
 }

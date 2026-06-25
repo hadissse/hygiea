@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface LogoProps {
   height?: number;
@@ -6,31 +7,18 @@ interface LogoProps {
   className?: string;
 }
 
-// Logo uses CSS mask-image so it can be tinted any color.
-// Aspect ratio 1.77× (2447 ÷ 1383) — sukoon typo v2.svg
-export function Logo({ height = 28, color = 'currentColor', className }: LogoProps) {
-  const width = Math.round(height * 1.77);
+export function Logo({ height = 28, className }: LogoProps) {
+  const width = Math.round(height * 3.2);
 
   return (
-    <span
+    <Image
+      src="/hygiea-logo.png"
+      alt="Hygiea"
+      width={width}
+      height={height}
       className={className}
-      style={{
-        display: 'inline-block',
-        width,
-        height,
-        backgroundColor: color,
-        maskImage: 'url(/sukoon-logo.svg)',
-        maskSize: 'contain',
-        maskRepeat: 'no-repeat',
-        maskPosition: 'center',
-        WebkitMaskImage: 'url(/sukoon-logo.svg)',
-        WebkitMaskSize: 'contain',
-        WebkitMaskRepeat: 'no-repeat',
-        WebkitMaskPosition: 'center',
-        flexShrink: 0,
-      }}
-      aria-label="Hygiea"
-      role="img"
+      style={{ objectFit: 'contain', flexShrink: 0 }}
+      priority
     />
   );
 }

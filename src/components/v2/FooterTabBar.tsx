@@ -39,7 +39,7 @@ function Icon({ tab, active, dark }: { tab: TabKey; active: boolean; dark: boole
 
 /**
  * Standalone bottom tab bar used by the V2 contemplative full-screen views.
- * Mirrors the design's TabBarV2 (ذاتك · استكشاف · Day) but is link-based.
+ * Mirrors the design's TabBarV2 (Self · Explore · Day) but is link-based.
  */
 export function FooterTabBar({ active = 'today', dark = false }: { active?: TabKey; dark?: boolean }) {
   const bg = dark ? 'rgba(15,18,40,0.85)' : 'rgba(255,255,255,0.96)';

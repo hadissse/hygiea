@@ -1,4 +1,4 @@
-// Scr — House detail page (بيت [num])
+// Scr — House detail page (house [num])
 
 import { HouseDetailClient } from './HouseDetailClient';
 

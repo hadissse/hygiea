@@ -6,10 +6,10 @@ import type { AstralChart } from '@/lib/chartCalculator';
 import { FIXED_STARS, findStarConjunctions, starLongitudeAtJD, fixedStarSlug, type StarConjunction } from '@/content/fixedStars';
 import { FrameworkLabel } from '@/components/FrameworkLabel';
 
-const ZODIAC_SIGNS_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+const ZODIAC_SIGNS_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
 function toAr(n: number | string): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 function lonToSignDeg(lon: number): string {
@@ -56,7 +56,7 @@ export default function FixedStarsPage() {
       </div>
 
       <div className="flex gap-2 px-5 pt-1 pb-3">
-        {([['active', 'نشطة في My Chart'], ['all', 'All']] as [FilterKey, string][]).map(([k, label]) => (
+        {([['active', 'Active in My Chart'], ['all', 'All']] as [FilterKey, string][]).map(([k, label]) => (
           <button
             key={k}
             onClick={() => setFilter(k)}
@@ -145,7 +145,7 @@ export default function FixedStarsPage() {
       </div>
 
 <Link href="/self" className="flex items-center gap-2 px-5 pb-6 text-sm text-coral font-medium">
-        الBack للخريطة ›
+        Back to Chart ›
       </Link>
     </div>
   );

@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const tabs = [
   { key: 'today', label: 'Day', href: '/today', icon: TodayIcon },
-  // { key: 'library', label: 'مكتبتي', href: '/library', icon: LibraryIcon }, // hidden — re-enable when ready
+  // { key: 'library', label: 'Library', href: '/library', icon: LibraryIcon }, // hidden — re-enable when ready
   { key: 'self', label: 'Self', href: '/self', icon: SelfIcon },
 ] as const;
 
@@ -34,6 +34,16 @@ function SelfIcon({ active }: { active: boolean }) {
     <svg width="22" height="22" viewBox="0 0 24 24" fill={active ? '#171B3A' : 'none'} stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="8" r="4" fill={active ? '#171B3A' : 'none'} />
       <path d="M5.5 21a6.5 6.5 0 0 1 13 0" fill={active ? '#171B3A' : 'none'} />
+    </svg>
+  );
+}
+
+function BiographyIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill={active ? '#171B3A' : 'none'} />
+      <path d="M12 7 l0.4 0.8 0.9 0.1 -0.65 0.63 0.15 0.9 -0.8 -0.42 -0.8 0.42 0.15-0.9 -0.65-0.63 0.9-0.1z" fill={active ? '#fff' : '#5C5C7A'} stroke="none" />
     </svg>
   );
 }
@@ -70,6 +80,17 @@ export function Sidebar() {
           })}
         </nav>
 
+        {/* Biography link */}
+        <Link
+          href="/biography"
+          className={`flex items-center gap-3 px-3.5 h-11 rounded-[14px] text-[15px] font-medium transition-colors mt-1 ${
+            pathname.startsWith('/biography') ? 'bg-white text-ink shadow-sm border border-rule-soft' : 'text-ink-muted hover:text-ink hover:bg-white/60'
+          }`}
+        >
+          <BiographyIcon active={pathname.startsWith('/biography')} />
+          <span>Biography</span>
+        </Link>
+
         <div className="h-px bg-rule-soft my-5 mx-2" />
 
         {/* Quick actions / filters */}
@@ -92,6 +113,21 @@ export function Sidebar() {
               <path d="M5 3v18l7-4 7 4V3z" />
             </svg>
             <span>Track &amp; Save</span>
+          </Link>
+          <Link
+            href="/reports"
+            className={`flex items-center gap-3 px-3.5 h-11 rounded-[14px] text-[15px] font-medium transition-colors ${
+              pathname.startsWith('/reports') ? 'bg-white text-ink shadow-sm border border-rule-soft' : 'text-ink-muted hover:text-ink hover:bg-white/60'
+            }`}
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+            <span>Reports</span>
           </Link>
         </div>
 

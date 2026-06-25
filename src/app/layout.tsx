@@ -90,8 +90,6 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-      </head>
-      <body className="min-h-dvh flex flex-col bg-cream text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -119,6 +117,8 @@ export default function RootLayout({
             __html: `window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();});`,
           }}
         />
+      </head>
+      <body className="min-h-dvh flex flex-col bg-cream text-ink">
         <Suspense>
           <PostHogProvider>
             <AuthProvider>

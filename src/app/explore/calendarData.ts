@@ -23,32 +23,32 @@ export interface StationEvent {
 // 2026 planetary stations — stationary points (change of direction)
 export const STATIONS_2026: StationEvent[] = [
   // Mercury (6x)
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 2,  day: 26, type: 'sR', dateLabel: '٢٦ فبراير' },
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 3,  day: 20, type: 'sD', dateLabel: '٢٠ مارس' },
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 6,  day: 29, type: 'sR', dateLabel: '٢٩ يونيو' },
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 7,  day: 23, type: 'sD', dateLabel: '٢٣ يوليو' },
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 10, day: 24, type: 'sR', dateLabel: '٢٤ أكتوبر' },
-  { planet: 'Mercury', nameAr: 'عطارد', svgKey: 'mercury', month: 11, day: 13, type: 'sD', dateLabel: '١٣ نوفمبر' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 2,  day: 26, type: 'sR', dateLabel: 'Feb 26' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 3,  day: 20, type: 'sD', dateLabel: 'Mar 20' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 6,  day: 29, type: 'sR', dateLabel: 'Jun 29' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 7,  day: 23, type: 'sD', dateLabel: 'Jul 23' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 10, day: 24, type: 'sR', dateLabel: 'Oct 24' },
+  { planet: 'Mercury', nameAr: 'Mercury', svgKey: 'mercury', month: 11, day: 13, type: 'sD', dateLabel: 'Nov 13' },
   // Venus (2x)
-  { planet: 'Venus',   nameAr: 'الزهرة', svgKey: 'venus',   month: 10, day: 3,  type: 'sR', dateLabel: '٣ أكتوبر' },
-  { planet: 'Venus',   nameAr: 'الزهرة', svgKey: 'venus',   month: 11, day: 14, type: 'sD', dateLabel: '١٤ نوفمبر' },
+  { planet: 'Venus',   nameAr: 'Venus',   svgKey: 'venus',   month: 10, day: 3,  type: 'sR', dateLabel: 'Oct 3' },
+  { planet: 'Venus',   nameAr: 'Venus',   svgKey: 'venus',   month: 11, day: 14, type: 'sD', dateLabel: 'Nov 14' },
   // Jupiter (2x)
-  { planet: 'Jupiter', nameAr: 'المشتري', svgKey: 'jupiter', month: 3,  day: 11, type: 'sD', dateLabel: '١١ مارس' },
-  { planet: 'Jupiter', nameAr: 'المشتري', svgKey: 'jupiter', month: 12, day: 13, type: 'sR', dateLabel: '١٣ ديسمبر' },
+  { planet: 'Jupiter', nameAr: 'Jupiter', svgKey: 'jupiter', month: 3,  day: 11, type: 'sD', dateLabel: 'Mar 11' },
+  { planet: 'Jupiter', nameAr: 'Jupiter', svgKey: 'jupiter', month: 12, day: 13, type: 'sR', dateLabel: 'Dec 13' },
   // Saturn (2x)
-  { planet: 'Saturn',  nameAr: 'زحل',    svgKey: 'saturn',  month: 7,  day: 26, type: 'sR', dateLabel: '٢٦ يوليو' },
-  { planet: 'Saturn',  nameAr: 'زحل',    svgKey: 'saturn',  month: 12, day: 10, type: 'sD', dateLabel: '١٠ ديسمبر' },
+  { planet: 'Saturn',  nameAr: 'Saturn',  svgKey: 'saturn',  month: 7,  day: 26, type: 'sR', dateLabel: 'Jul 26' },
+  { planet: 'Saturn',  nameAr: 'Saturn',  svgKey: 'saturn',  month: 12, day: 10, type: 'sD', dateLabel: 'Dec 10' },
   // Uranus (2x)
-  { planet: 'Uranus',  nameAr: 'أورانوس', svgKey: 'uranus', month: 2,  day: 4,  type: 'sD', dateLabel: '٤ فبراير' },
-  { planet: 'Uranus',  nameAr: 'أورانوس', svgKey: 'uranus', month: 9,  day: 10, type: 'sR', dateLabel: '١٠ سبتمبر' },
+  { planet: 'Uranus',  nameAr: 'Uranus',  svgKey: 'uranus',  month: 2,  day: 4,  type: 'sD', dateLabel: 'Feb 4' },
+  { planet: 'Uranus',  nameAr: 'Uranus',  svgKey: 'uranus',  month: 9,  day: 10, type: 'sR', dateLabel: 'Sep 10' },
   // Neptune (2x)
-  { planet: 'Neptune', nameAr: 'نبتون',   svgKey: 'neptune', month: 7,  day: 7,  type: 'sR', dateLabel: '٧ يوليو' },
-  { planet: 'Neptune', nameAr: 'نبتون',   svgKey: 'neptune', month: 12, day: 12, type: 'sD', dateLabel: '١٢ ديسمبر' },
+  { planet: 'Neptune', nameAr: 'Neptune', svgKey: 'neptune', month: 7,  day: 7,  type: 'sR', dateLabel: 'Jul 7' },
+  { planet: 'Neptune', nameAr: 'Neptune', svgKey: 'neptune', month: 12, day: 12, type: 'sD', dateLabel: 'Dec 12' },
   // Pluto (2x)
-  { planet: 'Pluto',   nameAr: 'بلوتو',   svgKey: 'pluto',  month: 5,  day: 6,  type: 'sR', dateLabel: '٦ مايو' },
-  { planet: 'Pluto',   nameAr: 'بلوتو',   svgKey: 'pluto',  month: 10, day: 16, type: 'sD', dateLabel: '١٦ أكتوبر' },
+  { planet: 'Pluto',   nameAr: 'Pluto',   svgKey: 'pluto',   month: 5,  day: 6,  type: 'sR', dateLabel: 'May 6' },
+  { planet: 'Pluto',   nameAr: 'Pluto',   svgKey: 'pluto',   month: 10, day: 16, type: 'sD', dateLabel: 'Oct 16' },
   // Chiron (1x)
-  { planet: 'Chiron',  nameAr: 'كيرون',   svgKey: 'chiron', month: 8,  day: 3,  type: 'sR', dateLabel: '٣ أغسطس' },
+  { planet: 'Chiron',  nameAr: 'Chiron',  svgKey: 'chiron',  month: 8,  day: 3,  type: 'sR', dateLabel: 'Aug 3' },
 ];
 
 // Build station events as CalEvents keyed by "month-day"
@@ -59,13 +59,13 @@ function buildStationCalEvents(): Record<string, CalEvent[]> {
     if (!result[key]) result[key] = [];
     result[key].push({
       svgKey: s.svgKey,
-      title: `${s.nameAr} ${s.type === 'sR' ? 'يبدأ الرجوع' : 'يعود مباشرًا'}`,
+      title: `${s.nameAr} ${s.type === 'sR' ? 'stations retrograde' : 'stations direct'}`,
       kind: 'station',
       color: '#D4A04C',
       time: s.dateLabel,
       body: s.type === 'sR'
-        ? `${s.nameAr} يبدأ حركته الراجعة — وقت مراجعة وإعادة نظر.`
-        : `${s.nameAr} يستأنف حركته المباشرة — الطاقة تتدفّق للأمام.`,
+        ? `${s.nameAr} begins its retrograde motion — a time for review and reflection.`
+        : `${s.nameAr} resumes direct motion — energy flows forward.`,
     });
   }
   return result;
@@ -76,36 +76,36 @@ const STATION_EVENTS = buildStationCalEvents();
 
 // Original May 2026 events merged with station events
 const MAY_EVENTS: Record<string, CalEvent[]> = {
-  '5-2':  [{ svgKey: 'moon',    title: 'القمر يدخل السرطان',   kind: 'ingress', color: '#7E97B8', time: '٠٤:٢٠', body: 'القمر يدخل السرطان، برجٌ مائي حسّاس.' }],
+  '5-2':  [{ svgKey: 'moon',    title: 'Moon enters Cancer',     kind: 'ingress',  color: '#7E97B8', time: '04:20', body: 'Moon enters Cancer, a sensitive water sign.' }],
   '5-6':  [
-    { svgKey: 'sun',    title: 'الشمس △ المشتري',     kind: 'aspect',  color: '#8FA084', time: '١١:٠٢', body: 'تثليث متناغم. فرصة للتوسّع بهدوء.' },
-    { svgKey: 'venus',  title: 'الزهرة تدخل الجوزاء', kind: 'ingress', color: '#7E97B8', time: '٢٢:٤٧', body: 'بداية أيام أخفّ في التواصل والمحادثة.' },
+    { svgKey: 'sun',    title: 'Sun △ Jupiter',          kind: 'aspect',   color: '#8FA084', time: '11:02', body: 'Harmonious trine. An opportunity for calm expansion.' },
+    { svgKey: 'venus',  title: 'Venus enters Gemini',    kind: 'ingress',  color: '#7E97B8', time: '22:47', body: 'Days begin with lighter communication and conversation.' },
   ],
-  '5-10': [{ svgKey: 'moon',    title: 'بدر القمر · العقرب',   kind: 'lunation', color: '#E9785E', time: '١٧:٥٣', body: 'اكتمال قمري في العقرب. لحظة كشف وإغلاق ملف.', exact: true }],
-  '5-14': [{ svgKey: 'mercury', title: 'عطارد ساكن',           kind: 'station',  color: '#D4A04C', time: '٠٣:١٠', body: 'عطارد ساكن عند الدرجة الثامنة من الجوزاء قبل الرجوع.' }],
-  '5-17': [{ svgKey: 'mars',    title: 'المريخ □ زحل',          kind: 'aspect',   color: '#9A3F30', time: '٠٩:٢٤', body: 'تربيع المريخ وزحل، ضمن درجتين.' }],
-  '5-20': [{ svgKey: 'sun',     title: 'الشمس تدخل الجوزاء',   kind: 'ingress',  color: '#7E97B8', time: '١٤:٣٦', body: 'دخول الشمس فصلًا جديدًا. موسم خفيف وحوار.' }],
+  '5-10': [{ svgKey: 'moon',    title: 'Full Moon · Scorpio',    kind: 'lunation', color: '#E9785E', time: '17:53', body: 'Full Moon in Scorpio. A moment of revelation and closure.', exact: true }],
+  '5-14': [{ svgKey: 'mercury', title: 'Mercury stationary',     kind: 'station',  color: '#D4A04C', time: '03:10', body: 'Mercury stationary at 8° Gemini before retrograde.' }],
+  '5-17': [{ svgKey: 'mars',    title: 'Mars □ Saturn',          kind: 'aspect',   color: '#9A3F30', time: '09:24', body: 'Mars-Saturn square, within two degrees.' }],
+  '5-20': [{ svgKey: 'sun',     title: 'Sun enters Gemini',      kind: 'ingress',  color: '#7E97B8', time: '14:36', body: 'Sun enters a new season. A light season of dialogue.' }],
   '5-24': [
-    { svgKey: 'saturn', title: 'زحل ☌ الشمس',          kind: 'return',   color: '#E9785E', time: 'الآن',  body: 'اقتران زحل بالشمس على خريطتك — ١٠ أيام في النشاط.', exact: true },
-    { svgKey: 'venus',  title: 'الزهرة ☌ المشتري',     kind: 'aspect',   color: '#8FA084', time: '٠٧:٤٠', body: 'الزهرة والمشتري يلتقيان في الجوزاء.' },
+    { svgKey: 'saturn', title: 'Saturn ☌ Sun',           kind: 'return',   color: '#E9785E', time: 'Now',   body: 'Saturn conjoins your natal Sun — 10 days of peak activity.', exact: true },
+    { svgKey: 'venus',  title: 'Venus ☌ Jupiter',        kind: 'aspect',   color: '#8FA084', time: '07:40', body: 'Venus and Jupiter meet in Gemini.' },
   ],
-  '5-26': [{ svgKey: 'moon',    title: 'القمر الجديد · الجوزاء', kind: 'lunation', color: '#E9785E', time: '١٢:٠٢', body: 'بداية دورة قمرية جديدة في الجوزاء. ابذر نيّة.', exact: true }],
-  '5-28': [{ svgKey: 'mars',    title: 'المريخ يدخل الأسد',    kind: 'ingress',  color: '#D4A04C', time: '٢٠:١٨', body: 'المريخ يدخل الأسد، حاكم البرج.' }],
-  '5-30': [{ svgKey: 'moon',    title: 'اكتمال القمر في العقرب', kind: 'lunation', color: '#E9785E', time: '٠٦:١٤', body: 'تكرار اكتمال شهري. لحظة هضم وإغلاق.', exact: true }],
+  '5-26': [{ svgKey: 'moon',    title: 'New Moon · Gemini',      kind: 'lunation', color: '#E9785E', time: '12:02', body: 'Beginning of a new lunar cycle in Gemini. Plant an intention.', exact: true }],
+  '5-28': [{ svgKey: 'mars',    title: 'Mars enters Leo',         kind: 'ingress',  color: '#D4A04C', time: '20:18', body: 'Mars enters Leo, ruler of the sign.' }],
+  '5-30': [{ svgKey: 'moon',    title: 'Full Moon in Scorpio',   kind: 'lunation', color: '#E9785E', time: '06:14', body: 'Recurring monthly fullness. A moment of digestion and closure.', exact: true }],
 };
 
 // ── June–December 2026 transits (non-station events) ──────────────────────
 // Stations (Retrograde/Direct) are sourced from STATIONS_2026 above to avoid
 // duplicates; this list covers ingresses, conjunctions, lunations & eclipses.
 const PLANET_AR: Record<string, string> = {
-  sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ',
-  jupiter: 'المشتري', saturn: 'زحل', uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو',
-  chiron: 'كيرون', node: 'العقدة الشمالية', lilith: 'ليليث',
+  sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
+  jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
+  chiron: 'Chiron', node: 'North Node', lilith: 'Lilith',
 };
 const SIGN_AR: Record<string, string> = {
-  aries: 'الحمل', taurus: 'الثور', gemini: 'الجوزاء', cancer: 'السرطان', leo: 'الأسد',
-  virgo: 'العذراء', libra: 'الميزان', scorpio: 'العقرب', sagittarius: 'القوس',
-  capricorn: 'الجدي', aquarius: 'الدلو', pisces: 'الحوت',
+  aries: 'Aries', taurus: 'Taurus', gemini: 'Gemini', cancer: 'Cancer', leo: 'Leo',
+  virgo: 'Virgo', libra: 'Libra', scorpio: 'Scorpio', sagittarius: 'Sagittarius',
+  capricorn: 'Capricorn', aquarius: 'Aquarius', pisces: 'Pisces',
 };
 const SVG_FOR: Record<string, string> = { node: 'northnode', lilith: 'lilith' };
 const svgOf = (k: string) => SVG_FOR[k] ?? k;
@@ -181,22 +181,22 @@ function buildRawCalEvent(r: RawTransit): CalEvent {
   const a = PLANET_AR[r.a] ?? r.a;
   const b = r.b ? (PLANET_AR[r.b] ?? r.b) : '';
   const sign = SIGN_AR[r.sign] ?? r.sign;
-  const time = r.t.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  const time = r.t;
   switch (r.type) {
     case 'ingress':
-      return { svgKey: svgOf(r.a), title: `${a} يدخل ${sign}`, kind: 'ingress', color: '#7E97B8', time, body: `${a} يدخل ${sign}.` };
+      return { svgKey: svgOf(r.a), title: `${a} enters ${sign}`, kind: 'ingress', color: '#7E97B8', time, body: `${a} enters ${sign}.` };
     case 'leaves':
-      return { svgKey: svgOf(r.a), title: `${a} يغادر ${sign}`, kind: 'ingress', color: '#7E97B8', time, body: `${a} يغادر ${sign} في حركته الراجعة.` };
+      return { svgKey: svgOf(r.a), title: `${a} leaves ${sign}`, kind: 'ingress', color: '#7E97B8', time, body: `${a} leaves ${sign} in retrograde motion.` };
     case 'conj':
-      return { svgKey: svgOf(r.a), title: `${a} ☌ ${b}`, kind: 'aspect', color: '#E9785E', time, body: `اقتران ${a} و${b} في ${sign}.` };
+      return { svgKey: svgOf(r.a), title: `${a} ☌ ${b}`, kind: 'aspect', color: '#E9785E', time, body: `${a} and ${b} conjoin in ${sign}.` };
     case 'new':
-      return { svgKey: 'moon', title: `القمر الجديد · ${sign}`, kind: 'lunation', color: '#E9785E', time, body: `قمر جديد في ${sign} — بداية دورة جديدة.`, exact: true };
+      return { svgKey: 'moon', title: `New Moon · ${sign}`, kind: 'lunation', color: '#E9785E', time, body: `New Moon in ${sign} — the start of a new cycle.`, exact: true };
     case 'full':
-      return { svgKey: 'moon', title: `اكتمال القمر · ${sign}`, kind: 'lunation', color: '#E9785E', time, body: `اكتمال القمر في ${sign} — لحظة كشف وإغلاق.`, exact: true };
+      return { svgKey: 'moon', title: `Full Moon · ${sign}`, kind: 'lunation', color: '#E9785E', time, body: `Full Moon in ${sign} — a moment of illumination and completion.`, exact: true };
     case 'solar':
-      return { svgKey: 'sun', title: `كسوف شمسي · ${sign}`, kind: 'lunation', color: '#9A3F30', time, body: `كسوف شمسي في ${sign} — بداية قوية ومحوريّة.`, exact: true };
+      return { svgKey: 'sun', title: `Solar Eclipse · ${sign}`, kind: 'lunation', color: '#9A3F30', time, body: `Solar Eclipse in ${sign} — a powerful and pivotal beginning.`, exact: true };
     case 'lunar':
-      return { svgKey: 'moon', title: `خسوف قمري · ${sign}`, kind: 'lunation', color: '#9A3F30', time, body: `خسوف قمري في ${sign} — نهاية ومنعطف عاطفي.`, exact: true };
+      return { svgKey: 'moon', title: `Lunar Eclipse · ${sign}`, kind: 'lunation', color: '#9A3F30', time, body: `Lunar Eclipse in ${sign} — an ending and emotional turning point.`, exact: true };
   }
 }
 
@@ -229,24 +229,24 @@ export const CAL_TRANSITS: Record<number, CalEvent[]> = Object.fromEntries(
 export const CAL_TODAY = 24;
 
 export const AR_MONTH_NAMES = [
-  'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-  'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-// RTL: Sat first
-export const WEEK_DAYS = ['س', 'ج', 'خ', 'ر', 'ث', 'ا', 'ح'];
-export const WEEK_DAYS_LTR = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+// LTR: Sun first (matches JS getDay() 0=Sun)
+export const WEEK_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const WEEK_DAYS_LTR = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 export function kindLabel(kind: TransitKind): string {
-  return kind === 'lunation' ? 'قمري'
-    : kind === 'ingress' ? 'دخول'
-    : kind === 'aspect'  ? 'جانب'
-    : kind === 'station' ? 'محطّ'
-    : 'عودة';
+  return kind === 'lunation' ? 'Lunation'
+    : kind === 'ingress' ? 'Ingress'
+    : kind === 'aspect'  ? 'Aspect'
+    : kind === 'station' ? 'Station'
+    : 'Return';
 }
 
 export function toArabicNum(n: number): string {
-  return String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 export function buildMonthCells(year: number, month: number, startWeekday: number): (number | null)[] {

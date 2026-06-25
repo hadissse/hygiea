@@ -25,27 +25,27 @@ import {
 } from '@/components/learn/primitives';
 import { getCourse, TEACHERS } from '@/content/courses';
 
-const DURATIONS = ['3 دقائق', '5 دقائق', '10 دقائق', '15 دقيقة', '20 دقيقة', '30 دقيقة'];
+const DURATIONS = ['3 min', '5 min', '10 min', '15 min', '20 min', '30 min'];
 const CHAPTERS: [string, string][] = [
-  ['الاستقرار', '0:00'],
-  ['أول نَفَس', '1:30'],
-  ['الملاحظة', '4:00'],
-  ['الBack', '7:00'],
-  ['الختام', '9:00'],
+  ['Settling', '0:00'],
+  ['First Breath', '1:30'],
+  ['Noticing', '4:00'],
+  ['Returning', '7:00'],
+  ['Closing', '9:00'],
 ];
 const SETTINGS: [string, string | null, boolean][] = [
-  ['أصوات خلفية', 'صوت مطر', true],
-  ['جرس في البداية', null, true],
-  ['جرس في النهاية', null, true],
-  ['التشغيل التلقائي', null, false],
+  ['Background sounds', 'Rain sounds', true],
+  ['Opening bell', null, true],
+  ['Closing bell', null, true],
+  ['Auto-play', null, false],
 ];
 const SOUNDS: [string, string][] = [
-  ['مطر', 'sage'],
-  ['غابة', 'sage'],
-  ['محيط', 'lake'],
-  ['نار متّقدة', 'ember'],
-  ['نسيم', 'lake'],
-  ['حشرات الليل', 'night'],
+  ['Rain', 'sage'],
+  ['Forest', 'sage'],
+  ['Ocean', 'lake'],
+  ['Crackling Fire', 'ember'],
+  ['Breeze', 'lake'],
+  ['Night Insects', 'night'],
 ];
 
 function Toggle({ on }: { on: boolean }) {
@@ -64,15 +64,15 @@ function PlayerInner({ id }: { id: string }) {
   const [playing, setPlaying] = useState(true);
   const close = () => router.back();
 
-  const title = course?.lessons[2] ?? 'حين يتشتّت العقل';
-  const teacher = course?.teacher ?? 'مايا كول';
+  const title = course?.lessons[2] ?? 'When the Mind Wanders';
+  const teacher = course?.teacher ?? 'Maya Cole';
 
   // ── Scr52: duration picker (light) ──
   if (screen === 'duration') {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14">
         <FlowTopBar onClose={close} variant="back" />
-        <div className="font-serif text-[22px] mt-4">مدّة الجلسة</div>
+        <div className="font-serif text-[22px] mt-4">Session Duration</div>
         <div className="mt-5 flex flex-col gap-2">
           {DURATIONS.map((t, i) => (
             <div
@@ -94,7 +94,7 @@ function PlayerInner({ id }: { id: string }) {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14">
         <FlowTopBar onClose={close} variant="back" />
-        <div className="font-serif text-[22px] mt-4">إعدادات المشغّل</div>
+        <div className="font-serif text-[22px] mt-4">Player Settings</div>
         <div className="mt-5 bg-white rounded-[16px] border border-sand">
           {SETTINGS.map(([l, d, on], i) => (
             <div
@@ -119,7 +119,7 @@ function PlayerInner({ id }: { id: string }) {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14">
         <FlowTopBar onClose={close} />
-        <div className="font-serif text-[22px] mt-4">أصوات خلفية</div>
+        <div className="font-serif text-[22px] mt-4">Background Sounds</div>
         <div className="mt-5 grid grid-cols-2 gap-2.5">
           {SOUNDS.map(([t, v]) => {
             const onLight = ['sage', 'lake', 'ember'].includes(v);
@@ -143,8 +143,8 @@ function PlayerInner({ id }: { id: string }) {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14 pb-24 relative">
         <FlowTopBar onClose={close} variant="back" />
-        <div className="font-serif text-[26px] mt-4">اختر معلّمك</div>
-        <div className="text-sm text-ink-muted mt-1.5">يمكنك التبديل في أي وقت.</div>
+        <div className="font-serif text-[26px] mt-4">Choose Your Teacher</div>
+        <div className="text-sm text-ink-muted mt-1.5">You can switch at any time.</div>
         <div className="mt-5 flex flex-col gap-2.5">
           {TEACHERS.slice(0, 4).map((t, i) => (
             <div
@@ -166,7 +166,7 @@ function PlayerInner({ id }: { id: string }) {
           ))}
         </div>
         <div className="absolute bottom-6 inset-x-5">
-          <PrimaryBtn href={`/play/${id}`}>ابدأ الجلسة</PrimaryBtn>
+          <PrimaryBtn href={`/play/${id}`}>Begin Session</PrimaryBtn>
         </div>
       </div>
     );
@@ -180,23 +180,23 @@ function PlayerInner({ id }: { id: string }) {
           <FlowTopBar onClose={close} dark right={<span className="text-cream"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6" /><circle cx="12" cy="12" r="1.6" /><circle cx="19" cy="12" r="1.6" /></svg></span>} />
           <GradientOrb variant="dawn" size={140} className="mx-auto my-9" />
           <div className="text-cream text-center">
-            <div className="font-serif text-[28px]">أحسنت</div>
-            <div className="text-sm opacity-85 mt-2">10 دقائق هادئة — وهي الثالثة على التوالي.</div>
+            <div className="font-serif text-[28px]">Well done</div>
+            <div className="text-sm opacity-85 mt-2">10 quiet minutes — your third in a row.</div>
           </div>
           <div className="mt-6 bg-white/[0.18] backdrop-blur-xl rounded-[18px] p-4 text-cream flex justify-between">
             <div>
-              <div className="text-[11px] opacity-70">السلسلة</div>
-              <div className="font-serif text-[28px] mt-1">3 أيام</div>
+              <div className="text-[11px] opacity-70">Streak</div>
+              <div className="font-serif text-[28px] mt-1">3 days</div>
             </div>
             <div>
-              <div className="text-[11px] opacity-70">هذا الأسبوع</div>
-              <div className="font-serif text-[28px] mt-1">34 دقيقة</div>
+              <div className="text-[11px] opacity-70">This week</div>
+              <div className="font-serif text-[28px] mt-1">34 min</div>
             </div>
           </div>
         </div>
         <div className="absolute bottom-14 inset-x-5 flex flex-col gap-2.5">
-          <PrimaryBtn dark href="/reflect">كيف سارت؟</PrimaryBtn>
-          <SecondaryBtn dark href="/today">تمّ</SecondaryBtn>
+          <PrimaryBtn dark href="/reflect">How did it go?</PrimaryBtn>
+          <SecondaryBtn dark href="/today">Done</SecondaryBtn>
         </div>
       </PlayerShell>
     );
@@ -206,9 +206,9 @@ function PlayerInner({ id }: { id: string }) {
   if (screen === 'breath') {
     return (
       <PlayerShell bg="night">
-        <PlayerHeader course="تأمّل فردي" day="نَفَس الصندوق" onClose={close} />
+        <PlayerHeader course="Solo Session" day="Box Breath" onClose={close} />
         <div className="absolute top-[220px] left-1/2 -translate-x-1/2 w-[220px] h-[220px] rounded-[32px] border-[1.5px] border-cream/35 flex items-center justify-center">
-          <div className="text-cream font-serif text-[26px]">استنشِق</div>
+          <div className="text-cream font-serif text-[26px]">Inhale</div>
         </div>
         <div className="absolute bottom-[130px] inset-x-0 text-center text-cream text-[13px] opacity-70" dir="ltr">4 · 4 · 4 · 4</div>
         <div className="absolute bottom-[70px] inset-x-0">
@@ -225,7 +225,7 @@ function PlayerInner({ id }: { id: string }) {
         <PlayerHeader onClose={close} />
         <div className="px-6 pt-10">
           <div className="bg-white/10 backdrop-blur-xl rounded-[20px] p-5 text-cream">
-            <div className="text-[11px] font-semibold opacity-70">الفصول</div>
+            <div className="text-[11px] font-semibold opacity-70">Chapters</div>
             {CHAPTERS.map(([t, time], i) => (
               <div key={t} className="flex justify-between items-center mt-4" style={{ opacity: i === 1 ? 1 : 0.6 }}>
                 <div className={`text-[15px] ${i === 1 ? 'font-semibold' : ''}`}>{t}</div>
@@ -247,10 +247,10 @@ function PlayerInner({ id }: { id: string }) {
       <PlayerShell bg="dusk">
         <PlayerHeader onClose={close} />
         <div className="absolute top-[200px] inset-x-0 text-center text-cream px-8">
-          <div className="font-serif text-[22px] opacity-60 italic">&ldquo;لاحظ، دون حكم.&rdquo;</div>
+          <div className="font-serif text-[22px] opacity-60 italic">&ldquo;Observe, without judgment.&rdquo;</div>
         </div>
         <div className="absolute bottom-[200px] inset-x-0 flex justify-center gap-8">
-          {['−15ث', '+15ث'].map((l) => (
+          {['−15s', '+15s'].map((l) => (
             <div key={l} className="w-14 h-14 rounded-full bg-white/[0.18] flex items-center justify-center">
               <span className="text-cream text-base font-semibold">{l}</span>
             </div>
@@ -270,8 +270,8 @@ function PlayerInner({ id }: { id: string }) {
         <PlayerHeader onClose={close} />
         <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
         <div className="absolute top-[280px] inset-x-0 text-center text-cream">
-          <div className="font-serif text-[28px]">متوقّف</div>
-          <div className="text-sm opacity-70 mt-1.5">خذ وقتك.</div>
+          <div className="font-serif text-[28px]">Paused</div>
+          <div className="text-sm opacity-70 mt-1.5">Take your time.</div>
         </div>
         <div className="absolute bottom-[70px] inset-x-0">
           <PlayerControls playing={false} onToggle={() => router.replace(`/play/${id}`)} />
@@ -284,10 +284,10 @@ function PlayerInner({ id }: { id: string }) {
   if (screen === 'waveform') {
     return (
       <PlayerShell bg="night">
-        <PlayerHeader course="جلسة نوم" day="المنارة البطيئة" onClose={close} />
+        <PlayerHeader course="Sleep Session" day="The Slow Lighthouse" onClose={close} />
         <div className="absolute top-[240px] inset-x-0 text-center text-cream">
-          <div className="font-serif text-[22px]">المنارة البطيئة</div>
-          <div className="text-[13px] opacity-60 mt-1.5">بريا شاه · 45 دقيقة</div>
+          <div className="font-serif text-[22px]">The Slow Lighthouse</div>
+          <div className="text-[13px] opacity-60 mt-1.5">Priya Shah · 45 min</div>
         </div>
         <div className="absolute bottom-[200px] inset-x-9 flex items-center gap-[2px] h-8">
           {Array.from({ length: 40 }).map((_, i) => {
@@ -309,7 +309,7 @@ function PlayerInner({ id }: { id: string }) {
   if (screen === 'animation') {
     return (
       <PlayerShell bg="sage">
-        <PlayerHeader course="رسم متحرّك" day="نزهة في الغابة" onClose={close} />
+        <PlayerHeader course="Animation" day="A Walk in the Forest" onClose={close} />
         <div
           className="absolute top-[140px] inset-x-[30px] h-[340px] rounded-[24px] overflow-hidden"
           style={{ background: 'linear-gradient(180deg, #C9D2BE 0%, #8FA084 60%, #4A5C40 100%)' }}
@@ -344,11 +344,11 @@ function PlayerInner({ id }: { id: string }) {
   // ── Scr50 (default): standard player (dusk) ──
   return (
     <PlayerShell bg="dusk">
-      <PlayerHeader course={course?.title ?? 'الطريق الهادئ'} day="Day 3" onClose={close} />
+      <PlayerHeader course={course?.title ?? 'The Quiet Path'} day="Day 3" onClose={close} />
       <PlayerArt variant={course?.variant ?? 'dawn'} />
       <div className="text-center text-cream mt-8 px-8">
         <div className="font-serif text-2xl">{title}</div>
-        <div className="text-[13px] opacity-70 mt-1.5">{teacher} · 10 دقائق</div>
+        <div className="text-[13px] opacity-70 mt-1.5">{teacher} · 10 min</div>
       </div>
       <div className="absolute bottom-[130px] inset-x-9">
         <div className="h-[3px] rounded-full bg-cream/20 relative">

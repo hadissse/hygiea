@@ -28,7 +28,7 @@ export function CalEventRow({ e }: { e: CalEvent }) {
       <div className="flex-1 min-w-0">
         <div className="font-serif text-[14.5px] text-ink leading-[1.3] truncate">
           {e.title}
-          {e.exact && <span className="text-coral ms-1.5 text-[11px] font-bold">● مضبوط</span>}
+          {e.exact && <span className="text-coral ms-1.5 text-[11px] font-bold">● Exact</span>}
         </div>
         <div className="text-[11px] text-ink-muted mt-0.5">
           {e.time} · {kindLabel(e.kind)}

@@ -14,7 +14,7 @@ export default function PracticePage() {
       <div className="px-5 flex flex-col gap-4">
         <Card>
           <div className="flex flex-col gap-3">
-            <div className="font-serif text-lg text-ink">جلسة مع مُرشد</div>
+            <div className="font-serif text-lg text-ink">Session with a Guide</div>
             <Body muted>A quiet conversation about your chart with one of our guides.</Body>
             {CONSULTATION_URL ? (
               <Link
@@ -23,7 +23,7 @@ export default function PracticePage() {
                 rel="noopener noreferrer"
                 className="self-start px-4 py-2 rounded-[14px] bg-ink text-cream text-sm font-medium"
               >
-                احجز جلسة
+                Book a Session
               </Link>
             ) : (
               <span className="text-sm text-ink-muted">Bookings opening soon.</span>
@@ -32,7 +32,7 @@ export default function PracticePage() {
         </Card>
         <Card>
           <div className="flex flex-col gap-2">
-            <div className="font-serif text-lg text-ink">ممارستك Dayية</div>
+            <div className="font-serif text-lg text-ink">Your Daily Practice</div>
             <Body muted>
               Track your sessions and reflections. Your practice log will appear here over time.
             </Body>

@@ -12,14 +12,14 @@ export interface IntroSlide {
 }
 
 export const INTRO_SLIDES: IntroSlide[] = [
-  { orb: 'dawn', title: 'سكون لكل moment', subtitle: 'دقائق من اليقظة — بين الاجتماعات، قبل النوم، أو حين تعلو ضوضاء الحياة.' },
-  { orb: 'sage', title: 'مبنيّة على الSearch', subtitle: 'تستند ممارساتنا إلى ثلاثة عقود من العمل السريري على اليقظة، وأكثر من 150 دراسة محكّمة.' },
-  { orb: 'lake', title: 'مفصّلة على يومك', subtitle: 'ممارسة تتكيّف مع مزاجك، وطاقتك، والوقت المتاح لديك.' },
-  { orb: 'ember', title: 'شاهد رحلتك تتفتّح', subtitle: 'سلاسل من الأيام، وتأمّلات، وسجلّ هادئ لحضورك.' },
-  { orb: 'night', title: 'انجرف إلى النوم', subtitle: 'حكايات للنوم، ومشاهد صوتية، وقصص بطيئة تعينك على الراحة.', dark: true },
-  { orb: 'dusk', title: 'وتحدّث إلى أحدهم كذلك', subtitle: 'حين تحتاج إلى أكثر من التأمّل، معالجونا المعتمدون على بُعد لمسة.' },
-  { orb: 'sage', media: '/media/crowd.jpg', title: 'لستَ وحدك', subtitle: 'أكثر من 80 مليون شخص يمارسون مع Hygiea — في كل منطقة زمنية.' },
-  { orb: 'dawn', media: '/media/color-wheel.webp', title: 'لنبدأ', subtitle: 'بضعة أسئلة سريعة لنرسم ممارستك.', cta: 'ابدأ الآن' },
+  { orb: 'dawn', title: 'Stillness for Every Moment', subtitle: 'Minutes of mindfulness — between meetings, before sleep, or when life gets loud.' },
+  { orb: 'sage', title: 'Built on Research', subtitle: 'Our practices are grounded in three decades of clinical mindfulness research and over 150 peer-reviewed studies.' },
+  { orb: 'lake', title: 'Tailored to Your Day', subtitle: 'A practice that adapts to your mood, energy, and available time.' },
+  { orb: 'ember', title: 'Watch Your Journey Unfold', subtitle: 'Day streaks, reflections, and a quiet record of your presence.' },
+  { orb: 'night', title: 'Drift into Sleep', subtitle: 'Sleep stories, soundscapes, and slow tales to help you rest.', dark: true },
+  { orb: 'dusk', title: 'Talk to Someone Too', subtitle: 'When you need more than meditation, our certified therapists are just a touch away.' },
+  { orb: 'sage', media: '/media/crowd.jpg', title: 'You Are Not Alone', subtitle: 'More than 80 million people practice with Hygiea — in every time zone.' },
+  { orb: 'dawn', media: '/media/color-wheel.webp', title: "Let's Begin", subtitle: 'A few quick questions to shape your practice.', cta: 'Start Now' },
 ];
 
 const SLIDE_BG: Record<string, string> = {
@@ -53,9 +53,9 @@ export function IntroCarousel({ slide, progress, onBack, onSkip, onNext }: {
       )}
       <div className="relative flex-1 px-6 pt-[60px] flex flex-col">
         <div className="flex items-center justify-between h-11">
-          <button type="button" onClick={onBack} aria-label="رجوع"><IconBack color={txt} /></button>
+          <button type="button" onClick={onBack} aria-label="Back"><IconBack color={txt} /></button>
           <ProgressBar value={progress} dark={dark} />
-          <button type="button" onClick={onSkip} className="text-sm" style={{ color: mute }}>تخطّي</button>
+          <button type="button" onClick={onSkip} className="text-sm" style={{ color: mute }}>Skip</button>
         </div>
         {!hasMedia && (
           <div className="h-[280px] mt-[30px] flex items-center justify-center">

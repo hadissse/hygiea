@@ -16,47 +16,47 @@ import {
   gradientCss,
 } from '@/components/learn/primitives';
 
-const RECENT = ['نوم', 'الإفلات', '٥ دقائق', 'تنفّس', 'مايا كول'];
-const POPULAR = ['للمبتدئين', '٣ دقائق', 'مسح الجسد', 'المشي', 'حكايات النوم', 'التوتر'];
+const RECENT = ['Sleep', 'Letting Go', '5 min', 'Breathe', 'Maya Cole'];
+const POPULAR = ['Beginners', '3 min', 'Body Scan', 'Walking', 'Sleep Stories', 'Anxiety'];
 
-const SUGGESTIONS = ['حكايات النوم', 'موسيقى النوم', 'نوم للأطفال', 'نوم + توتر', 'قصص النوم'];
+const SUGGESTIONS = ['Sleep Stories', 'Sleep Music', 'Kids Sleep', 'Sleep + Anxiety', 'Bedtime Stories'];
 
 const SLEEP_RESULTS: [string, string, string][] = [
-  ['المنارة البطيئة', 'حكاية · ٤٥ دقيقة', '#3A4490'],
-  ['نوم بلا فشل', 'منفردة · ٣ دقائق', '#5A3E7A'],
-  ['مطر ناعم', 'مشهد صوتي', '#C2D3E2'],
-  ['من الجسد إلى السرير', 'منفردة · ١٠ دقائق', '#9C8AB8'],
-  ['عن النوم', 'سلسلة · ٥ أيام', '#3A4490'],
+  ['The Slow Lighthouse', 'Story · 45 min', '#3A4490'],
+  ['Effortless Sleep', 'Solo · 3 min', '#5A3E7A'],
+  ['Soft Rain', 'Soundscape', '#C2D3E2'],
+  ['From Body to Bed', 'Solo · 10 min', '#9C8AB8'],
+  ['On Sleep', 'Series · 5 days', '#3A4490'],
 ];
 
 const FEELINGS: [string, string, boolean][] = [
-  ['مشدود', 'dawn', false],
-  ['متعب', 'dusk', false],
-  ['متوتر', 'ember', true],
-  ['ضبابي', 'lake', true],
-  ['ثقيل', 'night', false],
-  ['متّسع', 'sage', true],
-  ['قلق', 'dust', true],
-  ['رقيق', 'dawn', false],
+  ['Tense', 'dawn', false],
+  ['Tired', 'dusk', false],
+  ['Anxious', 'ember', true],
+  ['Foggy', 'lake', true],
+  ['Heavy', 'night', false],
+  ['Open', 'sage', true],
+  ['Worried', 'dust', true],
+  ['Tender', 'dawn', false],
 ];
 
 const BREATH_LIST: [string, string][] = [
-  ['نَفَس الصندوق', '٥ دقائق'],
-  ['تنفّس من خلاله', '١٠ دقائق'],
-  ['نَفَس واحد', '٣٠ ث'],
-  ['النَفَس مرساة', '٧ دقائق'],
+  ['Box Breath', '5 min'],
+  ['Breathe Through It', '10 min'],
+  ['One Breath', '30 sec'],
+  ['Breath as Anchor', '7 min'],
 ];
 
 const TEACHER_SESSIONS: [string, string][] = [
-  ['The Quiet Path · Day 1', '١٠ دقائق'],
-  ['مراسي لطيفة', '٧ دقائق'],
-  ['On Returning', '٥ دقائق'],
+  ['The Quiet Path · Day 1', '10 min'],
+  ['Gentle Anchors', '7 min'],
+  ['On Returning', '5 min'],
 ];
 
 const FILTER_GROUPS: [string, string[], number][] = [
-  ['المدة', ['أقل من ٥ دقائق', '٥–١٠', '١٠–٢٠', '٢٠+'], 1],
-  ['النوع', ['Reflect', 'حكاية نوم', 'مشهد صوتي', 'قراءة'], 0],
-  ['المعلم', ['أي', 'مايا كول', 'جوناس بارك', 'بريا شاه', 'ثيو ريد'], 1],
+  ['Duration', ['Under 5 min', '5–10', '10–20', '20+'], 1],
+  ['Type', ['Reflect', 'Sleep Story', 'Soundscape', 'Reading'], 0],
+  ['Teacher', ['Any', 'Maya Cole', 'Jonas Park', 'Priya Shah', 'Theo Reid'], 1],
 ];
 
 function ResultRow({ title, sub, color }: { title: string; sub: string; color: string }) {
@@ -79,10 +79,10 @@ export default function SearchPage() {
 
   // which result-state to show based on the committed query
   const state = useMemo<'sleep' | 'teacher' | 'breath' | 'empty'>(() => {
-    const q = query.trim();
-    if (q.includes('نوم')) return 'sleep';
-    if (q.includes('مايا')) return 'teacher';
-    if (q.includes('تنفّس') || q.includes('نفس')) return 'breath';
+    const q = query.trim().toLowerCase();
+    if (q.includes('sleep')) return 'sleep';
+    if (q.includes('maya')) return 'teacher';
+    if (q.includes('breath')) return 'breath';
     return 'empty';
   }, [query]);
 
@@ -93,8 +93,8 @@ export default function SearchPage() {
     return (
       <div className="pb-28 px-5 pt-4 relative min-h-[80vh]">
         <div className="flex justify-between items-center">
-          <h1 className="font-serif text-[22px] text-ink">الفلاتر</h1>
-          <button className="text-sm text-coral font-medium" onClick={() => setFilters(false)}>إعادة ضبط</button>
+          <h1 className="font-serif text-[22px] text-ink">Filters</h1>
+          <button className="text-sm text-coral font-medium" onClick={() => setFilters(false)}>Reset</button>
         </div>
         <div className="mt-5 flex flex-col gap-[22px]">
           {FILTER_GROUPS.map(([h, opts, sel]) => (
@@ -120,7 +120,7 @@ export default function SearchPage() {
             onClick={() => setFilters(false)}
             className="block w-full text-center py-3.5 rounded-[14px] bg-ink text-cream text-sm font-medium"
           >
-            اعرض ٨ نتائج
+            Show 8 Results
           </button>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function SearchPage() {
     return (
       <div className="pb-28 px-5 pt-4">
         <div className="flex items-center justify-between">
-          <h1 className="font-serif text-[28px] text-ink -tracking-[0.5px]">اSearch بالشعور</h1>
+          <h1 className="font-serif text-[28px] text-ink -tracking-[0.5px]">Search by Feeling</h1>
           <button className="text-sm text-coral font-medium" onClick={() => setFeelings(false)}>‹ Back</button>
         </div>
         <div className="mt-4 grid grid-cols-2 gap-2.5">
@@ -172,7 +172,7 @@ export default function SearchPage() {
             className="flex-1 bg-transparent text-[15px] text-ink focus:outline-none placeholder:text-ink-muted"
           />
           {query && (
-            <button onClick={() => { setQuery(''); setCommitted(false); }} aria-label="مسح" className="text-ink-muted">
+            <button onClick={() => { setQuery(''); setCommitted(false); }} aria-label="Clear" className="text-ink-muted">
               <CloseIcon size={18} />
             </button>
           )}
@@ -187,7 +187,7 @@ export default function SearchPage() {
       {/* Scr95 — default (recent + popular + feeling entry) */}
       {!showSuggestions && !committed && query.trim().length === 0 && (
         <div className="mt-6">
-          <div className="text-[13px] text-ink-muted font-semibold">الأخيرة</div>
+          <div className="text-[13px] text-ink-muted font-semibold">Recent</div>
           <div className="mt-3 flex flex-col gap-1.5">
             {RECENT.map((t) => (
               <button
@@ -200,7 +200,7 @@ export default function SearchPage() {
               </button>
             ))}
           </div>
-          <div className="text-[13px] text-ink-muted font-semibold mt-4">الأكثر شيوعًا</div>
+          <div className="text-[13px] text-ink-muted font-semibold mt-4">Popular</div>
           <div className="mt-3 flex flex-wrap gap-2">
             {POPULAR.map((t) => (
               <button
@@ -216,7 +216,7 @@ export default function SearchPage() {
             onClick={() => setFeelings(true)}
             className="mt-6 w-full flex items-center justify-between bg-cream-soft rounded-[14px] px-4 py-3.5"
           >
-            <span className="text-sm text-ink font-medium">اSearch بالشعور</span>
+            <span className="text-sm text-ink font-medium">Search by Feeling</span>
             <ChevronEnd className="text-ink-muted" />
           </button>
         </div>
@@ -225,7 +225,7 @@ export default function SearchPage() {
       {/* Scr96 — suggestions while typing */}
       {showSuggestions && (
         <div className="mt-5">
-          <div className="text-[13px] text-ink-muted font-semibold">اقتراحات</div>
+          <div className="text-[13px] text-ink-muted font-semibold">Suggestions</div>
           <div className="mt-3">
             {SUGGESTIONS.map((t) => (
               <button
@@ -247,12 +247,12 @@ export default function SearchPage() {
           {/* filter trigger */}
           <div className="flex justify-between items-center mb-3">
             <span className="text-[13px] text-ink-muted">
-              {state === 'sleep' && `١٤ نتيجة لـ "${query.trim()}"`}
-              {state === 'breath' && `٨ نتائج لـ "${query.trim()}"`}
-              {state === 'teacher' && 'نتائج'}
+              {state === 'sleep' && `14 results for "${query.trim()}"`}
+              {state === 'breath' && `8 results for "${query.trim()}"`}
+              {state === 'teacher' && 'Results'}
               {state === 'empty' && ' '}
             </span>
-            <button onClick={() => setFilters(true)} className="text-ink-muted" aria-label="الفلاتر">
+            <button onClick={() => setFilters(true)} className="text-ink-muted" aria-label="Filters">
               <FilterIcon size={20} />
             </button>
           </div>
@@ -269,22 +269,22 @@ export default function SearchPage() {
           {/* Scr101 — teacher results */}
           {state === 'teacher' && (
             <div className="flex flex-col gap-2.5">
-              <div className="text-[13px] text-ink-muted font-semibold">المعلمون</div>
+              <div className="text-[13px] text-ink-muted font-semibold">Teachers</div>
               <div className="bg-white rounded-[14px] p-3.5 border border-sand flex gap-3.5 items-center">
                 <div className="w-[50px] h-[50px] rounded-full bg-[#C9D2BE]" />
                 <div className="flex-1">
-                  <div className="text-[15px] text-ink font-medium">مايا كول</div>
-                  <div className="text-xs text-ink-muted mt-0.5">١٢ جلسة · دافئة ومتجذّرة</div>
+                  <div className="text-[15px] text-ink font-medium">Maya Cole</div>
+                  <div className="text-xs text-ink-muted mt-0.5">12 sessions · Warm &amp; grounded</div>
                 </div>
                 <ChevronEnd className="text-ink-muted" />
               </div>
-              <div className="text-[13px] text-ink-muted font-semibold mt-3">الجلسات</div>
+              <div className="text-[13px] text-ink-muted font-semibold mt-3">Sessions</div>
               {TEACHER_SESSIONS.map(([t, d]) => (
                 <div key={t} className="bg-white rounded-[14px] p-3 border border-sand flex gap-3 items-center">
                   <div className="w-[50px] h-[50px] rounded-[10px] bg-[#F8D6BE]" />
                   <div className="flex-1">
                     <div className="text-sm text-ink font-medium">{t}</div>
-                    <div className="text-xs text-ink-muted mt-0.5">{d} · مايا كول</div>
+                    <div className="text-xs text-ink-muted mt-0.5">{d} · Maya Cole</div>
                   </div>
                 </div>
               ))}
@@ -310,8 +310,8 @@ export default function SearchPage() {
           {state === 'empty' && (
             <div className="pt-14 flex flex-col items-center px-8">
               <GradientOrb variant="dust" size={100} />
-              <div className="font-serif text-[22px] text-ink mt-6 -tracking-[0.3px]">لا نتائج بعد</div>
-              <div className="text-sm text-ink-muted mt-2 text-center leading-[1.6]">جرّب شعورًا، أو مدة، أو اسم معلم.</div>
+              <div className="font-serif text-[22px] text-ink mt-6 -tracking-[0.3px]">No results yet</div>
+              <div className="text-sm text-ink-muted mt-2 text-center leading-[1.6]">Try a feeling, a duration, or a teacher&apos;s name.</div>
             </div>
           )}
         </div>

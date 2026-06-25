@@ -26,8 +26,8 @@ export default function ProfilePage() {
   }, []);
 
   const cells = [
-    [toArabicDigits(stats.events), 'أحداث مسجّلة'],
-    [toArabicDigits(stats.calibrations), 'معايرات'],
+    [toArabicDigits(stats.events), 'Logged Events'],
+    [toArabicDigits(stats.calibrations), 'Calibrations'],
     [stats.hasChart ? 'Yes' : '—', 'Your chart'],
   ];
 
@@ -39,8 +39,8 @@ export default function ProfilePage() {
           <span className="font-serif text-2xl text-cream">H</span>
         </div>
         <div>
-          <div className="font-serif text-[22px] text-ink">رفيق Hygiea</div>
-          <div className="text-[13px] text-ink-muted mt-0.5">حسابٌ محلي على هذا الجهاز</div>
+          <div className="font-serif text-[22px] text-ink">Hygiea Companion</div>
+          <div className="text-[13px] text-ink-muted mt-0.5">Local account on this device</div>
         </div>
       </div>
       <div className="mx-5 mt-6 rounded-[18px] bg-white border border-rule-soft p-[18px]">

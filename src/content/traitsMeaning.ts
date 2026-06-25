@@ -4,218 +4,217 @@
 export const ELEMENT_MEANING: Record<'fire' | 'earth' | 'air' | 'water', { essence: string; lesson: string }> = {
   fire: {
     essence:
-      'تعيش بحرارة الفعل — تبدأ الأشياء قبل أن تنتظر اكتمالها. حضورك يفتح المساحات، لكنه قد يحرق ما بدأ به إن لم تُتابِع.',
-    lesson: 'أهم درسٍ لك: أن تتعلّم البقاء حيث بدأت.',
+      'You live with the heat of action — you begin things before waiting for them to be complete. Your presence opens spaces, but it can burn what it started if you don\'t follow through.',
+    lesson: 'Your most important lesson: to learn to stay where you began.',
   },
   earth: {
     essence:
-      'تعيش بالملموس — تحتاج أن ترى الأثر، تشمّ الرائحة، تشعر بالوزن. ما يُبنى عندك يُبنى ليبقى.',
-    lesson: 'أهم درسٍ لك: أن تسمح للأشياء أن تتحرّك دون أن تُحكِم القبضة.',
+      'You live through the tangible — you need to see the result, smell the scent, feel the weight. What is built through you is built to last.',
+    lesson: 'Your most important lesson: to allow things to move without gripping too tightly.',
   },
   air: {
     essence:
-      'تعيش بالفكرة والكلمة — تربط ما لا يبدو متّصلًا. عندك خفّةٌ تُهديها للآخرين كنافذةٍ تنفتح.',
-    lesson: 'أهم درسٍ لك: أن تنزل إلى الجسد حين يضيع الرأس في الاحتمالات.',
+      'You live through idea and word — you connect what doesn\'t seem connected. You carry a lightness that you give to others like a window opening.',
+    lesson: 'Your most important lesson: to descend into the body when the mind gets lost in possibilities.',
   },
   water: {
     essence:
-      'تعيش بالشعور والعمق — تقرأ ما تحت السطح قبل أن يُنطَق. عندك حسٌّ يحمي ويلمس.',
-    lesson: 'أهم درسٍ لك: أن تحرس ضفّتك حين تستقبل موجة الآخر.',
+      'You live through feeling and depth — you read what lies beneath the surface before it is spoken. You carry a sensitivity that both protects and touches.',
+    lesson: 'Your most important lesson: to guard your own shore when you receive the wave of another.',
   },
 };
 
 export const MINERAL_MEANING: Record<string, string> = {
-  الذهب: 'حضورك الأساس — حين تشعّ يصير حقيقيًّا.',
-  الفضة: 'استقبالك العاطفي — مرآة لمزاجك الداخلي.',
-  الزئبق: 'ذهنك في حركةٍ دائمة — التعلّم والربط.',
-  النحاس: 'موصلك للقيمة والجمال — ما تختار أن تعتني به.',
-  الحديد: 'إرادتك حين تَصلُب — قدرتك على الصمود في الفعل.',
-  القصدير: 'اتّساعك للمعنى — ما يفتحك على الأكبر منك.',
-  الرصاص: 'ثِقَلُك الذي يُنضِج — البنية التي تحمي عمرك.',
-  الأورانيوم: 'كهرباؤك التي تكسر النمط — الإفاقة المفاجئة.',
-  'حجر الأعماق': 'بحرك الداخلي — الحدّ بين الذوبان والصفاء.',
-  الأوبسيديان: 'بئرُك العميق — ما يموت فيك ليُولَد جديدًا.',
-  الشاروايت: 'جرحُك المُعَلِّم — الموضع الذي يشفي الآخرين منه.',
-  الفيروز: 'اتّجاهك في هذه الحياة — حيث ينبغي أن تنمو.',
-  العقيق: 'ما تحمله من قبل — راحتك القديمة التي يجب أن تتجاوزها.',
+  Gold: 'Your essential presence — when you radiate, it becomes real.',
+  Silver: 'Your emotional receptivity — a mirror of your inner mood.',
+  Quicksilver: 'Your mind in constant motion — learning and connecting.',
+  Copper: 'Your conductor for value and beauty — what you choose to care for.',
+  Iron: 'Your will when it hardens — your capacity to hold steady in action.',
+  Tin: 'Your openness to meaning — what expands you toward something greater than yourself.',
+  Lead: 'Your weight that ripens — the structure that protects your longevity.',
+  Uranium: 'Your electricity that breaks the pattern — the sudden awakening.',
+  'Deep Stone': 'Your inner ocean — the boundary between dissolution and clarity.',
+  Obsidian: 'Your deep well — what dies in you so something new can be born.',
+  Charoite: 'Your teaching wound — the place from which you heal others.',
+  Turquoise: 'Your direction in this life — where you are meant to grow.',
+  Carnelian: 'What you carry from before — your old comfort that you must move beyond.',
 };
 
 export const ORGAN_SIGNAL: Record<string, string> = {
-  القلب: 'حين يضعف ضوءُ الشمس فيك، يشكو القلب — انعدامُ المعنى يُتعِبه.',
-  الدماغ: 'حين يضطرب القمر فيك، يضطرب الإيقاع الداخلي — النوم، التغذية، المزاج.',
-  الرئتان: 'حين يختنق عطارد فيك، يضيق النفَس — كلامٌ لم يُقَل أو يُكتَب.',
-  الكليتان: 'حين يُتعَب توازنُ الزهرة، تُجهَد الكليتان — علاقاتٌ وقِيَمٌ غير متّزنة.',
-  المرارة: 'حين يُكبَت المرّيخ، تركد المرارة — غضبٌ بُلِع ولم يُصَرَّف.',
-  الكبد: 'حين يضيق المشتري، يُثقَل الكبد — معنىً لم يُهضَم.',
-  الطحال: 'حين يقسو زحل، يُبرَد الطحال — حدٌّ فُرِض دون رِفق.',
+  Heart: 'When the Sun\'s light within you dims, the heart complains — a lack of meaning exhausts it.',
+  Brain: 'When the Moon within you is disturbed, the inner rhythm is disrupted — sleep, nourishment, mood.',
+  Lungs: 'When Mercury within you is suffocated, the breath tightens — words unspoken or unwritten.',
+  Gallbladder: 'When Mars is suppressed, the gallbladder stagnates — anger swallowed and never released.',
+  Liver: 'When Jupiter contracts, the liver is burdened — meaning left undigested.',
+  Spleen: 'When Saturn grows harsh, the spleen cools — a boundary imposed without gentleness.',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MEDICAL ASTROLOGY: Planet × Sign organ interpretations
 // Based on Steiner/Hill planetary-organ correspondences and traditional
 // melothesia (sign–body-part rulerships). Each entry gives a 2-3 sentence
-// Arabic reading of how the planet's sign placement colours the organ's health.
+// English reading of how the planet's sign placement colours the organ's health.
 // Key: `${planetKey}:${signIndex}` (signIndex 0=Aries … 11=Pisces)
 // ─────────────────────────────────────────────────────────────────────────────
 export const ORGAN_SIGN_READING: Record<string, string> = {
-  // ─── SUN (القلب) ───────────────────────────────────────────────────────────
-  'sun:0':  'الشمس في الحمل تمنح القلبَ طاقةً متّقدة وإيقاعًا قويًّا، لكنّها قد تُسرِّع ضرباته وتُجهِده بالاندفاع. صحّة القلب ترتبط عندك بالحركة والبدء — احذر الجمود الطويل. يحتاج قلبُك إشعالًا متجدّدًا لا مُجهِدًا.',
-  'sun:1':  'الشمس في الثور تعطي القلبَ ثباتًا وقدرةً تحمُّلية نادرة. الطاقة الحيوية هنا بطيئة الاستنزاف، لكنّها قد تُراكِم توتّرات الشريان حين تتجمّد العادات. غذِّ قلبَك بالجمال والانتظام وتجنَّب الاختناق العاطفي.',
-  'sun:2':  'الشمس في الجوزاء تُلوِّن القلبَ بتذبذب الطاقة وتعدُّد الاتجاهات — يزدهر بالتنوّع ويتعب من الرتابة. الجهاز العصبي اللاإرادي المرتبط بالنظير السمبثاوي يحتاج توازنًا. إيقاعُ التنفّس العميق يُعيدُ انتظامَ القلب.',
-  'sun:3':  'الشمس في السرطان تجعل القلبَ مرآةً للمشاعر — ينفتح بالحبّ وينقبض بالقلق. الجهاز الوعائي حسّاسٌ لتقلّبات المزاج وللمناخ العاطفي في البيئة المحيطة. صحّة القلب تبدأ من صحّة العلاقات.',
-  'sun:4':  'الشمس في الأسد تمنح القلبَ مكانةً ملكيّة — يُحكمها تطابقُ الداخل والخارج. هذا توضّعٌ قويّ للحيويّة الشمسية، لكنّ المبالغةَ في الجهد بحثًا عن الاعتراف قد ترهق الدورة الدموية. دع قلبَك يُشعّ دون أن يثبت.',
-  'sun:5':  'الشمس في العذراء تُعطي القلبَ دقّةً ومنهجيّةً في الأداء — يعمل بانتظام حين تُراعَى التفاصيل. الإفراطُ في التحليل والقلق من الأخطاء يُولِّد توتُّرًا دقيقًا في عضلة القلب. برنامجٌ صحّي منظَّم هو أفضل دواء.',
-  'sun:6':  'الشمس في الميزان تضع القلبَ في دوّامة التوازن — يعتدل حين تعتدل العلاقات وينخفض حين تثقل. الشراكات المُرهِقة تنعكس مباشرةً على الضغط والإيقاع. ابحث عن جمالٍ يوميّ يُغذّي حيويّتك.',
-  'sun:7':  'الشمس في العقرب تمنح القلبَ كثافةً وعمقًا — يتجدّد كالعنقاء في الأزمات لكنّه يُنهَك بالصراع الداخلي المكبوت. الجهاز القلبي الوعائي يحتاج تصريفًا عاطفيًّا منتظمًا لا تراكمًا. التحوّل هو أسلوبُ صحّتك.',
-  'sun:8':  'الشمس في القوس تُعطي القلبَ اتّساعًا وحريّةً حيوية — يزدهر بالحركة والمعنى وينكمش في الحصار. الإفراطُ في الحماسة قد يُجهِده في مرحلة أولى ثم يتلاشى الدافع فجأةً. التوازن بين الحركة والراحة هو سرُّ صمودك.',
-  'sun:9':  'الشمس في الجدي تمنح القلبَ قدرةً هيكليّةً وتحمُّلًا طويل الأمد. الضغطُ المزمن الصامت قد يُصعِّد أعباء الشريان التاجي مع الوقت. الانضباطُ مفيدٌ لكنّ الرفقَ الذاتي ضروريّ — قلبُك يحتاج العطف أيضًا.',
-  'sun:10': 'الشمس في الدلو تمنح القلبَ توجُّهًا كهرومغناطيسيًّا فريدًا — الجهاز الوعائي حسّاسٌ للتوترات الكهربية في الجسم كما في البيئة. القطيعةُ الاجتماعية تُضعِف الحيوية الشمسية. ابحث عن مجتمعٍ يُشغِّل قلبَك.',
-  'sun:11': 'الشمس في الحوت تُلطِّف القلبَ بحساسيّةٍ عميقة — يستجيب للموسيقى والفنّ والصلاة. الحدودُ الضبابيّة مع الآخرين قد تُضيف أعباءً خفيّةً على الدورة الدمويّة. تأمَّل يوميًّا وأعطِ قلبَك فضاءَ الصمت.',
+  // ─── SUN (Heart) ───────────────────────────────────────────────────────────
+  'sun:0':  'The Sun in Aries gives the heart a blazing energy and a strong rhythm, but it may accelerate its beat and exhaust it with impulsiveness. Your heart\'s health is tied to movement and beginnings — beware prolonged stillness. Your heart needs renewed ignition, not relentless pushing.',
+  'sun:1':  'The Sun in Taurus gives the heart rare steadiness and endurance. Vital energy here is slow to deplete, but it may accumulate arterial tension when habits become rigid. Nourish your heart with beauty and regularity, and avoid emotional stagnation.',
+  'sun:2':  'The Sun in Gemini colours the heart with fluctuating energy and multiple directions — it thrives on variety and tires from monotony. The autonomic nervous system linked to the parasympathetic needs balance. Deep rhythmic breathing restores the heart\'s regularity.',
+  'sun:3':  'The Sun in Cancer makes the heart a mirror of emotions — it opens with love and contracts with anxiety. The vascular system is sensitive to mood shifts and the emotional climate of the surrounding environment. Your heart\'s health begins with the health of your relationships.',
+  'sun:4':  'The Sun in Leo grants the heart a royal standing — secured by the alignment of inner and outer self. This is a strong placement for solar vitality, but striving excessively for recognition can strain the circulatory system. Let your heart radiate without needing to prove itself.',
+  'sun:5':  'The Sun in Virgo gives the heart precision and methodical performance — it works steadily when details are tended to. Over-analysis and anxiety about mistakes create subtle tension in the heart muscle. A structured wellness routine is your best medicine.',
+  'sun:6':  'The Sun in Libra places the heart in a cycle of balance — it steadies when relationships are balanced and falters when they weigh heavily. Draining partnerships directly affect blood pressure and rhythm. Seek daily beauty to nourish your vitality.',
+  'sun:7':  'The Sun in Scorpio grants the heart intensity and depth — it renews like a phoenix in crisis but is exhausted by suppressed inner conflict. The cardiovascular system needs regular emotional release, not accumulation. Transformation is the style of your health.',
+  'sun:8':  'The Sun in Sagittarius gives the heart expansiveness and a living freedom — it thrives on movement and meaning and contracts in confinement. An excess of enthusiasm may exhaust it at first, then motivation may suddenly fade. Balance between movement and rest is the secret of your resilience.',
+  'sun:9':  'The Sun in Capricorn gives the heart a structural capacity and long-term endurance. Silent chronic pressure can increase the burden on the coronary arteries over time. Discipline is valuable, but self-compassion is essential — your heart needs tenderness too.',
+  'sun:10': 'The Sun in Aquarius grants the heart a unique electromagnetic orientation — the vascular system is sensitive to electrical tensions in the body as well as in the environment. Social disconnection weakens solar vitality. Seek a community that activates your heart.',
+  'sun:11': 'The Sun in Pisces softens the heart with deep sensitivity — it responds to music, art, and prayer. Blurred boundaries with others may add hidden burdens to the circulatory system. Meditate daily and give your heart the space of silence.',
 
-  // ─── MOON (الدماغ) ─────────────────────────────────────────────────────────
-  'moon:0':  'القمر في الحمل يُعطي الدماغَ نبضًا متوقِّدًا — ردود الفعل سريعة والمعالجة آنيّة. الجهاز العصبي حسّاسٌ للمُحفِّزات الحادّة وقد يُفرط في إفراز الأدرينالين. الراحةُ الحركيّة والرياضة هي وسيلتُك لتفريغ الجهاز.',
-  'moon:1':  'القمر في الثور يمنح الدماغَ استقرارًا حسّيًّا نادرًا — الذاكرة تترسّخ بالتكرار والمشاعر تُدار بهدوء. الإفراطُ في المأكل والتعلّق الحسّي قد يُثقِل وظيفة الغدد. ارتبط بالطبيعة واللمس كأسلوب عافية.',
-  'moon:2':  'القمر في الجوزاء يُلوِّن الدماغَ بشبكةٍ واسعة من الروابط — يُعالِج بسرعة ويُرسِل إشاراتٍ متعدّدة في آنٍ. التشتُّت والأرق العقلي من أبرز تحدّياتك الصحّية. النومُ المنتظم ووقتُ الصمت يُعيدان التوازن.',
-  'moon:3':  'القمر في السرطان يُعطي الدماغَ عمقًا عاطفيًّا وذاكرةً حيّة — ينسج المزاج بالبيئة. الحساسيّةُ الهرمونية مرتفعة خاصّةً في الدورات والفصول. احتِ بنفسك من الأحمال العاطفية الخارجية.',
-  'moon:4':  'القمر في الأسد يمنح الدماغَ دراميّةً معرفيّة — الانتباه يتمحور حول الهويّة والتعبير. الإفراطُ في الرغبة بالاعتراف قد يُولِّد إجهادًا عصبيًّا عاطفيًّا. أعطِ نفسَك مساحةَ الفرح غير المشروط.',
-  'moon:5':  'القمر في العذراء يمنح الدماغَ دقّةً تحليليّةً — يُراقب ويُصنِّف ويُخزِّن التفاصيل. القلقُ الوسواسي ومشكلات الجهاز الهضمي العصبي من أبرز الأنماط. تمارينُ التنفّس والروتين الصحّي يُهدئان المنظومة.',
-  'moon:6':  'القمر في الميزان يُلوِّن الدماغَ بالبحث عن التوازن — التفكير يدور حول العلاقات والعدل. الاضطراباتُ في الشراكات تنعكس مباشرةً على التوازن الهرموني والعصبي. الجمالُ والانسجام ليسا رفاهيةً بل وقاية.',
-  'moon:7':  'القمر في العقرب يمنح الدماغَ قدرةً استشعاريّةً عميقة — يُدرك ما تحت السطح لكنّه قد يُعلِّق نفسَه في الأنماط العاطفية القديمة. النومُ قد يكون متقطّعًا وكثيفًا بالأحلام. التحرُّر العاطفي هو صحّة دماغك الحقيقيّة.',
-  'moon:8':  'القمر في القوس يُعطي الدماغَ توجُّهًا فلسفيًّا متفائلًا — يجد المعنى ويُغذّي الروح. الإفراطُ في التفكير التجريدي قد يُبعِدك عن إشارات الجسد. انتبه للتغذية والإيقاع اليومي لتحافظ على وضوح العقل.',
-  'moon:9':  'القمر في الجدي يمنح الدماغَ انضباطًا عاطفيًّا — التجربة تتراكم حكمةً، لكنّ الكبتَ طويل الأمد يُضعِف المناعة العصبية. الإجهادُ المزمن الصامت خطرٌ خفيّ. اسمح لنفسك أحيانًا بالهشاشة.',
-  'moon:10': 'القمر في الدلو يُلوِّن الدماغَ بحساسيّةٍ كهرمغناطيسية غير تقليدية — الحدسُ الجماعي والإشاراتُ الخفيّة تؤثّر في مزاجك. النزعةُ للانفصال الذهني قد تقطع الجسر مع الجسد. ابقَ متجذِّرًا بالحركة والطبيعة.',
-  'moon:11': 'القمر في الحوت يمنح الدماغَ استقبالًا لاحدوديًّا — عالي الحساسية للبيئات والطاقات. الحدودُ الضعيفة تُسبِّب الإرهاق العصبي والنوم المضطرب. التأمّلُ والانزواء الاختياري هما ملاذُك وعلاجُك.',
+  // ─── MOON (Brain) ─────────────────────────────────────────────────────────
+  'moon:0':  'The Moon in Aries gives the brain a fiery pulse — reactions are quick and processing is immediate. The nervous system is sensitive to sharp stimuli and may overproduce adrenaline. Physical rest and exercise are your way of discharging the system.',
+  'moon:1':  'The Moon in Taurus gives the brain rare sensory stability — memory is reinforced through repetition and emotions are managed calmly. Excess eating and sensory attachment may weigh on glandular function. Connect with nature and touch as a wellness practice.',
+  'moon:2':  'The Moon in Gemini colours the brain with a wide network of connections — it processes quickly and sends multiple signals simultaneously. Distraction and mental restlessness are among your most prominent health challenges. Regular sleep and quiet time restore balance.',
+  'moon:3':  'The Moon in Cancer gives the brain emotional depth and a vivid memory — it weaves mood with environment. Hormonal sensitivity is high, especially around cycles and seasons. Protect yourself from external emotional burdens.',
+  'moon:4':  'The Moon in Leo gives the brain a dramatic cognitive quality — attention centres around identity and expression. An excessive desire for recognition may generate emotional-neural fatigue. Give yourself the space of unconditional joy.',
+  'moon:5':  'The Moon in Virgo gives the brain analytical precision — it observes, categorises, and stores details. Obsessive anxiety and nervous digestive issues are among the most common patterns. Breathing exercises and a healthy routine calm the system.',
+  'moon:6':  'The Moon in Libra colours the brain with a search for balance — thinking revolves around relationships and fairness. Disruptions in partnerships directly affect hormonal and neural balance. Beauty and harmony are not luxuries — they are protection.',
+  'moon:7':  'The Moon in Scorpio gives the brain deep perceptive capacity — it senses what lies beneath the surface, but may lock itself in old emotional patterns. Sleep may be fragmented and rich with dreams. Emotional release is your brain\'s true health.',
+  'moon:8':  'The Moon in Sagittarius gives the brain a philosophically optimistic orientation — it finds meaning and nourishes the spirit. Excessive abstract thinking may distance you from the body\'s signals. Pay attention to nutrition and daily rhythm to maintain mental clarity.',
+  'moon:9':  'The Moon in Capricorn gives the brain emotional discipline — experience accumulates into wisdom, but long-term suppression weakens neural immunity. Silent chronic stress is a hidden danger. Allow yourself vulnerability sometimes.',
+  'moon:10': 'The Moon in Aquarius colours the brain with unconventional electromagnetic sensitivity — collective intuition and subtle signals affect your mood. The tendency for mental detachment may cut the bridge with the body. Stay grounded through movement and nature.',
+  'moon:11': 'The Moon in Pisces gives the brain boundless receptivity — highly sensitive to environments and energies. Weak boundaries cause neural exhaustion and disrupted sleep. Meditation and intentional solitude are your refuge and your remedy.',
 
-  // ─── MERCURY (الرئتان) ─────────────────────────────────────────────────────
-  'mercury:0':  'عطارد في الحمل يمنح الرئتين طاقةً تنفّسيّةً متّقدة — النَّفَس قصير وسريع، يعكس سرعة التفكير. القابليّةُ للتهيّج التنفّسي واضحة في لحظات الإثارة. تمارينُ التنفّس البطيء تُوازن القوس الحاد.',
-  'mercury:1':  'عطارد في الثور يمنح الرئتين ثباتًا تنفّسيًّا وقدرةً على التنفّس العميق. الصوتُ والحنجرة حسّاسان للطقس والبرد. احرص على الإحماء الصوتي والرطوبة الكافية للجهاز التنفّسي العلوي.',
-  'mercury:2':  'عطارد في الجوزاء — توضُّعُه في بيته — يُعطي الرئتين مرونةً استثنائية وحيويّةً تبادليّة. لكنّ تناوُبَ الزفير والشهيق قد يكون سريعًا جدًّا في لحظات التوتّر. أتقِن فنَّ الإبطاء والتنفّس الواعي.',
-  'mercury:3':  'عطارد في السرطان يُلوِّن الرئتين بالحساسيّة العاطفية — الأزمات المكبوتة تُضيِّق النَّفَس وتُولِّد شدّةً في الصدر. الارتباطُ الوثيق بين التعبير العاطفي وسهولة التنفّس واضح في مسارك الصحّي.',
-  'mercury:4':  'عطارد في الأسد يمنح الرئتين ميلًا للتعبير القوي والصوت المسموع. الجهازُ التنفّسي يشكو حين يُكبَت التعبير والإبداع. التغنّي والخطابة والكتابة هي علاجٌ حرفيّ لجهازك التنفّسي.',
-  'mercury:5':  'عطارد في العذراء — بيته الصحّي — يُعطي الرئتين دقّةً في التنظيم والتمييز. الحساسيّةُ للملوّثات والروائح واضحة. الهواءُ النقي والنظامُ الغذائي المنتظم والاعتدالُ يُعزّزان الأداء التنفّسي.',
-  'mercury:6':  'عطارد في الميزان يُعطي الرئتين أسلوبًا تبادليًّا — يتنفّسان بأريحيّة في الانسجام ويضيقان في التوتّر. الرئتان تعكسان العلاقات — حين تثقل الشراكة يصعب النَّفَس. ابحث عن الهواء الطلق وأحادثِ مَن يُشعرك بالانتعاش.',
-  'mercury:7':  'عطارد في العقرب يمنح الرئتين عمقًا في التنفّس وقدرةً على التنفّس المكثَّف أثناء التحوّلات. الأسرارُ المحبوسة والكلامُ المكبوت يتجسَّدان في ضيق الصدر. الكلامُ الصادق هو الدواء الأول.',
-  'mercury:8':  'عطارد في القوس يمنح الرئتين توسُّعًا وقدرةً على التنفّس العميق في الهواء الطلق. المبالغةُ في الأنشطة المرهقة دون راحة قد تُجهِد الرئتين. الطبيعةُ والسفر والهواء الجبلي يُغذّيان جهازك التنفّسي.',
-  'mercury:9':  'عطارد في الجدي يمنح الرئتين انضباطًا — التنفّس منظَّم وهادئ لكنّ التوتّرات الصامتة تُضيِّق الحجاب الحاجز. خصِّص وقتًا يوميًّا للتنفّس الواعي وتمارين الاسترخاء لفكِّ عُقَد الصدر.',
-  'mercury:10': 'عطارد في الدلو يمنح الرئتين حساسيّةً للبيئة الكهرمغناطيسية والهواء الجمعي. التغيُّراتُ المناخية المفاجئة تؤثّر على الجهاز التنفّسي أكثر من غيرك. البيئةُ المحيطة وجودة هوائها تُحدِّد جودة نَفَسِك.',
-  'mercury:11': 'عطارد في الحوت يُلوِّن الرئتين بحساسيّةٍ روحيّة — التنفّس يرتبط بالحالة الداخلية أكثر من الخارجية. الأحلامُ الكثيفة والأنماط اللاواعية تؤثّر على جودة التنفّس ليلًا. تأمّلُ التنفّس هو جسرُك نحو الوضوح.',
+  // ─── MERCURY (Lungs) ─────────────────────────────────────────────────────
+  'mercury:0':  'Mercury in Aries gives the lungs a blazing respiratory energy — the breath is short and fast, reflecting the speed of thought. Susceptibility to respiratory irritation is clear in moments of excitement. Slow breathing exercises balance the sharp arc.',
+  'mercury:1':  'Mercury in Taurus gives the lungs respiratory steadiness and a capacity for deep breathing. The voice and throat are sensitive to weather and cold. Maintain vocal warm-ups and adequate moisture for the upper respiratory system.',
+  'mercury:2':  'Mercury in Gemini — placed in its own home — gives the lungs exceptional flexibility and exchange vitality. But the alternation of exhale and inhale may be too rapid in moments of tension. Master the art of slowing down and breathing consciously.',
+  'mercury:3':  'Mercury in Cancer colours the lungs with emotional sensitivity — suppressed crises constrict the breath and create tightness in the chest. The close link between emotional expression and ease of breathing is clear in your health path.',
+  'mercury:4':  'Mercury in Leo gives the lungs a tendency toward powerful expression and a voice that is heard. The respiratory system suffers when expression and creativity are suppressed. Singing, speaking, and writing are literally medicine for your respiratory system.',
+  'mercury:5':  'Mercury in Virgo — its health home — gives the lungs precision in regulation and discrimination. Sensitivity to pollutants and odours is evident. Clean air, a regular diet, and moderation enhance respiratory performance.',
+  'mercury:6':  'Mercury in Libra gives the lungs an exchange-based style — they breathe at ease in harmony and constrict in tension. The lungs mirror your relationships — when a partnership weighs on you, breathing becomes difficult. Seek open air and speak with those who make you feel refreshed.',
+  'mercury:7':  'Mercury in Scorpio gives the lungs depth in breathing and capacity for intensive breathing during transformations. Held secrets and suppressed words manifest as chest tightness. Honest speech is the first medicine.',
+  'mercury:8':  'Mercury in Sagittarius gives the lungs expansion and a capacity for deep breathing in the open air. Overdoing exhausting activities without rest may strain the lungs. Nature, travel, and mountain air nourish your respiratory system.',
+  'mercury:9':  'Mercury in Capricorn gives the lungs discipline — breathing is organised and quiet, but silent tensions constrict the diaphragm. Set aside time each day for conscious breathing and relaxation exercises to release chest knots.',
+  'mercury:10': 'Mercury in Aquarius gives the lungs sensitivity to the electromagnetic environment and collective air. Sudden climatic changes affect the respiratory system more than in others. The surrounding environment and its air quality determine the quality of your breath.',
+  'mercury:11': 'Mercury in Pisces colours the lungs with spiritual sensitivity — breathing is linked to inner state more than the external. Rich dreams and unconscious patterns affect the quality of nighttime breathing. Breath meditation is your bridge toward clarity.',
 
-  // ─── VENUS (الكليتان) ──────────────────────────────────────────────────────
-  'venus:0':  'الزهرة في الحمل تُعطي الكليتين طاقةً دافعة — قادرةٌ على التنقية السريعة لكنّها قد تُفرط في استهلاك المعادن بسبب النشاط المتّقد. زيادةُ السوائل والمعادن كالمغنيسيوم تدعم التوازن.',
-  'venus:1':  'الزهرة في الثور تُعطي الكليتين استقرارًا دموريًّا — إيقاعُ التنقية بطيءٌ وثابت. الإفراطُ في الأطعمة الغنيّة يُثقِل جهازَ الترشيح. اعتدِل في الملح والدسم وكن وفيًّا للسوائل.',
-  'venus:2':  'الزهرة في الجوزاء تُلوِّن الكليتين بتذبذب التوازن — تتأثّر بنشاط الذهن وكثرة التنقّل. الكليتان يحتاجان استقرارًا لا يُوفِّره التشتّت الدائم. خصِّص توقيتًا منتظمًا للماء والراحة الهادئة.',
-  'venus:3':  'الزهرة في السرطان تربط الكليتين بالبيئة العاطفية — التوتّراتُ الأسرية تنعكس على توازن السوائل في الجسم. الرعايةُ الذاتية والأمانُ العاطفي هما حمايةٌ مباشرة للجهاز البولي.',
-  'venus:4':  'الزهرة في الأسد تمنح الكليتين إيقاعًا ملكيًّا — الجسم يُؤدّي بشكلٍ أفضل حين تكون في حالة بهجة ومتعة. الإرهاقُ من الأداء المستمر يُرهق الترشيح. امنح نفسَك أوقاتَ لهوٍ بلا هدف.',
-  'venus:5':  'الزهرة في العذراء تمنح الكليتين دقّةً ومنهجيّةً في الترشيح — الجهاز البولي يعمل بكفاءة حين تُراعَى التفاصيل الغذائية. احذر من الحساسيات الغذائية وانتبه لصحّة الجهاز البولي بانتظام.',
-  'venus:6':  'الزهرة في الميزان — بيتها — تمنح الكليتين اتّزانًا أصيلًا. لكنّ السعيَ الدائم للتوازن المثالي يُولِّد توتّرًا خفيًّا. العلاقاتُ الصحّية تُعزّز وظيفة الكليتين — حدودٌ واضحة في الشراكات تحمي صحّتك.',
-  'venus:7':  'الزهرة في العقرب تُعطي الكليتين قدرةً تنقوية عميقة — تُزيل السُّموم العاطفية والجسدية بشكلٍ جذري. الإفراطُ في الكثافة العاطفية يُثقِل الجهاز الهرموني. التحوّلُ المستمر يستدعي بروتوكول ترطيب جيّد.',
-  'venus:8':  'الزهرة في القوس تُعطي الكليتين ميلًا للتوسُّع — جسمُك يتكيّف مع السفر والتغيُّر، لكنّ الانتظامَ الغذائي يظلّ ضروريًّا. احذر من الإفراط في الأطعمة الغريبة أو التوابل الحادّة.',
-  'venus:9':  'الزهرة في الجدي تمنح الكليتين بنيةً متينة وقدرةً على العمل تحت ضغط. الإفراطُ في المهام دون راحة يُهدّد التوازن الهرموني. خصِّص أوقات استشفاء منتظمة ولا تُقصِّر في النوم.',
-  'venus:10': 'الزهرة في الدلو تُعطي الكليتين حساسيّةً للحقل الكهرمغناطيسي — الموجاتُ الكهربية البيئية قد تُؤثّر على إيقاع الترشيح. ابتعد دوريًّا عن الشاشات، وجرِّب التأريضَ بالمشي حافيًا.',
-  'venus:11': 'الزهرة في الحوت تُلطِّف الكليتين بروحانيّةٍ عميقة — جهازُ الترشيح يتأثّر بالحالة الروحية والنفسية أكثر من أيّ عاملٍ آخر. الراحةُ والتأمّل وتقليل السُّمومِ العاطفية هي روشتتك الصحّية.',
+  // ─── VENUS (Kidneys) ──────────────────────────────────────────────────────
+  'venus:0':  'Venus in Aries gives the kidneys a driving energy — capable of rapid purification but may over-consume minerals due to intense activity. Increasing fluids and minerals like magnesium supports balance.',
+  'venus:1':  'Venus in Taurus gives the kidneys circulatory steadiness — the purification rhythm is slow and stable. Excess rich foods burdens the filtration system. Moderate your salt and fats and remain faithful to your fluids.',
+  'venus:2':  'Venus in Gemini colours the kidneys with fluctuating balance — affected by mental activity and constant movement. The kidneys need stability that perpetual distraction cannot provide. Dedicate regular time to water and quiet rest.',
+  'venus:3':  'Venus in Cancer links the kidneys to the emotional environment — family tensions are reflected in the body\'s fluid balance. Self-care and emotional security are direct protection for the urinary system.',
+  'venus:4':  'Venus in Leo gives the kidneys a regal rhythm — the body performs better when you are in a state of joy and pleasure. Exhaustion from constant performance strains filtration. Give yourself time for purposeless delight.',
+  'venus:5':  'Venus in Virgo gives the kidneys precision and methodical filtration — the urinary system works efficiently when dietary details are tended to. Watch for food sensitivities and monitor urinary health regularly.',
+  'venus:6':  'Venus in Libra — its home — gives the kidneys an innate balance. But the constant pursuit of perfect balance generates subtle tension. Healthy relationships enhance kidney function — clear boundaries in partnerships protect your health.',
+  'venus:7':  'Venus in Scorpio gives the kidneys a deep purifying capacity — removing emotional and physical toxins thoroughly. Excessive emotional intensity burdens the hormonal system. Constant transformation calls for a good hydration protocol.',
+  'venus:8':  'Venus in Sagittarius gives the kidneys a tendency toward expansion — your body adapts to travel and change, but dietary regularity remains essential. Beware excess exotic foods or sharp spices.',
+  'venus:9':  'Venus in Capricorn gives the kidneys a solid structure and capacity to work under pressure. Excess tasks without rest threaten hormonal balance. Dedicate regular recovery times and do not scrimp on sleep.',
+  'venus:10': 'Venus in Aquarius gives the kidneys sensitivity to the electromagnetic field — environmental electrical waves may affect the filtration rhythm. Periodically step away from screens, and try grounding yourself by walking barefoot.',
+  'venus:11': 'Venus in Pisces softens the kidneys with deep spirituality — the filtration system is affected by spiritual and psychological state more than any other factor. Rest, meditation, and reducing emotional toxins are your health prescription.',
 
-  // ─── MARS (المرارة) ────────────────────────────────────────────────────────
-  'mars:0':  'المريخ في الحمل — بيته — يمنح المرارةَ طاقةً اندفاعيّةً قويّة. إفرازُ الصفراء حادٌّ وسريع لكنّ التوقّد المستمر يُنهِك. تجنَّب الأطعمة الحارّة والمُنبِّهات المفرطة، وصرِّف طاقتك في رياضةٍ منتظمة.',
-  'mars:1':  'المريخ في الثور يُبطِّئ إيقاعَ المرارة — الصفراء تُفرَز ببطء وقد تتراكم. الإفراطُ في الأطعمة الدهنية خطرٌ خاصّ لك. الحركةُ الجسديّة والمشيُ اليومي يُنشِّطان إيقاعَ الهضم ويمنعان الركود.',
-  'mars:2':  'المريخ في الجوزاء يُلوِّن المرارةَ بتذبذب الأداء — تحتاج انتظامًا في مواعيد الوجبات. العصبيّةُ والإثارةُ الذهنية تُخلِّ بإيقاع إفراز الصفراء. خصِّص أوقاتًا هادئة للأكل بعيدًا عن الشاشات.',
-  'mars:3':  'المريخ في السرطان قد يُحوِّل الغضبَ المكبوتَ إلى توتّرٍ في المرارة — المشاعر غير المُعبَّرة تُحفِّز اضطرابات الحويصلة الصفراوية. الكتابةُ والتعبير الفنّي والبكاء الصادق ضروريّةٌ لصحّة هذا العضو.',
-  'mars:4':  'المريخ في الأسد يمنح المرارةَ حماسًا قوّيًّا — لكنّ التوقّدَ للمجد والمنافسة يرفع حرارة الكبد والمرارة. الأطعمةُ المبرِّدة كالخيار وعصير الشمندر والشعير تُوازن الإفراط الناري.',
-  'mars:5':  'المريخ في العذراء يمنح المرارةَ دقّةً هضميّة — يُفرز الصفراء في مواعيد منتظمة. الأطعمةُ النظيفة والتحليلُ الغذائي الدقيق يُعزِّزان أداءه. احذر التوتّر الخفي الذي يُجنِّد الطاقة بعيدًا عن الهضم.',
-  'mars:6':  'المريخ في الميزان يُعطي المرارةَ صراعًا بين الدافع والتردّد — الغضبُ المُؤجَّل الناتج عن مراعاة الآخرين يتراكم فيها. صرِّح بحاجاتك وضع حدودًا واضحة — صحّتُك الهضمية تعتمد على ذلك.',
-  'mars:7':  'المريخ في العقرب — بيته — يمنح المرارةَ حدّةً تنقويّة قويّة. الصفراء كثيفة وفعّالة. الإفراطُ في الكثافة والضغط قد يُولِّد التهابات. الصيامُ الدوري والأعشابُ المرارية الباردة تُوازن الحدّة.',
-  'mars:8':  'المريخ في القوس يُعطي المرارةَ توسُّعًا — الجسم يتعامل مع أطعمةٍ متنوّعة بمرونة. الإفراطُ في الأطعمة الدهنية خلال السفر يُرهِق الهضم. خصِّص يومًا خفيفًا بعد كل أسبوع غنيّ.',
-  'mars:9':  'المريخ في الجدي يمنح المرارةَ انضباطًا ومتانة — لكنّ الإرهاقَ المزمن يُبطِّئ الإفراز. الغضبُ المكبوت ناتجٌ عن ضغط الصمود المستمر — أفرِجْ عنه بمجهودٍ جسديّ كالرفع الثقيل أو الجري.',
-  'mars:10': 'المريخ في الدلو يمنح المرارةَ أداءً غير منتظم — يندفع بحماسٍ ثم يتوقّف. الجهازُ الهضمي يتأثّر بالتغيير المفاجئ في النظام الغذائي. الانتظامُ في روتين الطعام ضروريّ رغم طبيعتك التحرّريّة.',
-  'mars:11': 'المريخ في الحوت يُلوِّن المرارةَ بحساسيّةٍ روحانيّة — يستجيب للحالة الداخلية أكثر من الطعام. الإرهاقُ العاطفي يُعطِّل الهضم مباشرةً. التأمّلُ قبل الوجبات واليقظةُ الكاملة أثناء الأكل هما علاجُك.',
+  // ─── MARS (Gallbladder) ────────────────────────────────────────────────────
+  'mars:0':  'Mars in Aries — its home — gives the gallbladder a powerful impulsive energy. Bile secretion is sharp and rapid, but constant ignition is exhausting. Avoid spicy foods and excessive stimulants, and channel your energy into regular exercise.',
+  'mars:1':  'Mars in Taurus slows the gallbladder\'s rhythm — bile is secreted slowly and may accumulate. Excess fatty foods are a particular risk for you. Physical movement and daily walking stimulate the digestive rhythm and prevent stagnation.',
+  'mars:2':  'Mars in Gemini colours the gallbladder with fluctuating performance — it needs regularity in meal times. Nervousness and mental excitement disrupt the bile secretion rhythm. Set aside quiet times for eating away from screens.',
+  'mars:3':  'Mars in Cancer may turn suppressed anger into tension in the gallbladder — unexpressed emotions trigger gallbladder disturbances. Writing, artistic expression, and honest tears are essential for this organ\'s health.',
+  'mars:4':  'Mars in Leo gives the gallbladder strong enthusiasm — but the blazing drive for glory and competition raises liver and gallbladder heat. Cooling foods like cucumber, beet juice, and barley balance the fiery excess.',
+  'mars:5':  'Mars in Virgo gives the gallbladder digestive precision — it secretes bile on a regular schedule. Clean foods and careful nutritional analysis enhance its performance. Watch for the subtle stress that diverts energy away from digestion.',
+  'mars:6':  'Mars in Libra gives the gallbladder a conflict between impulse and hesitation — deferred anger from accommodating others accumulates within it. State your needs clearly and set firm boundaries — your digestive health depends on it.',
+  'mars:7':  'Mars in Scorpio — its home — gives the gallbladder sharp purifying intensity. Bile is dense and effective. Excess intensity and pressure may generate inflammation. Periodic fasting and cooling bitter herbs balance the sharpness.',
+  'mars:8':  'Mars in Sagittarius gives the gallbladder expansion — the body handles diverse foods with flexibility. Excess fatty foods during travel can strain digestion. Dedicate a light day after each rich week.',
+  'mars:9':  'Mars in Capricorn gives the gallbladder discipline and durability — but chronic fatigue slows secretion. Suppressed anger from the pressure of constant endurance needs an outlet — release it through physical effort like weight lifting or running.',
+  'mars:10': 'Mars in Aquarius gives the gallbladder irregular performance — it surges with enthusiasm then stops. The digestive system is affected by sudden dietary changes. Regularity in eating routines is essential despite your liberating nature.',
+  'mars:11': 'Mars in Pisces colours the gallbladder with spiritual sensitivity — it responds to inner state more than to food. Emotional exhaustion directly disrupts digestion. Meditation before meals and full mindfulness while eating are your remedy.',
 
-  // ─── JUPITER (الكبد) ───────────────────────────────────────────────────────
-  'jupiter:0':  'المشتري في الحمل يمنح الكبدَ طاقةً تجديديّة قويّة — يُعالِج ويُنقِّي بسرعة. الإفراطُ في المحفِّزات والمُسرِّعات يُنهِك هذه الطاقة. تجنَّب التجاوزات الغذائية المفاجئة واحتفِظ بروتين تنقية بسيط.',
-  'jupiter:1':  'المشتري في الثور يمنح الكبدَ ثروةً استيعابيّة — يُعالِج المواد الغنيّة بعمق. لكنّ الميلَ للإفراط في الطعام والشراب يُثقِله. النظامٌ الغذائي المعتدل والحركةُ اليوميّة يُعيدان الاتّزان.',
-  'jupiter:2':  'المشتري في الجوزاء يُعطي الكبدَ مرونةً تجميعيّة — يتعامل مع معلوماتٍ غذائية متنوّعة. الإرهاقُ الذهني ينعكس على وظيفة الكبد. خصِّص أيامًا بسيطةً غذائيًّا تُرِيح جهازَك.',
-  'jupiter:3':  'المشتري في السرطان يمنح الكبدَ قدرةً تغذويّة ورعائيّة — لكنّه يُفرِط في الاحتفاظ بالسُّموم العاطفية. الحياةُ الأسرية المضطربة تعكس حالةَ الكبد. ابنِ بيئةً مريحة وآمنة لتصنع صحّة داخلية.',
-  'jupiter:4':  'المشتري في الأسد يمنح الكبدَ توسُّعًا ملكيًّا — كريمٌ في الاستيعاب لكنّه قد يُفرط في استهلاك الموارد. السخاءُ الجسدي يعكس السخاءَ الغذائي — الاعتدالُ في الكميات والإطالةُ في الاستمتاع هو مفتاح صحّتك.',
-  'jupiter:5':  'المشتري في العذراء — بيته التقليدي — يمنح الكبدَ كفاءةً دقيقة في التمثيل الغذائي. برامجُ التنقية والصيام المتقطّع مفيدةٌ بشكلٍ استثنائي لك. انتبه للملاحق الغذائية والأعشابِ الداعمة للكبد.',
-  'jupiter:6':  'المشتري في الميزان يمنح الكبدَ إيقاعًا تناسقيًّا — يعمل أفضل حين تكون العلاقاتُ في حالة سلام. الانزعاجاتُ المزمنة في الشراكات تُولِّد توتّرًا في الجهاز الهضمي العميق. السلامُ الداخلي هو تغذيةٌ حرفيّة.',
-  'jupiter:7':  'المشتري في العقرب يمنح الكبدَ قدرةً تحويليّة عميقة — يُنقِّي ويُجدِّد بشكلٍ جذري. لكنّ الإفراط في التجربة الكثيفة يُثقِله. بروتوكولاتُ التنقية الموسمية والأعشابُ المرارية تدعم هذا الطراز القويّ.',
-  'jupiter:8':  'المشتري في القوس — بيته — يمنح الكبدَ اتّساعًا طبيعيًّا — قادرٌ على التعامل مع أطعمةٍ متنوّعة من ثقافات مختلفة. الإفراطُ في الحياة الليليّة والسفر الغذائي يُرهِقه. خصِّص أسبوعًا بسيطًا بعد كل موسم غنيّ.',
-  'jupiter:9':  'المشتري في الجدي يمنح الكبدَ انضباطًا وكفاءةً صامتة. الضغوطُ المهنية والحملُ الزائد يُثقِلان وظيفةَ التمثيل. برنامجُ دعم الكبد في الربيع والخريف ضروريّ للحفاظ على هذا الأداء الصامت الجيّد.',
-  'jupiter:10': 'المشتري في الدلو يمنح الكبدَ استعدادًا للمستقبل والتجديد — لكنّ الإيقاعَ غير المنتظم يُربِك الجهازَ الأنزيمي. انتظامُ روتين النوم والطعام يُعوِّض طبيعتَك التجريبية.',
-  'jupiter:11': 'المشتري في الحوت يمنح الكبدَ حساسيّةً روحيّة — يتأثّر باللاوعي الجمعي ويستجيب للحالة الروحية. الانفتاحُ على الشفاء الطاقيّ والأعشابُ التقليدية قد تكون علاجاتٌ فعّالة لصحّة كبدك.',
+  // ─── JUPITER (Liver) ───────────────────────────────────────────────────────
+  'jupiter:0':  'Jupiter in Aries gives the liver powerful regenerative energy — it processes and purifies quickly. Excess stimulants and accelerants deplete this energy. Avoid sudden dietary excess and maintain a simple purification routine.',
+  'jupiter:1':  'Jupiter in Taurus gives the liver abundant absorptive wealth — it processes rich substances deeply. But the tendency to overindulge in food and drink burdens it. A moderate diet and daily movement restore balance.',
+  'jupiter:2':  'Jupiter in Gemini gives the liver versatile assimilating flexibility — it handles diverse nutritional information. Mental exhaustion is reflected in liver function. Dedicate nutritionally simple days to give your system a rest.',
+  'jupiter:3':  'Jupiter in Cancer gives the liver a nurturing, caring capacity — but it tends to retain emotional toxins. A troubled home life mirrors the liver\'s condition. Build a comfortable and safe environment to create inner health.',
+  'jupiter:4':  'Jupiter in Leo gives the liver royal expansion — generous in absorption but it may over-consume resources. Physical generosity mirrors dietary generosity — moderation in quantity and a leisurely enjoyment is the key to your health.',
+  'jupiter:5':  'Jupiter in Virgo — its traditional home — gives the liver exceptional metabolic precision. Cleanse programmes and intermittent fasting are exceptionally beneficial for you. Pay attention to dietary supplements and liver-supporting herbs.',
+  'jupiter:6':  'Jupiter in Libra gives the liver a harmonious rhythm — it works best when relationships are at peace. Chronic irritations in partnerships generate tension in the deep digestive system. Inner peace is literal nourishment.',
+  'jupiter:7':  'Jupiter in Scorpio gives the liver a deep transformative capacity — it purifies and renews thoroughly. But excess intense experience burdens it. Seasonal cleansing protocols and bitter herbs support this powerful type.',
+  'jupiter:8':  'Jupiter in Sagittarius — its home — gives the liver natural expansiveness — capable of handling diverse foods from different cultures. Excess nightlife and dietary adventure exhausts it. Dedicate a simple week after every rich season.',
+  'jupiter:9':  'Jupiter in Capricorn gives the liver discipline and quiet efficiency. Professional pressures and overload strain metabolic function. A liver support programme in spring and autumn is essential to maintaining this quietly excellent performance.',
+  'jupiter:10': 'Jupiter in Aquarius gives the liver a readiness for the future and renewal — but an irregular rhythm confuses the enzyme system. Regular sleep and eating routines compensate for your experimental nature.',
+  'jupiter:11': 'Jupiter in Pisces gives the liver spiritual sensitivity — it is affected by the collective unconscious and responds to spiritual state. Openness to energetic healing and traditional herbs may be effective treatments for your liver\'s health.',
 
-  // ─── SATURN (الطحال) ───────────────────────────────────────────────────────
-  'saturn:0':  'زحل في الحمل يُعطي الطحالَ دفاعًا حادًّا — جهازُ المناعة يستجيب بقوة للمحفِّزات. الالتهاباتُ الحادّة من أبرز التحدّيات. نمطُ الحياة المنضبط مع تمارين الحرارة المعتدلة يُعزِّز الاتّزان.',
-  'saturn:1':  'زحل في الثور يمنح الطحالَ متانةً وثباتًا مناعيًّا. لكنّ التعلُّقَ بالعادات القديمة قد يُبطِئ استجابةَ المناعة للتجدّد. ادرج أطعمةً مُقوِّيةً للدم كالشمندر والرمّان والبقوليّات.',
-  'saturn:2':  'زحل في الجوزاء يمنح الطحالَ حساسيّةً معلوماتيّة — يستجيب لأنماط التفكير والإجهاد الذهني. الأرقُ والتشتّت يُضعِفان الجهاز المناعي تدريجيًّا. النومُ المنتظم يُعيد بناءَ خلايا الدم بيضاء.',
-  'saturn:3':  'زحل في السرطان يمنح الطحالَ ارتباطًا عميقًا بالجذور — الأمانُ العائلي والانتماءُ يُغذّيان المناعة. فقدانُ الأمان والتوتّرُ العائلي يُضعِفان الجهازَ الدفاعي بشكلٍ ملحوظ.',
-  'saturn:4':  'زحل في الأسد يمنح الطحالَ قدرةً انتقائيّةً في تصفية السُّموم العاطفية والجسدية. الإفراطُ في طلب الكمال والاعتراف يُولِّد توتّرًا مزمنًا يثقل الدم. الفرحُ الخالص والضحكُ يُحفِّزان نشاط الطحال.',
-  'saturn:5':  'زحل في العذراء يمنح الطحالَ كفاءةً دقيقة وتحليليّةً في إدارة الدم. القلقُ الوسواسي والتفكيرُ الزائد يُثقِلان وظيفتَه. اعتمد نظامًا غذائيًّا دقيقًا يدعم بناءَ الدم وتقليل الأعباء الهضمية.',
-  'saturn:6':  'زحل في الميزان يمنح الطحالَ توازنًا انتقائيًّا — لكنّ التردُّدَ المزمن يُضعِف جهازَ المناعة. الحدودُ الواضحة في العلاقات تُنقِّي الطاقةَ الدموية. الانسجامُ الداخلي يعكس صحّةَ الدورة الدموية.',
-  'saturn:7':  'زحل في العقرب يمنح الطحالَ عمقًا تنقويًّا — يُصفِّي الدمَ على مستوياتٍ عميقة. الإفراطُ في الأحمال العاطفية الثقيلة قد يُنهِك الجهاز المناعي. جلساتُ التنقية الموسمية والأعشابُ المُطهِّرة قيِّمة لك.',
-  'saturn:8':  'زحل في القوس يمنح الطحالَ قدرةً على التكيُّف مع البيئات المختلفة. العيشُ في مناخاتٍ غير ملائمة قد يُثقِل المناعة. احرص على ملاءمة بيئتك المعيشية لطبيعتك الجسدية واحمِ نفسَك من تطرّف الطقس.',
-  'saturn:9':  'زحل في الجدي — بيته — يمنح الطحالَ بنيةً مناعيّةً صلبة. الصمودُ في الضغط الطويل ممكن، لكنّ الإرهاقَ المتراكم يُفاجئ الجهازَ فجأةً. خطِّط لإجازاتٍ استشفائية دوريّة قبل أن تصل حدَّ الاستنزاف.',
-  'saturn:10': 'زحل في الدلو يمنح الطحالَ حساسيّةً للطاقة الجمعية والمواجيد الاجتماعية. الإرهاقُ من الالتزامات الجماعية يُضعِف الجهاز المناعي. اعرف متى تنسحب وأعطِ نفسَك وقت تعافٍ في عزلةٍ اختيارية.',
-  'saturn:11': 'زحل في الحوت يُلوِّن الطحالَ بعمقٍ روحاني — المناعةُ ترتفع بالممارسات الروحيّة وتنخفض بالضياع الداخلي. النومُ العميق والأحلامُ الواعية هي أداةُ تجديدك الأولى. لا تُقلِّل من قيمة عالمك الروحيّ.',
+  // ─── SATURN (Spleen) ───────────────────────────────────────────────────────
+  'saturn:0':  'Saturn in Aries gives the spleen sharp defence — the immune system responds powerfully to stimuli. Acute inflammations are among the main challenges. A disciplined lifestyle with moderate heat exercises enhances balance.',
+  'saturn:1':  'Saturn in Taurus gives the spleen durability and immune steadiness. But clinging to old habits may slow the immune response to renewal. Include blood-building foods like beetroot, pomegranate, and legumes.',
+  'saturn:2':  'Saturn in Gemini gives the spleen informational sensitivity — it responds to thinking patterns and mental fatigue. Insomnia and distraction gradually weaken the immune system. Regular sleep rebuilds white blood cells.',
+  'saturn:3':  'Saturn in Cancer gives the spleen a deep connection to roots — family safety and a sense of belonging nourish immunity. Loss of security and family tension noticeably weaken the defensive system.',
+  'saturn:4':  'Saturn in Leo gives the spleen a selective capacity in filtering emotional and physical toxins. Excessive pursuit of perfection and recognition generates chronic tension that burdens the blood. Pure joy and laughter stimulate spleen activity.',
+  'saturn:5':  'Saturn in Virgo gives the spleen precise, analytical blood management efficiency. Obsessive anxiety and excessive thinking burden its function. Adopt a precise diet that supports blood building and reduces digestive burdens.',
+  'saturn:6':  'Saturn in Libra gives the spleen selective balance — but chronic indecision weakens the immune system. Clear boundaries in relationships purify blood energy. Inner harmony reflects the health of circulation.',
+  'saturn:7':  'Saturn in Scorpio gives the spleen deep purifying depth — it filters blood on profound levels. Excessive heavy emotional burdens may exhaust the immune system. Seasonal cleansing sessions and purifying herbs are valuable for you.',
+  'saturn:8':  'Saturn in Sagittarius gives the spleen the ability to adapt to different environments. Living in unsuitable climates may burden immunity. Ensure your living environment suits your physical nature and protect yourself from weather extremes.',
+  'saturn:9':  'Saturn in Capricorn — its home — gives the spleen a solid immune structure. Endurance under prolonged pressure is possible, but accumulated fatigue can suddenly surprise the system. Plan periodic recovery retreats before you reach the point of depletion.',
+  'saturn:10': 'Saturn in Aquarius gives the spleen sensitivity to collective energy and social currents. Exhaustion from group commitments weakens the immune system. Know when to withdraw and give yourself recovery time in intentional solitude.',
+  'saturn:11': 'Saturn in Pisces colours the spleen with deep spirituality — immunity rises with spiritual practices and falls with inner lostness. Deep sleep and lucid dreaming are your primary renewal tool. Do not underestimate the value of your spiritual world.',
 };
 
-// Arabic element names for the organs display
+// Element names for the organs display
 export const ELEMENT_AR_ORGAN: Record<'fire' | 'earth' | 'air' | 'water', string> = {
-  fire: 'ناري',
-  earth: 'ترابي',
-  air: 'هوائي',
-  water: 'مائي',
+  fire: 'Fiery',
+  earth: 'Earthy',
+  air: 'Airy',
+  water: 'Watery',
 };
 
 // House themes for organ reading context
 export const HOUSE_THEME_SHORT: Record<number, string> = {
-  1: 'الذات',
-  2: 'الموارد',
-  3: 'العقل',
-  4: 'الجذور',
-  5: 'الإبداع',
-  6: 'الصحّة',
-  7: 'الشراكة',
-  8: 'التحوّل',
-  9: 'الحكمة',
-  10: 'المهنة',
-  11: 'المجتمع',
-  12: 'اللاواعي',
+  1: 'Self',
+  2: 'Resources',
+  3: 'Mind',
+  4: 'Roots',
+  5: 'Creativity',
+  6: 'Health',
+  7: 'Partnership',
+  8: 'Transformation',
+  9: 'Wisdom',
+  10: 'Career',
+  11: 'Community',
+  12: 'Unconscious',
 };
 
 export const HD_CENTRE_MEANING: Record<string, { defined: string; open: string }> = {
-  'مركز الرأس': {
-    defined: 'إلهامك ثابتٌ — أفكارك تأتي بإيقاعٍ منتظم.',
-    open: 'تتأثّر بأفكار الآخرين — رُبّ سؤالٍ يُطرَح ليس سؤالك.',
+  'Head Centre': {
+    defined: 'Your inspiration is consistent — your thoughts arrive in a regular rhythm.',
+    open: 'You are influenced by the ideas of others — some questions you hold may not truly be yours.',
   },
-  'مركز الأجنا': {
-    defined: 'طريقتك في التفكير ثابتة — منهجٌ تعرفه عن نفسك.',
-    open: 'ذهنك يتلوّن بمن حولك — انفتاحٌ على وجهات نظر متعدّدة.',
+  'Ajna Centre': {
+    defined: 'Your way of thinking is stable — a method you know about yourself.',
+    open: 'Your mind takes on the colour of those around you — an openness to many perspectives.',
   },
-  'مركز الحلق': {
-    defined: 'تعبيرك ثابتٌ — صوتك معروف.',
-    open: 'تعبيرك يتلوّن — كلامك يحتاج إذنًا، أو يأخذ صوت من حولك.',
+  'Throat Centre': {
+    defined: 'Your expression is consistent — your voice is known.',
+    open: 'Your expression shifts — your words need permission, or they take on the voice of those around you.',
   },
-  'مركز الهوية': {
-    defined: 'اتّجاهك راسخ — تعرف من أنت.',
-    open: 'تتشكّل هويّتك بحسب من تكون معه — مرونةٌ تحتاج مرايا.',
+  'Identity Centre': {
+    defined: 'Your direction is grounded — you know who you are.',
+    open: 'Your identity shapes itself according to who you are with — a flexibility that needs mirrors.',
   },
-  'مركز الإرادة': {
-    defined: 'إرادتك مستدامة — تستطيع أن تَعِد وتفي.',
-    open: 'إرادتك تتعب من الوعود — لا تَعِد بما ليس لك أن تضمنه.',
+  'Ego/Heart Centre': {
+    defined: 'Your will is sustainable — you are able to promise and deliver.',
+    open: 'Your will tires from promises — do not commit to what you cannot guarantee.',
   },
-  'مركز العجز الذهبي': {
-    defined: 'طاقتك المستدامة موجودة — تستطيع الاستمرار.',
-    open: 'طاقتك متذبذبة — احترم لحظات التعب ولا تُجبر نفسك.',
+  'Sacral Centre': {
+    defined: 'Your sustained energy is present — you are able to continue.',
+    open: 'Your energy fluctuates — honour the moments of tiredness and do not force yourself.',
   },
-  'مركز الضفيرة': {
-    defined: 'موجاتك العاطفية لها إيقاع — تعرفها فيك.',
-    open: 'تمتصّ شعور الآخرين — تعلَّم أن تميّز ما هو لك ممّا هو لهم.',
+  'Solar Plexus Centre': {
+    defined: 'Your emotional waves have a rhythm — you recognise them in yourself.',
+    open: 'You absorb the feelings of others — learn to distinguish what is yours from what is theirs.',
   },
-  'مركز الجذر': {
-    defined: 'ضغطُك الداخلي ثابتٌ — تتحرّك بدافعٍ منتظم.',
-    open: 'تَستجيب لضغط البيئة — اعرف متى تأخذ نَفَسًا.',
+  'Root Centre': {
+    defined: 'Your inner pressure is stable — you move from a steady impulse.',
+    open: 'You respond to environmental pressure — know when to pause and take a breath.',
   },
-  'مركز الطحال': {
-    defined: 'حدسك حاضر باستمرار — يعرف من حولك قبل أن يقولوا.',
-    open: 'حدسك يتأثّر — تعلَّم أن تُميّز إشاراتك من إشارات المحيط.',
+  'Spleen Centre': {
+    defined: 'Your intuition is continuously present — it knows about those around you before they speak.',
+    open: 'Your intuition is influenced — learn to distinguish your own signals from those of your surroundings.',
   },
 };

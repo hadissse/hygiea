@@ -1,4 +1,4 @@
-// Scr218-219 — السيرة البانورامية + العبورات الكونية الكبرى.
+// Panoramic biography + major cosmic transits.
 // Unified chronological timeline merging Steiner 7-year phases + major planetary transits.
 
 export type TimelineItemType = 'phase' | 'transit';
@@ -7,16 +7,16 @@ export interface UnifiedTimelineItem {
   /** Sort key — start age (phases) or exact transit age */
   sortAge: number;
   type: TimelineItemType;
-  /** Display age label, e.g. "٠–٧" or "سن ~١٢" */
+  /** Display age label, e.g. "0–7" or "age ~12" */
   ageLabel: string;
   /** Numeric age range [start, end]. For transits end ≈ start+1 */
   age: [number, number];
   name: string;
   svgKey: string;
   planet: string;
-  /** One-line Arabic summary */
+  /** One-line summary */
   theme: string;
-  /** Full Arabic body, 3-5 rich sentences drawn from Steiner / Judith Hill / Bruno Huber sources */
+  /** Full body, 3-5 rich sentences drawn from Steiner / Judith Hill / Bruno Huber sources */
   body: string;
   /** Reflective prompt (transits only) */
   prompt?: string;
@@ -28,313 +28,313 @@ export const UNIFIED_TIMELINE: UnifiedTimelineItem[] = [
   {
     sortAge: 0,
     type: 'phase',
-    ageLabel: '٠–٧',
+    ageLabel: '0–7',
     age: [0, 7],
-    name: 'الطفولة الأولى',
+    name: 'Early Childhood',
     svgKey: 'moon',
-    planet: 'القمر',
-    theme: 'الجسد والثقة',
+    planet: 'Moon',
+    theme: 'Body and Trust',
     body:
-      'في السنوات السبع الأولى تعمل القوى التكوينية الكونية على بناء الجسد من الداخل إلى الخارج — كما وصف شتاينر بأن "الإنسان يُنحت من المادة الكونية بإزميل غير مرئي". ' +
-      'الطفل يتعلّم عن طريق التقليد الخالص لا عن طريق الفهم؛ فكل ما يلمسه الحسّ يُطبع مباشرةً في إيقاع نموّه. ' +
-      'يُطوّر في هذه المرحلة أولاً حواسّ الجسد الأربع: اللمس والحياة والحركة الذاتية والتوازن — وهي الحواس التي تجعله "بيتاً في الجسد". ' +
-      'تسقط الأسنان اللبنية في نهاية هذه المرحلة علامةً على أن القوى التكوينية انتهت من بناء هيكل الجسد وباتت حرّة للانتقال إلى الطاقة الفكرية. ' +
-      'القمر يحكم هذه الدورة بصفته قوة النمو والتكيّف، ويُرسي في الطفل الثقة الأساسية بأن العالم آمن وجدير بالحبّ.',
+      'In the first seven years the formative cosmic forces work to build the body from the inside out — as Steiner described: "the human being is sculpted from cosmic matter with an invisible chisel." ' +
+      'The child learns through pure imitation, not understanding; everything the senses touch is directly imprinted in the rhythm of its growth. ' +
+      'In this phase the child first develops the four bodily senses: touch, life, self-movement, and balance — the senses that make it "at home in the body." ' +
+      'The loss of baby teeth at the end of this phase signals that the formative forces have finished building the body\'s framework and are now free to move toward thinking energy. ' +
+      'The Moon governs this cycle as the force of growth and adaptation, establishing in the child the basic trust that the world is safe and worthy of love.',
   },
 
   // ── Phase 7–14 ─────────────────────────────────────────────────────────
   {
     sortAge: 7,
     type: 'phase',
-    ageLabel: '٧–١٤',
+    ageLabel: '7–14',
     age: [7, 14],
-    name: 'الطفولة الثانية',
+    name: 'Second Childhood',
     svgKey: 'mercury',
-    planet: 'عطارد',
-    theme: 'الخيال والسلطة المحبوبة',
+    planet: 'Mercury',
+    theme: 'Imagination and Beloved Authority',
     body:
-      'مع سقوط الأسنان اللبنية تتحرر القوى التكوينية من بناء الجسد لتتّجه نحو التفكير — ولهذا السبب بالتحديد قرّر شتاينر أن تبدأ المدرسة الرسمية عند سن السابعة لا قبله. ' +
-      'الجسد الأثيري (قوى النمو والذاكرة) يُطلق طاقته للحياة الداخلية، فيتّقد الخيال وتتفتّح الذاكرة الغنية بالصور. ' +
-      'التعلّم الصحيح في هذه المرحلة ينبغي أن يمرّ عبر الفنّ والإيقاع والقصة لا عبر المفاهيم الجافّة؛ لأن الطفل لا يزال يتعلّم بالتصوير لا بالتجريد. ' +
-      'حول سن التاسعة يمرّ الطفل بأزمة الفصل الأولى — يدرك لأول مرة أنه كائن منفصل عن الآخرين وعن الطبيعة — وهذه لحظة حاسمة تستدعي تدعيم الثقة والمرافقة. ' +
-      'السلطة المحبوبة (المعلم الموثوق) هي المرشد الرئيسي في هذه المرحلة؛ فالطفل يتعلّم من خلال التعلّق بنموذج بشري حيّ لا من خلال قواعد مجرّدة.',
+      'With the loss of baby teeth the formative forces are freed from building the body to move toward thinking — and it is for this very reason that Steiner decided formal schooling should begin at age seven and not before. ' +
+      'The etheric body (forces of growth and memory) releases its energy for inner life, so imagination ignites and memory rich with images opens. ' +
+      'Learning in this phase should pass through art, rhythm, and story rather than dry concepts; for the child still learns through imagery, not abstraction. ' +
+      'Around age nine the child passes through the first separation crisis — realising for the first time that it is a being separate from others and from nature — and this is a critical moment calling for reinforcement of trust and accompaniment. ' +
+      'The beloved authority (the trusted teacher) is the main guide in this phase; the child learns through attachment to a living human model, not through abstract rules.',
   },
 
   // ── Transit: Jupiter Return 1 (~12) ────────────────────────────────────
   {
     sortAge: 12,
     type: 'transit',
-    ageLabel: 'سن ~١٢',
+    ageLabel: 'age ~12',
     age: [11.5, 12.5],
-    name: 'عودة المشتري الأولى',
+    name: 'First Jupiter Return',
     svgKey: 'jupiter',
-    planet: 'المشتري',
-    theme: 'أول توسّع للوعي',
+    planet: 'Jupiter',
+    theme: 'First expansion of consciousness',
     body:
-      'حين يُكمل المشتري دورته الكاملة في سن الثانية عشرة تقريباً، يمرّ الطفل بأول لحظة توسّع حقيقي للوعي — يتحوّل السؤال من "لماذا؟" الطفولية إلى "ما العدل؟" الأخلاقية. ' +
-      'هذا التوقيت يتزامن مع منتصف مرحلة عطارد (٧–١٤)، حيث الجسد الأثيري يتحرر بشكل أعمق نحو التفكير وتبدأ قدرات الحكم المستقل في البروز. ' +
-      'المشتري يفتح هنا الباب الأول للحكمة الشخصية — ما يُلهمك في هذا السن غالباً يحمل بذرة رسالتك في الحياة. ' +
-      'في التقليد الأنثروبوصوفي تُوصف هذه اللحظة بأن "أرواح الحكمة" تزرع في الوعي الناشئ أول إحساس بالغاية الكبرى. ' +
-      'كثيرون يتذكّرون هذا السن بوصفه اللحظة التي بدأوا فيها يرون العالم بعيون أوسع — لحظة فتح الأفق.',
-    prompt: 'ما الذي كان يُلهمك في طفولتك المتأخرة — وهل لا يزال حيّاً فيك؟',
+      'When Jupiter completes its full orbit around age twelve, the child passes through the first moment of real expansion of consciousness — the question shifts from childhood\'s "why?" to the moral "what is just?" ' +
+      'This timing coincides with the middle of the Mercury phase (7–14), where the etheric body is freed more deeply toward thinking and capacities for independent judgment begin to emerge. ' +
+      'Jupiter opens here the first door to personal wisdom — what inspires you at this age often carries the seed of your life\'s mission. ' +
+      'In Anthroposophical tradition this moment is described as "spirits of wisdom" planting in the emerging consciousness a first sense of great purpose. ' +
+      'Many remember this age as the moment they began to see the world with wider eyes — the moment of opening the horizon.',
+    prompt: 'What inspired you in your later childhood — and is it still alive in you?',
   },
 
   // ── Transit: Saturn opposition (~14.5) ─────────────────────────────────
   {
     sortAge: 14.5,
     type: 'transit',
-    ageLabel: 'سن ~١٤٫٥',
+    ageLabel: 'age ~14.5',
     age: [14, 15],
-    name: 'مقابلة زحل الأولى',
+    name: 'First Saturn Opposition',
     svgKey: 'saturn',
-    planet: 'زحل',
-    theme: 'ولادة الهوية بالاصطدام',
+    planet: 'Saturn',
+    theme: 'Birth of identity through collision',
     body:
-      'حين يصل زحل إلى مقابلة موقعه الولادي — حوالي سن الرابعة عشرة — يبدأ أول اختبار حقيقي للهوية، وهو البلوغ بمعناه الروحي وليس الجسدي فحسب. ' +
-      'يُوصف شتاينر هذه اللحظة بأنها "ولادة الجسد النجمي" — الطبقة العاطفية من الكيان الإنساني التي تحمل الرغبات والمشاعر وتجعل المراهق يشعر بحدّة لم يعرفها من قبل. ' +
-      'التمرّد المراهق ليس فوضى بل هو الطريقة التي تختبر بها الأنا الناشئة حدودها بالاصطدام؛ زحل يقول: "اعرف أين تنتهي أنت ويبدأ الآخر". ' +
-      'في نظام هوبر يتوافق هذا مع النقطة المنخفضة في البيت الرابع — أعمق لحظة في الجذور قبل الصعود نحو مواجهة العالم الخارجي. ' +
-      'المراهقون الذين يجدون بالغاً حكيماً يُرافقهم في هذه اللحظة — لا يُسيطر ولا يتخلّى — يُطوّرون حدوداً صحية تخدمهم طوال حياتهم.',
-    prompt: 'ما الحدود التي اكتشفتها في مراهقتك — وأيها لا يزال يحكمك دون أن تدري؟',
+      'When Saturn reaches opposition to its natal position — around age fourteen — the first real test of identity begins: puberty in its spiritual not merely physical sense. ' +
+      'Steiner describes this moment as "the birth of the astral body" — the emotional layer of the human being that carries desires and feelings and makes the adolescent feel with an intensity they have not known before. ' +
+      'Adolescent rebellion is not chaos but the way the emerging ego tests its boundaries through collision; Saturn says: "know where you end and the other begins." ' +
+      'In Huber\'s system this coincides with the low point in the fourth house — the deepest moment of roots before the ascent toward confronting the outer world. ' +
+      'Adolescents who find a wise adult to accompany them in this moment — neither controlling nor abandoning — develop healthy boundaries that serve them throughout their lives.',
+    prompt: 'What boundaries did you discover in your adolescence — and which ones still govern you without your realising it?',
   },
 
   // ── Phase 14–21 ────────────────────────────────────────────────────────
   {
     sortAge: 14,
     type: 'phase',
-    ageLabel: '١٤–٢١',
+    ageLabel: '14–21',
     age: [14, 21],
-    name: 'المراهقة',
+    name: 'Adolescence',
     svgKey: 'venus',
-    planet: 'الزهرة',
-    theme: 'الجسد النجمي والحبّ',
+    planet: 'Venus',
+    theme: 'The Astral Body and Love',
     body:
-      'تبدأ هذه المرحلة بولادة الجسد النجمي — الطبقة العاطفية الداخلية — وتتجلّى أولاً في الصحوة الجنسية، ثم تتّسع تدريجياً لتشمل الصحوة الفنية والفلسفية والاجتماعية. ' +
-      'المراهق يكتشف لأول مرة "الآخر" ككائن حقيقي مستقل، ويبدأ ببناء علاقات تتجاوز الأسرة — وهذا الاكتشاف يصاحبه حنين عميق وألم الإحساس بالمسافة والانفصال. ' +
-      'الزهرة تحكم هذه المرحلة بوصفها قوة الجمال والتعلّق والرغبة في الاتحاد؛ الفن والموسيقى والحبّ الأول هي الأدوات التي يبني بها الشاب وعيه العاطفي. ' +
-      'التعليم الصحيح في هذه المرحلة ينبغي أن يُنمّي الحكم المستقل والمسؤولية الاجتماعية والفهم المفاهيمي بدل الحفظ والتلقين. ' +
-      'من يجتاز هذه المرحلة بدعم جيد يخرج منها بذخيرة عاطفية وجمالية تُغذّي إبداعه وعلاقاته طوال حياته.',
+      'This phase begins with the birth of the astral body — the inner emotional layer — and manifests first in sexual awakening, then gradually expands to encompass artistic, philosophical, and social awakening. ' +
+      'The adolescent discovers for the first time "the other" as a real independent being, and begins building relationships beyond the family — and this discovery is accompanied by deep longing and the pain of sensing distance and separation. ' +
+      'Venus governs this phase as the force of beauty, attachment, and the desire for union; art, music, and first love are the tools through which the young person builds their emotional consciousness. ' +
+      'Proper education in this phase should cultivate independent judgment, social responsibility, and conceptual understanding rather than memorisation and rote learning. ' +
+      'Those who pass through this phase with good support emerge with an emotional and aesthetic repertoire that nourishes their creativity and relationships throughout their lives.',
   },
 
   // ── Phase 21–28 ────────────────────────────────────────────────────────
   {
     sortAge: 21,
     type: 'phase',
-    ageLabel: '٢١–٢٨',
+    ageLabel: '21–28',
     age: [21, 28],
-    name: 'بناء الذات',
+    name: 'Building the Self',
     svgKey: 'sun',
-    planet: 'الشمس',
-    theme: 'ولادة الأنا الواعية',
+    planet: 'Sun',
+    theme: 'Birth of the Conscious Ego',
     body:
-      'في سن الحادية والعشرين تتحرر الأنا الحقيقية (الـ "Ich") لتخطو للمرة الأولى إلى العالم بإرادتها الخاصة — وصف شتاينر هذه اللحظة بأنها "الولادة الرابعة" بعد الولادة الجسدية والأثيرية والنجمية. ' +
-      'هذه هي مرحلة "النفس الواعية" بتعبير شتاينر — حيث يبدأ الإنسان بالتساؤل: "من أنا فعلاً خارج ما أورثوني؟" وتبدأ إجاباته الأولى في الظهور في اختياراته المهنية والعاطفية. ' +
-      'مراكز الربط في الدماغ تبلغ ذروة كفاءتها للعمل المفاهيمي، مما يمنح الإنسان قدرة غير مسبوقة على التفكير المنظم والتخطيط بعيد المدى. ' +
-      'تحرّر تدريجي من عائلة المنشأ وانقطاع من المرجعيات الموروثة يجعل هذه المرحلة مزيجاً من الحرية المبهجة والوحدة المثيرة للقلق. ' +
-      'كل ما تعلّمه الإنسان في العشرين سنة الأولى يُمتحَن الآن في بوتقة الواقع — مهنةً وعلاقةً وقِيَماً — وما يصمد هو الجوهر الحقيقي.',
+      'At age twenty-one the true ego ("Ich") is freed to step for the first time into the world with its own will — Steiner described this moment as "the fourth birth" after physical, etheric, and astral birth. ' +
+      'This is the phase of the "consciousness soul" in Steiner\'s terms — where the person begins to ask: "who am I truly, beyond what was given to me?" And the first answers begin to appear in their professional and emotional choices. ' +
+      'The associative centres in the brain reach peak efficiency for conceptual work, granting an unprecedented capacity for organised thinking and long-term planning. ' +
+      'A gradual liberation from the family of origin and a break from inherited references makes this phase a mixture of exhilarating freedom and anxiety-provoking solitude. ' +
+      'Everything learned in the first twenty years is now tested in the crucible of reality — profession, relationship, values — and what holds up is the true core.',
   },
 
   // ── Phase 28–35 ────────────────────────────────────────────────────────
   {
     sortAge: 28,
     type: 'phase',
-    ageLabel: '٢٨–٣٥',
+    ageLabel: '28–35',
     age: [28, 35],
-    name: 'مرحلة المريخ',
+    name: 'The Mars Phase',
     svgKey: 'mars',
-    planet: 'المريخ',
-    theme: 'الإرادة والاختبار',
+    planet: 'Mars',
+    theme: 'Will and Testing',
     body:
-      'الأنا تختبر إرادتها في العالم بشكل مباشر — هذه مرحلة العمل والنضال والتأسيس؛ الأهداف تصطدم بالواقع وتُمتحن ليس في الخيال بل في الجهد اليومي. ' +
-      'وصف شتاينر هذه المرحلة بأن مراكز الارتباط في الدماغ تبلغ أقصى كفاءتها عند سن الخامسة والثلاثين — وهو السن الذي جاء فيه أعظم المفكّرين بأكثر أفكارهم نضجاً (يسوع، بوذا، دانتي). ' +
-      'المريخ بوصفه حاكم هذه المرحلة يدفع الطاقة للخارج — الطموح والمنافسة وحبّ الانتصار — لكنه يُعلّم أيضاً أن الهزيمة الحقيقية هي البقاء بلا مبدأ. ' +
-      'عودة زحل الأولى (~٢٩٫٥) تقع في قلب هذه المرحلة وتجعل منها بوتقة حقيقية للتمحيص: ما هو مبني على صخر يصمد، وما هو على رمل يتهاوى. ' +
-      'من يُكمل هذه المرحلة بوعي يخرج منها بهوية راسخة ورؤية واضحة — ومن يهرب من اختباراتها يحملها معه في العقود التالية.',
+      'The ego tests its will in the world directly — this is the phase of work, struggle, and establishment; goals collide with reality and are tested not in imagination but in daily effort. ' +
+      'Steiner described this phase as the associative centres in the brain reaching maximum efficiency around age thirty-five — the age at which the greatest thinkers produced their most mature ideas (Jesus, Buddha, Dante). ' +
+      'Mars as ruler of this phase drives energy outward — ambition, competition, and love of victory — but also teaches that the real defeat is remaining without principle. ' +
+      'The first Saturn Return (~29.5) falls at the heart of this phase and makes it a true crucible of examination: what is built on rock holds, and what is on sand crumbles. ' +
+      'Those who complete this phase with awareness emerge with a firm identity and clear vision — and those who flee from its tests carry them into the following decades.',
   },
 
   // ── Transit: Saturn Return 1 (~29.5) ────────────────────────────────────
   {
     sortAge: 29.5,
     type: 'transit',
-    ageLabel: 'سن ~٢٩٫٥',
+    ageLabel: 'age ~29.5',
     age: [28.5, 30.5],
-    name: 'عودة زحل الأولى',
+    name: 'First Saturn Return',
     svgKey: 'saturn',
-    planet: 'زحل',
-    theme: 'امتحان الأساس الحقيقي',
+    planet: 'Saturn',
+    theme: 'The test of the true foundation',
     body:
-      'عودة زحل الأولى هي الحدث الكوني الأهم في النصف الأول من الحياة — حين يعود زحل إلى موقعه الولادي بين سن ٢٨ و٣٠ يُطرح سؤال واحد حاسم: "هل ما بنيته حقيقي؟" ' +
-      'في التقليد الأنثروبوصوفي هذه هي لحظة ولادة "النفس الوعييّة" — التحوّل من الإنسان المتلقّي إلى الفاعل الواعي الذي يعرف لماذا يختار ما يختار. ' +
-      'كثيرون يُغيّرون في هذه المرحلة مهنتهم أو شريكهم أو مدينتهم؛ وما يسقط غالباً هو ما بُني لإرضاء توقعات لا تخصّهم حقاً. ' +
-      'زحل لا يُعاقب بل يُنظّف — يُزيل كل ما هو مستعار ليكشف ما هو أصيل؛ ولهذا يفهمه الحكماء رحمةً لا قسوةً. ' +
-      'حاسة اللمس — أعمق هدايا زحل — تتكلّم بوضوح هنا: تشعر بدقة بما يخصّك وما لا يخصّك، وتُدرك الفرق بين الاختيار الحرّ والامتثال الموروث.',
-    prompt: 'ما الذي بنيته لأن الآخرين توقعوه — وما الذي تشعر أنه يخصّك وحدك؟',
+      'The first Saturn Return is the most important cosmic event in the first half of life — when Saturn returns to its natal position between ages 28 and 30, one decisive question is posed: "Is what you have built real?" ' +
+      'In Anthroposophical tradition this is the moment of birth of the "consciousness soul" — the transformation from the receiving human to the conscious actor who knows why they choose what they choose. ' +
+      'Many change their career, partner, or city in this phase; and what usually falls is what was built to please expectations that do not truly belong to them. ' +
+      'Saturn does not punish but cleanses — removing all that is borrowed to reveal what is authentic; and this is why the wise understand it as mercy, not severity. ' +
+      'The sense of touch — Saturn\'s deepest gift — speaks clearly here: you feel precisely what belongs to you and what does not, and you recognise the difference between free choice and inherited compliance.',
+    prompt: 'What did you build because others expected it — and what do you feel is truly yours alone?',
   },
 
   // ── Phase 35–42 ────────────────────────────────────────────────────────
   {
     sortAge: 35,
     type: 'phase',
-    ageLabel: '٣٥–٤٢',
+    ageLabel: '35–42',
     age: [35, 42],
-    name: 'مرحلة المشتري',
+    name: 'The Jupiter Phase',
     svgKey: 'jupiter',
-    planet: 'المشتري',
-    theme: 'منتصف الحياة · التوسّع أو المراجعة',
+    planet: 'Jupiter',
+    theme: 'Midlife · Expansion or Revision',
     body:
-      'منتصف الحياة الحقيقي — القدرات النفسية والتحليلية تبلغ ذروتها، والإنسان يمتلك ما يكفي من الخبرة ليرى نمطه الشخصي بوضوح لأول مرة. ' +
-      'مرحلة إعادة التقييم: يبدأ الإنسان بفحص ثمار ما زرعه في العقدين الماضيين — ما أعطى رضى حقيقياً وما أعطى صورة بلا جوهر. ' +
-      'في نظام هوبر، النقطة المنخفضة حول سن ٣٦ هي لحظة المراجعة الصامتة الداخلية — مرحلة اللاتوقع والاسترداد الروحي قبل الانطلاق التالي. ' +
-      'المشتري يدفع نحو التوسّع والمغامرة — لكن في هذه المرحلة التوسّع الحقيقي هو التوسّع الداخلي: فهم الذات وليس مجرّد الإضافة الخارجية. ' +
-      'مقابلة أورانوس القادمة (~٤٢) تلوح في الأفق كنداء كوني للصحوة والأصالة — وهذه المرحلة هي التحضير لها.',
+      'The true midlife — psychological and analytical capacities reach their peak, and the person possesses enough experience to see their personal pattern clearly for the first time. ' +
+      'The re-evaluation phase: the person begins examining the fruits of what they planted in the past two decades — what gave genuine satisfaction and what gave image without substance. ' +
+      'In Huber\'s system, the low point around age 36 is a moment of quiet internal review — a phase of the unexpected and spiritual recovery before the next departure. ' +
+      'Jupiter pushes toward expansion and adventure — but in this phase the real expansion is internal: self-understanding and not merely external addition. ' +
+      'The approaching Uranus Opposition (~42) looms on the horizon as a cosmic call to awakening and authenticity — and this phase is the preparation for it.',
   },
 
   // ── Transit: Jupiter Return 4 (~36) ─────────────────────────────────────
   {
     sortAge: 36,
     type: 'transit',
-    ageLabel: 'سن ~٣٦',
+    ageLabel: 'age ~36',
     age: [35.5, 36.5],
-    name: 'عودة المشتري الرابعة',
+    name: 'Fourth Jupiter Return',
     svgKey: 'jupiter',
-    planet: 'المشتري',
-    theme: 'توسّع منتصف الحياة',
+    planet: 'Jupiter',
+    theme: 'Midlife expansion',
     body:
-      'عودة المشتري الرابعة تقع في قلب مرحلة المشتري (٣٥–٤٢) وتحمل معها طاقة توسّع نوعي — ليس توسّعاً في المعرفة فحسب بل في الرؤية الكلية للحياة. ' +
-      'هذه العودة تتزامن مع اللحظة التي وصفها شتاينر بأن مراكز الربط في الدماغ بلغت أقصى كفاءتها — مما يجعل هذا السن سن الإنتاج الفكري الكبير. ' +
-      'المشتري يدعو في هذه اللحظة إلى مراجعة الفلسفة الشخصية: هل المعتقدات التي تحملها اخترتها أنت أم ورثتها دون تمحيص؟ ' +
-      'كثير من المفكّرين والفنّانين يشهدون في هذا السن قفزة نوعية — فكرة ناضجة تُولد بعد سنوات من المخاض الهادئ. ' +
-      'هذه العودة تمثّل جسراً بين ما أنجزته في الثلاثينيات وما ستبنيه في العقد القادم — والوضوح الذي تكتسبه الآن سيحدد طريقتك في اجتياز مقابلة أورانوس.',
-    prompt: 'ما الفكرة أو الرؤية التي تنضج داخلك الآن وتنتظر أن يُعطى لها مجال للظهور؟',
+      'The fourth Jupiter Return falls at the heart of the Jupiter phase (35–42) and carries with it qualitative expansion energy — not merely expansion of knowledge but of the overall vision of life. ' +
+      'This return coincides with the moment Steiner described when the associative centres in the brain reached maximum efficiency — making this age the age of great intellectual production. ' +
+      'Jupiter invites at this moment a review of personal philosophy: are the beliefs you carry ones you chose yourself or inherited without examination? ' +
+      'Many thinkers and artists witness at this age a qualitative leap — a mature idea born after years of quiet gestation. ' +
+      'This return represents a bridge between what you accomplished in your thirties and what you will build in the coming decade — and the clarity you gain now will determine how you navigate the Uranus Opposition.',
+    prompt: 'What idea or vision is maturing inside you now and is waiting for space to emerge?',
   },
 
   // ── Transit: Uranus Opposition (~42) ───────────────────────────────────
   {
     sortAge: 42,
     type: 'transit',
-    ageLabel: 'سن ~٤٢',
+    ageLabel: 'age ~42',
     age: [40, 44],
-    name: 'مقابلة أورانوس',
+    name: 'Uranus Opposition',
     svgKey: 'uranus',
-    planet: 'أورانوس',
-    theme: 'يقظة منتصف الحياة',
+    planet: 'Uranus',
+    theme: 'Midlife awakening',
     body:
-      'حين يصل أورانوس إلى مقابلة موقعه الولادي — بين سن ٤٠ و٤٢ — يأتي أعمق زلزال في منتصف الحياة: ليس "أزمة منتصف العمر" بالمعنى الساخر بل نداء كوني يسأل: "هل عشت حياتك أم حياة غيرك؟" ' +
-      'أورانوس هو الأوكتاف الأعلى لعطارد — الوعي الثوري الذي يكسر القوالب القديمة؛ كل قناع اجتماعي يصبح في هذه اللحظة ثقيلاً لا يُحتمَل. ' +
-      'ما يبدو تدميراً وتفكّكاً في هذه المرحلة كثيراً ما يُفهَم لاحقاً بوصفه صحوة نحو الأصالة — فمن يحترق ما كان مستعاراً يظهر تحته ما هو حقيقي. ' +
-      'في نظام شتاينر تبدأ هنا "النصف الشمسي" من الحياة — حيث تنعكس المراحل التكوينية: ما بُني عفوياً في الطفولة يُعاد بناؤه الآن بإرادة واعية وحرّة. ' +
-      'السؤال الأعمق في هذه المرحلة ليس "ماذا أريد؟" بل "ماذا يريد الكائن الروحي الذي أنا هو من هذه الحياة؟"',
-    prompt: 'ما الذي تعرفه عن نفسك الآن ولم تكن تجرؤ على مواجهته في العشرينيات؟',
+      'When Uranus reaches opposition to its natal position — between ages 40 and 42 — the deepest earthquake of midlife arrives: not the "midlife crisis" in the mocking sense but a cosmic call asking: "Did you live your life or someone else\'s?" ' +
+      'Uranus is the higher octave of Mercury — the revolutionary consciousness that breaks old moulds; every social mask becomes unbearably heavy at this moment. ' +
+      'What appears as destruction and dissolution in this phase is often understood later as an awakening toward authenticity — from the burning of what was borrowed appears what is real. ' +
+      'In Steiner\'s system the "solar half" of life begins here — where the developmental phases reverse: what was built spontaneously in childhood is now rebuilt with conscious and free will. ' +
+      'The deepest question in this phase is not "what do I want?" but "what does the spiritual being I am want from this life?"',
+    prompt: 'What do you know about yourself now that you did not dare face in your twenties?',
   },
 
   // ── Phase 42–49 ────────────────────────────────────────────────────────
   {
     sortAge: 42,
     type: 'phase',
-    ageLabel: '٤٢–٤٩',
+    ageLabel: '42–49',
     age: [42, 49],
-    name: 'مرحلة زحل',
+    name: 'The Saturn Phase',
     svgKey: 'saturn',
-    planet: 'زحل',
-    theme: 'الحكمة والعطاء الواعي',
+    planet: 'Saturn',
+    theme: 'Wisdom and Conscious Giving',
     body:
-      'بعد زلزال مقابلة أورانوس تدخل مرحلة تكثيف الهوية وتنقيتها — الطموح يتحوّل من الكمّي إلى النوعي، والقوى الفيزيائية قد تتراجع قليلاً لكن القوى الروحية والفكرية تتصاعد. ' +
-      'وصفها شتاينر بأنها مرحلة "النفس الوعييّة" — حيث يبدأ الإنسان بالعيش من الحكمة المكتسبة لا من الطموح المُقتَرض، ويبدأ بإعادة ما تعلّمه إلى المجتمع. ' +
-      'في منظومة التقدم العمري، هذه السنوات تعكس مرحلة ٠–٧ بوعي: ما بناه الجسد عفوياً في الطفولة يُعيد الإنسان الناضج بناءه بإرادة واعية ومختارة. ' +
-      'زحل يُعلّم هنا فنّ الحدود الحكيمة — معرفة ما تقبله وما ترفضه، ما تُعطيه وما تحتفظ به؛ هذا التمييز هو الفرق بين العطاء المُنهِك والعطاء المُحيي. ' +
-      'عودة زحل الثانية (~٥٨–٥٩) تنتظر في الأفق بوصفها لحظة الحصاد النهائي لكل ما زُرع في هذه المرحلة.',
+      'After the earthquake of the Uranus Opposition you enter a phase of intensifying and purifying identity — ambition shifts from quantitative to qualitative, and physical forces may slightly recede but spiritual and intellectual forces rise. ' +
+      'Steiner described it as the phase of the "consciousness soul" — where the person begins to live from earned wisdom rather than borrowed ambition, and begins to give back to the community what they have learned. ' +
+      'In the system of developmental progression, these years mirror the 0–7 phase with awareness: what the body built spontaneously in childhood, the mature person rebuilds with conscious and chosen will. ' +
+      'Saturn teaches here the art of wise boundaries — knowing what to accept and what to refuse, what to give and what to keep; this discernment is the difference between exhausting giving and life-giving giving. ' +
+      'The second Saturn Return (~58–59) awaits on the horizon as the moment of final harvest of all that was planted in this phase.',
   },
 
   // ── Transit: Chiron Return (~50) ───────────────────────────────────────
   {
     sortAge: 50,
     type: 'transit',
-    ageLabel: 'سن ~٥٠',
+    ageLabel: 'age ~50',
     age: [49, 51],
-    name: 'عودة كيرون',
+    name: 'Chiron Return',
     svgKey: 'chiron',
-    planet: 'كيرون',
-    theme: 'الجرح المُعلِّم',
+    planet: 'Chiron',
+    theme: 'The Teaching Wound',
     body:
-      'عودة كيرون — الكوكب الصغير الذي يُمثّل "الجرح المُعلِّم" — تقع حول سن الخمسين وتحمل دعوة لمواجهة الجرح الأعمق الذي لم يُشفَ بعد. ' +
-      'كيرون في الأسطورة اليونانية هو المُعالِج الذي يشفي الآخرين لكنه لا يستطيع شفاء نفسه — ومع ذلك يتحوّل جرحه الذاتي إلى أعظم مصدر لحكمته وتعاطفه. ' +
-      'في هذه العودة يُدعى الإنسان لا لمحو جرحه القديم بل لتحوّله: من مصدر للألم إلى مصدر للفهم والرحمة وأعمق صور العطاء. ' +
-      'مدرسة التحليل النفسي الروحاني ترى في هذه اللحظة مفتاح البيوغرافيا الخفية — ما لم يُحسَم في طفولتك وتنشئتك يطفو الآن طالباً الاعتراف والتكامل. ' +
-      'من يواجه جرح كيرون بشجاعة يتحوّل إلى مُعالِج ومرشد بالتجربة الحيّة — لا بالشهادات والنظريات — وهذا أعمق أشكال التعلّم والتأثير.',
-    prompt: 'ما الجرح القديم الذي تحمله الآن بوصفه حكمة لا عبئاً؟',
+      'The Chiron Return — the small planet that represents the "teaching wound" — occurs around age fifty and carries an invitation to face the deepest wound that has not yet been healed. ' +
+      'Chiron in Greek mythology is the healer who heals others but cannot heal himself — yet his own wound transforms into the greatest source of his wisdom and compassion. ' +
+      'In this return the person is called not to erase their old wound but to transform it: from a source of pain to a source of understanding, mercy, and the deepest forms of giving. ' +
+      'The school of spiritual psychoanalysis sees in this moment the key to the hidden biography — what was unresolved in childhood and upbringing surfaces now requesting recognition and integration. ' +
+      'Those who face the Chiron wound with courage transform into healers and guides by lived experience — not by degrees and theories — and this is the deepest form of learning and influence.',
+    prompt: 'What old wound do you now carry as wisdom rather than burden?',
   },
 
   // ── Phase 49–56 ────────────────────────────────────────────────────────
   {
     sortAge: 49,
     type: 'phase',
-    ageLabel: '٤٩–٥٦',
+    ageLabel: '49–56',
     age: [49, 56],
-    name: 'مرحلة أورانوس',
+    name: 'The Uranus Phase',
     svgKey: 'uranus',
-    planet: 'أورانوس',
-    theme: 'الأصالة الثانية',
+    planet: 'Uranus',
+    theme: 'Second Authenticity',
     body:
-      'العودة إلى الذات بعد عقود من الالتزامات الخارجية — هذه مرحلة الصدق الهادئ التي تتجاوز فيها رأي الآخرين وتُقدّم ما تؤمن به دون اعتذار. ' +
-      'وصفها شتاينر بأنها الجولة الثانية من مرحلة المراهقة لكن بوعي بالغ — الأسئلة الوجودية التي طرحها الشاب في الرابعة عشرة تعود الآن لكن مع إمكانية إجابة أعمق. ' +
-      'أحياناً تأخذ هذه المرحلة شكل تحوّل جذري في المهنة أو نمط الحياة؛ وأحياناً تأخذ شكل تجذّر أعمق فيما كُنت عليه دائماً — لكن الآن باختيار واعٍ لا بقوة الظروف. ' +
-      'الهدية الكبرى لأورانوس في هذه المرحلة هي الحرية من الحاجة للاعتراف الاجتماعي — الإنسان يبدأ بالتصرف من قناعاته الداخلية لا من توقعات محيطه. ' +
-      'من يجتاز هذه المرحلة بصدق يُعدّ نفسه لمرحلة نبتون القادمة — حيث الذوبان الروحاني يصبح بركةً لا خسارةً.',
+      'The return to the self after decades of external commitments — this is the phase of quiet honesty where you transcend others\' opinions and offer what you believe in without apology. ' +
+      'Steiner described it as the second round of the adolescent phase but with mature consciousness — the existential questions the young person raised at fourteen return now but with the possibility of a deeper answer. ' +
+      'Sometimes this phase takes the form of a radical transformation in career or lifestyle; sometimes it takes the form of deeper rootedness in what you have always been — but now with conscious choice rather than the force of circumstance. ' +
+      'Uranus\'s great gift in this phase is freedom from the need for social recognition — the person begins to act from inner conviction rather than the expectations of their environment. ' +
+      'Those who pass through this phase honestly prepare themselves for the coming Neptune phase — where spiritual dissolving becomes a blessing rather than a loss.',
   },
 
   // ── Phase 56–63 ────────────────────────────────────────────────────────
   {
     sortAge: 56,
     type: 'phase',
-    ageLabel: '٥٦–٦٣',
+    ageLabel: '56–63',
     age: [56, 63],
-    name: 'مرحلة نبتون',
+    name: 'The Neptune Phase',
     svgKey: 'neptune',
-    planet: 'نبتون',
-    theme: 'الذوبان والروحانية',
+    planet: 'Neptune',
+    theme: 'Dissolution and Spirituality',
     body:
-      'الحدود بين الأنا والعالم تبدأ بالترقّق — وهذا ليس ضعفاً بل استعداداً روحياً لمرحلة أعمق من الاتصال الكوني. ' +
-      'وصف كارل يونغ هذه المرحلة بـ"الفردانية" — عملية اكتشاف أن الإنسان كائن مستقل في جوهره لكنه متصل بالكلّ في آنٍ معاً. ' +
-      'الفنّ والتأمّل والإيمان والخدمة هي اللغات الطبيعية لهذه المرحلة؛ العقل يتراجع قليلاً ليفسح المجال للحدس والمعرفة الكلية. ' +
-      'نبتون يُعلّم فنّ التسليم الواعي — لا الاستسلام من الضعف بل الانسجام مع تيّار الحياة من القوة والاطمئنان. ' +
-      'شتاينر وصف هذه المرحلة بأنها بداية الوعي الروحاني المباشر — الإنسان يبدأ بالإدراك أن حياته جزء من سيمفونية كونية أكبر منه وأجمل مما تصوّر.',
+      'The boundaries between the ego and the world begin to thin — and this is not weakness but spiritual readiness for a deeper phase of cosmic connection. ' +
+      'Carl Jung described this phase as "individuation" — the process of discovering that the human being is an independent entity at its core but connected to the whole simultaneously. ' +
+      'Art, meditation, faith, and service are the natural languages of this phase; the mind slightly recedes to make room for intuition and holistic knowing. ' +
+      'Neptune teaches the art of conscious surrender — not yielding from weakness but harmonising with the current of life from strength and serenity. ' +
+      'Steiner described this phase as the beginning of direct spiritual awareness — the person begins to perceive that their life is part of a cosmic symphony larger and more beautiful than they imagined.',
   },
 
   // ── Transit: Saturn Return 2 (~59) ─────────────────────────────────────
   {
     sortAge: 59,
     type: 'transit',
-    ageLabel: 'سن ~٥٩',
+    ageLabel: 'age ~59',
     age: [57.5, 60.5],
-    name: 'عودة زحل الثانية',
+    name: 'Second Saturn Return',
     svgKey: 'saturn',
-    planet: 'زحل',
-    theme: 'الحصاد والإرث',
+    planet: 'Saturn',
+    theme: 'Harvest and Legacy',
     body:
-      'عودة زحل الثانية — بين سن ٥٨ و٦٠ — هي لحظة الحصاد الكبرى: إن كانت العودة الأولى سؤالاً عن الأساس فالثانية سؤال عن الثمر: "ماذا زرعت في ثلاثين سنة — وماذا نضج؟" ' +
-      'في النظرة الأنثروبوصوفية هذه المرحلة تقع في "النفس الروحية" — حيث يبدأ الإنسان بالعيش من الحكمة العميقة لا من الطموح، ومن العطاء لا من الاكتساب. ' +
-      'زحل يفتح هنا باب المعلم الداخلي — الحكمة المكتسبة من التجربة الحيّة المؤلمة والمفرحة معاً، لا من الكتب والنظريات. ' +
-      'من يقاوم هذا التحوّل يعاني من جمود وحنين مُؤلم للماضي؛ ومن يقبله يدخل مرحلة من العطاء العميق والهدوء الداخلي الذي لم يعرفه من قبل. ' +
-      'حاسة اللمس تتكلّم هنا بأعمق أشكالها: تعرف بدقة ما يخصّك وما لا يخصّك، وتتوقف عن القتال من أجل ما ليس لك.',
-    prompt: 'ما الحكمة التي اكتسبتها بالتجربة المؤلمة — وكيف ستمنحها لمن يأتي بعدك؟',
+      'The second Saturn Return — between ages 58 and 60 — is the moment of great harvest: if the first return was a question about the foundation, the second asks about the fruit: "What did you plant in thirty years — and what has ripened?" ' +
+      'In the Anthroposophical view this phase falls within the "spirit soul" — where the person begins to live from deep wisdom rather than ambition, and from giving rather than acquiring. ' +
+      'Saturn opens here the door of the inner teacher — wisdom gained from painful and joyful lived experience alike, not from books and theories. ' +
+      'Those who resist this transformation suffer from rigidity and painful nostalgia for the past; those who embrace it enter a phase of deep giving and inner calm they have not known before. ' +
+      'The sense of touch speaks here in its deepest form: you know precisely what belongs to you and what does not, and you stop fighting for what is not yours.',
+    prompt: 'What wisdom did you gain through painful experience — and how will you pass it on to those who come after you?',
   },
 
   // ── Phase 63–70 ────────────────────────────────────────────────────────
   {
     sortAge: 63,
     type: 'phase',
-    ageLabel: '٦٣–٧٠',
+    ageLabel: '63–70',
     age: [63, 70],
-    name: 'مرحلة بلوتو',
+    name: 'The Pluto Phase',
     svgKey: 'pluto',
-    planet: 'بلوتو',
-    theme: 'التحوّل العميق والإرث',
+    planet: 'Pluto',
+    theme: 'Deep Transformation and Legacy',
     body:
-      'مرحلة التحوّل الجذري النهائي في الهوية — ما لا يخدم الروح يموت طوعاً أو كرهاً، وما هو جوهري يولد من جديد بأكثر أشكاله نقاءً. ' +
-      'بلوتو يُمثّل قوة الإماتة والبعث في آنٍ معاً — وهذه المرحلة تجعل الإنسان مُواجِهاً للحتمية بطريقة لم تكن ممكنة في سنٍّ أبكر. ' +
-      'شتاينر وصف هذه المرحلة بأنها لحظة "الفردانية الكاملة" بتعبير يونغ — الإنسان يدرك أنه فرد متميّز وفي الوقت ذاته جزء من كلٍّ يتجاوزه. ' +
-      'الانفتاح على العلاقات الإنسانية يعمّق هنا — أقل تنافساً وأكثر تقبّلاً للاختلاف؛ الأجيال القادمة تصبح محلّ اهتمام حقيقي لا مجرّد امتداد للذات. ' +
-      'من يجتاز هذه المرحلة بوعي يصبح حارساً للذاكرة الحيّة وجسراً بين الماضي والمستقبل — وهذا من أنبل ما يمكن أن يكونه الإنسان.',
+      'The phase of the final radical transformation of identity — what does not serve the soul dies willingly or reluctantly, and what is essential is reborn in its purest form. ' +
+      'Pluto represents the force of death and resurrection simultaneously — and this phase brings the person face to face with inevitability in a way not possible at an earlier age. ' +
+      'Steiner described this phase as the moment of "complete individuation" in Jung\'s term — the person realises they are a distinct individual while also part of a whole that transcends them. ' +
+      'Openness to human relationships deepens here — less competitive and more accepting of difference; coming generations become a subject of genuine interest, not merely an extension of the self. ' +
+      'Those who pass through this phase with awareness become guardians of living memory and a bridge between past and future — and this is among the noblest things a human being can be.',
   },
 ];
 
@@ -384,59 +384,59 @@ export const PB_PHASES: Phase[] = UNIFIED_TIMELINE
 
 export const PB_TRANSITS: GreatTransit[] = [
   {
-    name: 'عودة المشتري الأولى',
-    year: '~سن ١٢',
-    age: 'سن ~١٢',
+    name: 'First Jupiter Return',
+    year: '~age 12',
+    age: 'age ~12',
     status: 'past',
     svgKey: 'jupiter',
-    planet: 'المشتري',
-    intro: 'حين يعود المشتري إلى موقعه الولادي — حوالي سن الثانية عشرة — يمرّ الطفل بأول لحظة توسّع وعي حقيقية.',
-    body: UNIFIED_TIMELINE.find(i => i.name === 'عودة المشتري الأولى')?.body ?? '',
-    prompt: 'ما الذي كان يُلهمك في طفولتك المتأخرة — وهل لا يزال حيّاً فيك؟',
+    planet: 'Jupiter',
+    intro: 'When Jupiter completes its full orbit around age twelve, the child passes through the first moment of real expansion of consciousness.',
+    body: UNIFIED_TIMELINE.find(i => i.name === 'First Jupiter Return')?.body ?? '',
+    prompt: 'What inspired you in your later childhood — and is it still alive in you?',
   },
   {
-    name: 'مقابلة زحل الأولى',
-    year: '~سن ١٤٫٥',
-    age: 'سن ~١٤٫٥',
+    name: 'First Saturn Opposition',
+    year: '~age 14.5',
+    age: 'age ~14.5',
     status: 'past',
     svgKey: 'saturn',
-    planet: 'زحل',
-    intro: 'حين يصل زحل إلى مقابلة موقعه الولادي — حوالي سن الرابعة عشرة — يبدأ أول اختبار حقيقي للهوية.',
-    body: UNIFIED_TIMELINE.find(i => i.name === 'مقابلة زحل الأولى')?.body ?? '',
-    prompt: 'ما الحدود التي اكتشفتها في مراهقتك — وأيها لا يزال يحكمك دون أن تدري؟',
+    planet: 'Saturn',
+    intro: 'When Saturn reaches opposition to its natal position — around age fourteen — the first real test of identity begins.',
+    body: UNIFIED_TIMELINE.find(i => i.name === 'First Saturn Opposition')?.body ?? '',
+    prompt: 'What boundaries did you discover in your adolescence — and which ones still govern you without your realising it?',
   },
   {
-    name: 'عودة زحل الأولى',
-    year: '~سن ٢٩٫٥',
-    age: 'سن ~٢٩٫٥',
+    name: 'First Saturn Return',
+    year: '~age 29.5',
+    age: 'age ~29.5',
     status: 'past',
     svgKey: 'saturn',
-    planet: 'زحل',
-    intro: 'عودة زحل الأولى هي الحدث الكوني الأهم في النصف الأول من الحياة.',
-    body: UNIFIED_TIMELINE.find(i => i.name === 'عودة زحل الأولى')?.body ?? '',
-    prompt: 'ما الذي بنيته لأن الآخرين توقعوه — وما الذي تشعر أنه يخصّك وحدك؟',
+    planet: 'Saturn',
+    intro: 'The first Saturn Return is the most important cosmic event in the first half of life.',
+    body: UNIFIED_TIMELINE.find(i => i.name === 'First Saturn Return')?.body ?? '',
+    prompt: 'What did you build because others expected it — and what do you feel is truly yours alone?',
   },
   {
-    name: 'مقابلة أورانوس',
-    year: '~سن ٤٢',
-    age: 'سن ~٤٢',
+    name: 'Uranus Opposition',
+    year: '~age 42',
+    age: 'age ~42',
     status: 'next',
     svgKey: 'uranus',
-    planet: 'أورانوس',
-    intro: 'حين يصل أورانوس إلى مقابلة موقعه الولادي — حوالي سن ٤٢ — يأتي أعمق زلزال في منتصف الحياة.',
-    body: UNIFIED_TIMELINE.find(i => i.name === 'مقابلة أورانوس')?.body ?? '',
-    prompt: 'ما الذي تعرفه عن نفسك الآن ولم تكن تجرؤ على مواجهته في العشرينيات؟',
+    planet: 'Uranus',
+    intro: 'When Uranus reaches opposition to its natal position — around age 42 — the deepest earthquake of midlife arrives.',
+    body: UNIFIED_TIMELINE.find(i => i.name === 'Uranus Opposition')?.body ?? '',
+    prompt: 'What do you know about yourself now that you did not dare face in your twenties?',
   },
   {
-    name: 'عودة زحل الثانية',
-    year: '~سن ٥٩',
-    age: 'سن ~٥٩',
+    name: 'Second Saturn Return',
+    year: '~age 59',
+    age: 'age ~59',
     status: 'later',
     svgKey: 'saturn',
-    planet: 'زحل',
-    intro: 'عودة زحل الثانية — حوالي سن ٥٨ إلى ٦٠ — هي لحظة الحصاد.',
-    body: UNIFIED_TIMELINE.find(i => i.name === 'عودة زحل الثانية')?.body ?? '',
-    prompt: 'ما الحكمة التي اكتسبتها بالتجربة المؤلمة — وكيف ستمنحها لمن يأتي بعدك؟',
+    planet: 'Saturn',
+    intro: 'The second Saturn Return — around ages 58 to 60 — is the moment of great harvest.',
+    body: UNIFIED_TIMELINE.find(i => i.name === 'Second Saturn Return')?.body ?? '',
+    prompt: 'What wisdom did you gain through painful experience — and how will you pass it on to those who come after you?',
   },
 ];
 
@@ -450,7 +450,7 @@ export function pbStatus(p: Phase, currentAge = 36): PhaseStatus {
 }
 
 export function statusLabel(s: PhaseStatus): string {
-  return s === 'current' ? 'الآن' : s === 'next' ? 'التالي' : 'مضى';
+  return s === 'current' ? 'Now' : s === 'next' ? 'Next' : 'Past';
 }
 
 export function statusColor(s: PhaseStatus): string {

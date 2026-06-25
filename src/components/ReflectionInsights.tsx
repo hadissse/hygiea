@@ -10,11 +10,11 @@ import { FrameworkLabel } from '@/components/FrameworkLabel';
 // What does each dominant stream tend to mean for the person living it?
 const STREAM_REFLECTION: Record<StreamKey, string> = {
   thinking:
-    'تيّارك الغالب هو الفكر — أنت من ينقّب في المعنى ويُسائل قبل أن يتحرّك. أين تذهب طاقتك إلى الإحساس والإرادة؟',
+    'Your dominant stream is thinking — you seek meaning and question before you move. Where does your energy go toward feeling and willing?',
   feeling:
-    'تيّارك الغالب هو الشعور — تعيش بالقلب وتقرأ ما تحت السطح. كيف توازن الإحساس بفعلٍ يخدمك؟',
+    'Your dominant stream is feeling — you live from the heart and read beneath the surface. How do you balance sensing with action that serves you?',
   willing:
-    'تيّارك الغالب هو الإرادة — تحرّك ما حولك بفعلٍ صادق. أين تتوقّف لتسمع شعورك وفكرك؟',
+    'Your dominant stream is willing — you move what\'s around you through sincere action. Where do you pause to hear your feeling and thinking?',
 };
 
 const STREAM_COLOR: Record<StreamKey, string> = {
@@ -38,12 +38,12 @@ export function ReflectionInsights() {
     const remaining = 7 - insights.totalEvents;
     return (
       <div className="rounded-[20px] bg-cream-soft p-5 border border-rule-soft">
-        <Meta>أنماطك</Meta>
+        <Meta>Your Patterns</Meta>
         <div className="mt-2">
           <Body muted>
             {remaining === 0
-              ? 'سيظهر هنا إيقاع لحظاتك قريبًا.'
-              : `سجّل ${remaining} ${remaining === 1 ? 'تأمّلًا إضافيًّا' : 'تأمّلات إضافيّة'} لتبدأ أنماطك في الظهور.`}
+              ? 'Your rhythm will appear here soon.'
+              : `Log ${remaining} more ${remaining === 1 ? 'moment' : 'moments'} for your patterns to begin emerging.`}
           </Body>
         </div>
       </div>
@@ -56,20 +56,20 @@ export function ReflectionInsights() {
     balance === null
       ? null
       : balance < 45
-      ? 'مالت إلى التوسّع'
+      ? 'leaned toward expansion'
       : balance > 55
-      ? 'مالت إلى الانكماش'
-      : 'بقيت متوازنة';
+      ? 'leaned toward contraction'
+      : 'stayed balanced';
 
   return (
     <div className="rounded-[20px] bg-cream-soft p-5 border border-rule-soft flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <Meta>أنماطك</Meta>
+        <Meta>Your Patterns</Meta>
         <span className="text-[11px] text-ink-muted">{insights.totalEvents} moment</span>
       </div>
       {stream && (
         <div className="flex flex-col gap-2">
-          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">التيّار الغالب</div>
+          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">Dominant Stream</div>
           <div className="font-serif text-[15px] text-ink leading-[1.7]">
             {STREAM_REFLECTION[stream]}
           </div>
@@ -79,25 +79,25 @@ export function ReflectionInsights() {
 
       {balance !== null && balanceLabel && (
         <div className="flex flex-col gap-1.5">
-          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">إيقاعك</div>
+          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">Your Rhythm</div>
           <Body>
-            أيّامك في هذه الفترة{' '}
-            <span className="text-ink font-medium">{balanceLabel}</span> — {insights.expansionPercent}٪ توسّع، {insights.contractionPercent}٪ انكماش.
+            Your days in this period{' '}
+            <span className="text-ink font-medium">{balanceLabel}</span> — {insights.expansionPercent}% expansion, {insights.contractionPercent}% contraction.
           </Body>
         </div>
       )}
 
       {(insights.mostCommonHardSky || insights.mostCommonLightSky) && (
         <div className="flex flex-col gap-1.5">
-          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">السماء حين كنتَ</div>
+          <div className="text-[11px] font-semibold tracking-wider text-ink-muted">The Sky When You Were</div>
           {insights.mostCommonHardSky && (
             <Body>
-              في الانكماش: <span className="text-ink font-medium">{insights.mostCommonHardSky}</span>
+              In contraction: <span className="text-ink font-medium">{insights.mostCommonHardSky}</span>
             </Body>
           )}
           {insights.mostCommonLightSky && (
             <Body>
-              في التوسّع: <span className="text-ink font-medium">{insights.mostCommonLightSky}</span>
+              In expansion: <span className="text-ink font-medium">{insights.mostCommonLightSky}</span>
             </Body>
           )}
         </div>
@@ -127,7 +127,7 @@ function StreamBar({ dist }: { dist: Record<StreamKey, number> }) {
       <div className="flex justify-between text-[11px] text-ink-muted">
         {segs.map((s) => (
           <span key={s.key}>
-            {STREAM_AR[s.key]} {Math.round(s.pct)}٪
+            {STREAM_AR[s.key]} {Math.round(s.pct)}%
           </span>
         ))}
       </div>

@@ -1,5 +1,4 @@
-// Scr185-187 — long-form transit essays. EXACT Arabic copy ported from design.
-// A paragraph is a list of parts; { em: true } marks italic emphasis (<em>).
+// Long-form transit essays. Paragraphs are lists of parts; { em: string } marks italic emphasis (<em>).
 
 export type ParaPart = string | { em: string };
 export type Block = { sub: string } | { para: ParaPart[] } | { callout: string } | { note: string };
@@ -19,124 +18,124 @@ export const ESSAYS: Record<string, TransitEssay> = {
   'saturn-return': {
     slug: 'saturn-return',
     svgKey: 'saturn',
-    title: 'عودة زحل الأولى',
-    sub: 'عبور كبير · حوالي عمر ٢٩٫٥ سنة',
+    title: 'First Saturn Return',
+    sub: 'A major transit · around age 29.5',
     color: '#E9785E',
-    readTime: '٧ دقائق',
-    words: '٧٥٠',
+    readTime: '7 min',
+    words: '750',
     blocks: [
-      { callout: 'يحدث هذا العبور قرب عمر ٢٩٫٥ سنة. مدّته حوالي عامين.' },
-      { sub: 'الملاحظة الفلكيّة' },
+      { callout: 'This transit occurs around age 29.5. Duration is approximately two years.' },
+      { sub: 'The Astronomical Observation' },
       {
         para: [
-          'يحتاج زحل تسعًا وعشرين سنةً ونصف ليُكمل دورته حول الشمس ويعود إلى الدرجة نفسها التي كان فيها لحظة ميلادك. حين يفعل، يلامس شمسَه الشخصية الأولى — تلك التي شهدت دخولَك إلى الجسد. هذا اللقاء ليس استعارة: هو واقعةٌ فلكيّة مرصودة منذ كتالوج بطليموس، ومحفوظة في الكتب الفلكية العربية كـ«عودة الكوكب إلى موضعه».',
+          'Saturn takes twenty-nine and a half years to complete its orbit around the Sun and return to the exact degree it occupied at the moment of your birth. When it does, it meets your personal natal Sun for the first time — the one that witnessed your entry into the body. This meeting is not a metaphor: it is an astronomically documented event recorded since Ptolemy\'s catalogue, preserved in Arabic astronomical texts as "the planet\'s return to its place."',
         ],
       },
       {
         para: [
-          'في الكتالوج المتأخر لعبد الرحمن الصُّوفي (٩٦٤ م)، يُذكر زحل باسم «الشيخ» — الأبطأ في حركته، الأبرد في طبعه، الأكثر إخلاصًا لما يحمل من معاني الزمن. ما تأخر في وصوله، حين يصل، يصل بثقلٍ مختلف.',
+          'In the later catalogue of Abd al-Rahman al-Sufi (964 CE), Saturn is named "the Elder" — slowest in its motion, coldest in temperament, most faithful to the meanings of time it carries. What is slow to arrive, when it arrives, arrives with a different weight.',
         ],
       },
-      { sub: 'المعنى الذي يعمل فيك' },
+      { sub: 'The Meaning Working in You' },
       {
         para: [
-          'عودةُ زحل ليست عقابًا، ولا هي «أزمة الثلاثين» التي تتداولها مجلّات الموضة. هي السؤال الأوّل الذي تطرحه عليك الحياةُ بصوتها الخاصّ: ',
-          { em: 'ما البناء الذي اخترتَه أنت، لا الذي وُرِّثتَه؟' },
-        ],
-      },
-      {
-        para: [
-          'تستغرق العبور كاملًا حوالي عامين، ويمرّ زحل خلالها على شمسك ثلاث مرّات: مرّة في تقدّمه، مرّة وهو راجع، مرّة وهو يستقرّ على الموضع. هذا التكرار ليس صدفةً معماريّة — هو الإيقاع الذي يحتاجه الجسدُ والنفسُ معًا ليُحوّلا ما كان عرضًا إلى بنية.',
+          'The Saturn Return is not a punishment, nor is it the "thirty-year crisis" circulated in fashion magazines. It is the first question that life poses to you in its own voice: ',
+          { em: 'What structure did you choose yourself — not what was inherited?' },
         ],
       },
       {
         para: [
-          'ما يَصمد تحت ثقل هذا اللقاء كان حقيقيًّا. ما ينهار، كان مستعارًا. هذا التمييز هو هديّة زحل — مؤلمةٌ أحيانًا، لكنّها أصدق هديّة يقدّمها كوكبٌ لإنسان.',
-        ],
-      },
-      { sub: 'الظلّ الذي يحوم' },
-      {
-        para: [
-          'الخطر الأكبر في عودة زحل ليس الفشل — بل النجاح في الموضع الخطأ. أن تُنهي ما لم يكن لك، أن تثبّت بناءً لم يكن إلا فكرةَ والديك عن حياتك. زحل صبور: لن يقطع البناءَ الزائف، لكنّه سيُثقله حتى تختار أنت أن تتركه.',
+          'The transit lasts a full two years, during which Saturn passes over your Sun three times: once in direct motion, once in retrograde, once as it settles on the same point. This repetition is not architectural coincidence — it is the rhythm that both body and soul need to transform what was accidental into structure.',
         ],
       },
       {
         para: [
-          'الظلّ الآخر: الاستسلام المبكر. أن تظنّ أنّ الزمن قد فات على إعادة الترتيب لأنّك أصبحت «شخصًا جدّيًّا». الجدّيةُ ليست تجمّدًا — هي القدرة على الاختيار من جديد بوعيٍ كامل لما كنتَه.',
+          'What holds up under the weight of this encounter was real. What collapses was borrowed. This distinction is Saturn\'s gift — sometimes painful, but the most honest gift a planet can give a person.',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'أيّ بناءٍ في حياتك تستيقظ من أجله صباحًا، وأيّها تستيقظ على ثقله؟' }] },
-      { sub: 'الممارسة' },
+      { sub: 'The Shadow That Hovers' },
       {
         para: [
-          'اكتب على ورقةٍ خمسةَ التزامات تحملها الآن. تأمّل في كلٍّ منها: هل اختَرته بنفسك، أم وَرَّثتَك إيّاه أحدٌ؟ احتفظ بالورقة. لا تقرّر شيئًا اليوم — مجرّد الرؤية تكفي.',
+          'The greatest danger in the Saturn Return is not failure — but succeeding in the wrong place. Finishing what was never yours, cementing a structure that was only your parents\' idea of your life. Saturn is patient: it will not cut the false structure, but it will weigh it down until you choose to leave it.',
         ],
       },
-      { note: '↻ يلتقي زحلُ شمسَك القادم في مايو ٢٠٥٥ — ابقَ ملاحظًا.' },
+      {
+        para: [
+          'The other shadow: premature surrender. Believing that time has passed for re-arrangement because you have become "a serious person." Seriousness is not rigidity — it is the capacity to choose again with full awareness of who you have been.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'Which structure in your life do you wake up for each morning — and which do you wake to its weight?' }] },
+      { sub: 'The Practice' },
+      {
+        para: [
+          'Write on paper five commitments you currently carry. Reflect on each one: did you choose it yourself, or did someone else hand it to you? Keep the paper. Make no decisions today — simply seeing is enough.',
+        ],
+      },
+      { note: '↻ Saturn meets your Sun again in May 2055 — stay observant.' },
     ],
   },
 
   'pluto-square': {
     slug: 'pluto-square',
     svgKey: 'pluto',
-    title: 'تربيع بلوتو',
-    sub: 'بلوتو يُربّع موضعه الميلادي · حوالي عمر ٣٧–٤٢',
+    title: 'Pluto Square',
+    sub: 'Pluto squares its natal position · around age 37–42',
     color: '#9C8AB8',
-    readTime: '٨ دقائق',
-    words: '٨٢٠',
+    readTime: '8 min',
+    words: '820',
     blocks: [
-      { sub: 'ما يحدث في السماء' },
+      { sub: 'What Happens in the Sky' },
       {
         para: [
-          'بلوتو هو الأبطأ في الكواكب المعروفة — يحتاج ٢٤٨ سنةً ليكمل دورته، لكنّ مدارَه شديدُ اللامُنتظَم. هذا يعني أنّ تربيعه لموضعه الميلاديّ يحدث في أعمارٍ مختلفة لأجيالٍ مختلفة. لجيلٍ يصل في الـ٣٧، لآخر في الـ٤٢. لذا لا تأخذ الرقمَ حرفيًّا — اقرأ الحدثَ نفسه.',
+          'Pluto is the slowest of the known planets — it takes 248 years to complete its orbit, but its path is highly irregular. This means its square to its natal position occurs at different ages for different generations. For one generation it arrives at 37, for another at 42. So do not take the number literally — read the event itself.',
         ],
       },
       {
         para: [
-          'التربيعُ هو زاوية تسعين درجة — لقاءٌ تحتكُّ فيه الإرادتان ولا يصل أيٌّ منهما إلى الآخر دون تَحوّل. في خريطتك، هذا التربيعُ يحدث بين بلوتو الميلاديّ — الشيءُ الذي وُلِدتَ به ولا يمكنك التخلّي عنه — وبلوتو السماء، الذي يتقدّم بسلطته الباردة على إيقاعك.',
+          'The square is a ninety-degree angle — a meeting where two wills clash and neither reaches the other without transformation. In your chart, this square occurs between natal Pluto — the thing you were born with and cannot relinquish — and sky Pluto, advancing with its cold authority over your rhythm.',
         ],
       },
-      { sub: 'المعنى العميق' },
+      { sub: 'The Deep Meaning' },
       {
         para: [
-          'الكلمةُ التي يحملها بلوتو هي «التحوّل»، لكنّها كلمةٌ بائسة. الأَوْلى أن نقول: تركُ ما لم يَعُد قادرًا على البقاء. بلوتو لا يبني، ولا يُصلِح — هو الكوكب الذي يكشف ما هو ميّتٌ أصلًا، ويُلحّ عليك حتى تعترف بموته.',
-        ],
-      },
-      {
-        para: [
-          'عند التربيع، يطرحُ بلوتو سؤالًا واحدًا فقط: ',
-          { em: 'ما الذي تتمسّك به وقد فقد سرّه؟' },
-          ' العلاقة التي تحوّلت إلى عادة. المهنة التي صارت إلباسًا. الهويّة التي تَلبَسها كأنّها هي أنت، بينما هي ثوبٌ من حقبةٍ سابقة. لا يطلب منك بلوتو أن تترك، بل أن ترى ما تركتَه قبل وقتٍ طويل ولكنّك لم تعترف بعد.',
+          'The word Pluto carries is "transformation," but it is a wretched word. It is better to say: leaving what is no longer capable of surviving. Pluto does not build, and does not repair — it is the planet that reveals what is already dead, and insists until you acknowledge its death.',
         ],
       },
       {
         para: [
-          'هذا العبور ليس قصيرًا. يستمرّ عادةً بين ١٨ شهرًا وثلاث سنوات، حسب سرعة بلوتو في تلك الحقبة. يمرّ على نفس النقطة عدّة مرّات في حركةٍ متذبذبة. كلّ مرور يُعمّق الانكشاف. لا يمكن الإسراع به، ولا يمكن تأجيله — يأتي حين يأتي.',
-        ],
-      },
-      { sub: 'كيف يظهر في الحياة اليوميّة' },
-      {
-        para: [
-          'أوّلًا: شعورٌ بالضيق دون سببٍ واضح. شيءٌ ما يُلحّ. أحلامٌ متكرّرة عن البيت القديم، عن شخصٍ من الماضي، عن مكانٍ مهجور. هذه ليست رومانتيكيّة — هي الذاتُ تطلب الانتباه إلى ما تتجاهله.',
+          'At the square, Pluto poses one question only: ',
+          { em: 'What are you clinging to that has lost its secret?' },
+          ' The relationship that turned into a habit. The career that became a costume. The identity you wear as if it is you, while it is a garment from a previous era. Pluto does not ask you to leave, but to see what you already left long ago and have not yet admitted.',
         ],
       },
       {
         para: [
-          'ثانيًا: انكشافات. شيءٌ كنتَ تُخفيه عن نفسك يظهر بوضوح لا يمكن الإنكار. علاقةٌ كنتَ تظنّها صحيّة، وهي ليست. وظيفةٌ كنت تظنّها مَنجَزك، وهي قفصُك. هذا الانكشاف ليس قسوةً، هو هديّة — لكنّ الهديّة لا تأتي في غلافٍ ملوّن.',
+          'This transit is not brief. It typically lasts between 18 months and three years, depending on Pluto\'s speed in that era. It passes over the same point multiple times in oscillating motion. Each pass deepens the exposure. It cannot be rushed, nor postponed — it comes when it comes.',
+        ],
+      },
+      { sub: 'How It Appears in Daily Life' },
+      {
+        para: [
+          'First: a sense of unease without clear cause. Something insists. Recurring dreams about the old house, someone from the past, an abandoned place. This is not romanticism — it is the self requesting attention to what you are ignoring.',
         ],
       },
       {
         para: [
-          'ثالثًا: قراراتٌ تأتي من عمقٍ لم تكن تعرف أنّك تحمله. تتركُ ما كان لا يُترَك. تبدأُ ما كان لا يُبدَأ. لاحقًا، تنظرُ إلى الوراء وتتساءل: من فعل ذلك؟ كنتَ أنت، ولكن أنت من تحت الجلد.',
+          'Second: revelations. Something you were hiding from yourself appears with undeniable clarity. A relationship you thought healthy, that is not. A job you thought your achievement, that is your cage. This revelation is not cruelty — it is a gift. But the gift does not come in colourful wrapping.',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'ما الذي مات فيك منذ زمنٍ ولم تجرؤ على إقامة الجنازة له؟' }] },
-      { sub: 'الممارسة' },
       {
         para: [
-          'مرّةً في الأسبوع، اجلس عشر دقائق في صمت. لا تطلب شيئًا، لا تُحلّل. اسأل فقط: «ما الذي يُلحّ عليّ هذا الأسبوع؟» اكتب ما يأتي دون تنقيح. سيُخبرك بلوتو بطريقته — لا تحتاج إلى الحضّ، تحتاج إلى الإصغاء.',
+          'Third: decisions that come from a depth you did not know you carried. You leave what could not be left. You begin what could not begin. Later, you look back and wonder: who did that? It was you, but the you beneath the skin.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'What has died in you for some time and you have not dared to hold a funeral for it?' }] },
+      { sub: 'The Practice' },
+      {
+        para: [
+          'Once a week, sit for ten minutes in silence. Do not ask for anything, do not analyse. Ask only: "What is insisting on me this week?" Write what comes without editing. Pluto will tell you in its own way — you do not need to prompt it, you need to listen.',
         ],
       },
     ],
@@ -145,56 +144,56 @@ export const ESSAYS: Record<string, TransitEssay> = {
   'neptune-sun': {
     slug: 'neptune-sun',
     svgKey: 'neptune',
-    title: 'نبتون يَعبر شمسك',
-    sub: 'عبور بطيء · سنتان إلى ثلاث',
+    title: 'Neptune Crosses Your Sun',
+    sub: 'A slow transit · two to three years',
     color: '#7E97B8',
-    readTime: '٦ دقائق',
-    words: '٦٧٠',
+    readTime: '6 min',
+    words: '670',
     blocks: [
-      { sub: 'المُلاحَظة' },
+      { sub: 'The Observation' },
       {
         para: [
-          'نبتون يحتاج ١٦٥ سنةً ليُكمل دورتَه — يمرّ على كلّ درجةٍ في خريطتك مرّةً واحدة في عمرٍ كامل. حين يلامس شمسك، يكون عبورًا فريدًا، لا يتكرّر. هذا ليس تهويلًا — هو حقيقةٌ فلكيّة.',
+          'Neptune takes 165 years to complete its orbit — passing through each degree of your chart once in an entire lifetime. When it touches your Sun, it is a unique transit, never to be repeated. This is not dramatization — it is astronomical fact.',
         ],
       },
       {
         para: [
-          'في الكتب الفلكيّة العربيّة الكلاسيكيّة، لم يكن نبتون معروفًا — اكتُشف فقط في ١٨٤٦ م. لكنّ مكانه في السماء، الذي يَعبره الآن، كان مرصودًا منذ آلاف السنين كجزءٍ من النطاقات البروجيّة. ما اختلف هو اسمُه، لا حضورُه.',
+          'In classical Arabic astronomical texts, Neptune was not known — it was only discovered in 1846 CE. But its place in the sky, through which it now passes, has been observed for thousands of years as part of the zodiacal bands. What changed was its name, not its presence.',
         ],
       },
-      { sub: 'المعنى' },
+      { sub: 'The Meaning' },
       {
         para: [
-          'إن كان زحلُ هو الأب الذي يَبني، فنبتونُ هو الأمّ التي تُذيب. عبورُه على شمسك لا يضيف ولا ينقص — هو يُليّن الحواف. ما كان واضحًا يصير ضبابيًّا. ما كان مُحدَّدًا يصير مَنفَذًا. هذا ليس فقدانًا، رغم أنّه قد يشعر كذلك في البدء.',
-        ],
-      },
-      {
-        para: [
-          'في هذا العبور، الذاتُ تَعرف أنّها أوسع ممّا ظنّت. الحدودُ التي بنتها — أنا هذا، لستُ ذاك — تَفقد قبضتها. شيءٌ في داخلك يتذكّر أنّه قبل أن يكون «أنا»، كان شيئًا آخر. هذا التذكّر مُحرِّر ومُربِك معًا.',
-        ],
-      },
-      { sub: 'الأخطار' },
-      {
-        para: [
-          'الخطر الأوّل: الفقد المعنويّ. الناسُ يَختلطون. الأهداف تَفقد جاذبيّتها. لا تشعر بأنّك تَكره أيّ شيء، فقط لا تَهتمّ به. هذا ليس اكتئابًا بالضرورة — هو ذوبانُ حدّةِ التمييز.',
+          'If Saturn is the father who builds, Neptune is the mother who dissolves. Its transit over your Sun neither adds nor subtracts — it softens the edges. What was clear becomes hazy. What was defined becomes permeable. This is not loss, though it may feel so at first.',
         ],
       },
       {
         para: [
-          'الخطر الثاني: الانخداع. حين تذوب الحدود، يَسهل أن تخلط بين الإشارات. شخصٌ يبدو ملاكًا قد يكون عاديًّا. مشروعٌ يبدو مَوهبةً قد يكون هَوسًا. يصعّب هذا العبور عادةً الرؤية الواضحة. كثيرٌ من الممارسين يُفضّلون تأجيل القرارات الكبرى حتى يستقرّ نبتون.',
+          'In this transit, the self comes to know it is wider than it thought. The boundaries it built — I am this, I am not that — lose their grip. Something inside you remembers that before it was "I," it was something else. This remembering is liberating and disorienting at once.',
+        ],
+      },
+      { sub: 'The Dangers' },
+      {
+        para: [
+          'First danger: the loss of meaning. People become indistinct. Goals lose their pull. You do not feel you hate anything, you simply do not care about it. This is not necessarily depression — it is the dissolving of the sharpness of discrimination.',
         ],
       },
       {
         para: [
-          'الخطر الثالث: المُسكِنات. الكحول، والإفراط في النوم، والإلهاء الرقميّ — كلّها تشتغل بشكلٍ أقوى تحت نبتون. ليس لأنّها ممنوعة، بل لأنّها تخفي اللحظةَ التي يَطلبُها العبور: لحظةَ الذوبان الواعي.',
+          'Second danger: self-deception. When boundaries dissolve, it becomes easy to confuse signals. Someone who appears angelic may be ordinary. A project that appears a calling may be obsession. This transit typically makes clear sight difficult. Many practitioners prefer to postpone major decisions until Neptune has settled.',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'إن لم تكن أنتَ ما تَظنُّه، فما الذي يبقى؟' }] },
-      { sub: 'الممارسة' },
       {
         para: [
-          'كلّ صباح، قبل أن تنظر إلى الهاتف، اجلس على حافّة السرير ثلاثَ دقائق. لا تُفكّر. لا تُحاول الوضوح. اسمح للضباب أن يكون ضبابًا. ستجد، بعد أسابيع، أنّ ما هو حقيقيٌّ في حياتك سيَطفو من تلقاء نفسه — لأنّ ما هو غير حقيقيٍّ سيكون قد ذاب.',
+          'Third danger: sedatives. Alcohol, excessive sleep, digital distraction — all work more strongly under Neptune. Not because they are forbidden, but because they conceal the moment the transit requests: the moment of conscious dissolving.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'If you are not who you think you are, what remains?' }] },
+      { sub: 'The Practice' },
+      {
+        para: [
+          'Every morning, before looking at your phone, sit on the edge of the bed for three minutes. Do not think. Do not attempt clarity. Allow the fog to be fog. You will find, after weeks, that what is real in your life will float to the surface of its own accord — because what is not real will have dissolved.',
         ],
       },
     ],
@@ -203,173 +202,173 @@ export const ESSAYS: Record<string, TransitEssay> = {
   'jupiter-return': {
     slug: 'jupiter-return',
     svgKey: 'jupiter',
-    title: 'عودة المشتري',
-    sub: 'عبور دوريّ · كلّ ١٢ سنةً تقريبًا',
+    title: 'Jupiter Return',
+    sub: 'A recurring transit · approximately every 12 years',
     color: '#9C8AB8',
-    readTime: '٦ دقائق',
-    words: '٦٤٠',
+    readTime: '6 min',
+    words: '640',
     blocks: [
-      { callout: 'التوقيت · حوالي سن ١٢، ٢٤، ٣٦، ٤٨، ٦٠' },
-      { sub: 'الملاحظة الفلكيّة' },
+      { callout: 'Timing · approximately age 12, 24, 36, 48, 60' },
+      { sub: 'The Astronomical Observation' },
       {
         para: [
-          'يحتاج المشتري نحو اثنتَي عشرة سنةً ليُكمل دورتَه حول الشمس ويعود إلى الدرجة التي كان فيها لحظةَ ميلادك. هو أسرع الكواكب العملاقة، وأكثرها انتظامًا في زيارته. في التقليد الفلكيّ العربيّ، سُمّي بـ«البَهجة»، وعُدَّ كوكبًا يمنح التوسّع والبركة. ابن سينا، في رسالته عن الأجرام السماويّة، أشار إلى أنّ المشتري يُصفّي الهواء الغليظ الذي تُكدّره زُحَل — أي أنّه يُخفّف ثقل الواقع بشيءٍ من المعنى.',
+          'Jupiter takes approximately twelve years to complete its orbit around the Sun and return to the degree it occupied at the moment of your birth. It is the fastest of the giant planets, and the most regular in its visits. In the Arabic astronomical tradition, it was named "al-Bahja" — the Joy — and considered a planet that bestows expansion and blessing. Ibn Sina, in his treatise on celestial bodies, noted that Jupiter clarifies the heavy air clouded by Saturn — meaning it lightens the weight of reality with some measure of meaning.',
         ],
       },
       {
         para: [
-          'العودة الأولى، عند سنّ الثانية عشرة، تتزامن مع لحظةٍ تنموّيّة موثّقة — بداية التفكير المجرّد، وظهور الأسئلة الأخلاقيّة والوجوديّة. الدورات التالية تأتي في عمر ٢٤، ثمّ ٣٦، وهكذا — كلٌّ منها تفتح بابًا مختلفًا على موضوعٍ يتجدّد.',
+          'The first return, at around age twelve, coincides with a documented developmental moment — the beginning of abstract thinking, and the emergence of moral and existential questions. Subsequent cycles come at age 24, then 36, and so on — each opening a different door on a theme that renews itself.',
         ],
       },
-      { sub: 'المعنى الذي يعمل فيك' },
+      { sub: 'The Meaning Working in You' },
       {
         para: [
-          'المشتري لا يسأل عن البنية كما يفعل زحل — هو يسأل عن الاتّساع. ',
-          { em: 'هل فضاء حياتك يكفي روحك؟' },
-          ' هذا السؤال يعود كلّ اثنتَي عشرة سنةً بصياغةٍ جديدة، لكنّه في جوهره واحد: هل الأُطر التي تعيش فيها — العلاقات، المهنة، الأفكار، الجسد — لا تزال حاويةً لمن أصبحتَ، أم أنّها صارت ضيّقةً عليك دون أن تدري؟',
-        ],
-      },
-      {
-        para: [
-          'عند الخمس والثلاثين، حين يكتمل ثلاث دورات، يكتسب هذا السؤال عمقًا مركّبًا: أنت لا تبحث عن الاتّساع لأوّل مرّة، بل تُعيد التعرّف على ما تعلّمته في الدورتَين السابقتَين. المشتري يبني ذاكرةً روحيّة — كلّ عودةٍ تُضيف طبقةً فوق الطبقة السابقة.',
-        ],
-      },
-      { sub: 'الظلّ الذي يصحب التوسّع' },
-      {
-        para: [
-          'المشتري يحمل ظلًّا واحدًا: الإسراف في الاتّساع. القفز إلى الجديد قبل أن يُكتمل القديم. الانبهار بالإمكانيّة على حساب التجذّر. في هذا العبور، يصعب التمييز بين رؤيةٍ حقيقيّة تدعوك إلى التوسّع وبين حمّى المشتري التي تُغريك بالتخلّي عمّا لا يزال يحمل قيمة.',
+          'Jupiter does not ask about structure as Saturn does — it asks about expansion. ',
+          { em: 'Does your life\'s space suffice for your soul?' },
+          ' This question returns every twelve years in a new formulation, but is at its core the same: are the frameworks you live within — relationships, career, ideas, body — still containing who you have become, or have they quietly grown too tight for you?',
         ],
       },
       {
         para: [
-          'الحكمة هنا: خذ الاتّساع الذي يفتحه المشتري، لكن لا تستعجل طيّ ما هو جيّد. التوسّع الأصيل لا يشترط الهدم — أحيانًا يكفي أن توسّع الغرفة دون أن تهدم الجدران.',
+          'At thirty-five, when three cycles are complete, this question acquires layered depth: you are not seeking expansion for the first time, but recognising anew what you learned in the two preceding cycles. Jupiter builds a spiritual memory — each return adds a layer upon the previous.',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'أيُّ أُفقٍ يناديك الآن — وما الذي يُقيّدك عن الاستجابة؟' }] },
+      { sub: 'The Shadow That Accompanies Expansion' },
+      {
+        para: [
+          'Jupiter carries one shadow: the excess of expansion. Leaping to the new before the old is complete. Dazzlement by possibility at the expense of rootedness. In this transit, it is difficult to distinguish between a genuine vision calling you to expansion and Jupiter fever enticing you to abandon what still holds value.',
+        ],
+      },
+      {
+        para: [
+          'The wisdom here: take the expansion Jupiter opens, but do not rush to fold what is good. Genuine expansion does not require demolition — sometimes it suffices to expand the room without bringing down the walls.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'Which horizon is calling you now — and what is holding you back from responding?' }] },
     ],
   },
 
   'chiron-return': {
     slug: 'chiron-return',
     svgKey: 'chiron',
-    title: 'عودة كيرون',
-    sub: 'عبور مرحليّ · حوالي سن ٥٠',
+    title: 'Chiron Return',
+    sub: 'A transitional passage · around age 50',
     color: '#A8A8A8',
-    readTime: '٧ دقائق',
-    words: '٧١٠',
+    readTime: '7 min',
+    words: '710',
     blocks: [
-      { callout: 'التوقيت · حوالي سن ٤٩–٥١ · مرّةً واحدةً في العمر' },
-      { sub: 'الملاحظة الفلكيّة' },
+      { callout: 'Timing · around age 49–51 · once in a lifetime' },
+      { sub: 'The Astronomical Observation' },
       {
         para: [
-          'كيرون ليس كوكبًا بالمعنى الكلاسيكيّ — هو جرمٌ صغيرٌ بين المشتري وزُحَل، اكتُشف عام ١٩٧٧ م، يتحرّك في مدارٍ بيضاويٍّ شديد اللاانتظام. يستغرق عبورُه دورةً كاملةً من عشرٍ وأربعين إلى خمسٍ وخمسين سنةً — وهذا التفاوت يعني أنّ عودته تحدث في أعمارٍ مختلفة تبعًا للجيل. غير أنّ المتوسّط يقع عند الخمسين، وهو ما يمنح هذا العبور إيقاعَه الحيويّ الخاصّ.',
+          'Chiron is not a planet in the classical sense — it is a small body between Jupiter and Saturn, discovered in 1977 CE, moving in a highly irregular elliptical orbit. A complete cycle takes between forty and fifty-five years — and this variation means its return occurs at different ages depending on the generation. The average falls around fifty, which gives this transit its distinctive vital rhythm.',
         ],
       },
       {
         para: [
-          'في أساطير الإغريق، كيرون هو المُعلّم الجريح الذي لا يستطيع شفاء نفسه، فيتحوّل جرحُه إلى مصدر حكمةٍ لمن يُعالجهم. هذا الأسطوريّ يُرسم في الجرم نفسه بشكلٍ ما — كوكبٌ صغير يسير بين عملاقَين، لا هو من هنا ولا من هناك، يحمل وساطةً ثمينة.',
+          'In Greek mythology, Chiron is the wounded healer who cannot heal himself, and so his wound becomes a source of wisdom for those he treats. This mythic image is somehow drawn in the body itself — a small planet orbiting between two giants, belonging neither here nor there, carrying a precious mediation.',
         ],
       },
-      { sub: 'الجرح الذي يُعلّم' },
+      { sub: 'The Wound That Teaches' },
       {
         para: [
-          'في الخريطة الميلاديّة، يُمثّل كيرون جرحًا أوّليًّا — شيئًا أحسستَ به مبكّرًا كنقصٍ أو كسرٍ في كيانك. ليس كلّ جرحٍ لكيرون مؤلمٌ بصخب: بعضُه هادئ، مزمن، شبيه بالألم الخلفيّ الذي يكون قد تعايشتَ معه طويلًا حتى نسيتَه.',
-        ],
-      },
-      {
-        para: [
-          'عند العودة — حوالي الخمسين — يعود هذا الجرح إلى السطح، لا ليُعيدك إلى الألم القديم، بل ليسألك: ',
-          { em: 'هل لا تزال تظنّ أنّ هذا الجرح يُعرّفك؟' },
-          ' الفرق الذي يصنعه عمرُ النصف أنّك تحمل الآن ما يكفي من التجربة لترى الجرحَ بعينٍ مختلفة — لا كمصدر للعار أو الإخفاء، بل كما أنضجَك بشكلٍ لم يستطع أيّ شيءٍ آخر أن يفعله.',
-        ],
-      },
-      { sub: 'من الجريح إلى الدليل' },
-      {
-        para: [
-          'ما يُميّز عودة كيرون عن غيرها من العبورات الكبرى هو طابعُها التحويليّ المزدوج: الشفاء الداخليّ يفتح مسارًا للخارج. الإنسان الذي عاش مع جرحٍ يفهمه يملك شيئًا نادرًا — القدرة على الجلوس بجانب من يتألّم دون إصلاحه، ودون الانهيار معه. هذا هو المُعالج الجريح في أجلى صوره.',
+          'In the natal chart, Chiron represents a primal wound — something felt early as a deficiency or fracture in one\'s being. Not every Chiron wound is loudly painful: some are quiet, chronic, resembling the background ache one has lived with so long it has been forgotten.',
         ],
       },
       {
         para: [
-          'الذين يُنجزون هذا العبور بشكلٍ كامل لا يتخلّصون من جرحهم — بل يكفّون عن محاربته. يصبح الجرحُ بوصلةً: أين أنتَ الأنسب لتكون حاضرًا، وأين قدرتُك على التعاطف أعمق من أيّ مهارةٍ تقنيّة.',
+          'At the return — around fifty — this wound surfaces again, not to return you to the old pain, but to ask you: ',
+          { em: 'Do you still believe this wound defines you?' },
+          ' The difference that the mid-century age makes is that you now carry enough experience to see the wound with a different eye — not as a source of shame or concealment, but as what has ripened you in a way nothing else could.',
         ],
       },
-      { sub: 'الظلّ: إدمان الجرح' },
+      { sub: 'From the Wounded to the Guide' },
       {
         para: [
-          'الخطر في عودة كيرون هو الاستثمار المفرط في هويّة «المُتألِّم». بعضُ الناس يكتشفون في هذا العبور أنّهم بنوا شخصيّتهم كاملةً حول جرحهم — وأنّ شفاءه يبدو كخسارةٍ للهويّة. هذه ليست بلاغةً — هي معضلةٌ حقيقيّة يواجهها من يحمل جرحًا طويلًا.',
+          'What distinguishes the Chiron Return from other major transits is its double transformative quality: inner healing opens an outward path. The person who has lived with a wound they understand possesses something rare — the ability to sit beside someone in pain without fixing them, and without breaking down with them. This is the wounded healer in its clearest form.',
         ],
       },
       {
         para: [
-          'السؤال الصعب هنا: إن أُزيل الجرح من تعريفك لنفسك، من تكون؟ الإجابة لا تأتي بالتفكير — تأتي بالجرأة على تجربة ذلك.',
+          'Those who complete this transit fully do not rid themselves of their wound — they cease fighting it. The wound becomes a compass: where are you most appropriate to be present, and where is your capacity for empathy deeper than any technical skill.',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'ما الذي علّمكَ إيّاه جرحُك — وهل أنت مستعدٌّ لتمرير هذا الدرس؟' }] },
+      { sub: 'The Shadow: Addiction to the Wound' },
+      {
+        para: [
+          'The danger in the Chiron Return is the over-investment in the identity of "the one who suffers." Some people discover in this transit that they built their entire personality around their wound — and that healing it seems like a loss of identity. This is not rhetoric — it is a real dilemma faced by those who have carried a wound for a long time.',
+        ],
+      },
+      {
+        para: [
+          'The difficult question here: if the wound is removed from your self-definition, who are you? The answer does not come through thinking — it comes through the courage to experience it.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'What has your wound taught you — and are you ready to pass that lesson on?' }] },
     ],
   },
 
   'uranus-opposition': {
     slug: 'uranus-opposition',
     svgKey: 'uranus',
-    title: 'تقابل أورانوس',
-    sub: 'منتصف الحياة · حوالي سن ٤٠–٤٢',
+    title: 'Uranus Opposition',
+    sub: 'Midlife · around age 40–42',
     color: '#7E97B8',
-    readTime: '٧ دقائق',
-    words: '٧٣٠',
+    readTime: '7 min',
+    words: '730',
     blocks: [
-      { callout: 'التوقيت · حوالي سن ٤٠–٤٢ · مرّةً واحدةً في العمر' },
-      { sub: 'الملاحظة الفلكيّة' },
+      { callout: 'Timing · around age 40–42 · once in a lifetime' },
+      { sub: 'The Astronomical Observation' },
       {
         para: [
-          'أورانوس يحتاج ٨٤ سنةً ليُكمل دورتَه الكاملة. عند منتصف هذه الدورة — بين الأربعين والثانية والأربعين تقريبًا — يصل إلى النقطة المقابلة تمامًا لموضعه في لحظة ميلادك. هذه الزاوية — ١٨٠ درجة — هي المقابلة، وهي في الفلك التقليديّ لحظةُ الاكتمال والمواجهة في آنٍ معًا: الشيء يرى نفسه في مرآةٍ مجهولة.',
+          'Uranus takes 84 years to complete its full orbit. At the midpoint of this cycle — between approximately forty and forty-two — it reaches the point directly opposite its position at the moment of your birth. This angle — 180 degrees — is the opposition, which in traditional astrology is a moment of fulfilment and confrontation simultaneously: the thing sees itself in an unfamiliar mirror.',
         ],
       },
       {
         para: [
-          'في التقليد الفلكيّ العربيّ الكلاسيكيّ، أورانوس لم يكن معروفًا — اكتُشف عام ١٧٨١ م. غير أنّ علماء الفلك العرب في العصر الوسيط رصدوا تلك الفترة من العمر على أنّها عتبة تحوّل دوريّ، ربطوها بمفاهيم «اعتدال القوى» و«إعادة التوازن». ما اختلف هو لغة الوصف، لا المحتوى.',
+          'In the classical Arabic astronomical tradition, Uranus was not known — it was discovered in 1781 CE. Yet Arab astronomers of the medieval period observed that period of life as a threshold of periodic transformation, connecting it to concepts of "the balance of forces" and "re-establishing equilibrium." What differed was the language of description, not the content.',
         ],
       },
-      { sub: 'اليقظة التي تصحو وإن أزعجت' },
+      { sub: 'The Awakening That Stirs Even When It Disturbs' },
       {
         para: [
-          'أورانوس هو الوعي الذي يُسرّع فجأةً. في موضعه الميلاديّ، هو يُمثّل الطريقةَ التي تحتاج بها روحُك إلى الحرّية — ليس الحرّية المجرّدة، بل الشكل الخاصّ جدًّا الذي لا تشعر فيه بالاختناق. عند المقابلة، يعكس السماءُ هذا الموضع من الجهة المقابلة، ويسأل: ',
-          { em: 'هل الحياة التي تعيشها الآن تتيح لك هذه الحرّية، أم أنّك رهنتَها بقرارٍ قديم لم تُراجعه؟' },
-        ],
-      },
-      {
-        para: [
-          'هذا ما يسمّيه الناس «أزمة منتصف العمر» — لكنّ التسمية تُفقد الظاهرةَ عمقَها. ليست أزمةً — هي عودة الروح إلى ما كانت قد أجّلته. كلّ ما وعدتَ نفسَك به ثمّ نسيتَه في صخب التأسيس، كلّ مسارٍ تركتَه خلف ظهرك لأنّ «الوقت لم يكن مناسبًا»، يطرق الباب من جديد — وهذه المرّة بصوتٍ أعلى.',
-        ],
-      },
-      { sub: 'الأصالة بوصفها مشروعًا' },
-      {
-        para: [
-          'ما يميّز عبور تقابل أورانوس عن غيره هو أنّه يطلب شيئًا واحدًا فقط، لكنّه مكلف: ',
-          { em: 'أن تعيش من المركز لا من الهامش.' },
-          ' المركز هو ما تعرفه حقًّا أنّه يخصّك — الذوق الذي لا يتبدّل، الحاجة التي لا تنام، الرؤية التي تظهر رغم أنف كلّ شيء. الهامش هو ما بنيتَه لأنّ الظروف طلبته، أو لأنّك لم تكن تملك من الوضوح ما يكفي لتختار غيره.',
+          'Uranus is the consciousness that suddenly accelerates. In its natal position, it represents the way your soul needs freedom — not abstract freedom, but the very specific form in which you do not feel stifled. At the opposition, the sky reflects this position from the opposite side and asks: ',
+          { em: 'Does the life you are living now allow you this freedom, or have you pledged it to an old decision you never revisited?' },
         ],
       },
       {
         para: [
-          'هذا لا يعني أنّ كلّ ما بنيتَه خطأ. كثيرٌ منه قد يكون جيّدًا. لكنّ أورانوس يسألك: هل تُضيف إلى هذا البناء روحَك — أم أنّك تُكمله بالقصور الذاتيّ فحسب؟',
+          'This is what people call the "midlife crisis" — but the name robs the phenomenon of its depth. It is not a crisis — it is the soul returning to what it had deferred. Everything you promised yourself then forgot in the noise of establishing yourself, every path you left behind because "the timing was not right," knocks at the door again — this time with a louder voice.',
         ],
       },
-      { sub: 'الظلّ: الكسر بدلًا من التحوّل' },
+      { sub: 'Authenticity as a Project' },
       {
         para: [
-          'حين تُقاوَم رسالة أورانوس ولا تُستمَع، تتحوّل أحيانًا إلى انفجار: طلاقٌ مفاجئ، استقالةٌ دون خطّة، تخلٍّ عن مسؤوليّات دون احتواءٍ للعلاقات المتأثّرة. هذا ليس لأنّ أورانوس يطلب الهدم — بل لأنّ الطاقة المكبوتة التي لم تجد مجرىً تخترق أيّ ثغرة.',
+          'What distinguishes the Uranus Opposition transit from others is that it asks for one thing only, but it is costly: ',
+          { em: 'to live from the centre, not the margin.' },
+          ' The centre is what you truly know is yours — the taste that does not shift, the need that does not sleep, the vision that surfaces despite everything. The margin is what you built because circumstances demanded it, or because you did not have enough clarity to choose otherwise.',
         ],
       },
       {
         para: [
-          'الفرق بين عبورٍ مُنجَز وآخر مُدمَّر غالبًا يكمن في سؤالٍ واحد: هل أنتَ تبادر بالتغيير أم تنتظر حتى لا يبقى أمامك خيار؟ المبادرة ليست تسرّعًا — هي اختيار أن ترى بوضوح قبل أن يُجبرك الألمُ على الرؤية.',
+          'This does not mean everything you built is wrong. Much of it may be good. But Uranus asks you: are you adding your soul to this structure — or completing it by inertia alone?',
         ],
       },
-      { sub: 'سؤال الروح' },
-      { para: [{ em: 'ما الشيء الذي إن فعلتَه لن تندم عليه في عمر الستّين — وقد تندم على عدم فعله؟' }] },
+      { sub: 'The Shadow: Rupture Instead of Transformation' },
+      {
+        para: [
+          'When Uranus\'s message is resisted and not heard, it sometimes transforms into an explosion: a sudden divorce, a resignation without a plan, abandoning responsibilities without containing the affected relationships. This is not because Uranus demands demolition — but because the suppressed energy that found no channel breaks through any gap.',
+        ],
+      },
+      {
+        para: [
+          'The difference between a completed transit and a destructive one often lies in one question: are you initiating change, or waiting until no choice remains? Initiative is not haste — it is choosing to see clearly before pain forces you to see.',
+        ],
+      },
+      { sub: 'The Soul Question' },
+      { para: [{ em: 'What is the thing that if you did it you would not regret at sixty — and might regret not doing?' }] },
     ],
   },
 };

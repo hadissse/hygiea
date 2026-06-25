@@ -1,45 +1,51 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/utils/supabase/client'
+import { useState, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { getAccount } from '@/utils/appwrite/client'
 import { Logo } from '@/components/Logo'
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [userId, setUserId] = useState('')
+  const [secret, setSecret] = useState('')
+
+  useEffect(() => {
+    setUserId(searchParams.get('userId') ?? '')
+    setSecret(searchParams.get('secret') ?? '')
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
-    if (password.length < 6) {
-      setError('Password يجب أن تكون 6 أحرف على الأقل')
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters')
       return
     }
     if (password !== confirm) {
-      setError('كلمتا المرور غير متطابقتين')
+      setError('Passwords do not match')
+      return
+    }
+    if (!userId || !secret) {
+      setError('Invalid link — please request a new one')
       return
     }
 
     setLoading(true)
-    const supabase = createClient()
-    const { error } = await supabase.auth.updateUser({ password })
-    setLoading(false)
-
-    if (error) {
-      setError(
-        error.code === 'same_password'
-          ? 'Password الجديدة مطابقة للقديمة — اختر كلمة مختلفة'
-          : 'حدث Error، حاول مرة أخرى أو اطلب رابطًا جديدًا'
-      )
-    } else {
-      router.push('/')
-      router.refresh()
+    try {
+      const account = getAccount()
+      await account.updateRecovery(userId, secret, password)
+      router.push('/login')
+    } catch {
+      setError('Something went wrong — please try again or request a new link')
     }
+    setLoading(false)
   }
 
   return (
@@ -50,15 +56,13 @@ export default function ResetPasswordPage() {
 
       <div className="w-full max-w-sm">
         <div className="mb-6">
-          <h2 className="text-xl font-semibold text-[#171B3A] mb-1">كلمة مرور جديدة</h2>
-          <p className="text-sm text-[#5C5C7A]">اختر كلمة مرور قوية لحسابك</p>
+          <h2 className="text-xl font-semibold text-[#171B3A] mb-1">New password</h2>
+          <p className="text-sm text-[#5C5C7A]">Choose a strong password for your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div>
-            <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              Password الجديدة
-            </label>
+            <label className="text-xs font-semibold text-[#E9785E] block mb-2">New password</label>
             <input
               type="password"
               value={password}
@@ -71,9 +75,7 @@ export default function ResetPasswordPage() {
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-[#E9785E] block mb-2">
-              Confirm Password
-            </label>
+            <label className="text-xs font-semibold text-[#E9785E] block mb-2">Confirm Password</label>
             <input
               type="password"
               value={confirm}
@@ -97,5 +99,13 @@ export default function ResetPasswordPage() {
         </form>
       </div>
     </div>
+  )
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense>
+      <ResetPasswordForm />
+    </Suspense>
   )
 }

@@ -1,5 +1,4 @@
 import type { AstralChart } from './chartCalculator';
-import { STORAGE_KEYS } from './storageKeys';
 
 export interface ElementAllocation {
   fire: number;   // percentage 0-100
@@ -10,8 +9,8 @@ export interface ElementAllocation {
 }
 
 export interface MineralEntry {
-  planet: string;   // Arabic planet name
-  mineral: string;  // Arabic mineral name
+  planet: string;   // planet name
+  mineral: string;  // mineral name
   color: string;    // hex accent color
 }
 
@@ -28,7 +27,7 @@ export interface OrganEntry {
 }
 
 export interface HDCentre {
-  name: string;       // Arabic centre name
+  name: string;       // centre name
   defined: boolean;
   keywords: string;
 }
@@ -48,19 +47,19 @@ const SIGN_ELEMENTS: Record<number, 'fire' | 'earth' | 'air' | 'water'> = {
 };
 
 const MINERALS: Record<string, { mineral: string; color: string }> = {
-  sun:     { mineral: 'الذهب',        color: '#FFC78A' },
-  moon:    { mineral: 'الفضة',        color: '#C2D3E2' },
-  mercury: { mineral: 'الزئبق',       color: '#C9D2BE' },
-  venus:   { mineral: 'النحاس',       color: '#F8D6BE' },
-  mars:    { mineral: 'الحديد',       color: '#E9785E' },
-  jupiter: { mineral: 'القصدير',      color: '#9C8AB8' },
-  saturn:  { mineral: 'الرصاص',       color: '#5A3E7A' },
-  uranus:  { mineral: 'الأورانيوم',   color: '#7E97B8' },
-  neptune: { mineral: 'حجر الأعماق', color: '#BDAA82' },
-  pluto:   { mineral: 'الأوبسيديان', color: '#4A3520' },
-  chiron:    { mineral: 'الشاروايت',    color: '#A8A8A8' },
-  northNode: { mineral: 'الفيروز',     color: '#4A7FB5' },
-  southNode: { mineral: 'العقيق',      color: '#C0392B' },
+  sun:     { mineral: 'Gold',        color: '#FFC78A' },
+  moon:    { mineral: 'Silver',      color: '#C2D3E2' },
+  mercury: { mineral: 'Quicksilver', color: '#C9D2BE' },
+  venus:   { mineral: 'Copper',      color: '#F8D6BE' },
+  mars:    { mineral: 'Iron',        color: '#E9785E' },
+  jupiter: { mineral: 'Tin',         color: '#9C8AB8' },
+  saturn:  { mineral: 'Lead',        color: '#5A3E7A' },
+  uranus:  { mineral: 'Uranium',     color: '#7E97B8' },
+  neptune: { mineral: 'Deep Stone',  color: '#BDAA82' },
+  pluto:   { mineral: 'Obsidian',    color: '#4A3520' },
+  chiron:    { mineral: 'Charoite',  color: '#A8A8A8' },
+  northNode: { mineral: 'Turquoise', color: '#4A7FB5' },
+  southNode: { mineral: 'Carnelian', color: '#C0392B' },
 };
 
 const PLANET_AR: Record<string, string> = {
@@ -70,13 +69,13 @@ const PLANET_AR: Record<string, string> = {
 };
 
 const ORGANS: Record<string, { organ: string; theme: string }> = {
-  sun:     { organ: 'القلب',    theme: 'مركز الحياة والإشعاع' },
-  moon:    { organ: 'الدماغ',   theme: 'الاستقبال والانعكاس' },
-  mercury: { organ: 'الرئتان',  theme: 'التنفس والتبادل' },
-  venus:   { organ: 'الكليتان', theme: 'التوازن والجمال' },
-  mars:    { organ: 'المرارة',  theme: 'الإرادة والاندفاع' },
-  jupiter: { organ: 'الكبد',    theme: 'التوسع والسعة' },
-  saturn:  { organ: 'الطحال',   theme: 'التمييز والبنية' },
+  sun:     { organ: 'Heart',      theme: 'Center of Life and Radiance' },
+  moon:    { organ: 'Brain',      theme: 'Reception and Reflection' },
+  mercury: { organ: 'Lungs',      theme: 'Breathing and Exchange' },
+  venus:   { organ: 'Kidneys',    theme: 'Balance and Beauty' },
+  mars:    { organ: 'Gallbladder', theme: 'Will and Impulse' },
+  jupiter: { organ: 'Liver',      theme: 'Expansion and Capacity' },
+  saturn:  { organ: 'Spleen',     theme: 'Discernment and Structure' },
 };
 
 const PLANET_KEYS = ['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto','chiron','northNode','southNode'] as const;
@@ -84,15 +83,15 @@ const PLANET_KEYS = ['sun','moon','mercury','venus','mars','jupiter','saturn','u
 // Derive HD centre definition from chart positions (simplified).
 // A centre is "defined" if 2+ planets occupy activating signs for it.
 const HD_CENTRES = [
-  { name: 'مركز الرأس',       planets: ['saturn', 'uranus'],          desc: 'الإلهام والضغط الفكري' },
-  { name: 'مركز الأجنا',      planets: ['mercury', 'saturn'],         desc: 'التفكير والمعالجة' },
-  { name: 'مركز الحلق',       planets: ['mercury', 'venus', 'sun'],   desc: 'التعبير والتجلّي' },
-  { name: 'مركز الهوية',      planets: ['sun', 'jupiter'],            desc: 'الاتجاه والحب والهوية' },
-  { name: 'مركز الإرادة',     planets: ['mars', 'saturn'],            desc: 'الإرادة والأنا والتعهّد' },
-  { name: 'مركز العجز الذهبي', planets: ['sun', 'moon', 'mars'],     desc: 'الطاقة المستدامة والاستجابة' },
-  { name: 'مركز الضفيرة',     planets: ['moon', 'venus', 'neptune'], desc: 'العاطفة والمشاعر والموجات' },
-  { name: 'مركز الجذر',       planets: ['saturn', 'pluto'],           desc: 'ضغط الجذر والدافع للتطور' },
-  { name: 'مركز الطحال',      planets: ['moon', 'mars', 'chiron'],   desc: 'الحدس والصحة والخوف' },
+  { name: 'Head Centre',         planets: ['saturn', 'uranus'],          desc: 'Inspiration and mental pressure' },
+  { name: 'Ajna Centre',         planets: ['mercury', 'saturn'],         desc: 'Thinking and processing' },
+  { name: 'Throat Centre',       planets: ['mercury', 'venus', 'sun'],   desc: 'Expression and manifestation' },
+  { name: 'Identity Centre',     planets: ['sun', 'jupiter'],            desc: 'Direction, love, and identity' },
+  { name: 'Ego/Heart Centre',    planets: ['mars', 'saturn'],            desc: 'Will, ego, and commitment' },
+  { name: 'Sacral Centre',       planets: ['sun', 'moon', 'mars'],       desc: 'Sustainable energy and response' },
+  { name: 'Solar Plexus Centre', planets: ['moon', 'venus', 'neptune'], desc: 'Emotion, feelings, and waves' },
+  { name: 'Root Centre',         planets: ['saturn', 'pluto'],           desc: 'Root pressure and drive to evolve' },
+  { name: 'Spleen Centre',       planets: ['moon', 'mars', 'chiron'],   desc: 'Intuition, health, and fear' },
 ];
 
 function calcElements(chart: AstralChart): ElementAllocation {
@@ -223,7 +222,7 @@ export function calculateTraits(chart: AstralChart, quiz: Record<string, string[
 export function loadTraits(): TraitProfile | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEYS.TRAITS);
+    const raw = localStorage.getItem('hygiea.traits.v1');
     return raw ? (JSON.parse(raw) as TraitProfile) : null;
   } catch {
     return null;

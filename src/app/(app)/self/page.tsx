@@ -364,7 +364,7 @@ const ELEMENT_COLORS: Record<string, string> = {
   fire: '#E9785E', earth: '#BDAA82', air: '#C2D3E2', water: '#7E97B8',
 };
 const ELEMENT_AR: Record<string, string> = {
-  fire: 'نار', earth: 'تراب', air: 'هواء', water: 'ماء',
+  fire: 'Fire', earth: 'Earth', air: 'Air', water: 'Water',
 };
 
 const EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -1002,7 +1002,7 @@ function BodyView() {
                         {houseLabel && (
                           <>
                             <span className="text-ink-muted opacity-40 text-xs">·</span>
-                            <span className="text-[11px] text-ink-muted">بيت {houseLabel}</span>
+                            <span className="text-[11px] text-ink-muted">House {houseLabel}</span>
                           </>
                         )}
                       </div>
@@ -1052,7 +1052,7 @@ function BodyView() {
                         color: c.defined ? '#FFFFFF' : '#5C5C7A',
                       }}
                     >
-                      {c.defined ? 'مُعرَّف' : 'مفتوح'}
+                      {c.defined ? 'Defined' : 'Open'}
                     </span>
                   </div>
                   {meaning && (
@@ -1418,7 +1418,7 @@ function SavedView() {
 // actual chart + placements.ts. Replaces the old generic "this is a natal
 // chart" intro with something that names *this* person — Sun, Rising, Moon.
 interface IntroStep {
-  label: string;     // small kicker — "شمسك"
+  label: string;     // small kicker — "Your Sun"
   signName: string;  // Arabic sign name
   svgKey: string;    // which SVG glyph to render
   title: string;     // "Your sun's path"
@@ -1794,7 +1794,7 @@ function SelfPageInner() {
                   </div>
                 </div>
 
-                {/* تقويم العبورات — moved from the Today page */}
+                {/* Transit Calendar — moved from the Today page */}
                 <div className="px-5 mt-8">
                   <div className="mb-4">
                     <h2 className="font-serif text-2xl text-ink -tracking-[0.5px]">تقويم العبورات</h2>

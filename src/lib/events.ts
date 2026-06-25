@@ -8,7 +8,7 @@ export interface LoggedEvent {
   text: string;
   date: string; // ISO
   stream: StreamKey | null;
-  rhythm: number | null; // 0 (حرارة/expansion) … 100 (حديد/contraction)
+  rhythm: number | null; // 0 (warmth/expansion) … 100 (iron/contraction)
   placement: { type: string; key: string; label: string } | null;
   stamp: CosmicStamp;
 }

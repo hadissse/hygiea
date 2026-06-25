@@ -13,26 +13,26 @@ import {
 } from '@/components/learn/primitives';
 
 const HOW_OPTIONS = [
-  'أشعر بهدوء أكبر',
-  'مثل ما كنت',
-  'كان عقلي مشغولًا',
-  'تشتّت انتباهي',
-  'لم أكمل',
+  'I feel calmer',
+  'Same as before',
+  'My mind was busy',
+  'I got distracted',
+  "I didn't finish",
 ];
 
 const MOODS: [string, string][] = [
-  ['◉', 'مشرق'],
-  ['◎', 'ثابت'],
-  ['◌', 'ضبابيّ'],
-  ['●', 'ثقيل'],
-  ['◆', 'متوتّر'],
+  ['◉', 'Bright'],
+  ['◎', 'Steady'],
+  ['◌', 'Foggy'],
+  ['●', 'Heavy'],
+  ['◆', 'Tense'],
 ];
 
 const REFLECTIONS: [string, string, string][] = [
-  ['Day', 'صباح هادئ. ساعدني الجرس.', 'dawn'],
-  ['الأمس', 'شعرت بالقلق — لم أستقرّ.', 'dusk'],
-  ['الثلاثاء 5 مايو', 'أفضل. لاحظت التشتّت أسرع.', 'sage'],
-  ['الأحد 3 مايو', 'جلسة طويلة. عدتُ أخفّ.', 'lake'],
+  ['Day', 'A quiet morning. The bell helped.', 'dawn'],
+  ['Yesterday', "Felt unsettled — couldn't land.", 'dusk'],
+  ['Tuesday 5 May', 'Better. Noticed the drift sooner.', 'sage'],
+  ['Sunday 3 May', 'A long session. Came back lighter.', 'lake'],
 ];
 
 function ReflectInner() {
@@ -50,7 +50,7 @@ function ReflectInner() {
     return (
       <div className="min-h-dvh bg-cream max-w-[430px] mx-auto w-full px-5 pt-14">
         <FlowTopBar onClose={close} variant="back" />
-        <div className="font-serif text-2xl mt-4">تأمّلات</div>
+        <div className="font-serif text-2xl mt-4">Reflections</div>
         <div className="mt-5 flex flex-col gap-2.5">
           {REFLECTIONS.map(([d, t, variant]) => (
             <div key={d} className="bg-white rounded-[14px] p-4 border border-sand flex gap-3.5">
@@ -76,12 +76,12 @@ function ReflectInner() {
           </button>
           <button onClick={close} className="text-sm text-coral font-medium">Save</button>
         </div>
-        <div className="font-serif text-2xl mt-4">ملاحظة سريعة</div>
-        <div className="text-[13px] text-ink-muted mt-1">عن جلسة Day — لك وحدك</div>
+        <div className="font-serif text-2xl mt-4">Quick Note</div>
+        <div className="text-[13px] text-ink-muted mt-1">About your Day session — for you only</div>
         <textarea
           dir="ltr"
           autoFocus
-          placeholder="ما الذي يخطر ببالك؟"
+          placeholder="What's on your mind?"
           className="w-full mt-5 bg-white rounded-[16px] border border-sand p-4 min-h-[160px] text-[15px] leading-[1.8] focus:outline-none focus:ring-1 focus:ring-coral/20 placeholder:text-ink-muted placeholder:italic"
         />
       </div>
@@ -94,10 +94,10 @@ function ReflectInner() {
     return (
       <div className="min-h-dvh bg-cream flex flex-col items-center justify-center px-8 max-w-[430px] mx-auto w-full">
         <GradientOrb variant="sage" size={140} />
-        <div className="font-serif text-[28px] mt-6 text-center">أمرٌ يستحقّ الانتباه</div>
-        <div className="text-sm text-ink-muted mt-2.5 text-center leading-[1.7]">الهدوء شيء صغير، يتراكم بالتكرار.</div>
+        <div className="font-serif text-[28px] mt-6 text-center">Worth noticing</div>
+        <div className="text-sm text-ink-muted mt-2.5 text-center leading-[1.7]">Stillness is small, and it accumulates.</div>
         <div className="mt-8 w-full">
-          <PrimaryBtn href="/today">تمّ</PrimaryBtn>
+          <PrimaryBtn href="/today">Done</PrimaryBtn>
         </div>
       </div>
     );
@@ -111,8 +111,8 @@ function ReflectInner() {
       {step === 1 && (
         <>
           <GradientOrb variant="dawn" size={100} className="mx-auto my-6" />
-          <div className="font-serif text-[28px] text-center">كيف سارت؟</div>
-          <div className="text-sm text-ink-muted mt-2 text-center">فحص سريع يساعدنا في رسم ما يليها.</div>
+          <div className="font-serif text-[28px] text-center">How did it go?</div>
+          <div className="text-sm text-ink-muted mt-2 text-center">A quick check-in to help us shape what comes next.</div>
           <div className="mt-7 flex flex-col gap-2.5">
             {HOW_OPTIONS.map((t, i) => (
               <button
@@ -131,8 +131,8 @@ function ReflectInner() {
       {/* step 2 — mood (Scr64) */}
       {step === 2 && (
         <>
-          <div className="font-serif text-2xl mt-4">كيف حالك الآن؟</div>
-          <div className="text-sm text-ink-muted mt-2">كلمة واحدة تكفي.</div>
+          <div className="font-serif text-2xl mt-4">How are you right now?</div>
+          <div className="text-sm text-ink-muted mt-2">One word is enough.</div>
           <div className="mt-7 grid grid-cols-3 gap-2.5">
             {MOODS.map(([emoji, label], i) => (
               <button
@@ -152,12 +152,12 @@ function ReflectInner() {
       {/* step 3 — note (Scr65) */}
       {step === 3 && (
         <>
-          <div className="font-serif text-2xl mt-4">دوّن ملاحظة</div>
-          <div className="text-sm text-ink-muted mt-2">لك وحدك — لن تُشارَك.</div>
+          <div className="font-serif text-2xl mt-4">Write a note</div>
+          <div className="text-sm text-ink-muted mt-2">For you only — never shared.</div>
           <textarea
             dir="ltr"
             autoFocus
-            placeholder="ما الذي يخطر ببالك؟"
+            placeholder="What's on your mind?"
             className="w-full mt-5 bg-white rounded-[16px] border border-sand p-4 min-h-[180px] text-[15px] leading-[1.8] focus:outline-none focus:ring-1 focus:ring-coral/20 placeholder:text-ink-muted placeholder:italic"
           />
         </>

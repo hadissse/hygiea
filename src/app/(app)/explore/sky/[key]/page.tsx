@@ -14,10 +14,10 @@ const PLANET_AR: Record<string, string> = {
   chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
-const ZODIAC_NAMES_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+const ZODIAC_NAMES_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
 function toArabicDigits(n: number): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 export default function SkyPlanetPage({ params }: { params: Promise<{ key: string }> }) {
@@ -49,7 +49,7 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          رجوع
+          Back
         </button>
       </div>
 
@@ -70,7 +70,7 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
         </div>
         <div>
           <div className="font-serif text-[22px] text-ink leading-snug">
-            {planetName} في {signName}
+            {planetName} in {signName}
           </div>
           <div className="flex items-center gap-2 mt-1">
             <span dir="ltr" className="text-xs text-ink-muted font-mono">{degreeStr}</span>
@@ -78,12 +78,12 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
               <span className="text-[10px] font-semibold text-coral border border-coral/40 rounded px-1 py-0.5 leading-none">℞</span>
             )}
           </div>
-          <div className="text-[11px] text-ink-muted mt-0.5">السماء الجماعية الآن</div>
+          <div className="text-[11px] text-ink-muted mt-0.5">The collective sky now</div>
         </div>
       </div>
 
       <div className="px-5">
-        <FrameworkLabel label="قراءة علم الفلك الغربي الاستوائي" />
+        <FrameworkLabel label="Western Tropical Astrology Reading" />
       </div>
 
       {/* Content */}
@@ -104,17 +104,17 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
             </div>
           ))}
           <div>
-            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-1.5">تساؤل هذه المرحلة</div>
+            <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-1.5">A question for this moment</div>
             <div className="font-serif text-[17px] text-ink leading-[1.5]">{content.aphorism}</div>
           </div>
         </div>
       ) : (
         <div className="mx-5 mt-4 p-4 rounded-[14px] bg-cream-soft border border-rule-soft">
           {!sky ? (
-            <div className="text-sm text-ink-muted">جارٍ تحميل السماء…</div>
+            <div className="text-sm text-ink-muted">Loading the sky…</div>
           ) : (
             <div className="text-sm text-ink-muted leading-[1.7]">
-              المحتوى التفصيلي لهذا الموضع قيد الإعداد.
+              Detailed content for this placement is being prepared.
             </div>
           )}
         </div>

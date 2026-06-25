@@ -13,11 +13,11 @@ import {
 } from './calendarData';
 
 const LEGEND: [string, string][] = [
-  ['اقتران/Back', '#E9785E'],
-  ['تثليث/تناغم', '#8FA084'],
-  ['دخول/قمر', '#7E97B8'],
-  ['محطّ/سكون', '#D4A04C'],
-  ['تربيع/توتر', '#9A3F30'],
+  ['Conjunction', '#E9785E'],
+  ['Trine/Harmony', '#8FA084'],
+  ['Ingress/Moon', '#7E97B8'],
+  ['Station', '#D4A04C'],
+  ['Square/Tension', '#9A3F30'],
 ];
 
 const TODAY = new Date();
@@ -168,12 +168,12 @@ export function CalendarMonthView({ initialYear = 2026, initialMonth = TODAY_MON
                 {weekdayLabel} {toArabicNum(selected)} {AR_MONTH_NAMES[month]}
               </div>
               <div className="text-[11px] text-ink-muted font-mono">
-                {events.length > 0 ? `${toArabicNum(events.length)} حدث` : 'لا أحداث'}
+                {events.length > 0 ? `${events.length} event${events.length !== 1 ? 's' : ''}` : 'No events'}
               </div>
             </div>
             {events.length === 0 ? (
               <div className="p-4 bg-white rounded-xl text-center text-[13px] text-ink-muted" style={{ border: '1px dashed #E8E2D2' }}>
-                يوم هادئ.
+                A quiet day.
               </div>
             ) : (
               <div className="flex flex-col gap-2">
@@ -183,7 +183,7 @@ export function CalendarMonthView({ initialYear = 2026, initialMonth = TODAY_MON
           </>
         ) : (
           <div className="p-4 bg-white rounded-xl text-center text-[13px] text-ink-muted" style={{ border: '1px dashed #E8E2D2' }}>
-            اضغط على يوم لعرض أحداثه.
+            Tap a day to view its events.
           </div>
         )}
       </div>

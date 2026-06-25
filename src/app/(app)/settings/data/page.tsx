@@ -48,7 +48,7 @@ export default function DataPage() {
         <button onClick={handleExport} className="text-right">
           <Card>
             <div className="flex flex-col gap-1">
-              <div className="font-serif text-lg text-ink">تصدير بياناتك</div>
+              <div className="font-serif text-lg text-ink">Export your data</div>
               <Body muted>Download a copy of your chart, events, and calibrations as JSON.</Body>
             </div>
           </Card>
@@ -57,7 +57,7 @@ export default function DataPage() {
         <button onClick={handleClear} className="text-right">
           <div className="rounded-[18px] bg-white border border-coral/30 p-4">
             <div className="flex flex-col gap-1">
-              <div className="font-serif text-lg text-coral">Delete كل Data</div>
+              <div className="font-serif text-lg text-coral">Delete All Data</div>
               <Body muted>Erases everything stored on this device. This cannot be undone.</Body>
             </div>
           </div>

@@ -68,7 +68,7 @@ export function HeroCard({
             </svg>
           </div>
           <div className="text-sm" style={{ color: fg, opacity: 0.85 }}>
-            مايا كول · ١٠ دقائق
+            Maya Cole · 10 min
           </div>
         </div>
       </div>

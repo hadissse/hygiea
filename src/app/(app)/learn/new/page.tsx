@@ -1,6 +1,6 @@
 'use client';
 
-// Scr92 — الجديد هذا الأسبوع (new this week). Tab-level (Header + TabBar).
+// Scr92 — new this week. Tab-level (Header + TabBar).
 
 import Link from 'next/link';
 import { BackIcon, FilterIcon } from '@/components/learn/primitives';
@@ -20,7 +20,7 @@ export default function NewThisWeekPage() {
           <Link href="/learn" className="text-ink-muted hover:text-ink">
             <BackIcon />
           </Link>
-          <h1 className="font-serif text-[26px] text-ink -tracking-[0.5px]">الجديد هذا الأسبوع</h1>
+          <h1 className="font-serif text-[26px] text-ink -tracking-[0.5px]">New This Week</h1>
         </div>
         <FilterIcon className="text-ink-muted" />
       </div>

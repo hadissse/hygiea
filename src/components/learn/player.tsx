@@ -28,7 +28,7 @@ export function PlayerShell({
 }
 
 export function PlayerHeader({
-  course = 'الطريق الهادئ',
+  course = 'The Quiet Path',
   day = 'Day 3',
   onClose,
 }: {
@@ -65,7 +65,7 @@ export function PlayerControls({
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-cream"><path d="M2 12a10 10 0 1010-10v3M2 12l3-3M2 12l3 3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
       <button
         onClick={onToggle}
-        aria-label={playing ? 'إيقاف مؤقت' : 'تشغيل'}
+        aria-label={playing ? 'Pause' : 'Play'}
         className="w-[76px] h-[76px] rounded-full bg-cream flex items-center justify-center hover:scale-[1.03] transition-transform"
       >
         {playing ? <PauseIcon size={30} className="text-ink" /> : <PlayIcon size={30} className="text-ink" />}
