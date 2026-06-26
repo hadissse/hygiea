@@ -16,9 +16,7 @@ const PLANET_AR: Record<string, string> = {
 
 const ZODIAC_NAMES_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
-function toArabicDigits(n: number): string {
-  return String(n);
-}
+
 
 export default function SkyPlanetPage({ params }: { params: Promise<{ key: string }> }) {
   const router = useRouter();
@@ -36,7 +34,7 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
 
   const planetName = PLANET_AR[planetKey] ?? planetKey;
   const signName = planet ? ZODIAC_NAMES_AR[planet.signNumber] : '…';
-  const degreeStr = planet ? `${toArabicDigits(planet.degree)}°` : '';
+  const degreeStr = planet ? `${planet.degree}°` : '';
 
   return (
     <div className="max-w-[430px] mx-auto w-full pb-28" dir="ltr">

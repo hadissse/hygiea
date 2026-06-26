@@ -41,9 +41,6 @@ const ASPECTS: Record<number, { name: string; symbol: string; orb: number }> = {
   180: { name: 'Opposition',symbol: '☍', orb: 8 },
 };
 
-function toArabicDigits(input: string | number): string {
-  return String(input);
-}
 
 interface HeaderData {
   glyph: string;
@@ -70,7 +67,7 @@ function buildHeaderAndContent(
         header: {
           glyph: '',
           svgKey: planetSvgKey(key),
-          title: `${PLANET_AR[key] ?? p.name} in ${ZODIAC_AR[p.signNumber]} · ${toArabicDigits(p.degree)}°`,
+          title: `${PLANET_AR[key] ?? p.name} in ${ZODIAC_AR[p.signNumber]} · ${p.degree}°`,
           meta: `House ${HOUSE_ORDINALS[houseNum - 1]} · ${HOUSE_THEMES[houseNum - 1]}`,
           color: coral,
         },
@@ -102,9 +99,9 @@ function buildHeaderAndContent(
       const cusp = chart?.houses?.[num - 1];
       return {
         header: {
-          glyph: toArabicDigits(num),
+          glyph: String(num),
           title: `House ${HOUSE_ORDINALS[num - 1]}`,
-          meta: cusp ? `${HOUSE_THEMES[num - 1]} · ${cusp.sign} ${toArabicDigits(cusp.degree)}°` : HOUSE_THEMES[num - 1],
+          meta: cusp ? `${HOUSE_THEMES[num - 1]} · ${cusp.sign} ${cusp.degree}°` : HOUSE_THEMES[num - 1],
           color: lake,
         },
         content: getContent('house', key),
@@ -132,7 +129,7 @@ function buildHeaderAndContent(
         header: {
           glyph: best.symbol,
           title: `${PLANET_AR[a] ?? a} ${best.symbol} ${PLANET_AR[b] ?? b}`,
-          meta: best.name ? `${best.name} · orb ${toArabicDigits(best.orb.toFixed(0))}°` : 'Aspect',
+          meta: best.name ? `${best.name} · orb ${best.orb.toFixed(0)}°` : 'Aspect',
           color: coral,
         },
         content: aspectContent,

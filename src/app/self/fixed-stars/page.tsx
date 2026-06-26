@@ -8,15 +8,12 @@ import { FrameworkLabel } from '@/components/FrameworkLabel';
 
 const ZODIAC_SIGNS_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
-function toAr(n: number | string): string {
-  return String(n);
-}
 
 function lonToSignDeg(lon: number): string {
   const n = ((lon % 360) + 360) % 360;
   const sign = Math.floor(n / 30);
   const deg = Math.floor(n % 30);
-  return `${ZODIAC_SIGNS_AR[sign]} ${toAr(deg)}°`;
+  return `${ZODIAC_SIGNS_AR[sign]} ${deg}°`;
 }
 
 type FilterKey = 'active' | 'all';

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { SPHERES } from '@/content/spheres';
+import { DAY_PLANET_KEYS as DAY_PLANET } from '@/lib/planets';
 
 const GLYPHS: Record<string, string> = {
   sun: '☉', moon: '☽', mercury: '☿', venus: '♀',
@@ -19,7 +20,6 @@ const ORGAN_SHORT: Record<string, string> = {
   mars: 'Gall', jupiter: 'Liver', saturn: 'Spleen',
 };
 
-const DAY_PLANET = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'];
 const todayKey = DAY_PLANET[new Date().getDay()];
 
 interface Hotspot {

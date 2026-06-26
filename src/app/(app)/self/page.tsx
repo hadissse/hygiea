@@ -33,9 +33,6 @@ import { UNIFIED_TIMELINE, type UnifiedTimelineItem } from '@/app/explore/biogra
 import { CalendarMonthView } from '@/app/explore/CalendarMonthView';
 
 const ZODIAC_SIGNS_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
-function toAr(n: number | string): string {
-  return String(n);
-}
 
 function lonToSignDeg(lon: number): string {
   const n = ((lon % 360) + 360) % 360;
@@ -69,7 +66,7 @@ const CHAPTER_META = [
 ] as const;
 
 function formatPosition(planet: any): string {
-  return `${planet.sign} ⁦${toAr(planet.degree)}°⁩`;
+  return `${planet.sign} ⁦${planet.degree}°⁩`;
 }
 
 const PLANET_DISPLAY_AR: Record<string, string> = {
@@ -137,7 +134,7 @@ function transformChartToHouses(chart: AstralChart | null): any[] {
   return chart.houses.map((house, idx) => ({
     num: houseNumbers[idx],
     theme: houseThemes[idx],
-    cusp: `${house.sign} ⁦${toAr(house.degree)}°⁩`,
+    cusp: `${house.sign} ⁦${house.degree}°⁩`,
   }));
 }
 
@@ -171,7 +168,7 @@ function calculateAspects(chart: AstralChart | null): any[] {
           if (orb <= aspectType.orb) {
             aspects.push({
               aspect: `${p1.name} ${aspectType.symbol} ${p2.name}`,
-              orb: `${toAr(orb.toFixed(0))}°`,
+              orb: `${orb.toFixed(0)}°`,
               orbDeg: orb,
               type: aspectType.name,
               color: aspectType.color,
@@ -551,7 +548,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                               <div className="w-2 h-2 rounded-full shrink-0" style={{ background: ELEM_COLOR[el] }} />
                               <span className="text-[12px] text-ink font-medium">{el}</span>
                             </div>
-                            <span className="text-[11px] text-ink-muted font-mono">{toAr(cnt)}</span>
+                            <span className="text-[11px] text-ink-muted font-mono">{cnt}</span>
                           </div>
                         ))}
                       </div>
@@ -565,7 +562,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
                               <div className="w-2 h-2 rounded-full shrink-0" style={{ background: MODAL_COLOR[mo] }} />
                               <span className="text-[12px] text-ink font-medium">{mo}</span>
                             </div>
-                            <span className="text-[11px] text-ink-muted font-mono">{toAr(cnt)}</span>
+                            <span className="text-[11px] text-ink-muted font-mono">{cnt}</span>
                           </div>
                         ))}
                       </div>
@@ -1083,9 +1080,6 @@ function BodyView() {
 
 // UNIFIED_TIMELINE is imported from biographyData
 
-function toArabicNumStr(n: number): string {
-  return String(n);
-}
 
 const TRANSIT_ESSAY_LINKS = [
   { slug: 'jupiter-return', svgKey: 'jupiter', title: 'Jupiter Return', sub: 'Every 12 years · Expansion & Horizon', color: '#9C8AB8', readTime: '6 min' },
@@ -1180,7 +1174,7 @@ function UnifiedBiographyView() {
             <div>
               <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">YOUR AGE NOW</div>
               <div className="font-serif text-3xl text-ink">
-                {toArabicNumStr(currentAge)}{' '}
+                {currentAge}{' '}
                 <span className="text-base text-ink-muted font-sans">yrs</span>
               </div>
             </div>
@@ -1200,10 +1194,10 @@ function UnifiedBiographyView() {
               style={{ left: `calc(${phaseProgress * 100}% - 5px)` }}
             />
             <div className="absolute left-0 top-5 text-[10px] text-ink-muted font-mono">
-              {toArabicNumStr(currentPhaseItem.age[0])}
+              {currentPhaseItem.age[0]}
             </div>
             <div className="absolute right-0 top-5 text-[10px] text-ink-muted font-mono">
-              {toArabicNumStr(currentPhaseItem.age[1])}
+              {currentPhaseItem.age[1]}
             </div>
           </div>
           <div className="mt-5 text-[11px] text-ink-muted text-center">
@@ -1299,7 +1293,7 @@ function UnifiedBiographyView() {
                       <div className="font-serif text-sm text-ink leading-[1.3]">{item.name}</div>
                       <div className="text-[11px] text-ink-muted mt-0.5">
                         {item.ageLabel}
-                        {personalYear ? ` · ~${toArabicNumStr(personalYear)}` : ''}
+                        {personalYear ? ` · ~${personalYear}` : ''}
                         {' · '}{item.planet}
                       </div>
                       {!isExpanded && (

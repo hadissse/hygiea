@@ -314,8 +314,7 @@ export function ZoomableWheel({ size = 377, tone = 'paper', chart: chartProp, sh
           {hovered && chart && (() => {
             const planet = chart[hovered as (typeof PLANET_KEYS)[number]];
             if (!planet) return null;
-            const toAr = (n: number) => String(n);
-            const label = `${planet.name} · ${toAr(planet.degree)}° ${planet.sign}`;
+            const label = `${planet.name} · ${planet.degree}° ${planet.sign}`;
             const idx = PLANET_KEYS.indexOf(hovered as typeof PLANET_KEYS[number]);
             const spreadAngle = spread[idx]?.angle ?? lonToAngleDeg(planet.longitude);
             const spreadRad = (spreadAngle * Math.PI) / 180;

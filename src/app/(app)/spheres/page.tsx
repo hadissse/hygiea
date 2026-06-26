@@ -9,6 +9,7 @@ const SPHERE_GLYPHS: Record<string, string> = {
 export default function SpheresPage() {
   return (
     <main className="min-h-dvh bg-cream pb-20">
+      <div className="max-w-2xl mx-auto">
       <div className="px-5 pt-12 pb-6">
         <div className="flex items-baseline justify-between">
           <h1 className="text-2xl font-prose font-medium text-ink">The Seven Spheres</h1>
@@ -35,6 +36,7 @@ export default function SpheresPage() {
             </Link>
           );
         })}
+      </div>
       </div>
     </main>
   );

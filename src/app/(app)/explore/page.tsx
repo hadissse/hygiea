@@ -12,9 +12,6 @@ import { planetSvgKey } from '@/lib/planetMeta';
 import { CalendarMonthView } from '@/app/explore/CalendarMonthView';
 import { STATIONS_2026 } from '@/app/explore/calendarData';
 
-function toAr(n: number | string): string {
-  return String(n);
-}
 
 const PLANET_KEYS_AR: Record<string, string> = {
   sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
@@ -44,7 +41,7 @@ function SkySection() {
   return (
     <div className="bg-cream min-h-screen pb-8">
       <div className="px-5 pt-6 flex items-baseline justify-between">
-        <h1 className="font-serif text-2xl text-ink">The Sky Now</h1>
+        <h1 className="font-prose text-2xl text-ink">The Sky Now</h1>
         <div className="text-[11px] text-ink-muted font-mono" dir="ltr">{timeStr}</div>
       </div>
       <div className="text-[11px] text-ink-muted px-5 mb-4">{dateStr} · Updates every minute</div>
@@ -83,7 +80,7 @@ function SkySection() {
                         <div className="min-w-0 flex-1">
                           <div className="text-[12px] font-semibold text-ink truncate">{PLANET_KEYS_AR[key]}{planet.retrograde ? ' ℞' : ''}</div>
                           <div className="text-[11px] text-ink-muted truncate">
-                            {planet.sign} · {toAr(planet.degree)}°
+                            {planet.sign} · {planet.degree}°
                           </div>
                         </div>
                         <div className="text-ink-muted text-xs shrink-0">›</div>
@@ -169,7 +166,7 @@ function KnowledgeSection() {
   return (
     <div className="px-5 py-6 flex flex-col gap-4">
       <div>
-        <h1 className="font-serif text-2xl text-ink -tracking-0.5">Knowledge</h1>
+        <h1 className="font-prose text-2xl text-ink -tracking-0.5">Knowledge</h1>
         <p className="text-sm text-ink-muted mt-1">Build your understanding with guided lessons.</p>
       </div>
 
@@ -184,7 +181,7 @@ function KnowledgeSection() {
                 <span className="text-xl text-ink">{item.icon}</span>
               )}
               <div>
-                <div className="font-serif text-sm text-ink">{item.title}</div>
+                <div className="font-prose text-sm text-ink">{item.title}</div>
                 <div className="text-xs text-ink-muted mt-0.5">{item.subtitle}</div>
               </div>
               <span className="absolute top-2 left-2 text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
@@ -196,7 +193,7 @@ function KnowledgeSection() {
       {/* Featured astrology courses */}
       <div className="mt-2">
         <div className="flex items-center justify-between mb-3">
-          <div className="font-serif text-base text-ink">Astro Courses</div>
+          <div className="font-prose text-base text-ink">Astro Courses</div>
           <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
         </div>
         <div className="md:grid md:grid-cols-2 md:gap-2.5 flex flex-col gap-2.5">
@@ -211,7 +208,7 @@ function KnowledgeSection() {
                     : 'linear-gradient(135deg,#C9D2BE,#8FA084)',
                 }} />
                 <div className="flex-1 min-w-0">
-                  <div className="font-serif text-sm text-ink truncate">{c.title}</div>
+                  <div className="font-prose text-sm text-ink truncate">{c.title}</div>
                   <div className="text-xs text-ink-muted mt-0.5">{c.course} · {c.teacher}</div>
                 </div>
               </div>
@@ -222,7 +219,7 @@ function KnowledgeSection() {
 
       {/* Library link */}
       <div className="mx-5 mt-2 flex items-center justify-between p-3.5 rounded-[14px] bg-cream-soft border border-rule-soft cursor-default opacity-70">
-        <span className="text-sm font-serif text-ink">My Library · Saved &amp; Log</span>
+        <span className="text-sm font-prose text-ink">My Library · Saved &amp; Log</span>
         <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: '#F0EDE6', color: '#9A9482' }}>Coming soon</span>
       </div>
     </div>
@@ -233,7 +230,7 @@ function CalendarSection() {
   return (
     <div className="px-5 py-6 flex flex-col gap-4">
       <div>
-        <h1 className="font-serif text-2xl text-ink -tracking-0.5">Transit Calendar</h1>
+        <h1 className="font-prose text-2xl text-ink -tracking-0.5">Transit Calendar</h1>
         <p className="text-sm text-ink-muted mt-1">Collective cosmic events for the month.</p>
       </div>
       <CalendarMonthView />
@@ -245,7 +242,7 @@ export default function ExplorePage() {
   const [view, setView] = useState<'sky' | 'calendar'>('sky');
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 max-w-3xl mx-auto">
       {/* Sky / Calendar tab content */}
       {view === 'sky' && <SkySection />}
       {view === 'calendar' && <CalendarSection />}

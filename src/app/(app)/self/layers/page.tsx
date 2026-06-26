@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { SPHERES } from '@/content/spheres';
+import { DAY_PLANET_KEYS as DAY_PLANET } from '@/lib/planets';
 
 type LayerKey = 'physical' | 'etheric' | 'astral' | 'ego';
 
@@ -21,8 +22,6 @@ const LAYERS: Array<{
   { key: 'astral',   label: 'Astral body',   planet: 'moon',    planetName: 'Moon',    glyph: '☽', color: '#C2D3E2', rx: 60,  ry: 85  },
   { key: 'ego',      label: 'I — Ego',       planet: 'sun',     planetName: 'Sun',     glyph: '☉', color: '#FFC78A', rx: 28,  ry: 40  },
 ];
-
-const DAY_PLANET = ['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'];
 
 const LABEL_Y: Record<LayerKey, number> = {
   physical: 202,

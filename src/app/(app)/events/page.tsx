@@ -21,6 +21,7 @@ export default function EventsPage() {
 
   return (
     <main className="min-h-dvh bg-cream pb-20">
+      <div className="max-w-2xl mx-auto">
       <div className="px-5 pt-12 pb-6 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-prose font-medium text-ink">Events</h1>
@@ -32,10 +33,14 @@ export default function EventsPage() {
       </div>
 
       {events.length === 0 ? (
-        <div className="px-5 py-16 text-center">
-          <p className="text-4xl mb-4">◌</p>
-          <p className="text-ink-muted font-prose">Nothing logged yet.</p>
-          <p className="text-sm text-ink-muted font-ui mt-2">Tap + Log to record an event.</p>
+        <div className="px-5 py-16 text-center flex flex-col items-center gap-4">
+          <svg width="48" height="28" viewBox="0 0 48 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
+            <path d="M24 14C24 14 18 4 10 4C4.477 4 0 8.477 0 14C0 19.523 4.477 24 10 24C18 24 24 14 24 14ZM24 14C24 14 30 4 38 4C43.523 4 48 8.477 48 14C48 19.523 43.523 24 38 24C30 24 24 14 24 14Z" stroke="#5C5C7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <div>
+            <p className="text-ink-muted font-prose">No events yet.</p>
+            <p className="text-sm text-ink-muted font-ui mt-1">Tap + to log your first moment.</p>
+          </div>
         </div>
       ) : (
         <div className="px-5 space-y-3">
@@ -54,6 +59,7 @@ export default function EventsPage() {
           ))}
         </div>
       )}
+      </div>
     </main>
   );
 }
