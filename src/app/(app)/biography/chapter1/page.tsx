@@ -300,6 +300,46 @@ export default function Chapter1Page() {
 
       <div className="px-5 space-y-5">
 
+        {/* ── Threefold Human Being — Steiner diagram ── */}
+        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
+          <h2 className="font-prose text-xl font-semibold text-ink mb-1">
+            The Threefold Human Being
+          </h2>
+          <p className="text-sm text-ink-muted font-ui mb-5">
+            The bridge between the heavenly and the earthly — Beauty above, Strength below, Wisdom mediating.
+          </p>
+          <svg viewBox="0 0 300 280" className="w-full max-w-[340px] mx-auto block" aria-label="Threefold Human Being diagram">
+            {/* Heaven box */}
+            <rect x="20" y="8" width="260" height="68" rx="10" fill="#f4ecd8" stroke="#3a3a3a" strokeWidth="1.2" />
+            <text x="150" y="26" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#7a6a4a" fontWeight="600" letterSpacing="1">COSMOS / HEAVENLY</text>
+            <text x="150" y="44" textAnchor="middle" fontFamily="inherit" fontSize="14" fill="#2b2b2b" fontWeight="700">BEAUTY</text>
+            <text x="150" y="60" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#5a4a2a">Head &amp; Thinking — cosmic, tempered by the earthly</text>
+            {/* Arrow 1 */}
+            <line x1="150" y1="76" x2="150" y2="100" stroke="#3a3a3a" strokeWidth="1.2" markerEnd="url(#arr)" />
+            {/* Bridge box */}
+            <rect x="20" y="100" width="260" height="80" rx="10" fill="#ede8dc" stroke="#3a3a3a" strokeWidth="1.2" />
+            <text x="150" y="120" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#7a6a4a" fontWeight="600" letterSpacing="1">BALANCE — THE RHYTHMIC HUMAN</text>
+            <text x="150" y="140" textAnchor="middle" fontFamily="inherit" fontSize="14" fill="#2b2b2b" fontWeight="700">WISDOM</text>
+            <text x="150" y="158" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#5a4a2a">Rhythm &amp; Feeling — the bridge between heaven and earth</text>
+            {/* Arrow 2 */}
+            <line x1="150" y1="180" x2="150" y2="204" stroke="#3a3a3a" strokeWidth="1.2" markerEnd="url(#arr)" />
+            {/* Earth box */}
+            <rect x="20" y="204" width="260" height="68" rx="10" fill="#e8e0d2" stroke="#3a3a3a" strokeWidth="1.2" />
+            <text x="150" y="222" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#7a6a4a" fontWeight="600" letterSpacing="1">EARTH / EARTHLY</text>
+            <text x="150" y="240" textAnchor="middle" fontFamily="inherit" fontSize="14" fill="#2b2b2b" fontWeight="700">STRENGTH</text>
+            <text x="150" y="258" textAnchor="middle" fontFamily="inherit" fontSize="9" fill="#5a4a2a">Limbs &amp; Will — earthly, mitigated by the cosmos</text>
+            {/* Arrowhead marker */}
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                <path d="M0,1 L8,4 L0,7 Z" fill="#3a3a3a" />
+              </marker>
+            </defs>
+          </svg>
+          <p className="text-xs text-ink-muted font-ui text-center mt-4">
+            Source: Rudolf Steiner, GA 202 — The Bridge Between World Spirit and Physical Body (Nov 1920)
+          </p>
+        </div>
+
         {/* ── Fourfold & Ninefold Human Being ── */}
         <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6">
           <h2 className="font-prose text-xl font-semibold text-ink mb-1">
