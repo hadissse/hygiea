@@ -65,7 +65,7 @@ export default function PrivacyPolicyPage() {
 
           <p className="text-ink-muted leading-[1.85] mb-10">
             Arabic Astrology Academy Inc. ("we", "us", "our") operates <strong>Hygiea</strong>, accessible
-            at <span className="font-mono text-sm">hygiea.arabic-astro.com</span>. This Privacy Policy
+            at <span className="font-mono text-sm">hygiea.shop</span>. This Privacy Policy
             explains what personal data we collect, why we collect it, how we use and protect it, and
             the rights you have over your data. Please read this policy carefully before using the App.
           </p>
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
               <address className="not-italic mt-4 text-ink-muted space-y-1 bg-white rounded-[14px] p-5 border border-rule-soft">
                 <div><strong className="text-ink">Arabic Astrology Academy Inc.</strong></div>
                 <div>Website: <span className="font-mono text-sm">arabic-astro.com</span></div>
-                <div>App: <span className="font-mono text-sm">hygiea.arabic-astro.com</span></div>
+                <div>App: <span className="font-mono text-sm">hygiea.shop</span></div>
                 <div>Email: <a href="mailto:info@arabic-astro.com" className="text-coral hover:underline">info@arabic-astro.com</a></div>
               </address>
             </section>

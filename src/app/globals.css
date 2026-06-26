@@ -25,10 +25,10 @@
   --radius-modal: 22px;
   --radius-button: 26px;
 
-  --font-prose: 'EB Garamond', Georgia, serif;
+  --font-prose: 'DM Sans', system-ui, sans-serif;
   --font-ui: 'Inter', system-ui, sans-serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'Inter', system-ui, sans-serif;
 }
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { Body } from '@/components/Body';
 
-const TYPE_AR: Record<string, string> = {
+const TYPE_LABEL: Record<string, string> = {
   planet: 'Planet',
   sign: 'Sign',
   house: 'House',
@@ -12,15 +12,11 @@ const TYPE_AR: Record<string, string> = {
   element: 'Element',
 };
 
-const VALUE_AR: Record<string, string> = { yes: 'Yes', partial: 'Partial', no: 'No' };
+const VALUE_LABEL: Record<string, string> = { yes: 'Yes', partial: 'Partial', no: 'No' };
 
 interface CalEntry {
   label: string;
   value: string;
-}
-
-function toArabicDigits(input: string | number): string {
-  return String(input);
 }
 
 export default function CalibrationPage() {
@@ -35,7 +31,7 @@ export default function CalibrationPage() {
         const raw = k.replace('hygiea.calibration.', ''); // type:key
         const [type, key] = raw.split(':');
         const value = localStorage.getItem(k) || '';
-        out.push({ label: `${TYPE_AR[type] ?? type} · ${key}`, value });
+        out.push({ label: `${TYPE_LABEL[type] ?? type} · ${key}`, value });
       }
     }
     setEntries(out);
@@ -56,9 +52,9 @@ export default function CalibrationPage() {
         <>
           <div className="mx-5 mt-2 p-5 bg-white rounded-[16px] border border-rule-soft text-center">
             <div className="font-serif text-[44px] text-ink leading-none">
-              {toArabicDigits(yesCount)} / {toArabicDigits(total)}
+              {yesCount} / {total}
             </div>
-            <div className="text-[13px] text-ink-muted mt-2">resonates · of {toArabicDigits(total)} placements</div>
+            <div className="text-[13px] text-ink-muted mt-2">resonates · of {total} placements</div>
           </div>
           <div className="px-5 mt-5 flex flex-col gap-2 md:grid md:grid-cols-2 md:gap-2">
             {entries.map((e) => {
@@ -66,7 +62,7 @@ export default function CalibrationPage() {
               return (
                 <div key={e.label} className="bg-white rounded-[12px] p-3 border border-rule-soft flex justify-between items-center">
                   <div className="font-serif text-sm text-ink">{e.label}</div>
-                  <div className="text-xs font-semibold" style={{ color }}>{VALUE_AR[e.value] ?? e.value}</div>
+                  <div className="text-xs font-semibold" style={{ color }}>{VALUE_LABEL[e.value] ?? e.value}</div>
                 </div>
               );
             })}

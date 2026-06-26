@@ -125,7 +125,7 @@ export default function SettingsPage() {
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('info@hygiea.app').then(() => {
+    navigator.clipboard.writeText('info@hygiea.shop').then(() => {
       setCopyDone(true);
       setTimeout(() => setCopyDone(false), 2000);
     });
@@ -225,7 +225,7 @@ export default function SettingsPage() {
         >
           <div>
             <div className="text-sm text-ink">Contact us</div>
-            <div className="text-[12px] text-ink-muted mt-0.5" dir="ltr">info@hygiea.app</div>
+            <div className="text-[12px] text-ink-muted mt-0.5" dir="ltr">info@hygiea.shop</div>
           </div>
           <div className="shrink-0 text-[11px] text-coral font-medium">
             {copyDone ? 'Copied ✓' : 'Copy'}

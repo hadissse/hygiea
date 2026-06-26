@@ -55,7 +55,7 @@ function LoginForm() {
       } else {
         await account.createEmailPasswordSession(email, password)
         const { hasChart } = await loadAllRemote()
-        router.push(hasChart ? '/' : '/onboarding')
+        router.push(hasChart ? '/' : '/self')
         router.refresh()
         return
       }

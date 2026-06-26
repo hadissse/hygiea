@@ -1,14 +1,14 @@
 {
-  "name": "سُكون",
-  "short_name": "سُكون",
-  "description": "خريطتك. سماؤك. سُكونك.",
+  "name": "Hygiea",
+  "short_name": "Hygiea",
+  "description": "Your chart. Your sky. Your clarity.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F5F2EA",
   "theme_color": "#F5F2EA",
-  "lang": "ar",
-  "dir": "rtl",
+  "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/icons/icon-192.png",

@@ -2,18 +2,18 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const DAY_PLANETS: Record<number, { key: string; name: string; nameAr: string; glyph: string; organAr: string; metalAr: string; color: string }> = {
-  0: { key: 'sun',     name: 'Sun',     nameAr: 'الشمس',   glyph: '☉', organAr: 'القلب والدم',              metalAr: 'الذهب',    color: '#FFC78A' },
-  1: { key: 'moon',    name: 'Moon',    nameAr: 'القمر',   glyph: '☽', organAr: 'الدماغ والجهاز التناسلي', metalAr: 'الفضة',    color: '#C2D3E2' },
-  2: { key: 'mars',    name: 'Mars',    nameAr: 'المريخ',  glyph: '♂', organAr: 'المرارة والصفراء',         metalAr: 'الحديد',   color: '#E9785E' },
-  3: { key: 'mercury', name: 'Mercury', nameAr: 'عطارد',   glyph: '☿', organAr: 'الرئتان والتنفس',          metalAr: 'الزئبق',   color: '#C9D2BE' },
-  4: { key: 'jupiter', name: 'Jupiter', nameAr: 'المشتري', glyph: '♃', organAr: 'الكبد والتمثيل الغذائي',  metalAr: 'القصدير',  color: '#9C8AB8' },
-  5: { key: 'venus',   name: 'Venus',   nameAr: 'الزهرة',  glyph: '♀', organAr: 'الكليتان والترشيح',        metalAr: 'النحاس',   color: '#F8D6BE' },
-  6: { key: 'saturn',  name: 'Saturn',  nameAr: 'زحل',     glyph: '♄', organAr: 'الطحال والعظام والجلد',    metalAr: 'الرصاص',   color: '#5A3E7A' },
+const DAY_PLANETS: Record<number, { key: string; name: string; glyph: string; organ: string; metal: string; color: string }> = {
+  0: { key: 'sun',     name: 'Sun',     glyph: '☉', organ: 'Heart & Blood',            metal: 'Gold',    color: '#FFC78A' },
+  1: { key: 'moon',    name: 'Moon',    glyph: '☽', organ: 'Brain & Reproductive',     metal: 'Silver',  color: '#C2D3E2' },
+  2: { key: 'mars',    name: 'Mars',    glyph: '♂', organ: 'Gallbladder & Bile',        metal: 'Iron',    color: '#E9785E' },
+  3: { key: 'mercury', name: 'Mercury', glyph: '☿', organ: 'Lungs & Breath',            metal: 'Mercury', color: '#C9D2BE' },
+  4: { key: 'jupiter', name: 'Jupiter', glyph: '♃', organ: 'Liver & Metabolism',        metal: 'Tin',     color: '#9C8AB8' },
+  5: { key: 'venus',   name: 'Venus',   glyph: '♀', organ: 'Kidneys & Filtration',      metal: 'Copper',  color: '#F8D6BE' },
+  6: { key: 'saturn',  name: 'Saturn',  glyph: '♄', organ: 'Spleen, Bones & Skin',      metal: 'Lead',    color: '#5A3E7A' },
 };
 
-const DAY_NAMES_AR = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-const MONTH_NAMES_AR = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
 export default function TodayPage() {
   const [planet, setPlanet] = useState<typeof DAY_PLANETS[0] | null>(null);
@@ -22,7 +22,7 @@ export default function TodayPage() {
   useEffect(() => {
     const now = new Date();
     setPlanet(DAY_PLANETS[now.getDay()]);
-    setDateStr(`${DAY_NAMES_AR[now.getDay()]} ${now.getDate()} ${MONTH_NAMES_AR[now.getMonth()]} ${now.getFullYear()}`);
+    setDateStr(`${DAY_NAMES[now.getDay()]}, ${now.getDate()} ${MONTH_NAMES[now.getMonth()]} ${now.getFullYear()}`);
   }, []);
 
   if (!planet) return <div className="min-h-dvh bg-cream" />;
@@ -40,83 +40,143 @@ export default function TodayPage() {
   };
 
   return (
-    <main className="min-h-dvh bg-cream pb-24">
+    <main className="relative overflow-hidden min-h-dvh bg-cream pb-24 md:pb-12">
+      {/* Cosmic background blob — very faint large sphere top-right */}
+      <div
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3 opacity-[0.03]"
+        style={{ background: planet.color }}
+      />
+
       {/* Date header */}
-      <div className="px-5 pt-12 pb-5">
+      <div className="px-5 md:px-8 xl:px-12 pt-10 md:pt-12 pb-5">
         <p className="text-xs text-ink-muted font-medium tracking-wide">{dateStr}</p>
-        <h1 className="font-serif text-[28px] text-ink mt-1 -tracking-[0.5px]">اليوم</h1>
+        <h1 className="font-serif text-[28px] md:text-[34px] text-ink mt-1 -tracking-[0.5px]">Today</h1>
       </div>
 
-      {/* Sphere of the day — dark hero card */}
-      <section className="px-5 mb-4">
-        <Link href={`/spheres/${planet.key}`} className="block">
-          <div
-            className="rounded-[20px] p-6 relative overflow-hidden"
-            style={{ background: '#0F1228' }}
-          >
-            {/* Subtle gradient accent */}
+      {/* Desktop: 2-col grid. Mobile: single column */}
+      <div className="px-5 md:px-8 xl:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+          {/* Sphere of the day — hero card, spans 2 xl cols on xl */}
+          <Link href={`/spheres/${planet.key}`} className="block xl:col-span-2">
             <div
-              className="absolute inset-0 opacity-20 rounded-[20px]"
-              style={{ background: `radial-gradient(ellipse at 80% 20%, ${planet.color}, transparent 60%)` }}
-            />
-            <div className="relative z-10">
-              <p className="text-[11px] font-semibold tracking-widest mb-4" style={{ color: planet.color }}>
-                فلك اليوم
-              </p>
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 flex-shrink-0">
-                  <div className="w-14 h-14" style={maskStyle} />
-                </div>
-                <div>
-                  <h2 className="font-serif text-3xl text-white leading-none">{planet.nameAr}</h2>
-                  <p className="text-white/50 text-sm mt-1.5">{planet.name} · اضغط للدخول ←</p>
+              className="rounded-[20px] p-6 md:p-8 relative overflow-hidden h-full"
+              style={{ background: '#0F1228', minHeight: 160 }}
+            >
+              {/* Radial gradient glow */}
+              <div
+                className="absolute inset-0 opacity-20 rounded-[20px]"
+                style={{ background: `radial-gradient(ellipse at 80% 20%, ${planet.color}, transparent 60%)` }}
+              />
+
+              {/* Concentric orbital rings SVG */}
+              <svg
+                className="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
+                viewBox="0 0 400 200"
+                preserveAspectRatio="xMidYMid meet"
+                style={{ color: planet.color }}
+              >
+                <circle cx="320" cy="100" r="60"  fill="none" stroke="currentColor" strokeWidth="0.8" />
+                <circle cx="320" cy="100" r="100" fill="none" stroke="currentColor" strokeWidth="0.6" />
+                <circle cx="320" cy="100" r="140" fill="none" stroke="currentColor" strokeWidth="0.4" />
+                <circle cx="320" cy="100" r="180" fill="none" stroke="currentColor" strokeWidth="0.3" />
+              </svg>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <p className="text-[11px] font-semibold tracking-widest mb-5" style={{ color: planet.color }}>
+                  SPHERE OF THE DAY
+                </p>
+                <div className="flex items-center gap-6">
+                  {/* Planet icon with concentric ring borders */}
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+                    <div
+                      className="absolute inset-[-6px] rounded-full border opacity-30"
+                      style={{ borderColor: planet.color }}
+                    />
+                    <div
+                      className="absolute inset-[-12px] rounded-full border opacity-15"
+                      style={{ borderColor: planet.color }}
+                    />
+                    <div className="w-full h-full" style={maskStyle} />
+                  </div>
+                  <div>
+                    <h2 className="font-serif text-3xl md:text-4xl text-white leading-none">{planet.name}</h2>
+                    <p className="text-white/50 text-sm mt-2">{planet.glyph} · Tap to explore →</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Link>
-      </section>
+          </Link>
 
-      {/* Organ focus */}
-      <section className="px-5 mb-4">
-        <div className="bg-white rounded-[18px] p-5 border border-rule-soft">
-          <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-3">العضو المحوري</p>
-          <div className="flex items-center gap-3">
+          {/* Focal organ */}
+          <div className="bg-white rounded-[18px] p-5 md:p-6 border border-rule-soft relative overflow-hidden">
+            {/* Subtle orbital arc in top-right corner */}
             <div
-              className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center"
-              style={{ background: `${planet.color}22`, border: `1.5px solid ${planet.color}60` }}
-            >
-              <div className="w-5 h-5" style={maskStyle} />
+              className="absolute -top-8 -right-8 w-24 h-24 rounded-full pointer-events-none"
+              style={{
+                border: `1.5px solid ${planet.color}`,
+                opacity: 0.18,
+              }}
+            />
+            <div
+              className="absolute -top-14 -right-14 w-36 h-36 rounded-full pointer-events-none"
+              style={{
+                border: `1px solid ${planet.color}`,
+                opacity: 0.10,
+              }}
+            />
+
+            <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-3">FOCAL ORGAN</p>
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center"
+                style={{ background: `${planet.color}22`, border: `1.5px solid ${planet.color}60` }}
+              >
+                <div className="w-5 h-5" style={maskStyle} />
+              </div>
+              <div>
+                <p className="font-serif text-lg text-ink leading-snug">{planet.organ}</p>
+                <p className="text-xs text-ink-muted mt-0.5">Metal: {planet.metal}</p>
+              </div>
             </div>
+          </div>
+
+          {/* Daily practice */}
+          <div className="bg-cream-soft rounded-[18px] p-5 md:p-6 border border-rule-soft md:col-span-2 xl:col-span-2 relative overflow-hidden">
+            {/* Decorative half-circle on the right */}
+            <div
+              className="absolute -right-10 top-1/2 -translate-y-1/2 w-20 h-20 rounded-full pointer-events-none"
+              style={{
+                border: `2px solid ${planet.color}`,
+                opacity: 0.15,
+              }}
+            />
+            <div
+              className="absolute -right-16 top-1/2 -translate-y-1/2 w-32 h-32 rounded-full pointer-events-none"
+              style={{
+                border: `1.5px solid ${planet.color}`,
+                opacity: 0.08,
+              }}
+            />
+
+            <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-3">DAILY PRACTICE</p>
+            <p className="font-serif text-base md:text-lg text-ink leading-[1.8]">
+              Bring your attention to the region of your {planet.organ.split('&')[0].trim().toLowerCase()} in your body.
+              Notice warmth, rhythm, tension. Simply observe for one minute before your day begins.
+            </p>
+          </div>
+
+          {/* Evening reflection */}
+          <Link href="/reflect" className="flex items-center justify-between bg-white rounded-[18px] p-5 md:p-6 border border-rule-soft xl:col-span-1">
             <div>
-              <p className="font-serif text-lg text-ink leading-snug">{planet.organAr}</p>
-              <p className="text-xs text-ink-muted mt-0.5">المعدن: {planet.metalAr}</p>
+              <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-1">EVENING REFLECTION</p>
+              <p className="font-serif text-base text-ink">Open reflection →</p>
             </div>
-          </div>
-        </div>
-      </section>
+            <span className="text-ink-muted text-xl">◌</span>
+          </Link>
 
-      {/* Daily practice */}
-      <section className="px-5 mb-4">
-        <div className="bg-cream-soft rounded-[18px] p-5 border border-rule-soft">
-          <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-3">الممارسة اليومية</p>
-          <p className="font-serif text-base text-ink leading-[1.8]">
-            أحضر انتباهك إلى منطقة {planet.organAr.split('و')[0].trim()} في جسدك.
-            لاحظ الدفء، الإيقاع، التوتر. ببساطة راقب لمدة دقيقة قبل أن يبدأ يومك.
-          </p>
         </div>
-      </section>
-
-      {/* Evening reflection entry */}
-      <section className="px-5">
-        <Link href="/reflect" className="flex items-center justify-between bg-white rounded-[18px] p-5 border border-rule-soft">
-          <div>
-            <p className="text-[10px] font-semibold tracking-widest text-ink-muted mb-1">التأمّل المسائي</p>
-            <p className="font-serif text-base text-ink">افتح التأمّل ←</p>
-          </div>
-          <span className="text-ink-muted text-xl">◌</span>
-        </Link>
-      </section>
+      </div>
     </main>
   );
 }

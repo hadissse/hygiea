@@ -185,11 +185,11 @@ const STAR_CONTENT: Record<string, StarContent> = {
 };
 
 function toAr(n: number | string): string {
-  return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]);
+  return String(n);
 }
 
 function lonToSignDeg(lon: number): string {
-  const ZODIAC = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+  const ZODIAC = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
   const n = ((lon % 360) + 360) % 360;
   const sign = Math.floor(n / 30);
   const deg = Math.floor(n % 30);
@@ -214,14 +214,14 @@ function CalibrateBlock({ storageKey }: { storageKey: string }) {
   };
 
   const opts: { key: Calibration; label: string }[] = [
-    { key: 'yes', label: 'نعم' },
-    { key: 'partial', label: 'جزئيًا' },
-    { key: 'no', label: 'لا' },
+    { key: 'yes', label: 'Yes' },
+    { key: 'partial', label: 'Partially' },
+    { key: 'no', label: 'No' },
   ];
 
   return (
     <div className="mx-5 mt-[18px] p-3.5 bg-white rounded-xl" style={{ border: '1px solid #E8E2D2' }}>
-      <div className="text-xs text-ink-muted font-semibold tracking-wide">ينطبق؟</div>
+      <div className="text-xs text-ink-muted font-semibold tracking-wide">Does this resonate?</div>
       <div className="flex gap-2 mt-2.5">
         {opts.map(({ key, label }) => {
           const sel = val === key;
@@ -275,10 +275,10 @@ export function FixedStarDetail({ slug }: { slug: string }) {
   const isActive = conjunctions.length > 0;
 
   return (
-    <div className="max-w-[430px] mx-auto w-full pb-28 relative" dir="ltr">
+    <div className="max-w-[430px] mx-auto md:max-w-2xl w-full pb-28 relative" dir="ltr">
       {/* Header nav */}
       <div className="pt-4 px-5 flex justify-between items-center">
-        <button onClick={() => router.back()} aria-label="رجوع" className="text-ink">
+        <button onClick={() => router.back()} aria-label="Back" className="text-ink">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
@@ -302,18 +302,18 @@ export function FixedStarDetail({ slug }: { slug: string }) {
       {/* Position & active badge */}
       <div className="px-5 mt-3 flex gap-2 flex-wrap">
         <div className="px-3 py-1.5 bg-cream-soft rounded-full text-xs text-ink">
-          {lonToSignDeg(currentLon)} · mag {toAr(star.magnitude.toFixed(1))}
+          {lonToSignDeg(currentLon)} · mag {star.magnitude.toFixed(1)}
         </div>
         {isActive && (
           <div className="px-3 py-1.5 rounded-full text-xs font-medium text-cream" style={{ background: '#E9785E' }}>
-            {conjunctions.map(c => `تلاقٍ مع ${c.planet} · ${toAr(c.orb)}°`).join(' · ')}
+            {conjunctions.map(c => `Conjunct ${c.planet} · ${c.orb}°`).join(' · ')}
           </div>
         )}
       </div>
 
       {/* Lineage */}
       <div className="mx-5 mt-4 p-3.5 bg-white rounded-xl" style={{ border: '1px solid #E8E2D2' }}>
-        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">السلالة العلميّة</div>
+        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">Lineage</div>
         <div className="text-[13px] text-ink leading-[1.7]">{content?.lineage ?? star.name}</div>
       </div>
 
@@ -327,7 +327,7 @@ export function FixedStarDetail({ slug }: { slug: string }) {
             </div>
           ))}
           <div>
-            <div className="text-[11px] text-ink-muted tracking-wide font-semibold">سؤال الروح</div>
+            <div className="text-[11px] text-ink-muted tracking-wide font-semibold">Soul Question</div>
             <div className="font-serif text-[17px] text-ink mt-1.5 leading-[1.5]">{content.aphorism}</div>
           </div>
         </div>
@@ -340,7 +340,7 @@ export function FixedStarDetail({ slug }: { slug: string }) {
           onClick={() => router.push(`/log?type=star&key=${encodeURIComponent(slug)}`)}
           className="w-full h-[52px] rounded-[26px] bg-ink text-cream text-base font-medium"
         >
-          سجّل حدثًا مرتبطًا
+          Log a related event
         </button>
       </div>
     </div>

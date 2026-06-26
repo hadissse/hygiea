@@ -18,8 +18,8 @@ export default function Home() {
         }
       } catch {}
 
-      // No chart — go to onboarding to create one
-      router.replace('/onboarding');
+      // No chart — go to self page which shows the setup form inline
+      router.replace('/self');
     }
 
     redirect();

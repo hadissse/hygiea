@@ -10,7 +10,10 @@ export default function SpheresPage() {
   return (
     <main className="min-h-dvh bg-cream pb-20">
       <div className="px-5 pt-12 pb-6">
-        <h1 className="text-2xl font-prose font-medium text-ink">The Seven Spheres</h1>
+        <div className="flex items-baseline justify-between">
+          <h1 className="text-2xl font-prose font-medium text-ink">The Seven Spheres</h1>
+          <Link href="/spheres/map" className="text-xs text-ink-muted font-ui hover:text-ink transition-colors">Map ↗</Link>
+        </div>
         <p className="text-sm text-ink-muted font-ui mt-1">Your planetary constitution</p>
       </div>
       <div className="px-5 grid gap-3">

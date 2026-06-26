@@ -15,7 +15,7 @@ export default function PostAuthPage() {
     let cancelled = false;
     loadAllRemote().then(({ hasChart }) => {
       if (cancelled) return;
-      router.replace(hasChart ? '/' : '/onboarding');
+      router.replace(hasChart ? '/' : '/self');
       router.refresh();
     });
     return () => { cancelled = true; };

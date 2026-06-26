@@ -70,7 +70,7 @@ export default function TermsPage() {
               <h2 className="font-serif text-2xl text-ink mb-3">1. Acceptance of Terms</h2>
               <p className="text-ink-muted">
                 By accessing, downloading, or using <strong>Hygiea</strong> (the "App") — available at{' '}
-                <span className="font-mono text-sm">hygiea.arabic-astro.com</span> — you agree to be bound by
+                <span className="font-mono text-sm">hygiea.shop</span> — you agree to be bound by
                 these Terms &amp; Conditions ("Terms"). These Terms form a legally binding agreement between you
                 and <strong>Arabic Astrology Academy Inc.</strong> ("Company", "we", "us", or "our").
               </p>
@@ -328,7 +328,7 @@ export default function TermsPage() {
               </p>
               <address className="not-italic mt-4 text-ink-muted space-y-1">
                 <div><strong className="text-ink">Arabic Astrology Academy Inc.</strong></div>
-                <div>App: <span className="font-mono text-sm">hygiea.arabic-astro.com</span></div>
+                <div>App: <span className="font-mono text-sm">hygiea.shop</span></div>
                 <div>Email: <a href="mailto:info@arabic-astro.com" className="text-coral hover:underline">info@arabic-astro.com</a></div>
               </address>
             </section>

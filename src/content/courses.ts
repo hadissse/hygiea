@@ -322,18 +322,18 @@ export const ALL_COURSES: Course[] = [...COURSES, ...ASTRO_COURSES];
 // Astrology knowledge base articles (for Explore tab)
 // svgKey: planet/zodiac SVG from /public/svg/ — use mask-image rendering; null = use icon text
 export const ASTRO_KNOWLEDGE: { id: string; title: string; subtitle: string; svgKey: string | null; icon: string; courseId: string; href: string }[] = [
-  { id: 'sun-sign', title: 'Your Sun Sign', subtitle: 'The core of your identity', svgKey: 'sun', icon: '◉', courseId: 'natal-chart-basics', href: '/الكواكب/الشمس' },
-  { id: 'moon-sign', title: 'Your Moon Sign', subtitle: 'Your emotional life', svgKey: 'moon', icon: '◌', courseId: 'natal-chart-basics', href: '/الكواكب/القمر' },
-  { id: 'rising-sign', title: 'Your Rising Sign', subtitle: 'How the world sees you', svgKey: null, icon: '↑', courseId: 'natal-chart-basics', href: '/المعرفة/الخريطة-الفلكية-astrology' },
-  { id: 'houses', title: 'The Twelve Houses', subtitle: 'The spaces of your life', svgKey: null, icon: '▦', courseId: 'twelve-houses', href: '/البيوت/البيوت-الفلكية' },
-  { id: 'elements', title: 'The Four Elements', subtitle: 'Your fire, earth, air, and water', svgKey: null, icon: '◈', courseId: 'four-elements', href: '/العناصر/العناصر-الأربعة' },
-  { id: 'transits', title: 'Live Transits', subtitle: 'The sky now and your chart', svgKey: 'saturn', icon: '◎', courseId: 'reading-transits', href: '/المدونة/الخريطة-السنوية-الفلكية' },
-  { id: 'saturn-return', title: 'Saturn Return', subtitle: 'The threshold of thirty', svgKey: 'saturn', icon: '◎', courseId: 'saturn-return', href: '/الكواكب/زحل' },
-  { id: 'moon-phases', title: 'Moon Phases', subtitle: 'A monthly rhythm you live', svgKey: 'moon', icon: '◌', courseId: 'moon-cycles', href: '/الكواكب/القمر' },
-  { id: 'twelve-signs', title: 'The Twelve Signs', subtitle: 'The energy and qualities of each sign', svgKey: null, icon: '◇', courseId: 'twelve-signs', href: '/الأبراج/الأبراج-الفلكية' },
-  { id: 'aspects', title: 'Astrological Aspects', subtitle: 'The language of angles in your chart', svgKey: null, icon: '×', courseId: 'aspects-deep', href: '/الجوانب/الجوانب-الفلكية' },
-  { id: 'chiron', title: 'Chiron', subtitle: 'The wound that teaches', svgKey: 'chiron', icon: '◎', courseId: 'chiron-wound', href: '/الكواكب/كايرون' },
-  { id: 'mercury-rx', title: 'Mercury Retrograde', subtitle: 'The chance to review', svgKey: 'mercury', icon: '◎', courseId: 'mercury-retrograde', href: '/الكواكب/عطارد' },
+  { id: 'sun-sign', title: 'Your Sun Sign', subtitle: 'The core of your identity', svgKey: 'sun', icon: '◉', courseId: 'natal-chart-basics', href: '/planets/sun' },
+  { id: 'moon-sign', title: 'Your Moon Sign', subtitle: 'Your emotional life', svgKey: 'moon', icon: '◌', courseId: 'natal-chart-basics', href: '/planets/moon' },
+  { id: 'rising-sign', title: 'Your Rising Sign', subtitle: 'How the world sees you', svgKey: null, icon: '↑', courseId: 'natal-chart-basics', href: '/knowledge/birth-chart' },
+  { id: 'houses', title: 'The Twelve Houses', subtitle: 'The spaces of your life', svgKey: null, icon: '▦', courseId: 'twelve-houses', href: '/houses/the-twelve-houses' },
+  { id: 'elements', title: 'The Four Elements', subtitle: 'Your fire, earth, air, and water', svgKey: null, icon: '◈', courseId: 'four-elements', href: '/elements/the-four-elements' },
+  { id: 'transits', title: 'Live Transits', subtitle: 'The sky now and your chart', svgKey: 'saturn', icon: '◎', courseId: 'reading-transits', href: '/knowledge/annual-chart' },
+  { id: 'saturn-return', title: 'Saturn Return', subtitle: 'The threshold of thirty', svgKey: 'saturn', icon: '◎', courseId: 'saturn-return', href: '/planets/saturn' },
+  { id: 'moon-phases', title: 'Moon Phases', subtitle: 'A monthly rhythm you live', svgKey: 'moon', icon: '◌', courseId: 'moon-cycles', href: '/planets/moon' },
+  { id: 'twelve-signs', title: 'The Twelve Signs', subtitle: 'The energy and qualities of each sign', svgKey: null, icon: '◇', courseId: 'twelve-signs', href: '/signs/the-twelve-signs' },
+  { id: 'aspects', title: 'Astrological Aspects', subtitle: 'The language of angles in your chart', svgKey: null, icon: '×', courseId: 'aspects-deep', href: '/aspects/astrological-aspects' },
+  { id: 'chiron', title: 'Chiron', subtitle: 'The wound that teaches', svgKey: 'chiron', icon: '◎', courseId: 'chiron-wound', href: '/planets/chiron' },
+  { id: 'mercury-rx', title: 'Mercury Retrograde', subtitle: 'The chance to review', svgKey: 'mercury', icon: '◎', courseId: 'mercury-retrograde', href: '/planets/mercury' },
 ];
 
 export function getCourse(id: string): Course | undefined {

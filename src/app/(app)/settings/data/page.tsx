@@ -6,7 +6,7 @@ import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { Card } from '@/components/Card';
 import { Body } from '@/components/Body';
 
-function collectSukoonData(): Record<string, string> {
+function collectHygieaData(): Record<string, string> {
   const out: Record<string, string> = {};
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
@@ -20,12 +20,12 @@ export default function DataPage() {
   const [cleared, setCleared] = useState(false);
 
   const handleExport = () => {
-    const data = collectSukoonData();
+    const data = collectHygieaData();
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'sukoon-data.json';
+    a.download = 'hygiea-data.json';
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -66,7 +66,7 @@ export default function DataPage() {
         {cleared && (
           <div className="mt-2 p-4 rounded-[14px] bg-cream-soft border border-rule-soft text-center flex flex-col gap-3">
             <Body>Your data has been deleted.</Body>
-            <button onClick={() => router.push('/onboarding')} className="text-coral text-sm font-medium">
+            <button onClick={() => router.push('/self')} className="text-coral text-sm font-medium">
               Start over →
             </button>
           </div>

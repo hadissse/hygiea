@@ -7,15 +7,9 @@ import { getCurrentSky } from '@/lib/currentSky';
 import { planetSvgKey } from '@/lib/planetMeta';
 import { PLANET_IN_HOUSE } from '@/content/planetInHouseData';
 
-// ── Arabic helpers ────────────────────────────────────────────────────────────
-
-function toAr(n: number | string): string {
-  return String(n).replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[Number(d)]);
-}
-
 const ZODIAC_AR = [
-  'الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء',
-  'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت',
+  'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
+  'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces',
 ];
 
 const ZODIAC_SVG_KEYS = [
@@ -31,68 +25,55 @@ function lonToSignDeg(lon: number): string {
   const n = norm360(lon);
   const sign = Math.floor(n / 30);
   const deg = Math.floor(n % 30);
-  return `${ZODIAC_AR[sign]} ${toAr(deg)}°`;
+  return `${ZODIAC_AR[sign]} ${deg}°`;
 }
 
 // ── House metadata ─────────────────────────────────────────────────────────────
 
 const HOUSE_ORDINALS_AR = [
-  'بيت ١', 'بيت ٢', 'بيت ٣', 'بيت ٤', 'بيت ٥', 'بيت ٦',
-  'بيت ٧', 'بيت ٨', 'بيت ٩', 'بيت ١٠', 'بيت ١١', 'بيت ١٢',
+  'House I', 'House II', 'House III', 'House IV', 'House V', 'House VI',
+  'House VII', 'House VIII', 'House IX', 'House X', 'House XI', 'House XII',
 ];
 
 const HOUSE_NAMES_AR = [
-  'الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس',
-  'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر',
+  'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth',
+  'Seventh', 'Eighth', 'Ninth', 'Tenth', 'Eleventh', 'Twelfth',
 ];
 
 const HOUSE_THEMES_SHORT = [
-  'الذات · الجسد',
-  'المورد · الميدان',
-  'العقل · القريب',
-  'الأصول · الموقد',
-  'الإبداع · الشرارة',
-  'العمل · Dayي',
-  'الآخر · المرآة',
-  'الأعماق · المشترك',
-  'المعنى · البعيد',
-  'الذروة · العمل',
-  'الجماعة · المستقبل',
-  'الخفاء · الانحلال',
+  'Self · Body',
+  'Resources · Field',
+  'Mind · Near',
+  'Roots · Hearth',
+  'Creativity · Spark',
+  'Work · Daily',
+  'Other · Mirror',
+  'Depth · Shared',
+  'Meaning · Far',
+  'Summit · Vocation',
+  'Community · Future',
+  'Retreat · Dissolution',
 ];
 
-// Full Arabic descriptions for each house
 const HOUSE_FULL_DESCRIPTIONS: string[] = [
-  // House 1
-  'البيت الأول هو عتبة الذات — الواجهة الأولى التي تظهر بها للعالم، والجسد الذي تسكنه في هذه الحياة. حامل طالع المولد، يكشف هذا البيت عن الانطباع العفوي الذي تتركه في نفوس من يلتقونك للمرة الأولى. هنا يسكن الطريق الذي تبدأ به كلّ مسيرة: كيف تقدّم نفسك، وكيف تختار الظهور. وسيلتك في العيش ومرآتك للوجود.',
-  // House 2
-  'البيت الثاني يسأل: ما الذي تملكه حقًا؟ — وليس الأموال وحدها، بل القيم التي لا تتنازل عنها، والطاقة التي تنهل منها. هنا يتشكّل علاقتك بالاستحقاق والأمان المادي، وبما تضفيه على العالم بموارد يدك وصوتك وعقلك. ما الذي يعطيك شعورًا بالأمان؟ وما الذي يمكنك أن تعطيه بدوام؟',
-  // House 3
-  'البيت الثالث هو عقلك في حركته Dayية — الفضول الحيّ الذي يسأل ويLearn ويتنقّل. الإخوة والجيران وكلّ من يسكنون دائرتك القريبة ينتمون إلى مداره. هنا يُنسَج التواصل: Allمة المكتوبة والمنطوقة، الرسالة المرسَلة والفكرة المتداوَلة. السفر القصير والمحادثة العابرة قد يحملان من الوحي أكثر مما تظنّ.',
-  // House 4
-  'البيت الرابع هو أعمق قرار تسكنه الروح — الجذر الخفيّ الذي تنبثق منه كلّ الفروع. الأسرة والميراث العاطفي والوطن الداخلي كلّها تنبع من هنا. ما الذي تحمله من طفولتك؟ وما الأساس الذي تبني عليه؟ في نهاية العمر، هذا البيت يكشف إلى أين تعود حين يتعب كلّ شيء آخر.',
-  // House 5
-  'البيت الخامس هو قلب الإبداع النابض — اللهو الذي يصبح فنًا، والحبّ الذي يشعل الحياة. هنا يسكن الطفل الداخلي الذي يصنع لمجرّد متعة الصنع. الأطفال والمحبوبون والمشاريع التي تضع فيها روحك كلّها تنتمي إلى مداره. الجرأة على التعبير والمخاطرة بالظهور — هذا هو اختبار هذا البيت.',
-  // House 6
-  'البيت السادس هو الانضباط Dayي الذي يُترجم الطموح إلى واقع. الصحة والروتين والعمل التفصيلي يجدون معناهم هنا. كيف تخدم، وكيف تُعتنى بجسدك، وما القيود التي تضعها على نفسك بوعي — كلّ ذلك يُقرأ في هذا البيت. الإتقان يُبنى بالتكرار، والتكرار يصبح محبّةً حين يصدر من بيت السادس الواعي.',
-  // House 7
-  'البيت السابع هو مرآتك في الآخر — ما تجد فيمن تختارهم شريكًا أو عدوًا. الزواج والشراكة والعلاقات الحميمة الطويلة تُشكَّل في ظلّ هذا البيت. ما تقمعه في نفسك يظهر في الشريك المقابل. التكامل هنا ليس الاندماج بل التقابل: أن تبقى ذاتك وتتّسع في نفس الوقت لأن في الآخر شيئًا تحتاجه.',
-  // House 8
-  'البيت الثامن هو عالم ما وراء السطح — الموارد المشتركة، والموت والولادة، والتحوّل من خلال الأزمة. هنا تتناغم الروح مع ما هو أعمق من الظاهر: الميراث والديون العاطفية والصلابة التي تُبنى في أشدّ اللحظات. إفلاس الأنا القديمة هو بداية هذا البيت، وما يبقى بعد الحريق هو ما كان حقيقيًا دائمًا.',
-  // House 9
-  'البيت التاسع هو أفق المعنى — الفلسفة والسفر البعيد والإيمان الذي يوسّع الحدود. هنا يسكن المعلّم والفيلسوف والرحّالة بداخلك. ما الذي تؤمن به حقًا؟ وما الخريطة العقلية التي تسير بها في الحياة؟ الجامعات والنصوص الكبرى والثقافات الأخرى كلّها أبواب يطرقها هذا البيت Searchًا عن الحقيقة الأوسع.',
-  // House 10
-  'البيت العاشر هو ذروة ما ترى في نفسك وما يراه العالم فيك — المهنة والسمعة والإرث الذي تتركه. هنا يقف Ascendant في مواجهة المجتمع: ما الأثر الذي تريد أن تُخلّفه؟ وما الدور الذي اخترته في الصرح الكبير؟ النجاح هنا ليس Monthة بل الاتّساق بين ما تعمله وما تؤمن به.',
-  // House 11
-  'البيت الحادي عشر هو فضاء الحلم الجماعي — الأصدقاء والجماعة والأهداف التي تتجاوز الفرد. هنا تلتقي الأرواح المتشابهة وتتشكّل الرؤى للمستقبل. ما الذي تريد أن يكون أفضل للجماعة؟ وما الشبكة التي تسندك وتسندها؟ التغيير الكبير في العالم يبدأ دائمًا من هذا البيت حين يجد أرواحًا متّفقة.',
-  // House 12
-  'البيت الثاني عشر هو حجرة الأسرار — اللاوعي والعزلة والعالم الخفيّ الذي يعمل تحت السطح. هنا يسكن ما تخشى أن يُرى، وما لم تجد له صوتًا بعد. الروحانية والتأمّل والأحلام جسور نحو هذا البيت. ما لم يُعالَج هنا يشكّل القيود غير المرئية في حياتك. المواجهة الحنونة لما يُخفيه هذا البيت تحرّر طاقة هائلة.',
+  'The First House is the threshold of the self — the first face you present to the world, the body you inhabit in this life. Carrying the ascendant, this house reveals the spontaneous impression you leave on those who meet you for the first time. Here lives the path you begin every journey with: how you introduce yourself and how you choose to appear. Your mode of living and your mirror to existence.',
+  'The Second House asks: what do you truly possess? — not money alone, but the values you will not compromise, and the reserves you draw from. Here your relationship to entitlement and material security takes shape, along with what you offer the world through the resources of your hands, voice, and mind. What gives you a sense of safety? And what can you give without exhaustion?',
+  'The Third House is your mind in daily motion — the living curiosity that asks, learns, and moves. Siblings, neighbors, and all who inhabit your near circle belong to its orbit. Here communication is woven: the written and spoken word, the sent message, the circulating idea. Short journeys and passing conversations may carry more revelation than you expect.',
+  'The Fourth House is the deepest dwelling of the soul — the hidden root from which all branches spring. Family, emotional inheritance, and the inner homeland all flow from here. What do you carry from your childhood? And what foundation are you building on? At the end of a life, this house reveals where you return when everything else has tired.',
+  'The Fifth House is the beating heart of creativity — the play that becomes art, the love that ignites life. Here lives the inner child who makes things simply for the joy of making. Children, lovers, and the projects into which you pour your soul all belong to its orbit. The courage to express yourself and risk being seen — this is the test of this house.',
+  'The Sixth House is the daily discipline that translates ambition into reality. Health, routine, and detailed work find their meaning here. How you serve, how you care for your body, and the boundaries you consciously set on yourself — all of this is read in this house. Mastery is built through repetition, and repetition becomes love when it flows from an awake Sixth House.',
+  'The Seventh House is your mirror in the other — what you find in those you choose as partner or adversary. Marriage, partnership, and long intimate relationships are shaped under this house. What you suppress in yourself appears in the partner opposite. Integration here is not merger but encounter: remaining yourself while expanding because the other holds something you need.',
+  'The Eighth House is the world beneath the surface — shared resources, death and birth, and transformation through crisis. Here the soul attunes to what is deeper than the visible: inheritance, emotional debts, and the strength built in the most intense moments. The bankruptcy of the old self is this house\'s beginning, and what survives the fire is what was always real.',
+  'The Ninth House is the horizon of meaning — philosophy, distant travel, and the faith that expands boundaries. Here lives the teacher, philosopher, and wanderer within you. What do you truly believe? And what mental map do you walk through life with? Universities, great texts, and other cultures are all doors this house knocks on in search of the wider truth.',
+  'The Tenth House is the summit of what you see in yourself and what the world sees in you — career, reputation, and the legacy you leave. Here the self stands before society: what impact do you want to leave? And what role have you chosen in the great edifice? Success here is not achievement alone but the consistency between what you do and what you believe.',
+  'The Eleventh House is the space of the collective dream — friends, community, and goals that transcend the individual. Here like souls meet and visions for the future take shape. What do you want to be better for the collective? And what network supports you and is supported by you? The great changes in the world always begin from this house when it finds aligned souls.',
+  'The Twelfth House is the chamber of secrets — the unconscious, solitude, and the hidden world that operates beneath the surface. Here lives what you fear being seen, and what you have not yet found a voice for. Spirituality, contemplation, and dreams are bridges to this house. What is unresolved here forms the invisible constraints in your life. Gentle confrontation of what this house conceals releases enormous energy.',
 ];
 
 const PLANET_AR: Record<string, string> = {
   sun: 'Sun', moon: 'Moon', mercury: 'Mercury', venus: 'Venus', mars: 'Mars',
   jupiter: 'Jupiter', saturn: 'Saturn', uranus: 'Uranus', neptune: 'Neptune', pluto: 'Pluto',
-  chiron: 'كيرون', northNode: 'شمال Moon', southNode: 'جنوب Moon',
+  chiron: 'Chiron', northNode: 'North Node', southNode: 'South Node',
 };
 
 const PLANET_KEYS = [
@@ -156,12 +137,12 @@ function PlanetRow({
 }) {
   const [expanded, setExpanded] = useState(false);
   const svgKey = planetSvgKey(planetKey);
-  const posStr = `${planet.sign} ${toAr(planet.degree)}°`;
+  const posStr = `${planet.sign} ${planet.degree}°`;
   const reading = PLANET_IN_HOUSE[`${planetKey}:${houseNum}`];
 
   // Helper: get first 2 sentences of a string
   function firstTwoSentences(text: string): string {
-    const matches = text.match(/[^.!؟]+[.!؟]+/g);
+    const matches = text.match(/[^.!?]+[.!?]+/g);
     if (!matches) return text.slice(0, 200);
     return matches.slice(0, 2).join('');
   }
@@ -199,21 +180,21 @@ function PlanetRow({
         <div className="mt-3 flex flex-col gap-3">
           {/* Traditional meaning */}
           <div>
-            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">المعنى التقليدي</div>
+            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">TRADITIONAL MEANING</div>
             <div className="text-[13px] text-ink leading-[1.7]">
               {expanded ? reading.traditional : firstTwoSentences(reading.traditional)}
             </div>
           </div>
           {/* Evolutionary meaning */}
           <div>
-            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">المعنى التطوري</div>
+            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">EVOLUTIONARY MEANING</div>
             <div className="text-[13px] text-ink leading-[1.7]">
               {expanded ? reading.evolutionary : firstTwoSentences(reading.evolutionary)}
             </div>
           </div>
           {/* Developmental task */}
           <div>
-            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">المهمة التطورية</div>
+            <div className="text-[10px] text-ink-muted font-semibold tracking-wide mb-1">DEVELOPMENTAL TASK</div>
             <div className="text-[13px] text-ink leading-[1.7]">
               {expanded ? reading.task : firstTwoSentences(reading.task)}
             </div>
@@ -222,12 +203,12 @@ function PlanetRow({
             onClick={() => setExpanded((v) => !v)}
             className="self-start text-[12px] text-ink-muted underline underline-offset-2 mt-0.5"
           >
-            {expanded ? 'عرض أقل' : 'عرض المزيد'}
+            {expanded ? 'Show less' : 'Show more'}
           </button>
         </div>
       ) : (
         <div className="mt-2 text-[13px] text-ink-muted leading-[1.6]">
-          {PLANET_AR[planetKey] ?? planet.name} في البيت {HOUSE_NAMES_AR[houseNum - 1]}.
+          {PLANET_AR[planetKey] ?? planet.name} in the {HOUSE_NAMES_AR[houseNum - 1]} House.
         </div>
       )}
     </div>
@@ -242,7 +223,7 @@ function TransitRow({
   planet: AstralChart['sun'];
 }) {
   const svgKey = planetSvgKey(planetKey);
-  const posStr = `${planet.sign} ${toAr(planet.degree)}°`;
+  const posStr = `${planet.sign} ${planet.degree}°`;
 
   return (
     <div className="flex gap-3 items-center py-2.5 border-b border-[#EDE9E0] last:border-b-0">
@@ -291,7 +272,7 @@ export function HouseDetailClient({ num }: { num: number }) {
   if (!isValid) {
     return (
       <div className="max-w-[430px] mx-auto w-full px-5 py-12 text-center" dir="ltr">
-        <div className="text-ink-muted text-sm">رقم البيت غير صحيح.</div>
+        <div className="text-ink-muted text-sm">Invalid house number.</div>
       </div>
     );
   }
@@ -301,7 +282,7 @@ export function HouseDetailClient({ num }: { num: number }) {
       <div className="max-w-[430px] mx-auto w-full pb-28" dir="ltr">
         {/* Header nav */}
         <div className="pt-4 px-5 flex justify-between items-center">
-          <button onClick={() => router.back()} aria-label="رجوع" className="text-ink">
+          <button onClick={() => router.back()} aria-label="Back" className="text-ink">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
               <path d="M15 18l-6-6 6-6" />
             </svg>
@@ -311,13 +292,13 @@ export function HouseDetailClient({ num }: { num: number }) {
         </div>
         <div className="px-5 mt-16 text-center">
           <div className="text-ink-muted text-sm leading-[1.7] mb-6">
-            لا توجد خريطة فلكية محفوظة. أدخل بيانات الميلاد لتظهر تفاصيل بيتك.
+            No natal chart found. Enter your birth data to view house details.
           </div>
           <button
             onClick={() => router.push('/settings/edit-birth')}
             className="px-6 py-3 rounded-full bg-ink text-cream text-sm font-medium"
           >
-            إدخال بيانات الميلاد
+            Enter Birth Data
           </button>
         </div>
       </div>
@@ -358,12 +339,12 @@ export function HouseDetailClient({ num }: { num: number }) {
     <div className="max-w-[430px] mx-auto w-full pb-28 relative" dir="ltr">
       {/* Header nav */}
       <div className="pt-4 px-5 flex justify-between items-center">
-        <button onClick={() => router.back()} aria-label="رجوع" className="text-ink">
+        <button onClick={() => router.back()} aria-label="Back" className="text-ink">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
             <path d="M15 18l-6-6 6-6" />
           </svg>
         </button>
-        <div className="text-xs text-ink-muted">Houses الفلكية</div>
+        <div className="text-xs text-ink-muted">Houses</div>
         <div className="w-[22px]" />
       </div>
 
@@ -388,23 +369,23 @@ export function HouseDetailClient({ num }: { num: number }) {
         <div className="text-sm text-white/80 mt-1">{houseThemeShort}</div>
         <div className="mt-3 flex items-center gap-2">
           <div className="px-2.5 py-1 bg-white/20 rounded-full text-[11px] text-white font-medium">
-            {signName} {toAr(cuspDeg)}° — Ascendant
+            {signName} {cuspDeg}° — Ascendant
           </div>
         </div>
       </div>
 
       {/* House themes section */}
       <div className="mx-5 mt-4 p-4 bg-white rounded-[14px]" style={{ border: '1px solid #E8E2D2' }}>
-        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">ما يحكمه هذا البيت</div>
+        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">WHAT THIS HOUSE GOVERNS</div>
         <div className="text-[14px] text-ink leading-[1.7]">{houseDesc}</div>
       </div>
 
       {/* Natal planets in this house */}
       <div className="mx-5 mt-4">
-        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">كواكب الميلاد في هذا البيت</div>
+        <div className="text-[11px] text-ink-muted font-semibold tracking-wide mb-2">NATAL PLANETS IN THIS HOUSE</div>
         {natalPlanets.length === 0 ? (
           <div className="p-4 bg-white rounded-[14px] text-[13px] text-ink-muted text-center" style={{ border: '1px solid #E8E2D2' }}>
-            لا توجد كواكب ميلاد في هذا البيت
+            No natal planets in this house
           </div>
         ) : (
           <div className="bg-white rounded-[14px] px-4" style={{ border: '1px solid #E8E2D2' }}>
@@ -418,14 +399,14 @@ export function HouseDetailClient({ num }: { num: number }) {
       {/* Current transiting planets */}
       <div className="mx-5 mt-4">
         <div className="flex items-center gap-2 mb-2">
-          <div className="text-[11px] text-ink-muted font-semibold tracking-wide">العبور الحالي</div>
+          <div className="text-[11px] text-ink-muted font-semibold tracking-wide">CURRENT TRANSITS</div>
           <div className="px-2 py-0.5 rounded-full text-[10px] font-medium text-white" style={{ background: '#8FA084' }}>
-            الآن
+            Now
           </div>
         </div>
         {transitingPlanets.length === 0 ? (
           <div className="p-4 bg-white rounded-[14px] text-[13px] text-ink-muted text-center" style={{ border: '1px solid #E8E2D2' }}>
-            لا توجد كواكب عابرة في هذا البيت حاليًا
+            No transiting planets in this house right now
           </div>
         ) : (
           <div className="bg-white rounded-[14px] px-4" style={{ border: '1px solid #EDE9E0' }}>
@@ -442,7 +423,7 @@ export function HouseDetailClient({ num }: { num: number }) {
           onClick={() => router.push(`/log?type=house&key=${num}&label=${encodeURIComponent(houseLabel)}`)}
           className="w-full h-[52px] rounded-[26px] bg-ink text-cream text-base font-medium"
         >
-          سجّل حدثًا مرتبطًا بهذا البيت
+          Log an event linked to this house
         </button>
       </div>
     </div>

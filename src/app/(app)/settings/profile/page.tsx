@@ -5,10 +5,6 @@ import Link from 'next/link';
 import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { loadEvents } from '@/lib/events';
 
-function toArabicDigits(input: string | number): string {
-  return String(input);
-}
-
 export default function ProfilePage() {
   const [stats, setStats] = useState({ events: 0, calibrations: 0, hasChart: false });
 
@@ -26,8 +22,8 @@ export default function ProfilePage() {
   }, []);
 
   const cells = [
-    [toArabicDigits(stats.events), 'Logged Events'],
-    [toArabicDigits(stats.calibrations), 'Calibrations'],
+    [String(stats.events), 'Logged Events'],
+    [String(stats.calibrations), 'Calibrations'],
     [stats.hasChart ? 'Yes' : '—', 'Your chart'],
   ];
 

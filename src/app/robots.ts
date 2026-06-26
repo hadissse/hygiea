@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/settings/", "/log", "/event/"],
       },
     ],
-    sitemap: "https://hygiea.arabic-astro.com/sitemap.xml",
+    sitemap: "https://hygiea.shop/sitemap.xml",
   };
 }

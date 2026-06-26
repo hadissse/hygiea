@@ -15,7 +15,7 @@ export function ChartSync() {
       if (!hasLocal) {
         const loaded = await loadRemoteChart()
         if (!loaded) {
-          router.replace('/onboarding')
+          router.replace('/self')
         }
       }
     }

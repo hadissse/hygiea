@@ -13,9 +13,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex flex-col md:flex-row min-h-dvh">
       <ChartSync />
       <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
         <div className="md:hidden"><Header /></div>
-        <main className="flex-1 pb-20 md:pb-10 w-full max-w-[430px] md:max-w-[900px] mx-auto md:px-8">
+        <main className="flex-1 pb-20 md:pb-0 w-full max-w-[430px] mx-auto md:max-w-none md:mx-0">
           {children}
         </main>
       </div>

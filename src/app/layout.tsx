@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { AuthProvider } from "@/components/AuthProvider";
 
-const SITE_URL = "https://hygiea.app";
+const SITE_URL = "https://hygiea.shop";
 const SITE_NAME = "Hygiea";
 const SITE_DESC =
   "Hygiea — A spiritual-hygiene daily practice app. Know your planetary spheres, organs, and cosmic constitution.";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   openGraph: {
     type: "website",
-    locale: "ar_SA",
+    locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
     title: "Hygiea — Your spheres. Your practice.",
@@ -83,10 +83,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="en" dir="ltr">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Inter:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
@@ -98,17 +98,17 @@ export default function RootLayout({
               "@type": "WebApplication",
               name: "Hygiea",
               alternateName: "Hygiea",
-              url: "https://hygiea.app",
+              url: "https://hygiea.shop",
               description: SITE_DESC,
               applicationCategory: "LifestyleApplication",
               operatingSystem: "Web",
-              inLanguage: "ar",
+              inLanguage: "en",
               offers: {
                 "@type": "Offer",
                 price: "0",
                 priceCurrency: "USD",
               },
-              image: "https://hygiea.app/icons/icon-512.png",
+              image: "https://hygiea.shop/icons/icon-512.png",
             }),
           }}
         />

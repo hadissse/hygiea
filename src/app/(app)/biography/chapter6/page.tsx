@@ -472,7 +472,7 @@ export default function Chapter6Page() {
             No birth chart found. Please complete the chart calculation first.
           </p>
           <Link
-            href="/onboarding"
+            href="/self"
             className="inline-block mt-4 px-6 py-2.5 bg-midnight text-white rounded-[26px] text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Set Up Chart
