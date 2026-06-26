@@ -55,6 +55,19 @@ const chartSubtabs = [
 const ZODIAC_SVG_KEYS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sag', 'cap', 'aqua', 'pisces'];
 const ZODIAC_NAMES_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
+function signFromLon(lon: number): string {
+  return ZODIAC_NAMES_EN[Math.floor(((lon % 360) + 360) % 360 / 30)] ?? '';
+}
+const ROMAN_BIO = ['', 'I', 'II', 'III', 'IV', 'V', 'VI'] as const;
+const CHAPTER_META = [
+  { num: 1, title: 'The Arc',                    subtitle: 'Body, Soul & Spirit Constitution',    href: '/biography/chapter1', label: (c: any) => `Sun in ${c.sun.sign} · Moon in ${c.moon.sign} · ASC ${signFromLon(c.asc)}` },
+  { num: 2, title: 'The Seven Spheres',           subtitle: 'Classical Planetary Forces',          href: '/biography/chapter2', label: (c: any) => `Sun ${c.sun.sign} · Moon ${c.moon.sign} · Mercury ${c.mercury.sign} · Venus ${c.venus.sign} · Mars ${c.mars.sign} · Jupiter ${c.jupiter.sign} · Saturn ${c.saturn.sign}` },
+  { num: 3, title: 'The Outer Spheres',           subtitle: 'Uranus, Neptune & Pluto',             href: '/biography/chapter3', label: (c: any) => `Uranus in ${c.uranus.sign} · Neptune in ${c.neptune.sign} · Pluto in ${c.pluto.sign}` },
+  { num: 4, title: 'The Nodal Axis & Sacred Wound', subtitle: 'North Node, South Node & Chiron', href: '/biography/chapter4', label: (c: any) => `North Node ${c.northNode.sign} · South Node ${c.southNode.sign} · Chiron ${c.chiron.sign}` },
+  { num: 5, title: 'Aspects & Configurations',   subtitle: 'Planetary Relationships',             href: '/biography/chapter5', label: (c: any) => `Sun ${c.sun.sign} · Moon ${c.moon.sign} · Dominant themes emerging from aspect patterns` },
+  { num: 6, title: "The I's Mission",             subtitle: 'Purpose, Vocation & Destiny',        href: '/biography/chapter6', label: (c: any) => `MC ${signFromLon(c.mc)} · Sun ${c.sun.sign} · North Node ${c.northNode.sign}` },
+] as const;
+
 function formatPosition(planet: any): string {
   return `${planet.sign} ⁦${toAr(planet.degree)}°⁩`;
 }
@@ -1764,6 +1777,27 @@ function SelfPageInner() {
                     </div>
                     <span className="text-cream/70 text-lg">→</span>
                   </Link>
+                </div>
+
+                {/* Biography chapters */}
+                <div className="px-5 mt-6">
+                  <p className="text-[10px] font-semibold tracking-widest text-ink-muted uppercase mb-1">Biography</p>
+                  <p className="text-[12px] text-ink-muted mb-3">Your six-chapter natal reading</p>
+                  <div className="space-y-2">
+                    {CHAPTER_META.map((ch) => (
+                      <Link key={ch.num} href={ch.href} className="flex items-start justify-between gap-3 bg-white rounded-[18px] border border-rule-soft px-5 py-4 hover:shadow-sm transition-shadow">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-[10px] font-semibold tracking-widest text-ink-muted">{ROMAN_BIO[ch.num]}</span>
+                            <span className="font-prose text-[16px] text-ink">{ch.title}</span>
+                          </div>
+                          <p className="text-[11px] text-ink-muted mb-1">{ch.subtitle}</p>
+                          {chart && <p className="text-[11px] text-ink-muted/70 truncate">{ch.label(chart)}</p>}
+                        </div>
+                        <span className="text-ink-muted mt-1">›</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Teaching + Evening reflection — moved from the Today page */}

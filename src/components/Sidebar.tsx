@@ -42,21 +42,11 @@ function SelfIcon({ active }: { active: boolean }) {
   );
 }
 
-function BiographyIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill={active ? '#171B3A' : 'none'} />
-    </svg>
-  );
-}
-
 const primaryNav = [
-  { key: 'today',     label: 'Day',       href: '/today',     Icon: TodayIcon },
-  { key: 'spheres',   label: 'Spheres',   href: '/spheres',   Icon: SpheresIcon },
-  { key: 'events',    label: 'Events',    href: '/events',    Icon: EventsIcon },
-  { key: 'self',      label: 'Self',      href: '/self',      Icon: SelfIcon },
-  { key: 'biography', label: 'Biography', href: '/biography', Icon: BiographyIcon },
+  { key: 'today',   label: 'Day',     href: '/today',   Icon: TodayIcon },
+  { key: 'spheres', label: 'Spheres', href: '/spheres', Icon: SpheresIcon },
+  { key: 'events',  label: 'Events',  href: '/events',  Icon: EventsIcon },
+  { key: 'self',    label: 'Self',    href: '/self',    Icon: SelfIcon },
 ] as const;
 
 export function Sidebar() {
@@ -75,12 +65,11 @@ export function Sidebar() {
 
       <div className="flex flex-col h-full px-4 py-6">
         {/* Brand */}
-        <Link href="/today" className="flex items-center gap-2.5 px-2 mb-7" aria-label="Hygiea">
+        <Link href="/today" className="flex items-center justify-center mb-7" aria-label="Hygiea">
           <div className="relative">
-            <div className="absolute inset-[-3px] rounded-full border border-rule-soft opacity-60" />
-            <Image src="/hygiea-logo.png" alt="Hygiea" width={36} height={36} className="object-contain" />
+            <div className="absolute inset-[-4px] rounded-full border border-rule-soft opacity-60" />
+            <Image src="/hygiea-logo.png" alt="Hygiea" width={52} height={52} className="object-contain" />
           </div>
-          <span className="font-serif text-xl text-ink tracking-wide">Hygiea</span>
         </Link>
 
         {/* Primary navigation */}
