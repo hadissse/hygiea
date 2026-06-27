@@ -1,4 +1,4 @@
-// Auto-generated from content-db/spheres.csv
+// Auto-generated from content-db/spheres.csv — do not edit directly
 export interface SphereData {
   planet: string;
   sphere_name: string;
@@ -91,7 +91,7 @@ export const SPHERES: SphereData[] = [
     "body_member_sub": "physical body's force of movement",
     "sense": "",
     "sense_sub": "",
-    "organ": "Gall bladder · Bile",
+    "organ": "Gall bladder · Bile · Blood (iron impulse)",
     "metal": "Iron · Ferrum",
     "luciferic": "Will inflated into aggression or conquest; drive losing its moral direction; the burning of what cannot be rebuilt; passion substituting for genuine purposeful courage",
     "ahrimanic": "Will hardened into cold strategic force — executes without feeling; treats other human beings as instruments; force without the warmth that would make it serve spirit rather than mechanism",
@@ -178,7 +178,3 @@ export const SPHERES: SphereData[] = [
     "sphere_narrative": "The most primordial and compressed of cosmic forces — the intelligence of absolute transformation at the level of death and regeneration within entire evolutionary cycles. Works at the level of collective fate; does not negotiate; the force through which what must die finally can no longer be maintained."
   }
 ];
-
-export const SPHERE_BY_PLANET: Record<string, SphereData> = Object.fromEntries(
-  SPHERES.map(s => [s.planet, s])
-);

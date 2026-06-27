@@ -1,79 +1,111 @@
 # Hygiea — Pending Tasks
 
-## Priority 1: Data Sync (Appwrite backend)
-The schema is fully defined (6 collections) but only `charts` + `profiles` sync. Everything else is a stub in `src/lib/sync.ts`.
-
-| Task | Collection | File |
-|---|---|---|
-| Sync events to Appwrite | `events` | `src/lib/sync.ts:163` |
-| Sync calibrations (fixed star resonance) | `calibrations` | `src/lib/sync.ts:175` |
-| Sync traits (quiz answers) | `traits` | `src/lib/sync.ts:179` |
-| Sync journey progress | `journey_progress` | `src/lib/sync.ts:183` |
-| Sync transit feedback / votes | — | `src/lib/sync.ts:187` |
-
-All 5 functions exist as empty stubs — need to implement using the same pattern as `syncChart()`.
+Last updated: 2026-06-27
 
 ---
 
-## Priority 2: Locked UI Features (3 "Soon" cards on Self page)
-All in `src/app/(app)/self/page.tsx`:
+## DONE THIS SESSION ✅
 
-| Feature | What it needs |
+- Cosmic Orrery at `/orrery` — 3D R3F planetary system, 7 planets, star field, info panel
+- `/self/layers` — Framer Motion spring animations, pulsing glow ellipses
+- `/self/anatomy` — Framer Motion drawer, expanding glow ring on active hotspot
+- `/hierarchy` — Celestial Hierarchies, 9 angelic orders, scroll-driven whileInView
+- `/journey` — River of Light, 7 scroll-snap soul sections
+- `/constellations` — Zodiac 12-sign grid with bottom info panel
+- Sidebar nav: Orrery, Hierarchy, Stars, Journey links added
+- Cosmic CSS tokens in `globals.css`
+- Fix Supabase env var: `PUBLISHABLE_KEY` → `ANON_KEY` (was breaking Vercel/production)
+- Mobile header scroll-hide (hides past 60px on scroll down)
+- Desktop sticky title bar in app layout
+- Events page: proper empty state with CTA
+- Explore page: wider desktop layout
+- P1 — Appwrite sync stubs fully implemented (`src/lib/sync.ts`): events, traits, journey, calibrations, transit feedback, preferences, votes
+- P2 — 3 locked "Soon" cards on Self page unlocked → /journey, /explore, /log
+- P3 — Biography section (6 chapters with chart labels) added to bottom of Self page
+- Content hub: books moved to `reports system/books/`, `books-index.json` created, `karma_lectures.json` in content-db, `export_hygiea.js` script written
+- `APPWRITE_HARDENING.md` — production security checklist
+- `DEPLOY.md` + `deploy/nginx.conf` + `deploy/ecosystem.config.js` — full VPS deployment guide
+
+---
+
+## Priority 1: Deploy to Hetzner VPS 🚀
+
+**Guide**: `DEPLOY.md`  
+**Config files**: `deploy/nginx.conf`, `deploy/ecosystem.config.js`
+
+Steps remaining (done on the server, not in code):
+- [ ] Create Hetzner CX22 server
+- [ ] Point DNS records to server IP
+- [ ] Transfer Appwrite Docker + change secrets (see `APPWRITE_HARDENING.md`)
+- [ ] `git clone` + `npm run build` + PM2 for Hygiea
+- [ ] `rsync` + Python venv + PM2 for Reports
+- [ ] Nginx config + Certbot SSL
+- [ ] Appwrite console: create project, collections, add platform
+
+---
+
+## Priority 2: Appwrite Production Hardening
+
+See `APPWRITE_HARDENING.md` for full checklist. Key items:
+- Change `_APP_OPENSSL_KEY_V1` from default (use `openssl rand -hex 32`)
+- Change `_APP_DB_PASS` and `_APP_DB_ROOT_PASS`
+- Set `_APP_DOMAIN` to actual domain
+- Set `_APP_OPTIONS_FORCE_HTTPS=enabled`
+- Set `_APP_CONSOLE_WHITELIST_EMAILS=hadievet123@gmail.com`
+
+---
+
+## Priority 3: Visual Brief — Still Pending
+
+From the "Living Scientific-Spiritual Instrument" brief, 3 concepts not yet built:
+
+| # | Concept | What it needs |
+|---|---|---|
+| 2 | **Glass Sphere Navigation** | Replace sidebar/menus with floating 3D glass spheres (R3F) |
+| 8 | **Infinite Zoom Interface** | Figma-style zoom: Universe → Galaxy → Planetary → Human → Heart |
+| 9 | **Sacred Geometry UI** | Flower of Life / Metatron grid as page structure (SVG) |
+
+Constellation Painting (#6) is done as a grid — the "draw lines on click" version is still pending.
+
+---
+
+## Priority 4: Self Page "Soon" Features (deeper implementation)
+
+The 3 cards were unlocked but link to existing pages. Full implementations:
+
+| Feature | What's needed |
 |---|---|
-| **Weekly Journey** (line 1749) | A proper journey/practice flow — daily prompts tied to the active sphere |
-| **How to read your daily transit** (line 1772) | A learn article or interactive walkthrough page at `/learn/[id]` |
-| **Evening Review** (line 1789) | Reflection form that saves 3 moments of the day to events |
-
-`/learn` currently just redirects to `/today` — needs real content.
+| **Soul Journey** (→ /journey) | ✅ Page exists |
+| **Reading Transits** (→ /explore) | `/learn` still redirects to `/today` — needs real article content |
+| **Evening Review** (→ /log) | Works but could have a dedicated 3-prompt reflection form |
 
 ---
 
-## Priority 3: Biography → Self Integration
-Six biography chapters (`/biography/chapter1–6`) are a separate nav item. The user wants them embedded as categories within `/self` so the whole "Know Yourself" journey lives in one place.
+## Priority 5: Design & UX Gaps (remaining)
 
-**Approach:**
-- Remove Biography from sidebar/tabbar nav
-- Add a "Biography" section inside `/self` page (after the chart) with 6 chapter cards
-- Each card shows dynamic labels from the chart (e.g. "Sun in Gemini · Moon in Scorpio")
-- Clicking navigates to the existing `/biography/chapter[n]` pages (no content change needed)
-
----
-
-## Priority 4: Arabic Content Still Untranslated
-`src/app/self/fixed-stars/[star]/FixedStarDetail.tsx` — the `STAR_CONTENT` data object (lines 16–185) contains 20 fixed stars × 5 fields each, all in Arabic. This is the only remaining Arabic content block.
-
-**Options:** Translate manually, or use an AI batch-translation script.
+| Gap | Fix |
+|---|---|
+| Most pages single-column on desktop | Add `md:grid-cols-3` or `md:max-w-3xl mx-auto` to Spheres list, Biography, Learn pages |
+| `/explore` and `/explore/depth` old design | Apply DM Sans + cosmic design language |
+| No Learn article content | `/learn/[id]` pages exist but content is sparse |
 
 ---
 
-## Priority 5: Design & UX Gaps
-
-| Gap | Location | Fix |
-|---|---|---|
-| Content fills only ~40% of desktop width on most pages | Spheres list, Events, Biography | Add `md:grid-cols-2` or `max-w-3xl mx-auto` where appropriate |
-| No empty state design for Events | `/events` | Add a proper illustrated empty state (currently just "◌") |
-| `/explore` and `/explore/depth` have old design | those pages | Apply DM Sans + cosmic design language |
-| Sidebar has no active state for Explore/Learn routes | `Sidebar.tsx` | Add those routes to `primaryNav` or secondary nav |
-| No desktop header (page title) on most pages | shell layout | Add sticky title bar on md+ |
-
----
-
-## Priority 6: Performance & Code Quality
+## Priority 6: Code Cleanup (remaining)
 
 | Issue | File | Fix |
 |---|---|---|
-| `DAY_PLANETS` color map duplicated in 3+ files | `today/page.tsx`, `NatalChartWheel.tsx`, others | Extract to `src/lib/planets.ts` |
-| `toAr()` / `toArabicDigits()` still defined in 6 files | various | Delete all — they just return `String(n)` now |
+| `DAY_PLANETS` color map duplicated in 3+ files | `today/page.tsx`, `NatalChartWheel.tsx` | Extract to `src/lib/planets.ts` |
 | `localStorage` keys hardcoded in 20+ files | various | Use `STORAGE_KEYS` from `src/lib/storageKeys.ts` |
-| `SukoonWheel.tsx` / `SukoonIcon.tsx` naming | `src/components/v2/` | Rename to HygieaWheel / HygieaIcon |
 
 ---
 
-## Priority 7: Appwrite Self-Hosted Setup
-The Appwrite instance at `/Users/hadi/Downloads/appwrite` is running with default credentials. Before going live:
+## Content Hub — Workflow Reminder
 
-- Change `_APP_OPENSSL_KEY_V1` from `your-secret-key`
-- Set `_APP_DOMAIN` from `localhost` to actual domain
-- Set `_APP_DB_PASS` / `_APP_DB_ROOT_PASS` from defaults
-- Enable HTTPS (`_APP_OPTIONS_FORCE_HTTPS=enabled`)
-- Set `_APP_CONSOLE_WHITELIST_EMAILS` to restrict console access
+When you edit `reports system/content-db/spheres.csv` or `fixed_stars.csv`:
+```bash
+node "/Users/hadi/Downloads/reports system/scripts/export_hygiea.js"
+```
+This regenerates `hygiea-v2/src/content/reportData/spheres.ts` and `fixedStars.ts`.
+
+**Do not edit `placements.ts` via the export script** — it has 12 named exports that require the manual `_build_spheres.py` process.
