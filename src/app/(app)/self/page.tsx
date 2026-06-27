@@ -1751,15 +1751,15 @@ function SelfPageInner() {
             ) : (
               <>
                 <ChartView chart={chart} />
-                {/* Journey 1 entry — coming soon, locked, moved to end of page */}
+                {/* Journey 1 entry */}
                 <div className="px-5 mt-6">
-                  <div className="flex items-center justify-between py-3 px-4 rounded-[18px] bg-ink text-cream opacity-70 cursor-default">
+                  <Link href="/journey" className="flex items-center justify-between py-3 px-4 rounded-[18px] bg-ink text-cream">
                     <div>
-                      <div className="font-serif text-base">Weekly Journey</div>
-                      <div className="text-xs text-cream/60 mt-0.5">Personal practice · Daily step</div>
+                      <div className="font-serif text-base">Soul Journey</div>
+                      <div className="text-xs text-cream/60 mt-0.5">Descend through the spheres of incarnation</div>
                     </div>
-                    <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Soon</span>
-                  </div>
+                    <span className="text-cream/70 text-lg">→</span>
+                  </Link>
                 </div>
 
                 {/* Layers of Being */}
@@ -1797,39 +1797,33 @@ function SelfPageInner() {
                 {/* Teaching + Evening reflection — moved from the Today page */}
                 <div className="px-5 mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                   {/* Teaching */}
-                  <div className="block cursor-default">
-                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px] opacity-70" style={{ background: '#0F1228' }}>
+                  <Link href="/explore" className="block">
+                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: '#0F1228' }}>
                       <img src="/media/blob-purple.webp" alt="" loading="lazy" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
                       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
                       <div className="absolute inset-0 flex flex-col justify-between p-5">
-                        <div className="flex items-center justify-between">
-                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">LEARN</div>
-                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Soon</span>
-                        </div>
+                        <div className="text-[11px] text-cream/60 font-semibold tracking-wider">LEARN</div>
                         <div>
-                          <div className="font-serif text-xl text-cream leading-snug">How to read your daily transit</div>
-                          <div className="text-xs text-cream/70 mt-1.5">Connecting the sky to your lived moment</div>
+                          <div className="font-serif text-xl text-cream leading-snug">Reading Transits</div>
+                          <div className="text-xs text-cream/70 mt-1.5">Understand the cosmic influences at work today</div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                   {/* Evening reflection */}
-                  <div className="block cursor-default">
-                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px] opacity-70" style={{ background: '#0F1228' }}>
+                  <Link href="/log" className="block">
+                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: '#0F1228' }}>
                       <img src="/media/moon-flames.webp" alt="" loading="lazy" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
                       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
                       <div className="absolute inset-0 flex flex-col justify-between p-5">
-                        <div className="flex items-center justify-between">
-                          <div className="text-[11px] text-cream/60 font-semibold tracking-wider">BEFORE SLEEP</div>
-                          <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.6)' }}>Soon</span>
-                        </div>
+                        <div className="text-[11px] text-cream/60 font-semibold tracking-wider">BEFORE SLEEP</div>
                         <div>
                           <div className="font-serif text-xl text-cream leading-snug">Evening Review</div>
-                          <div className="text-xs text-cream/70 mt-1.5">Three moments from your day</div>
+                          <div className="text-xs text-cream/70 mt-1.5">Reflect on three moments from your day</div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                   {/* Cosmic Anatomy */}
                   <Link href="/self/anatomy" className="block">
                     <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: 'linear-gradient(140deg, #2A1F3D 0%, #1A1428 100%)' }}>
@@ -1891,6 +1885,26 @@ function SelfPageInner() {
             </div>
             <SavedView />
           </>
+        )}
+
+        {/* Biography Chapters */}
+        {chart && (
+          <section className="px-5 pt-6 pb-2">
+            <h2 className="font-serif text-xl text-ink mb-1">Biography</h2>
+            <p className="text-xs text-ink-muted mb-4">Your cosmic life story in six chapters</p>
+            <div className="flex flex-col gap-2">
+              {CHAPTER_META.map(ch => (
+                <Link key={ch.num} href={ch.href} className="flex items-start gap-3 p-3 rounded-[16px] bg-white border border-rule-soft hover:shadow-sm transition-shadow">
+                  <span className="text-xs font-mono text-ink-muted mt-0.5 w-5 shrink-0">{ROMAN_BIO[ch.num]}</span>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-ink truncate">{ch.title}</p>
+                    <p className="text-xs text-ink-muted mt-0.5 truncate">{ch.label(chart)}</p>
+                  </div>
+                  <span className="ml-auto text-ink-muted text-sm shrink-0">→</span>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
 
       </div>

@@ -59,7 +59,7 @@ function SkySection() {
             <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-2.5">Planet Positions</div>
             {!sky && <div className="text-sm text-ink-muted text-center py-4">Calculating...</div>}
             {sky && (
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {ALL_PLANETS.map((key) => {
                   const planet = (sky as AstralChart & Record<string, { sign: string; degree: number; minute: number; retrograde?: boolean }>)[key];
                   if (!planet) return null;
@@ -242,7 +242,7 @@ export default function ExplorePage() {
   const [view, setView] = useState<'sky' | 'calendar'>('sky');
 
   return (
-    <div className="pb-10 max-w-3xl mx-auto">
+    <div className="pb-10 max-w-3xl mx-auto md:max-w-6xl">
       {/* Sky / Calendar tab content */}
       {view === 'sky' && <SkySection />}
       {view === 'calendar' && <CalendarSection />}

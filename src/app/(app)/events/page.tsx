@@ -21,7 +21,7 @@ export default function EventsPage() {
 
   return (
     <main className="min-h-dvh bg-cream pb-20">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto md:max-w-5xl">
       <div className="px-5 pt-12 pb-6 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-prose font-medium text-ink">Events</h1>
@@ -33,17 +33,18 @@ export default function EventsPage() {
       </div>
 
       {events.length === 0 ? (
-        <div className="px-5 py-16 text-center flex flex-col items-center gap-4">
-          <svg width="48" height="28" viewBox="0 0 48 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-30">
-            <path d="M24 14C24 14 18 4 10 4C4.477 4 0 8.477 0 14C0 19.523 4.477 24 10 24C18 24 24 14 24 14ZM24 14C24 14 30 4 38 4C43.523 4 48 8.477 48 14C48 19.523 43.523 24 38 24C30 24 24 14 24 14Z" stroke="#5C5C7A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <div>
-            <p className="text-ink-muted font-prose">No events yet.</p>
-            <p className="text-sm text-ink-muted font-ui mt-1">Tap + to log your first moment.</p>
+        <div className="flex flex-col items-center justify-center py-20 px-8 text-center">
+          <div className="w-16 h-16 rounded-full bg-gold-soft/30 flex items-center justify-center mb-4">
+            <span className="text-2xl">◎</span>
           </div>
+          <h3 className="font-serif text-lg text-ink mb-2">No events recorded yet</h3>
+          <p className="text-sm text-ink-muted leading-relaxed mb-6">Start tracking synchronicities, dreams, physical sensations, and meaningful moments.</p>
+          <Link href="/log" className="px-5 py-2.5 rounded-full bg-coral text-white text-sm font-medium">
+            Log your first event
+          </Link>
         </div>
       ) : (
-        <div className="px-5 space-y-3">
+        <div className="px-5 flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-4">
           {events.map((event) => (
             <Link
               key={event.id}

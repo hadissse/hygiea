@@ -15,7 +15,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
         <div className="md:hidden"><Header /></div>
-        <main className="flex-1 pb-20 md:pb-0 w-full max-w-[430px] mx-auto md:max-w-none md:mx-0">
+        <div className="hidden md:flex items-center h-12 px-6 border-b border-rule-soft/50 bg-cream/80 backdrop-blur-lg sticky top-0 z-30">
+          <span className="text-sm font-medium text-ink-muted">Hygiea</span>
+        </div>
+        <main className="flex-1 pb-20 md:pb-0 w-full max-w-[430px] mx-auto md:max-w-full md:mx-0">
           {children}
         </main>
       </div>

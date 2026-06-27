@@ -41,7 +41,7 @@ export default function SpheresMapPage() {
 
   return (
     <main
-      className="min-h-dvh pb-20 relative overflow-x-hidden"
+      className="min-h-dvh pb-20 relative overflow-x-hidden md:max-w-5xl md:mx-auto"
       style={{ backgroundColor: '#0F1228' }}
     >
       <BackgroundRings />

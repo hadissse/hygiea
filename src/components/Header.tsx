@@ -2,10 +2,19 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export function Header() {
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let last = window.scrollY;
+    const handler = () => { const y = window.scrollY; setHidden(y > last && y > 60); last = y; };
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 bg-cream/90 backdrop-blur-xl safe-top">
+    <header className={`sticky top-0 z-40 bg-cream/90 backdrop-blur-xl safe-top transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}>
       <div className="flex items-center justify-between max-w-[430px] mx-auto h-12 px-5">
         {/* Left: settings */}
         <Link href="/settings" className="p-1 -m-1 text-ink-muted hover:text-ink transition-colors" aria-label="Settings">
