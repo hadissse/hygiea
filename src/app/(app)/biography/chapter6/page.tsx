@@ -9,6 +9,7 @@ import {
   type PlacementContent,
   type SphereData,
 } from '@/content/reportData';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -188,14 +189,14 @@ function SectionCard({ title, subtitle, children }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] mb-6 overflow-hidden">
-      <div className="px-6 pt-6 pb-4 border-b border-[#E5E1D8]">
-        <h2 className="text-xl font-prose font-semibold text-ink leading-tight">{title}</h2>
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] mb-5 overflow-hidden">
+      <div className="px-4 pt-4 pb-3 border-b border-[#F0EDE6]">
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted">{title.toUpperCase()}</p>
         {subtitle && (
-          <p className="text-sm text-ink-muted mt-1 italic">{subtitle}</p>
+          <p className="text-xs text-ink-muted mt-1">{subtitle}</p>
         )}
       </div>
-      <div className="px-6 py-5 space-y-6">{children}</div>
+      <div className="px-4 py-4 space-y-5">{children}</div>
     </div>
   );
 }
@@ -224,7 +225,7 @@ function InterpBlock({ label, content }: { label: string; content: PlacementCont
         </div>
       )}
       {content.aphorism_en && (
-        <p className="text-sm text-ink-muted italic border-l-2 border-[#E5E1D8] pl-4 mt-2">
+        <p className="text-sm text-ink-muted italic border-l-2 border-[#F0EDE6] pl-4 mt-2">
           &ldquo;{content.aphorism_en}&rdquo;
         </p>
       )}
@@ -242,21 +243,21 @@ function SphereBlock({ label, sphere }: { label: string; sphere: SphereData | nu
         <p className="text-xs text-ink-muted italic mt-0.5 mb-3">{sphere.sphere_epithet}</p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs mb-3">
           {sphere.hierarchy && (
-            <div className="bg-white rounded-lg p-2 border border-[#E5E1D8]">
+            <div className="bg-white rounded-lg p-2 border border-[#F0EDE6]">
               <p className="text-[10px] uppercase tracking-wider text-ink-muted mb-0.5">Hierarchy</p>
               <p className="font-medium text-ink">{sphere.hierarchy}</p>
               {sphere.hierarchy_sub && <p className="text-ink-muted">{sphere.hierarchy_sub}</p>}
             </div>
           )}
           {sphere.body_member && (
-            <div className="bg-white rounded-lg p-2 border border-[#E5E1D8]">
+            <div className="bg-white rounded-lg p-2 border border-[#F0EDE6]">
               <p className="text-[10px] uppercase tracking-wider text-ink-muted mb-0.5">Body Member</p>
               <p className="font-medium text-ink">{sphere.body_member}</p>
               {sphere.body_member_sub && <p className="text-ink-muted">{sphere.body_member_sub}</p>}
             </div>
           )}
           {sphere.organ && (
-            <div className="bg-white rounded-lg p-2 border border-[#E5E1D8]">
+            <div className="bg-white rounded-lg p-2 border border-[#F0EDE6]">
               <p className="text-[10px] uppercase tracking-wider text-ink-muted mb-0.5">Organ · Metal</p>
               <p className="font-medium text-ink">{sphere.organ}</p>
               {sphere.metal && <p className="text-ink-muted">{sphere.metal}</p>}
@@ -297,7 +298,7 @@ function GiftCard({ title, planet, planetName, signContent, houseContent, sphere
   extra?: React.ReactNode;
 }) {
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 flex flex-col gap-4">
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 flex flex-col gap-4">
       <div>
         <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">{title}</p>
         {planet && planetName && (
@@ -338,14 +339,14 @@ function GiftCard({ title, planet, planetName, signContent, houseContent, sphere
             </div>
           )}
           {signContent.aphorism_en && (
-            <p className="text-xs text-ink-muted italic border-l-2 border-[#E5E1D8] pl-3">
+            <p className="text-xs text-ink-muted italic border-l-2 border-[#F0EDE6] pl-3">
               &ldquo;{signContent.aphorism_en}&rdquo;
             </p>
           )}
         </div>
       )}
       {houseContent && (
-        <div className="space-y-3 border-t border-[#E5E1D8] pt-4">
+        <div className="space-y-3 border-t border-[#F0EDE6] pt-4">
           <p className="text-[10px] uppercase tracking-widest text-ink-muted">House Arena</p>
           {houseContent.traditional_en && (
             <p className="text-xs text-ink leading-relaxed">{houseContent.traditional_en}</p>
@@ -370,9 +371,9 @@ export default function Chapter6Page() {
 
   useEffect(() => {
     try {
-      const rawChart = localStorage.getItem('hygiea.primary-chart.v1');
+      const rawChart = localStorage.getItem(STORAGE_KEYS.CHART);
       if (rawChart) setChart(JSON.parse(rawChart));
-      const rawBirth = localStorage.getItem('hygiea.birth-data');
+      const rawBirth = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (rawBirth) setBirthData(JSON.parse(rawBirth));
     } catch {
       // localStorage unavailable or corrupt
@@ -459,15 +460,13 @@ export default function Chapter6Page() {
 
   if (!chart) {
     return (
-      <div className="px-5 pt-8 pb-32 max-w-3xl bg-[#FAF6EF] min-h-screen">
-        <div className="flex items-center gap-3 mb-6">
-          <Link href="/biography/chapter5" className="text-ink-muted text-sm hover:text-ink transition-colors">
-            ← Chapter 5
-          </Link>
-        </div>
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-8 text-center">
-          <p className="text-2xl font-prose font-semibold text-ink mb-3">Chapter VI</p>
-          <p className="text-lg font-prose text-ink-muted mb-6">The I&apos;s Mission</p>
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-24 bg-cream">
+        <Link href="/biography/chapter5" className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6">
+          ← BIOGRAPHY
+        </Link>
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-8 text-center">
+          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-3">CHAPTER 6</p>
+          <p className="text-sm font-semibold text-ink mb-2">The I&apos;s Mission</p>
           <p className="text-sm text-ink-muted">
             No birth chart found. Please complete the chart calculation first.
           </p>
@@ -485,25 +484,24 @@ export default function Chapter6Page() {
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div className="px-5 pt-8 pb-32 max-w-3xl bg-[#FAF6EF] min-h-screen">
-
-      {/* Navigation */}
-      <div className="flex items-center gap-3 mb-2">
-        <Link href="/biography/chapter5" className="text-ink-muted text-sm hover:text-ink transition-colors">
-          ← Chapter 5
-        </Link>
-      </div>
+    <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-24 bg-cream">
 
       {/* Header */}
+      <Link
+        href="/biography"
+        className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6"
+      >
+        ← BIOGRAPHY
+      </Link>
       <div className="mb-8">
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Chapter VI</p>
-        <h1 className="text-3xl font-prose font-semibold text-ink leading-tight mb-2">
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">CHAPTER 6</p>
+        <h1 className="font-serif text-3xl text-ink leading-tight mb-2">
           The I&apos;s Mission
         </h1>
         {birthData?.name && (
-          <p className="text-ink-muted font-ui text-sm">{birthData.name}</p>
+          <p className="text-sm text-ink-muted">{birthData.name}</p>
         )}
-        <p className="text-sm text-ink-muted mt-3 leading-relaxed max-w-xl">
+        <p className="text-sm text-ink-muted mt-3 leading-relaxed">
           The culminating synthesis of the cosmological biography. This chapter reads the chart as a
           mission document — tracing the outer work the I has come to perform, the inner development it
           must undergo, the cosmic contribution it carries, and the soul gifts it offers the world.
@@ -624,7 +622,7 @@ export default function Chapter6Page() {
         )}
 
         {gcPlanets.length > 0 && (
-          <div className="bg-[#F8F5EF] rounded-[14px] p-5 border border-[#E5E1D8]">
+          <div className="bg-[#F8F5EF] rounded-[14px] p-5 border border-[#F0EDE6]">
             <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-2">
               Galactic Center Contact — 27° Sagittarius
             </p>
@@ -704,7 +702,7 @@ export default function Chapter6Page() {
                 const sphereA = SPHERE_BY_PLANET[normalizePlanetName(a)];
                 const sphereB = SPHERE_BY_PLANET[normalizePlanetName(b)];
                 return (
-                  <div key={i} className="bg-[#F8F5EF] rounded-[14px] p-4 border border-[#E5E1D8]">
+                  <div key={i} className="bg-[#F8F5EF] rounded-[14px] p-4 border border-[#F0EDE6]">
                     <p className="font-prose font-semibold text-ink text-sm mb-1">
                       {normalizePlanetName(a)} △ {normalizePlanetName(b)}
                     </p>
@@ -857,7 +855,7 @@ export default function Chapter6Page() {
               }
             />
           ) : (
-            <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5">
+            <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5">
               <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">
                 Concentrated Gift — Configuration
               </p>
@@ -873,29 +871,6 @@ export default function Chapter6Page() {
         </div>
       </div>
 
-      {/* ── Navigation footer ─────────────────────────────────────────────────── */}
-      <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
-        <div className="flex flex-col gap-2">
-          <Link
-            href="/biography/chapter5"
-            className="text-sm text-midnight hover:underline font-medium"
-          >
-            ← Chapter 5: Aspects &amp; Configurations
-          </Link>
-          <Link
-            href="/biography"
-            className="text-sm text-ink-muted hover:text-ink transition-colors"
-          >
-            Back to Biography Overview
-          </Link>
-        </div>
-        <Link
-          href="/reports/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-midnight text-white rounded-[26px] text-sm font-semibold hover:opacity-90 transition-opacity shrink-0"
-        >
-          Practitioner Notes Version →
-        </Link>
-      </div>
 
     </div>
   );

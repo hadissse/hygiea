@@ -15,6 +15,7 @@ import {
   type FixedStarData,
 } from '@/content/reportData';
 import type { AstralChart, HousePosition } from '@/lib/chartCalculator';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 // ─── aspect calculation ─────────────────────────────────────────────────────
 
@@ -185,8 +186,8 @@ function lookupAspectContent(planet1: string, planet2: string, aspectType: strin
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6 space-y-4">
-      <h2 className="font-prose text-ink text-lg leading-snug">{title}</h2>
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-4 space-y-4">
+      <p className="text-[11px] font-semibold tracking-wider text-ink-muted">{title.toUpperCase()}</p>
       {children}
     </div>
   );
@@ -245,18 +246,18 @@ export default function Chapter5Page() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) setChart(JSON.parse(raw));
     } catch {}
     try {
-      const raw = localStorage.getItem('hygiea.birth-data');
+      const raw = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (raw) setBirthData(JSON.parse(raw));
     } catch {}
   }, []);
 
   if (!chart) {
     return (
-      <main className="min-h-dvh bg-[#FAF6EF] flex items-center justify-center">
+      <main className="bg-cream flex items-center justify-center">
         <p className="text-ink-muted font-prose text-sm">No chart data found. Please set up your natal chart first.</p>
       </main>
     );
@@ -290,15 +291,21 @@ export default function Chapter5Page() {
   const name = birthData?.name ?? 'This Soul';
 
   return (
-    <main className="min-h-dvh bg-[#FAF6EF] pb-24">
+    <main className="bg-cream pb-24">
       {/* Header */}
-      <div className="bg-white border-b border-[#E5E1D8] px-5 pt-10 pb-6">
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Chapter Five</p>
-        <h1 className="font-prose text-ink text-2xl leading-tight">Aspects &amp; Configurations</h1>
-        <p className="text-sm text-ink-muted font-ui mt-1">{name} · Planetary Dialogue</p>
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-6">
+        <Link
+          href="/biography"
+          className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6"
+        >
+          ← BIOGRAPHY
+        </Link>
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">CHAPTER 5</p>
+        <h1 className="font-serif text-3xl text-ink leading-tight">Aspects &amp; Configurations</h1>
+        {name && <p className="text-sm text-ink-muted mt-2">{name} · Planetary Dialogue</p>}
       </div>
 
-      <div className="px-4 py-6 space-y-5 max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 py-6 space-y-5">
         {/* Aspect Grid */}
         <SectionCard title="Aspect Grid">
           <p className="text-sm text-ink-muted font-prose leading-relaxed">
@@ -324,7 +331,7 @@ export default function Chapter5Page() {
             </p>
             <ul className="space-y-2">
               {stelliums.map((s, i) => (
-                <li key={i} className="bg-[#FAF6EF] rounded-xl p-4 border border-[#E5E1D8]">
+                <li key={i} className="bg-cream rounded-xl p-4 border border-[#F0EDE6]">
                   <p className="font-prose text-ink text-[15px]">{s}</p>
                 </li>
               ))}
@@ -356,7 +363,7 @@ export default function Chapter5Page() {
                 const aspectLabel = ASPECT_TYPE_LABELS[asp.type] ?? asp.type;
 
                 return (
-                  <div key={i} className="border-t border-[#E5E1D8] pt-5 first:border-0 first:pt-0">
+                  <div key={i} className="border-t border-[#F0EDE6] pt-5 first:border-0 first:pt-0">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-lg font-prose text-ink">{p1Glyph} {p1Label}</span>
                       <span className="text-sm text-ink-muted font-ui">—</span>
@@ -398,7 +405,7 @@ export default function Chapter5Page() {
           ) : (
             <div className="space-y-5">
               {starConjunctions.map((sc, i) => (
-                <div key={i} className="border-t border-[#E5E1D8] pt-5 first:border-0 first:pt-0">
+                <div key={i} className="border-t border-[#F0EDE6] pt-5 first:border-0 first:pt-0">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div>
                       <p className="font-prose text-ink text-[15px] font-medium">
@@ -462,7 +469,7 @@ export default function Chapter5Page() {
             return (
               <div className="space-y-5">
                 {earthStarContacts.map((ec, i) => (
-                  <div key={i} className="border-t border-[#E5E1D8] pt-5 first:border-0 first:pt-0">
+                  <div key={i} className="border-t border-[#F0EDE6] pt-5 first:border-0 first:pt-0">
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div>
                         <p className="font-prose text-ink text-[15px] font-medium">
@@ -474,7 +481,7 @@ export default function Chapter5Page() {
                       </div>
                       <div className="flex items-center gap-2">
                         {ec.star.type && (
-                          <span className="text-[10px] uppercase tracking-widest font-ui px-2 py-0.5 rounded-full bg-[#FAF6EF] border border-[#E5E1D8] text-ink-muted">
+                          <span className="text-[10px] uppercase tracking-widest font-ui px-2 py-0.5 rounded-full bg-cream border border-[#F0EDE6] text-ink-muted">
                             {ec.star.type}
                           </span>
                         )}
@@ -511,21 +518,6 @@ export default function Chapter5Page() {
           })()}
         </SectionCard>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between pt-2">
-          <Link
-            href="/biography/chapter4"
-            className="flex items-center gap-2 text-sm text-ink-muted font-ui hover:text-ink transition-colors"
-          >
-            ← Chapter 4
-          </Link>
-          <Link
-            href="/biography/chapter6"
-            className="flex items-center gap-2 text-sm text-ink font-ui font-medium hover:text-ink-muted transition-colors"
-          >
-            Chapter 6 →
-          </Link>
-        </div>
       </div>
     </main>
   );

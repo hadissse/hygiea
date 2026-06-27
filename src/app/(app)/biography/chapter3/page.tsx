@@ -8,6 +8,7 @@ import {
   PLANET_IN_HOUSE_MAP,
   SPHERE_BY_PLANET,
 } from '@/content/reportData';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -36,8 +37,8 @@ function LucifericAhrimanicAxis({
   ahrimanic: string;
 }) {
   return (
-    <div className="rounded-[18px] border border-[#E5E1D8] overflow-hidden">
-      <div className="grid grid-cols-2 divide-x divide-[#E5E1D8]">
+    <div className="rounded-[16px] border border-[#F0EDE6] overflow-hidden">
+      <div className="grid grid-cols-2 divide-x divide-[#F0EDE6]">
         <div className="p-5">
           <p className="text-[10px] uppercase tracking-widest font-semibold text-[#E9785E] mb-2">
             Luciferic Pole
@@ -55,7 +56,7 @@ function LucifericAhrimanicAxis({
           </p>
         </div>
       </div>
-      <div className="bg-[#F5F2EA] border-t border-[#E5E1D8] px-5 py-3 flex items-center gap-3">
+      <div className="bg-[#F5F2EA] border-t border-[#F0EDE6] px-5 py-3 flex items-center gap-3">
         <div className="flex-1 h-px bg-gradient-to-r from-[#E9785E] via-[#E5E1D8] to-[#5C7EA8]" />
         <span className="text-[10px] text-[#8C8479] uppercase tracking-widest font-semibold">
           The Axis
@@ -120,7 +121,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
   return (
     <div className="space-y-4">
       {/* Planet header */}
-      <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5">
+      <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5">
         <div className="flex items-center gap-4">
           <div
             className="w-14 h-14 rounded-full flex items-center justify-center text-3xl shrink-0"
@@ -142,7 +143,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
 
       {/* Sphere narrative */}
       {sphereData && (
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 space-y-3">
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 space-y-3">
           <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479]">
             Sphere Narrative
           </p>
@@ -155,7 +156,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
             {sphereData.sphere_narrative}
           </p>
           {sphereData.hierarchy && (
-            <div className="pt-3 border-t border-[#E5E1D8] grid grid-cols-2 gap-3 text-xs">
+            <div className="pt-3 border-t border-[#F0EDE6] grid grid-cols-2 gap-3 text-xs">
               <div>
                 <span className="text-[#8C8479] uppercase tracking-wider font-semibold text-[10px]">Hierarchy</span>
                 <p className="text-[#2C2C2C] mt-0.5 font-prose">{sphereData.hierarchy}</p>
@@ -184,7 +185,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
 
       {/* Planet in sign */}
       {signInterp ? (
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 space-y-4">
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 space-y-4">
           <div>
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] mb-1">
               {name} in {sign}
@@ -203,7 +204,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
             </p>
           </div>
 
-          <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+          <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#7090A0]">
               Evolutionary
             </p>
@@ -212,7 +213,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
             </p>
           </div>
 
-          <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+          <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#5A8070]">
               Developmental
             </p>
@@ -222,7 +223,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
           </div>
 
           {signInterp.aphorism_en && (
-            <div className="border-t border-[#E5E1D8] pt-4">
+            <div className="border-t border-[#F0EDE6] pt-4">
               <p className="text-sm text-[#6C6459] italic font-prose leading-relaxed">
                 &ldquo;{signInterp.aphorism_en}&rdquo;
               </p>
@@ -230,7 +231,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
           )}
         </div>
       ) : (
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5">
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5">
           <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] mb-2">
             {name} in {sign} — Interpretation
           </p>
@@ -242,7 +243,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
 
       {/* Planet in house */}
       {houseInterp ? (
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 space-y-4">
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 space-y-4">
           <div>
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] mb-1">
               {name} in House {houseNum}
@@ -261,7 +262,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
             </p>
           </div>
 
-          <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+          <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#7090A0]">
               Evolutionary
             </p>
@@ -270,7 +271,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
             </p>
           </div>
 
-          <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+          <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
             <p className="text-[10px] uppercase tracking-widest font-semibold text-[#5A8070]">
               Developmental
             </p>
@@ -280,7 +281,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
           </div>
 
           {houseInterp.aphorism_en && (
-            <div className="border-t border-[#E5E1D8] pt-4">
+            <div className="border-t border-[#F0EDE6] pt-4">
               <p className="text-sm text-[#6C6459] italic font-prose leading-relaxed">
                 &ldquo;{houseInterp.aphorism_en}&rdquo;
               </p>
@@ -288,7 +289,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
           )}
         </div>
       ) : (
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5">
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5">
           <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] mb-2">
             {name} in House {houseNum} — Interpretation
           </p>
@@ -301,7 +302,7 @@ function OuterPlanetSection({ planetKey, chart }: OuterPlanetSectionProps) {
       {/* Higher octave note */}
       {octaveNote && (
         <div
-          className="rounded-[18px] border border-[#E5E1D8] p-5 space-y-3"
+          className="rounded-[16px] border border-[#F0EDE6] p-5 space-y-3"
           style={{ background: `${color}0D` }}
         >
           <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479]">
@@ -365,7 +366,7 @@ function planetDisplayName(key: string): string {
 
 function StelliumSection({ sign, planets }: { sign: string; planets: string[] }) {
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 space-y-4">
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 space-y-4">
       <div>
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#E9785E] mb-1">
           Stellium Detected
@@ -392,7 +393,7 @@ function StelliumSection({ sign, planets }: { sign: string; planets: string[] })
         </p>
       </div>
 
-      <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+      <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#7090A0]">
           Evolutionary Significance
         </p>
@@ -408,7 +409,7 @@ function StelliumSection({ sign, planets }: { sign: string; planets: string[] })
         </p>
       </div>
 
-      <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+      <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#5A8070]">
           Developmental Task
         </p>
@@ -445,7 +446,7 @@ function HouseConcentrationSection({ house, planets }: { house: number; planets:
   const theme = HOUSE_THEMES[house] ?? '';
 
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5 space-y-4">
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-5 space-y-4">
       <div>
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#6B8ABF] mb-1">
           House Concentration
@@ -472,7 +473,7 @@ function HouseConcentrationSection({ house, planets }: { house: number; planets:
         </p>
       </div>
 
-      <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+      <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#7090A0]">
           Evolutionary Significance
         </p>
@@ -487,7 +488,7 @@ function HouseConcentrationSection({ house, planets }: { house: number; planets:
         </p>
       </div>
 
-      <div className="border-t border-[#E5E1D8] pt-4 space-y-1">
+      <div className="border-t border-[#F0EDE6] pt-4 space-y-1">
         <p className="text-[10px] uppercase tracking-widest font-semibold text-[#5A8070]">
           Developmental Task
         </p>
@@ -517,12 +518,12 @@ export default function Chapter3Page() {
 
   useEffect(() => {
     try {
-      const rawChart = localStorage.getItem('hygiea.primary-chart.v1');
+      const rawChart = localStorage.getItem(STORAGE_KEYS.CHART);
       if (rawChart) setChart(JSON.parse(rawChart));
     } catch { /* ignore */ }
 
     try {
-      const rawBirth = localStorage.getItem('hygiea.birth-data');
+      const rawBirth = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (rawBirth) setBirthData(JSON.parse(rawBirth));
     } catch { /* ignore */ }
   }, []);
@@ -531,40 +532,40 @@ export default function Chapter3Page() {
   const houseConcentrations = chart ? detectHouseConcentrations(chart) : [];
 
   return (
-    <main className="min-h-dvh bg-[#FAF6EF] pb-24">
+    <main className="bg-cream pb-24">
 
       {/* Chapter header */}
-      <div className="px-5 pt-10 pb-6">
-        <p className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] mb-1">
-          Biography · Chapter III
-        </p>
-        <h1 className="font-prose text-3xl text-[#1A1A1A] leading-tight">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-6">
+        <Link
+          href="/biography"
+          className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6"
+        >
+          ← BIOGRAPHY
+        </Link>
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">CHAPTER 3</p>
+        <h1 className="font-serif text-3xl text-ink leading-tight">
           The Outer Spheres
         </h1>
-        <p className="text-sm text-[#8C8479] mt-2 leading-relaxed">
+        <p className="text-sm text-ink-muted mt-2 leading-relaxed">
           Uranus, Neptune, and Pluto operate beyond the personal planets — transpersonal forces
           that shape generations and carry evolutionary impulses larger than the individual biography.
-          They are the higher octaves of Mercury, Venus, and Mars respectively, sounding the personal
-          principles at a collective and spiritual register.
         </p>
         {birthData?.name && (
-          <p className="text-xs text-[#8C8479] mt-3 italic font-prose">
-            Chart of {birthData.name}
-          </p>
+          <p className="text-xs text-ink-muted mt-2">Chart of {birthData.name}</p>
         )}
       </div>
 
       {!chart ? (
-        <div className="px-5 py-12 text-center">
-          <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-8">
-            <p className="font-prose text-[#1A1A1A] text-lg mb-2">No chart loaded</p>
-            <p className="text-sm text-[#8C8479]">
+        <div className="max-w-3xl mx-auto md:max-w-6xl px-5 py-12 text-center">
+          <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-8">
+            <p className="text-sm font-semibold text-ink mb-2">No chart loaded</p>
+            <p className="text-sm text-ink-muted">
               Complete your birth data setup to view your Chapter III reading.
             </p>
           </div>
         </div>
       ) : (
-        <div className="px-5 space-y-8">
+        <div className="max-w-3xl mx-auto md:max-w-6xl px-5 space-y-8">
 
           {/* Stelliums (if any) */}
           {stelliums.length > 0 && (
@@ -613,40 +614,6 @@ export default function Chapter3Page() {
         </div>
       )}
 
-      {/* Chapter navigation */}
-      <div className="px-5 pt-10">
-        <div className="grid grid-cols-2 gap-3">
-          <Link
-            href="/biography/chapter2"
-            className="bg-white rounded-[18px] border border-[#E5E1D8] p-4 flex flex-col gap-1 hover:border-[#C8C4BC] transition-colors"
-          >
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479]">
-              Previous
-            </span>
-            <span className="font-prose text-[#1A1A1A] text-sm leading-snug">
-              Chapter II
-            </span>
-            <span className="text-[11px] text-[#8C8479]">
-              The Social Planets
-            </span>
-          </Link>
-
-          <Link
-            href="/biography/chapter4"
-            className="bg-white rounded-[18px] border border-[#E5E1D8] p-4 flex flex-col gap-1 hover:border-[#C8C4BC] transition-colors"
-          >
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-[#8C8479] text-right">
-              Next
-            </span>
-            <span className="font-prose text-[#1A1A1A] text-sm leading-snug text-right">
-              Chapter IV
-            </span>
-            <span className="text-[11px] text-[#8C8479] text-right">
-              The Angular Points
-            </span>
-          </Link>
-        </div>
-      </div>
 
     </main>
   );

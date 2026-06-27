@@ -7,6 +7,7 @@ import { ZodiacBelt } from '@/components/ZodiacBelt';
 import { ElevatedPlanetsCard } from '@/components/ElevatedPlanetsCard';
 import { FIXED_STARS } from '@/content/reportData';
 import type { AstralChart } from '@/lib/chartCalculator';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 interface BirthData {
   name?: string;
@@ -104,13 +105,13 @@ export default function BiographyPage() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) setChart(JSON.parse(raw) as AstralChart);
     } catch {
       // ignore
     }
     try {
-      const raw = localStorage.getItem('hygiea.birth-data');
+      const raw = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (raw) setBirthData(JSON.parse(raw) as BirthData);
     } catch {
       // ignore
@@ -120,7 +121,7 @@ export default function BiographyPage() {
   const name = birthData?.name ?? 'Your Chart';
 
   return (
-    <div className="min-h-screen bg-[#FAF6EF] pb-16">
+    <div className="bg-[#FAF6EF] pb-16">
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <div className="px-5 pt-8 pb-4">
         <p className="text-[11px] font-semibold tracking-widest text-ink-muted uppercase mb-1">
@@ -186,40 +187,42 @@ export default function BiographyPage() {
       )}
 
       {/* ── Chapter Cards ─────────────────────────────────────────────────── */}
-      <div className="px-5 space-y-3">
+      <div className="px-5 md:max-w-4xl md:mx-auto md:px-8">
         <p className="text-[11px] font-semibold tracking-widest text-ink-muted uppercase mb-3">
           Six Chapters
         </p>
 
-        {CHAPTER_META.map((ch) => (
-          <Link key={ch.num} href={ch.href} className="block group">
-            <div className="bg-white rounded-[18px] border border-[#E5E1D8] px-5 py-4 transition-shadow group-hover:shadow-md">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-[10px] font-semibold tracking-widest text-ink-muted uppercase font-mono">
-                      {ROMAN[ch.num]}
-                    </span>
-                    <h2 className="font-serif text-[17px] text-ink leading-tight">{ch.title}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {CHAPTER_META.map((ch) => (
+            <Link key={ch.num} href={ch.href} className="block group">
+              <div className="bg-white rounded-[18px] border border-[#E5E1D8] px-5 py-4 md:py-6 transition-shadow group-hover:shadow-md h-full">
+                <div className="flex items-start justify-between gap-3 h-full">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-[10px] font-semibold tracking-widest text-ink-muted uppercase font-mono">
+                        {ROMAN[ch.num]}
+                      </span>
+                      <h2 className="font-serif text-[17px] text-ink leading-tight">{ch.title}</h2>
+                    </div>
+                    <p className="text-[12px] text-ink-muted mb-2">{ch.subtitle}</p>
+                    {chart && (
+                      <p className="text-[11px] text-ink-muted leading-relaxed line-clamp-2">
+                        {ch.label(chart)}
+                      </p>
+                    )}
                   </div>
-                  <p className="text-[12px] text-ink-muted mb-2">{ch.subtitle}</p>
-                  {chart && (
-                    <p className="text-[11px] text-ink-muted leading-relaxed line-clamp-2">
-                      {ch.label(chart)}
-                    </p>
-                  )}
-                </div>
-                <div className="shrink-0 text-ink-muted text-lg mt-0.5 group-hover:translate-x-0.5 transition-transform">
-                  →
+                  <div className="shrink-0 text-ink-muted text-lg mt-0.5 group-hover:translate-x-0.5 transition-transform">
+                    →
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* ── Practitioner Report Link ───────────────────────────────────────── */}
-      <div className="px-5 mt-8">
+      <div className="px-5 mt-8 md:max-w-4xl md:mx-auto md:px-8">
         <div className="bg-white rounded-[18px] border border-[#E5E1D8] px-5 py-5">
           <h3 className="font-serif text-[17px] text-ink mb-1">Request a Full Report</h3>
           <p className="text-[13px] text-ink-muted mb-4 leading-relaxed">

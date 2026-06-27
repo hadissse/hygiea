@@ -31,6 +31,7 @@ import { planetSvgKey } from '@/lib/planetMeta';
 import { FIXED_STARS, findStarConjunctions, starLongitudeAtJD, fixedStarSlug, type StarConjunction } from '@/content/fixedStars';
 import { UNIFIED_TIMELINE, type UnifiedTimelineItem } from '@/app/explore/biographyData';
 import { CalendarMonthView } from '@/app/explore/CalendarMonthView';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 const ZODIAC_SIGNS_EN = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -389,7 +390,7 @@ function ChartView({ chart }: { chart: AstralChart | null }) {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.birth-data');
+      const raw = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (raw) setBirthData(JSON.parse(raw));
     } catch { /* localStorage unavailable */ }
   }, []);
@@ -1116,7 +1117,7 @@ function UnifiedBiographyView() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.birth-data');
+      const raw = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (raw) setBirthYear(JSON.parse(raw).year ?? null);
     } catch {}
   }, []);
@@ -1169,7 +1170,7 @@ function UnifiedBiographyView() {
 
       {/* Current phase summary card */}
       {currentAge !== null && currentPhaseItem && phaseProgress !== null ? (
-        <div className="bg-white rounded-[18px] p-4 border border-rule-soft">
+        <div className="bg-white rounded-[16px] p-4 border" style={{ borderColor: '#F0EDE6' }}>
           <div className="flex items-baseline justify-between mb-3">
             <div>
               <div className="text-[11px] text-ink-muted font-semibold tracking-wider mb-0.5">YOUR AGE NOW</div>
@@ -1274,11 +1275,11 @@ function UnifiedBiographyView() {
               <div className="flex-1 pb-2 pt-1">
                 <button
                   onClick={() => setExpandedIdx(isExpanded ? null : idx)}
-                  className={`w-full text-right rounded-[14px] p-3.5 border transition-all ${cardBg}`}
+                  className={`w-full text-left rounded-[14px] p-3.5 border transition-all ${cardBg}`}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1 text-right">
-                      <div className="flex items-center gap-1.5 justify-end mb-0.5">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-1.5 mb-0.5">
                         {/* type badge */}
                         <span
                           className="text-[9px] font-semibold tracking-wide px-1.5 py-0.5 rounded-full"
@@ -1317,19 +1318,19 @@ function UnifiedBiographyView() {
                       {status === 'upcoming' && (
                         <div className="text-[10px] text-ink-muted font-semibold">Upcoming</div>
                       )}
-                      <span className="text-ink-muted text-xs">{isExpanded ? '›' : '‹'}</span>
+                      <span className="text-ink-muted text-xs">{isExpanded ? '‹' : '›'}</span>
                     </div>
                   </div>
 
                   {/* Expanded body */}
                   {isExpanded && (
-                    <div className="mt-3 pt-3 border-t border-rule-soft text-right">
+                    <div className="mt-3 pt-3 border-t border-rule-soft text-left">
                       {status === 'current' && (
                         <div className="text-[11px] text-coral font-semibold mb-1.5">You are in this phase now</div>
                       )}
                       <p className="text-[13px] text-ink leading-[1.9]">{item.body}</p>
                       {item.prompt && (
-                        <div className="mt-3.5 p-3 bg-cream-soft rounded-xl" style={{ borderInlineStart: '3px solid #E9785E' }}>
+                        <div className="mt-3.5 p-3 bg-cream-soft rounded-xl border-l-[3px] border-coral">
                           <div className="text-[10px] text-coral font-bold tracking-wide mb-1">Reflect</div>
                           <div className="text-[13px] text-ink leading-[1.8] font-serif">{item.prompt}</div>
                         </div>
@@ -1686,12 +1687,12 @@ function SelfPageInner() {
   const [showGuide, setShowGuide] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem('hygiea.primary-chart.v1');
+    const stored = localStorage.getItem(STORAGE_KEYS.CHART);
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
         setChart(parsed);
-        if (!localStorage.getItem('hygiea.chart-guide-seen')) {
+        if (!localStorage.getItem(STORAGE_KEYS.CHART_GUIDE_SEEN)) {
           setShowGuide(true);
         }
       } catch (e) {
@@ -1706,14 +1707,17 @@ function SelfPageInner() {
   }, []);
 
   const dismissGuide = () => {
-    localStorage.setItem('hygiea.chart-guide-seen', '1');
+    localStorage.setItem(STORAGE_KEYS.CHART_GUIDE_SEEN, '1');
     setShowGuide(false);
   };
 
   return (
-    <div className="pb-32 relative">
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none -translate-y-1/4 translate-x-1/4 opacity-[0.02]" style={{background: '#9C8AB8'}} />
+    <div className="bg-cream flex flex-col md:flex-row md:h-[calc(100dvh-48px)]">
       {showGuide && chart && <ChartIntroOverlay chart={chart} onDone={dismissGuide} />}
+
+      {/* Left column — chart + transits */}
+      <div className="md:w-1/2 md:overflow-y-auto md:border-r md:border-rule-soft relative">
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none -translate-y-1/4 translate-x-1/4 opacity-[0.02]" style={{background: '#9C8AB8'}} />
       <div className="pt-0">
         {/* Main tabs — sticky header with underline style */}
         <div className="sticky top-0 z-40 bg-cream/95 backdrop-blur-xl border-b border-rule-soft">
@@ -1725,9 +1729,8 @@ function SelfPageInner() {
           </div>
           <div className="flex gap-0 overflow-x-auto px-5 md:px-8 xl:px-12 mt-2" style={{ scrollbarWidth: 'none' }}>
             {[
-              { key: 'chart',    label: 'Chart' },
-              { key: 'active',   label: 'Transits' },
-              ...(chart ? [{ key: 'transits', label: 'Biography' }] : []),
+              { key: 'chart',  label: 'Chart' },
+              { key: 'active', label: 'Transits' },
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -1741,6 +1744,30 @@ function SelfPageInner() {
                 )}
               </button>
             ))}
+            {CHAPTER_META.map((ch) => (
+              <Link
+                key={ch.num}
+                href={ch.href}
+                className="relative px-4 pb-3 pt-1 text-[14px] font-medium whitespace-nowrap transition-colors shrink-0"
+                style={{ color: '#5C5C7A' }}
+              >
+                {ROMAN_BIO[ch.num]}
+              </Link>
+            ))}
+            <Link
+              href="/explore"
+              className="relative px-4 pb-3 pt-1 text-[14px] font-medium whitespace-nowrap transition-colors shrink-0"
+              style={{ color: '#5C5C7A' }}
+            >
+              Learn
+            </Link>
+            <Link
+              href="/self/anatomy"
+              className="relative px-4 pb-3 pt-1 text-[14px] font-medium whitespace-nowrap transition-colors shrink-0"
+              style={{ color: '#5C5C7A' }}
+            >
+              Anatomy
+            </Link>
           </div>
         </div>
 
@@ -1773,112 +1800,26 @@ function SelfPageInner() {
                   </Link>
                 </div>
 
-                {/* Biography chapters */}
-                <div className="px-5 mt-6">
-                  <p className="text-[10px] font-semibold tracking-widest text-ink-muted uppercase mb-1">Biography</p>
-                  <p className="text-[12px] text-ink-muted mb-3">Your six-chapter natal reading</p>
-                  <div className="space-y-2">
-                    {CHAPTER_META.map((ch) => (
-                      <Link key={ch.num} href={ch.href} className="flex items-start justify-between gap-3 bg-white rounded-[18px] border border-rule-soft px-5 py-4 hover:shadow-sm transition-shadow">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <span className="text-[10px] font-semibold tracking-widest text-ink-muted">{ROMAN_BIO[ch.num]}</span>
-                            <span className="font-prose text-[16px] text-ink">{ch.title}</span>
-                          </div>
-                          <p className="text-[11px] text-ink-muted mb-1">{ch.subtitle}</p>
-                          {chart && <p className="text-[11px] text-ink-muted/70 truncate">{ch.label(chart)}</p>}
-                        </div>
-                        <span className="text-ink-muted mt-1">›</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Teaching + Evening reflection — moved from the Today page */}
-                <div className="px-5 mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {/* Teaching */}
-                  <Link href="/explore" className="block">
-                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: '#0F1228' }}>
-                      <img src="/media/blob-purple.webp" alt="" loading="lazy" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-                      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
-                      <div className="absolute inset-0 flex flex-col justify-between p-5">
-                        <div className="text-[11px] text-cream/60 font-semibold tracking-wider">LEARN</div>
-                        <div>
-                          <div className="font-serif text-xl text-cream leading-snug">Reading Transits</div>
-                          <div className="text-xs text-cream/70 mt-1.5">Understand the cosmic influences at work today</div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                  {/* Evening reflection */}
-                  <Link href="/log" className="block">
-                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: '#0F1228' }}>
-                      <img src="/media/moon-flames.webp" alt="" loading="lazy" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-                      <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.74) 100%)' }} />
-                      <div className="absolute inset-0 flex flex-col justify-between p-5">
-                        <div className="text-[11px] text-cream/60 font-semibold tracking-wider">BEFORE SLEEP</div>
-                        <div>
-                          <div className="font-serif text-xl text-cream leading-snug">Evening Review</div>
-                          <div className="text-xs text-cream/70 mt-1.5">Reflect on three moments from your day</div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                  {/* Cosmic Anatomy */}
-                  <Link href="/self/anatomy" className="block">
-                    <div className="relative w-full aspect-square overflow-hidden rounded-[20px]" style={{ background: 'linear-gradient(140deg, #2A1F3D 0%, #1A1428 100%)' }}>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                        <span className="text-[64px] text-cream">☉</span>
-                      </div>
-                      <div className="absolute inset-0 flex flex-col justify-between p-5">
-                        <div className="text-[11px] text-cream/60 font-semibold tracking-wider">EXPLORE</div>
-                        <div>
-                          <div className="font-prose text-xl text-cream leading-snug">Cosmic Anatomy</div>
-                          <div className="text-xs text-cream/70 mt-1.5">Seven planetary organs →</div>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-
-                {/* Transit Calendar — moved from the Today page */}
-                <div className="px-5 mt-8">
-                  <div className="mb-4">
-                    <h2 className="font-serif text-2xl text-ink -tracking-[0.5px]">Transit Calendar</h2>
-                    <p className="text-sm text-ink-muted mt-1">Collective cosmic events for the month.</p>
-                  </div>
-                  <CalendarMonthView />
-                </div>
               </>
             )}
           </>
         )}
 
         {mainTab === 'active' && (
-          <ActiveTransitsView chart={chart} onNavigate={() => {
-            const el = document.documentElement;
-            sessionStorage.setItem('hygiea.self.scrollY', String(el.scrollTop || window.scrollY));
-          }} />
-        )}
-
-        {mainTab === 'transits' && (
           <>
-            {!chart ? (
-              <div className="px-5 pt-10 text-center text-sm text-ink-muted">
-                Enter your birth data first to view the panoramic biography.
-              </div>
-            ) : (
-              <>
-                <div className="px-5 mb-4">
-                  <Headline>Panoramic Biography</Headline>
-                </div>
-                <UnifiedBiographyView />
-              </>
-            )}
+            <div className="px-5 md:px-8 xl:px-12 pt-8">
+              <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">TRANSIT CALENDAR</p>
+              <p className="text-xs text-ink-muted mb-4">Collective cosmic events for the month.</p>
+              <CalendarMonthView />
+            </div>
+            <ActiveTransitsView chart={chart} onNavigate={() => {
+              const el = document.documentElement;
+              sessionStorage.setItem('hygiea.self.scrollY', String(el.scrollTop || window.scrollY));
+            }} />
           </>
         )}
 
-        {mainTab === 'saved' && (
+{mainTab === 'saved' && (
           <>
             <div className="px-5 mb-6">
               <Headline>Saved</Headline>
@@ -1887,34 +1828,30 @@ function SelfPageInner() {
           </>
         )}
 
-        {/* Biography Chapters */}
-        {chart && (
-          <section className="px-5 pt-6 pb-2">
-            <h2 className="font-serif text-xl text-ink mb-1">Biography</h2>
-            <p className="text-xs text-ink-muted mb-4">Your cosmic life story in six chapters</p>
-            <div className="flex flex-col gap-2">
-              {CHAPTER_META.map(ch => (
-                <Link key={ch.num} href={ch.href} className="flex items-start gap-3 p-3 rounded-[16px] bg-white border border-rule-soft hover:shadow-sm transition-shadow">
-                  <span className="text-xs font-mono text-ink-muted mt-0.5 w-5 shrink-0">{ROMAN_BIO[ch.num]}</span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-ink truncate">{ch.title}</p>
-                    <p className="text-xs text-ink-muted mt-0.5 truncate">{ch.label(chart)}</p>
-                  </div>
-                  <span className="ml-auto text-ink-muted text-sm shrink-0">→</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
 
       </div>
+      </div>{/* end left column */}
+
+      {/* Right column — biography */}
+      <div className="hidden md:flex md:w-1/2 md:overflow-y-auto md:flex-col">
+        {chart ? (
+          <div className="pt-6 pb-10">
+            <UnifiedBiographyView />
+          </div>
+        ) : (
+          <div className="flex items-center justify-center h-full text-sm text-ink-muted px-8 text-center">
+            Enter your birth data on the left to unlock your panoramic biography.
+          </div>
+        )}
+      </div>
+
     </div>
   );
 }
 
 export default function SelfPage() {
   return (
-    <Suspense fallback={<div className="min-h-dvh bg-cream" />}>
+    <Suspense fallback={<div className="bg-cream" />}>
       <SelfPageInner />
     </Suspense>
   );

@@ -10,6 +10,7 @@ import {
   type PlacementContent,
 } from '@/content/reportData';
 import type { AstralChart, HousePosition } from '@/lib/chartCalculator';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
@@ -54,8 +55,8 @@ function lookupHouse(planet: string, house: number): PlacementContent | null {
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-6 space-y-4">
-      <h2 className="font-prose text-ink text-lg leading-snug">{title}</h2>
+    <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-4 space-y-4">
+      <p className="text-[11px] font-semibold tracking-wider text-ink-muted">{title.toUpperCase()}</p>
       {children}
     </div>
   );
@@ -65,15 +66,15 @@ function PlacementBlock({ content }: { content: PlacementContent }) {
   return (
     <div className="space-y-4">
       <div>
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Traditional</p>
+        <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">Traditional</p>
         <p className="font-prose text-ink leading-relaxed text-[15px]">{content.traditional_en}</p>
       </div>
       <div>
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Evolutionary</p>
+        <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">Evolutionary</p>
         <p className="font-prose text-ink leading-relaxed text-[15px]">{content.evolutionary_en}</p>
       </div>
       <div>
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Developmental</p>
+        <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">Developmental</p>
         <p className="font-prose text-ink leading-relaxed text-[15px]">{content.developmental_en}</p>
       </div>
       {content.aphorism_en && (
@@ -101,18 +102,18 @@ export default function Chapter4Page() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) setChart(JSON.parse(raw));
     } catch {}
     try {
-      const raw = localStorage.getItem('hygiea.birth-data');
+      const raw = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (raw) setBirthData(JSON.parse(raw));
     } catch {}
   }, []);
 
   if (!chart) {
     return (
-      <main className="min-h-dvh bg-[#FAF6EF] flex items-center justify-center">
+      <main className="bg-[#FAFAF7] flex items-center justify-center">
         <p className="text-ink-muted font-prose text-sm">No chart data found. Please set up your natal chart first.</p>
       </main>
     );
@@ -140,15 +141,21 @@ export default function Chapter4Page() {
   const name = birthData?.name ?? 'This Soul';
 
   return (
-    <main className="min-h-dvh bg-[#FAF6EF] pb-24">
+    <main className="bg-cream pb-24">
       {/* Header */}
-      <div className="bg-white border-b border-[#E5E1D8] px-5 pt-10 pb-6">
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">Chapter Four</p>
-        <h1 className="font-prose text-ink text-2xl leading-tight">The Nodal Axis &amp; The Sacred Wound</h1>
-        <p className="text-sm text-ink-muted font-ui mt-1">{name} · Soul Origin &amp; Frontier</p>
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-6">
+        <Link
+          href="/biography"
+          className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6"
+        >
+          ← BIOGRAPHY
+        </Link>
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">CHAPTER 4</p>
+        <h1 className="font-serif text-3xl text-ink leading-tight">The Nodal Axis &amp; The Sacred Wound</h1>
+        {name && <p className="text-sm text-ink-muted mt-2">{name} · Soul Origin &amp; Frontier</p>}
       </div>
 
-      <div className="px-4 py-6 space-y-5 max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 py-6 space-y-5">
         {/* Nodal Axis Diagram */}
         <SectionCard title="The Nodal Axis">
           <p className="text-sm text-ink-muted font-prose leading-relaxed">
@@ -191,7 +198,7 @@ export default function Chapter4Page() {
 
           {/* House interpretation */}
           {snHouseLookup && (
-            <div className="border-t border-[#E5E1D8] pt-4">
+            <div className="border-t border-[#F0EDE6] pt-4">
               <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-2">South Node in House {snHouse}</p>
               <PlacementBlock content={snHouseLookup} />
             </div>
@@ -224,7 +231,7 @@ export default function Chapter4Page() {
 
           {/* House interpretation */}
           {nnHouseLookup && (
-            <div className="border-t border-[#E5E1D8] pt-4">
+            <div className="border-t border-[#F0EDE6] pt-4">
               <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-2">North Node in House {nnHouse}</p>
               <PlacementBlock content={nnHouseLookup} />
             </div>
@@ -246,7 +253,7 @@ export default function Chapter4Page() {
           </div>
 
           {chart.chiron.retrograde && (
-            <p className="text-sm font-prose text-ink-muted leading-relaxed bg-[#FAF6EF] rounded-xl p-4 border border-[#E5E1D8]">
+            <p className="text-sm font-prose text-ink-muted leading-relaxed bg-[#FAFAF7] rounded-xl p-4 border border-[#F0EDE6]">
               Chiron retrograde intensifies the inward orientation of the wound — the healing process runs
               primarily through interior reckoning rather than outward circumstance. The soul's relationship
               to its own injury is more directly accessible to consciousness, and often more demanding for it.
@@ -266,7 +273,7 @@ export default function Chapter4Page() {
 
           {/* House interpretation */}
           {chHouseLookup && (
-            <div className="border-t border-[#E5E1D8] pt-4">
+            <div className="border-t border-[#F0EDE6] pt-4">
               <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-2">Chiron in House {chHouse}</p>
               <PlacementBlock content={chHouseLookup} />
             </div>
@@ -335,21 +342,6 @@ export default function Chapter4Page() {
           </div>
         </SectionCard>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-between pt-2">
-          <Link
-            href="/biography/chapter3"
-            className="flex items-center gap-2 text-sm text-ink-muted font-ui hover:text-ink transition-colors"
-          >
-            ← Chapter 3
-          </Link>
-          <Link
-            href="/biography/chapter5"
-            className="flex items-center gap-2 text-sm text-ink font-ui font-medium hover:text-ink-muted transition-colors"
-          >
-            Chapter 5 →
-          </Link>
-        </div>
       </div>
     </main>
   );

@@ -13,6 +13,7 @@ import {
 } from '@/content/reportData';
 import { OrganDevelopmentCard } from '@/components/OrganDevelopmentCard';
 import { ORGAN_DEVELOPMENT } from '@/content/reportData/cosmology';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 interface BirthData {
   name?: string;
@@ -65,9 +66,9 @@ export default function Chapter2Page() {
 
   useEffect(() => {
     try {
-      const rawChart = localStorage.getItem('hygiea.primary-chart.v1');
+      const rawChart = localStorage.getItem(STORAGE_KEYS.CHART);
       if (rawChart) setChart(JSON.parse(rawChart));
-      const rawBirth = localStorage.getItem('hygiea.birth-data');
+      const rawBirth = localStorage.getItem(STORAGE_KEYS.BIRTH_DATA);
       if (rawBirth) setBirthData(JSON.parse(rawBirth));
     } catch {
       // silently ignore parse errors
@@ -75,24 +76,29 @@ export default function Chapter2Page() {
   }, []);
 
   return (
-    <main className="min-h-dvh bg-[#FAF6EF] pb-24">
+    <main className="bg-cream pb-24">
       {/* Chapter header */}
-      <div className="px-5 pt-8 pb-6">
-        <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-1">
-          Chapter 2
-        </p>
-        <h1 className="font-prose text-3xl text-ink leading-snug">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 pt-8 pb-6">
+        <Link
+          href="/biography"
+          className="inline-flex items-center gap-1.5 text-[11px] text-ink-muted font-semibold tracking-wider hover:text-ink transition-colors mb-6"
+        >
+          ← BIOGRAPHY
+        </Link>
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">CHAPTER 2</p>
+        <h1 className="font-serif text-3xl text-ink leading-snug">
           The Seven Spheres
         </h1>
         {birthData?.name && (
-          <p className="text-sm text-ink-muted font-ui mt-2">{birthData.name}</p>
+          <p className="text-sm text-ink-muted mt-2">{birthData.name}</p>
         )}
       </div>
 
       {/* Cosmological diagram */}
-      <div className="px-5 mb-8">
-        <div className="bg-white rounded-[18px] border border-[#E5E1D8] p-5">
-          <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-4">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 mb-8">
+        <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">THE PLANETARY SPHERES</p>
+        <div className="bg-white rounded-[16px] border border-[#F0EDE6] p-4">
+          <p className="text-xs text-ink-muted mb-4">
             The Planetary Spheres — Cosmological Map
           </p>
           <SpheresDiagram />
@@ -104,7 +110,7 @@ export default function Chapter2Page() {
       </div>
 
       {/* Planet sections */}
-      <div className="px-5 space-y-10">
+      <div className="max-w-3xl mx-auto md:max-w-6xl px-5 space-y-10">
         {CLASSICAL_PLANETS.map((planet) => {
           const planetData = chart
             ? (chart as unknown as Record<string, AstralChart['sun']>)[planet.key]
@@ -129,54 +135,43 @@ export default function Chapter2Page() {
 
           return (
             <section key={planet.key} id={`sphere-${planet.key}`}>
+              <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5 flex items-center gap-2">
+                <span style={{ color: planet.color }}>{planet.glyph}</span>
+                THE {planet.label.toUpperCase()} SPHERE
+              </p>
               {/* Planet card */}
-              <div
-                className="bg-white rounded-[18px] border border-[#E5E1D8] overflow-hidden"
-                style={{ borderLeftWidth: 4, borderLeftColor: planet.color }}
-              >
+              <div className="bg-white rounded-[16px] border border-[#F0EDE6] overflow-hidden">
                 {/* Section header */}
-                <div className="px-5 pt-5 pb-4 border-b border-[#E5E1D8]">
+                <div className="px-4 pt-4 pb-3 border-b border-[#F0EDE6]">
                   <div className="flex items-center gap-3">
-                    <span
-                      className="text-3xl"
-                      style={{ color: planet.color }}
-                      aria-hidden="true"
+                    <div
+                      className="w-9 h-9 rounded-full shrink-0 flex items-center justify-center text-lg"
+                      style={{ background: `${planet.color}22`, border: `1.5px solid ${planet.color}60` }}
                     >
                       {planet.glyph}
-                    </span>
+                    </div>
                     <div>
-                      <h2 className="font-prose text-2xl text-ink leading-snug">
-                        The {planet.label} Sphere
-                      </h2>
+                      <p className="text-[12px] font-semibold text-ink">The {planet.label} Sphere</p>
                       {planetData ? (
-                        <p className="text-sm text-ink-muted font-ui mt-0.5">
-                          {signName}
-                          {degree !== null ? ` ${degree}°` : ''}
-                          {retrograde ? ' ℞' : ''}
-                          {houseNum !== null
-                            ? ` · House ${HOUSE_ORDINALS[houseNum - 1]}`
-                            : ''}
+                        <p className="text-[11px] text-ink-muted mt-0.5">
+                          {signName}{degree !== null ? ` ${degree}°` : ''}{retrograde ? ' ℞' : ''}{houseNum !== null ? ` · House ${HOUSE_ORDINALS[houseNum - 1]}` : ''}
                         </p>
                       ) : (
-                        <p className="text-xs text-ink-muted font-ui mt-0.5 italic">
-                          Chart not loaded
-                        </p>
+                        <p className="text-[11px] text-ink-muted mt-0.5 italic">Chart not loaded</p>
                       )}
                       {sphereData && (
-                        <p className="text-xs text-ink-muted font-prose italic mt-1">
-                          {sphereData.sphere_epithet}
-                        </p>
+                        <p className="text-[11px] text-ink-muted mt-0.5">{sphereData.sphere_epithet}</p>
                       )}
                     </div>
                   </div>
                 </div>
 
-                <div className="p-5 space-y-6">
+                <div className="p-4 space-y-5">
                   {/* Luciferic / Ahrimanic Axis */}
                   {sphereData && (
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-3">
-                        The Axis of Temptation
+                      <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">
+                        THE AXIS OF TEMPTATION
                       </p>
                       <LucifericAhrimanicAxis
                         planet={planet.key}
@@ -190,12 +185,12 @@ export default function Chapter2Page() {
                   {/* Sphere reference — 4-col info grid */}
                   {sphereData && (
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-3">
+                      <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">
                         Sphere Reference
                       </p>
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-[#FAF6EF] rounded-[12px] p-3">
-                          <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">
+                        <div className="rounded-[12px] bg-[#FAFAF7] p-3">
+                          <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">
                             Hierarchy
                           </p>
                           <p className="font-prose text-sm text-ink">{sphereData.hierarchy}</p>
@@ -205,8 +200,8 @@ export default function Chapter2Page() {
                             </p>
                           )}
                         </div>
-                        <div className="bg-[#FAF6EF] rounded-[12px] p-3">
-                          <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">
+                        <div className="rounded-[12px] bg-[#FAFAF7] p-3">
+                          <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">
                             Body Member
                           </p>
                           <p className="font-prose text-sm text-ink">{sphereData.body_member}</p>
@@ -216,8 +211,8 @@ export default function Chapter2Page() {
                             </p>
                           )}
                         </div>
-                        <div className="bg-[#FAF6EF] rounded-[12px] p-3">
-                          <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">
+                        <div className="rounded-[12px] bg-[#FAFAF7] p-3">
+                          <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">
                             Organ · Metal
                           </p>
                           <p className="font-prose text-sm text-ink">{sphereData.organ}</p>
@@ -225,8 +220,8 @@ export default function Chapter2Page() {
                             {sphereData.metal}
                           </p>
                         </div>
-                        <div className="bg-[#FAF6EF] rounded-[12px] p-3">
-                          <p className="text-[10px] uppercase tracking-widest text-ink-muted font-ui mb-1">
+                        <div className="rounded-[12px] bg-[#FAFAF7] p-3">
+                          <p className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">
                             Sense
                           </p>
                           <p className="font-prose text-sm text-ink">
@@ -245,12 +240,12 @@ export default function Chapter2Page() {
                   {/* Planet in Sign */}
                   {signContent ? (
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-3">
+                      <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">
                         {planet.label} in {signName}
                       </p>
                       <div className="space-y-4">
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             The Configuration
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -258,7 +253,7 @@ export default function Chapter2Page() {
                           </p>
                         </div>
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             Soul Development
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -266,7 +261,7 @@ export default function Chapter2Page() {
                           </p>
                         </div>
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             The Task
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -283,7 +278,7 @@ export default function Chapter2Page() {
                       </div>
                     </div>
                   ) : planetData ? (
-                    <div className="bg-[#FAF6EF] rounded-[12px] p-4">
+                    <div className="rounded-[12px] bg-[#FAFAF7] p-4">
                       <p className="text-sm text-ink-muted font-prose italic">
                         Interpretation for {planet.label} in {signName} is being prepared.
                       </p>
@@ -293,12 +288,12 @@ export default function Chapter2Page() {
                   {/* Planet in House */}
                   {houseContent ? (
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-3">
+                      <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">
                         {planet.label} in House {houseNum !== null ? HOUSE_ORDINALS[houseNum - 1] : ''}
                       </p>
                       <div className="space-y-4">
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             The Configuration
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -306,7 +301,7 @@ export default function Chapter2Page() {
                           </p>
                         </div>
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             Soul Development
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -314,7 +309,7 @@ export default function Chapter2Page() {
                           </p>
                         </div>
                         <div>
-                          <p className="text-[11px] font-ui font-semibold tracking-wide text-ink-muted mb-2">
+                          <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2">
                             The Task
                           </p>
                           <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -331,7 +326,7 @@ export default function Chapter2Page() {
                       </div>
                     </div>
                   ) : houseNum !== null ? (
-                    <div className="bg-[#FAF6EF] rounded-[12px] p-4">
+                    <div className="rounded-[12px] bg-[#FAFAF7] p-4">
                       <p className="text-sm text-ink-muted font-prose italic">
                         Interpretation for {planet.label} in House {HOUSE_ORDINALS[houseNum - 1]} is being prepared.
                       </p>
@@ -341,7 +336,7 @@ export default function Chapter2Page() {
                   {/* Sphere Narrative */}
                   {sphereData?.sphere_narrative && (
                     <div>
-                      <p className="text-xs uppercase tracking-widest text-ink-muted font-ui mb-3">
+                      <p className="text-[11px] font-semibold tracking-wider text-ink-muted mb-2.5">
                         The Sphere
                       </p>
                       <p className="font-prose text-[15px] text-ink leading-[1.75]">
@@ -362,27 +357,6 @@ export default function Chapter2Page() {
         })}
       </div>
 
-      {/* Navigation */}
-      <div className="px-5 mt-12 flex justify-between items-center gap-4">
-        <Link
-          href="/biography/chapter1"
-          className="flex items-center gap-2 px-5 py-3 rounded-[12px] border border-[#E5E1D8] bg-white text-sm text-ink font-ui hover:bg-[#FAF6EF] transition-colors"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M19 12H5M12 19l-7-7 7-7" />
-          </svg>
-          Chapter 1
-        </Link>
-        <Link
-          href="/biography/chapter3"
-          className="flex items-center gap-2 px-5 py-3 rounded-[12px] border border-[#E5E1D8] bg-white text-sm text-ink font-ui hover:bg-[#FAF6EF] transition-colors"
-        >
-          Chapter 3
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
     </main>
   );
 }
