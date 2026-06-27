@@ -53,6 +53,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const reportsActive = pathname.startsWith('/reports');
+  const orreryActive = pathname.startsWith('/orrery');
   const settingsActive = pathname.startsWith('/settings');
 
   return (
@@ -146,6 +147,29 @@ export function Sidebar() {
               <line x1="16" y1="17" x2="8" y2="17" />
             </svg>
             <span>Reports</span>
+          </Link>
+
+          <Link
+            href="/orrery"
+            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+              orreryActive
+                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                : 'text-ink-muted hover:text-ink hover:bg-white/60'
+            }`}
+            style={orreryActive ? { borderLeftColor: '#FFC78A' } : undefined}
+          >
+            {orreryActive && (
+              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#FFC78A]" />
+            )}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <circle cx="12" cy="12" r="8" />
+              <line x1="12" y1="2" x2="12" y2="4" />
+              <line x1="12" y1="20" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="4" y2="12" />
+              <line x1="20" y1="12" x2="22" y2="12" />
+            </svg>
+            <span>Orrery</span>
           </Link>
         </div>
 
