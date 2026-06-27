@@ -115,7 +115,7 @@ export default function SearchPage() {
             </div>
           ))}
         </div>
-        <div className="fixed bottom-24 inset-x-0 px-5 max-w-[430px] mx-auto">
+        <div className="fixed bottom-24 inset-x-0 md:left-[220px] px-5 max-w-[430px] mx-auto">
           <button
             onClick={() => setFilters(false)}
             className="block w-full text-center py-3.5 rounded-[14px] bg-ink text-cream text-sm font-medium"

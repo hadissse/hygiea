@@ -39,7 +39,7 @@ function SkySection() {
   const dateStr = now.toLocaleDateString('en', { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
-    <div className="bg-cream min-h-screen pb-8">
+    <div className="bg-cream pb-8">
       <div className="px-5 pt-6 flex items-baseline justify-between">
         <h1 className="font-prose text-2xl text-ink">The Sky Now</h1>
         <div className="text-[11px] text-ink-muted font-mono" dir="ltr">{timeStr}</div>

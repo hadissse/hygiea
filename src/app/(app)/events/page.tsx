@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 interface LoggedEvent {
   id: string;
@@ -14,13 +15,13 @@ export default function EventsPage() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('hygiea.events');
+      const stored = localStorage.getItem(STORAGE_KEYS.EVENTS);
       if (stored) setEvents(JSON.parse(stored));
     } catch {}
   }, []);
 
   return (
-    <main className="min-h-dvh bg-cream pb-20">
+    <main className="bg-cream pb-20">
       <div className="max-w-2xl mx-auto md:max-w-5xl">
       <div className="px-5 pt-12 pb-6 flex items-center justify-between">
         <div>

@@ -13,7 +13,7 @@ export default function EditBirthPage() {
   }
 
   return (
-    <div className="max-w-[430px] mx-auto min-h-screen bg-cream" dir="ltr">
+    <div className="bg-cream" dir="ltr">
       {/* Header */}
       <div className="flex items-center gap-3 px-5 pt-5 pb-2">
         <Link

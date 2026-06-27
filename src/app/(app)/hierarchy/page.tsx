@@ -20,7 +20,7 @@ export default function HierarchyPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-dvh px-5 pt-12 pb-20" style={{ background: '#0F1228' }}>
+    <div className="px-5 pt-12 pb-20" style={{ background: '#0F1228' }}>
       {/* Header */}
       <div className="mb-8">
         <Link

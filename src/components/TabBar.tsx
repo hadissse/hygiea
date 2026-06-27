@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useAppShell } from '@/components/AppShell';
 
 const tabs = [
-  { key: 'today', label: 'Today', href: '/today', icon: TodayIcon },
-  { key: 'spheres', label: 'Spheres', href: '/spheres', icon: SpheresIcon },
-  { key: 'events', label: 'Events', href: '/events', icon: EventsIcon },
-  { key: 'self', label: 'Self', href: '/self', icon: SelfIcon },
-  { key: 'settings', label: 'Settings', href: '/settings', icon: SettingsIcon },
+  { key: 'self',     label: 'Self',         href: '/self',      icon: SelfIcon },
+  { key: 'today',    label: 'Day',           href: '/today',     icon: TodayIcon },
+  { key: 'spheres',  label: 'Spheres',       href: '/spheres',   icon: SpheresIcon },
+  { key: 'track',    label: 'Track Events',  href: '/journey-2', icon: TrackIcon },
+  { key: 'settings', label: 'Settings',      href: '/settings',  icon: SettingsIcon },
 ] as const;
 
 function TodayIcon({ active }: { active: boolean }) {
@@ -37,10 +38,12 @@ function SpheresIcon({ active }: { active: boolean }) {
   );
 }
 
-function EventsIcon({ active }: { active: boolean }) {
+function TrackIcon({ active }: { active: boolean }) {
+  const c = active ? '#171B3A' : '#5C5C7A';
+  const w = active ? 2 : 1.5;
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M12 3L21 8.5V15.5L12 21L3 15.5V8.5L12 3Z" fill={active ? '#171B3A' : 'none'} stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth={active ? 2 : 1.5} strokeLinejoin="round" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" fill={active ? c : 'none'} />
     </svg>
   );
 }
@@ -72,8 +75,9 @@ function SettingsIcon({ active }: { active: boolean }) {
 
 export function TabBar() {
   const pathname = usePathname();
+  const { setHelperOpen, helperOpen } = useAppShell();
   return (
-    <nav className="fixed bottom-0 inset-x-0 bg-cream/95 backdrop-blur-xl border-t border-rule-soft safe-bottom z-50">
+    <nav className="relative fixed bottom-0 inset-x-0 bg-cream/95 backdrop-blur-xl border-t border-rule-soft safe-bottom z-50">
       <div className="flex items-center justify-around max-w-[430px] mx-auto h-[56px]">
         {tabs.map((tab) => {
           const active = pathname === tab.href || pathname.startsWith(tab.href + '/');
@@ -90,6 +94,16 @@ export function TabBar() {
           );
         })}
       </div>
+      <button
+        onClick={() => setHelperOpen(!helperOpen)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-ink/5 flex items-center justify-center text-ink-muted hover:text-ink"
+        aria-label="Help"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+        </svg>
+      </button>
     </nav>
   );
 }

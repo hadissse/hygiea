@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { loadEvents, STREAM_AR, STREAM_GLYPH, type LoggedEvent, type StreamKey } from '@/lib/events';
 import { getCosmicStamp } from '@/lib/cosmicStamp';
 import type { AstralChart } from '@/lib/chartCalculator';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 import { Card } from '@/components/Card';
 import { Chip } from '@/components/Chip';
 import { Headline } from '@/components/Headline';
@@ -31,7 +32,7 @@ export default function Journey2Page() {
   useEffect(() => {
     setEvents(loadEvents());
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) setChart(JSON.parse(raw));
     } catch {
       // no chart

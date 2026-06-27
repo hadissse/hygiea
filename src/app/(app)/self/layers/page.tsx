@@ -42,7 +42,7 @@ export default function LayersPage() {
   const sphere = active ? SPHERES[active.planet] : null;
 
   return (
-    <div className="min-h-dvh relative overflow-hidden" style={{ background: '#0F1228' }}>
+    <div className="relative overflow-hidden" style={{ background: '#0F1228' }}>
       {/* Radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -61,7 +61,7 @@ export default function LayersPage() {
       </div>
 
       {/* SVG diagram — centered */}
-      <div className="flex items-center justify-center min-h-dvh">
+      <div className="flex items-center justify-center">
         <svg
           viewBox="0 0 300 400"
           width={300}
@@ -153,7 +153,7 @@ export default function LayersPage() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 26, stiffness: 280 }}
-            className="fixed bottom-0 left-0 right-0 z-20 bg-white rounded-t-[24px] p-6 overflow-y-auto"
+            className="fixed bottom-0 left-0 right-0 md:left-[220px] z-20 bg-white rounded-t-[24px] p-6 overflow-y-auto"
             style={{ maxHeight: '60vh' }}
           >
             {/* Header row */}

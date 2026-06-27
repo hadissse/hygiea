@@ -25,14 +25,6 @@ function SpheresIcon({ active }: { active: boolean }) {
   );
 }
 
-function EventsIcon({ active }: { active: boolean }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-      <path d="M12 3L21 8.5V15.5L12 21L3 15.5V8.5L12 3Z" fill={active ? '#171B3A' : 'none'} stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth={active ? 2 : 1.5} strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function SelfIcon({ active }: { active: boolean }) {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill={active ? '#171B3A' : 'none'} stroke={active ? '#171B3A' : '#5C5C7A'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -43,24 +35,26 @@ function SelfIcon({ active }: { active: boolean }) {
 }
 
 const primaryNav = [
+  { key: 'self',    label: 'Self',    href: '/self',    Icon: SelfIcon },
   { key: 'today',   label: 'Day',     href: '/today',   Icon: TodayIcon },
   { key: 'spheres', label: 'Spheres', href: '/spheres', Icon: SpheresIcon },
-  { key: 'events',  label: 'Events',  href: '/events',  Icon: EventsIcon },
-  { key: 'self',    label: 'Self',    href: '/self',    Icon: SelfIcon },
 ] as const;
 
-export function Sidebar() {
+interface SidebarProps {
+  open?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ open = true, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   const reportsActive = pathname.startsWith('/reports');
   const orreryActive = pathname.startsWith('/orrery');
-  const hierarchyActive = pathname.startsWith('/hierarchy');
   const journeyActive = pathname.startsWith('/journey') && !pathname.startsWith('/journey-');
-  const constellationsActive = pathname.startsWith('/constellations');
   const settingsActive = pathname.startsWith('/settings');
 
   return (
-    <aside className="relative hidden md:flex md:flex-col md:shrink-0 md:w-[220px] lg:w-[248px] xl:w-[272px] md:sticky md:top-0 md:h-dvh border-e border-rule-soft bg-cream-soft/40 backdrop-blur-xl z-40 overflow-hidden">
+    <aside className="relative flex flex-col shrink-0 w-[280px] md:w-[220px] lg:w-[248px] xl:w-[272px] sticky top-0 h-dvh border-e border-rule-soft bg-cream-soft/40 backdrop-blur-xl z-40 overflow-hidden">
       {/* Decorative cosmic circle */}
       <div
         className="absolute bottom-0 left-0 w-[240px] h-[240px] rounded-full pointer-events-none -translate-x-1/2 translate-y-1/2"
@@ -84,16 +78,12 @@ export function Sidebar() {
               <Link
                 key={key}
                 href={href}
-                className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+                className={`flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
                   active
-                    ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                    ? 'bg-white text-ink shadow-sm'
                     : 'text-ink-muted hover:text-ink hover:bg-white/60'
                 }`}
-                style={active ? { borderLeftColor: '#E9785E' } : undefined}
               >
-                {active && (
-                  <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-coral" />
-                )}
                 <Icon active={active} />
                 <span>{label}</span>
               </Link>
@@ -128,21 +118,17 @@ export function Sidebar() {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 3v18l7-4 7 4V3z" />
             </svg>
-            <span>Track &amp; Save</span>
+            <span>Track Events</span>
           </Link>
 
           <Link
             href="/reports"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+            className={`flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
               reportsActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                ? 'bg-white text-ink shadow-sm'
                 : 'text-ink-muted hover:text-ink hover:bg-white/60'
             }`}
-            style={reportsActive ? { borderLeftColor: '#E9785E' } : undefined}
           >
-            {reportsActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-coral" />
-            )}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
@@ -154,16 +140,12 @@ export function Sidebar() {
 
           <Link
             href="/orrery"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+            className={`flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
               orreryActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                ? 'bg-white text-ink shadow-sm'
                 : 'text-ink-muted hover:text-ink hover:bg-white/60'
             }`}
-            style={orreryActive ? { borderLeftColor: '#FFC78A' } : undefined}
           >
-            {orreryActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#FFC78A]" />
-            )}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="3" />
               <circle cx="12" cy="12" r="8" />
@@ -176,55 +158,13 @@ export function Sidebar() {
           </Link>
 
           <Link
-            href="/hierarchy"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
-              hierarchyActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
-                : 'text-ink-muted hover:text-ink hover:bg-white/60'
-            }`}
-            style={hierarchyActive ? { borderLeftColor: '#9C8AB8' } : undefined}
-          >
-            {hierarchyActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#9C8AB8]" />
-            )}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-              <ellipse cx="12" cy="6" rx="8" ry="2.5" />
-              <ellipse cx="12" cy="12" rx="8" ry="2.5" />
-              <ellipse cx="12" cy="18" rx="8" ry="2.5" />
-            </svg>
-            <span>Hierarchy</span>
-          </Link>
-
-          <Link
-            href="/constellations"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
-              constellationsActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
-                : 'text-ink-muted hover:text-ink hover:bg-white/60'
-            }`}
-            style={constellationsActive ? { borderLeftColor: '#E8D5A3' } : undefined}
-          >
-            {constellationsActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#E8D5A3]" />
-            )}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <span>Stars</span>
-          </Link>
-
-          <Link
             href="/journey"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+            className={`flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
               journeyActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                ? 'bg-white text-ink shadow-sm'
                 : 'text-ink-muted hover:text-ink hover:bg-white/60'
             }`}
-            style={journeyActive ? { borderLeftColor: '#C2D3E2' } : undefined}
           >
-            {journeyActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#C2D3E2]" />
-            )}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2 C8 6, 16 10, 12 14 C8 18, 16 20, 12 22" />
             </svg>
@@ -233,19 +173,24 @@ export function Sidebar() {
         </div>
 
         {/* Settings pinned to bottom */}
-        <div className="mt-auto pt-4">
+        <div className="mt-auto pt-4 flex flex-col gap-0.5">
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="hidden md:flex items-center gap-2 px-3 h-9 rounded-[12px] text-xs text-ink-muted hover:text-ink hover:bg-white/60 transition-colors w-full"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <span>Collapse</span>
+            </button>
+          )}
           <Link
             href="/settings"
-            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+            className={`flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
               settingsActive
-                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                ? 'bg-white text-ink shadow-sm'
                 : 'text-ink-muted hover:text-ink hover:bg-white/60'
             }`}
-            style={settingsActive ? { borderLeftColor: '#E9785E' } : undefined}
           >
-            {settingsActive && (
-              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-coral" />
-            )}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" y1="6" x2="20" y2="6" />
               <line x1="4" y1="12" x2="20" y2="12" />

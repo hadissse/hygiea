@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { AstralChart } from '@/lib/chartCalculator';
 import { FIXED_STARS, findStarConjunctions, starLongitudeAtJD, fixedStarSlug, type StarConjunction } from '@/content/fixedStars';
 import { FrameworkLabel } from '@/components/FrameworkLabel';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 const ZODIAC_SIGNS_AR = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 
@@ -25,7 +26,7 @@ export default function FixedStarsPage() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) {
         const parsed: AstralChart = JSON.parse(raw);
         setChart(parsed);

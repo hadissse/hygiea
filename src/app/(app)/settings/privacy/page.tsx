@@ -2,19 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import { SettingsSubHeader } from '@/components/SettingsSubHeader';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 function CloudSyncToggle() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    setEnabled(localStorage.getItem('hygiea.cloud-sync-consent') === 'true');
+    setEnabled(localStorage.getItem(STORAGE_KEYS.CLOUD_SYNC_CONSENT) === 'true');
   }, []);
 
   const toggle = () => {
     const next = !enabled;
     setEnabled(next);
     if (next) {
-      localStorage.setItem('hygiea.cloud-sync-consent', 'true');
+      localStorage.setItem(STORAGE_KEYS.CLOUD_SYNC_CONSENT, 'true');
     } else {
       localStorage.removeItem('hygiea.cloud-sync-consent');
     }

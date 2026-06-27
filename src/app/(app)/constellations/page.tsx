@@ -63,7 +63,7 @@ export default function ConstellationsPage() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 26, stiffness: 280 }}
-            className="fixed bottom-0 left-0 right-0 z-20 rounded-t-3xl p-6"
+            className="fixed bottom-0 left-0 right-0 md:left-[220px] z-20 rounded-t-3xl p-6"
             style={{
               background: 'rgba(15,18,40,0.97)',
               borderTop: `1px solid ${selected.color}40`,

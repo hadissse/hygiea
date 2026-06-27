@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { SettingsSubHeader } from '@/components/SettingsSubHeader';
 import { loadEvents } from '@/lib/events';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 export default function ProfilePage() {
   const [stats, setStats] = useState({ events: 0, calibrations: 0, hasChart: false });
@@ -17,7 +18,7 @@ export default function ProfilePage() {
     setStats({
       events: loadEvents().length,
       calibrations,
-      hasChart: !!localStorage.getItem('hygiea.primary-chart.v1'),
+      hasChart: !!localStorage.getItem(STORAGE_KEYS.CHART),
     });
   }, []);
 

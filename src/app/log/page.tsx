@@ -6,6 +6,7 @@ import type { AstralChart } from '@/lib/chartCalculator';
 import { getCosmicStamp } from '@/lib/cosmicStamp';
 import type { LoggedEvent } from '@/lib/events';
 import { syncEvent } from '@/lib/sync';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 type SphereKey = 'sun' | 'moon' | 'mercury' | 'venus' | 'mars' | 'jupiter' | 'saturn';
 
@@ -121,7 +122,7 @@ function LogFlow() {
   const [savedEvent, setSavedEvent] = useState<LoggedEvent | null>(null);
 
   useEffect(() => {
-    try { const s = localStorage.getItem('hygiea.primary-chart.v1'); if (s) setChart(JSON.parse(s)); } catch {}
+    try { const s = localStorage.getItem(STORAGE_KEYS.CHART); if (s) setChart(JSON.parse(s)); } catch {}
   }, []);
 
   const suggestions = useMemo(() => {
@@ -149,10 +150,10 @@ function LogFlow() {
       stamp: getCosmicStamp(date),
     };
     // Store the sphere label alongside in localStorage directly
-    const stored = localStorage.getItem('hygiea.events');
+    const stored = localStorage.getItem(STORAGE_KEYS.EVENTS);
     const events: (LoggedEvent & { sphere?: string })[] = stored ? JSON.parse(stored) : [];
     events.unshift({ ...event, sphere: sphere ? SPHERE_EN[sphere] : undefined });
-    localStorage.setItem('hygiea.events', JSON.stringify(events));
+    localStorage.setItem(STORAGE_KEYS.EVENTS, JSON.stringify(events));
     syncEvent(event);
     setSavedEvent(event);
     setStep(5);

@@ -13,7 +13,7 @@ export default async function SpherePage({ params }: { params: Promise<{ planet:
   const glyph = GLYPHS[planet.toLowerCase()] ?? '○';
 
   return (
-    <main className="min-h-dvh bg-cream pb-20">
+    <main className="bg-cream pb-20">
       {/* Hero */}
       <div className="bg-midnight px-5 pt-12 pb-8">
         <p className="text-xs uppercase tracking-widest text-gold mb-4 font-ui">{sphere.epithet}</p>

@@ -6,6 +6,7 @@ import type { AstralChart } from '@/lib/chartCalculator';
 import { getCurrentSky } from '@/lib/currentSky';
 import { planetSvgKey } from '@/lib/planetMeta';
 import { PLANET_IN_HOUSE } from '@/content/planetInHouseData';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 const ZODIAC_AR = [
   'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo',
@@ -260,7 +261,7 @@ export function HouseDetailClient({ num }: { num: number }) {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem('hygiea.primary-chart.v1');
+      const raw = localStorage.getItem(STORAGE_KEYS.CHART);
       if (raw) setChart(JSON.parse(raw));
     } catch {}
     setSky(getCurrentSky());

@@ -613,7 +613,7 @@ export default function NewReportPage() {
       </ChapterSection>
 
       {/* ── Generate bar ─────────────────────────────────────────────────────── */}
-      <div className="fixed bottom-16 md:bottom-0 left-0 right-0 bg-cream/95 backdrop-blur border-t border-[#E5E1D8] px-5 py-4 flex items-center gap-4 z-40">
+      <div className="fixed bottom-16 md:bottom-0 left-0 right-0 md:left-[220px] bg-cream/95 backdrop-blur border-t border-[#E5E1D8] px-5 py-4 flex items-center gap-4 z-40">
         <button
           onClick={handleGenerate}
           disabled={loading}

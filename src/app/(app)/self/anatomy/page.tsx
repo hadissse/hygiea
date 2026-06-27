@@ -57,7 +57,7 @@ export default function AnatomyPage() {
   };
 
   return (
-    <div className="min-h-dvh pb-32" style={{ background: '#F5F2EA' }}>
+    <div className="pb-32" style={{ background: '#F5F2EA' }}>
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <Link href="/self" className="text-xs text-ink-muted flex items-center gap-1 mb-4">
@@ -174,7 +174,7 @@ export default function AnatomyPage() {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="fixed bottom-0 left-0 right-0 bg-white shadow-xl z-50"
+            className="fixed bottom-0 left-0 right-0 md:left-[220px] bg-white shadow-xl z-50"
             style={{ borderRadius: '24px 24px 0 0' }}
           >
             <div className="p-6 pb-10">

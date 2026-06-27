@@ -37,7 +37,7 @@ export default function SkyPlanetPage({ params }: { params: Promise<{ key: strin
   const degreeStr = planet ? `${planet.degree}°` : '';
 
   return (
-    <div className="max-w-[430px] mx-auto w-full pb-28" dir="ltr">
+    <div className="w-full pb-28" dir="ltr">
       {/* Back */}
       <div className="px-5 pt-5">
         <button

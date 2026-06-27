@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useUser } from '@/components/AuthProvider';
 import { syncProfile } from '@/lib/sync';
+import { STORAGE_KEYS } from '@/lib/storageKeys';
 
 function ExternalIcon() {
   return (
@@ -103,8 +104,8 @@ export default function SettingsPage() {
   const [copyDone, setCopyDone] = useState(false);
 
   useEffect(() => {
-    setFirstName(localStorage.getItem('hygiea.first-name') || '');
-    setLastName(localStorage.getItem('hygiea.last-name') || '');
+    setFirstName(localStorage.getItem(STORAGE_KEYS.FIRST_NAME) || '');
+    setLastName(localStorage.getItem(STORAGE_KEYS.LAST_NAME) || '');
   }, []);
 
   const persist = (key: string, val: string) => {
@@ -157,14 +158,14 @@ export default function SettingsPage() {
           <EditRow
             label="First name"
             value={firstName}
-            onSave={v => { setFirstName(v); persist('hygiea.first-name', v); }}
+            onSave={v => { setFirstName(v); persist(STORAGE_KEYS.FIRST_NAME, v); }}
           />
         </div>
         <div className="px-5">
           <EditRow
             label="Last name"
             value={lastName}
-            onSave={v => { setLastName(v); persist('hygiea.last-name', v); }}
+            onSave={v => { setLastName(v); persist(STORAGE_KEYS.LAST_NAME, v); }}
           />
         </div>
         <div className="px-5">
