@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { SPHERES } from '@/content/spheres';
 import { DAY_PLANET_KEYS as DAY_PLANET } from '@/lib/planets';
@@ -78,6 +79,19 @@ export default function LayersPage() {
                 onClick={() => setActiveLayer(isActive ? null : layer.key)}
                 style={{ cursor: 'pointer' }}
               >
+                {isActive && (
+                  <ellipse
+                    cx={150}
+                    cy={200}
+                    rx={layer.rx + 8}
+                    ry={layer.ry + 8}
+                    stroke={layer.color}
+                    strokeWidth={1}
+                    fill="none"
+                    strokeOpacity={0.4}
+                    style={{ animation: 'pulse 2s ease-in-out infinite' }}
+                  />
+                )}
                 <ellipse
                   cx={150}
                   cy={200}
@@ -131,51 +145,58 @@ export default function LayersPage() {
       </div>
 
       {/* Slide-up detail panel */}
-      {active && sphere && (
-        <div
-          className="fixed bottom-0 left-0 right-0 z-20 bg-white rounded-t-[24px] p-6 overflow-y-auto"
-          style={{ maxHeight: '60vh' }}
-        >
-          {/* Header row */}
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <h2 className="font-serif text-2xl text-ink">{active.label}</h2>
-              <p className="text-sm text-ink-muted mt-0.5">
-                {active.planetName} {active.glyph}
-              </p>
-            </div>
-            <button
-              onClick={() => setActiveLayer(null)}
-              className="text-ink-muted text-2xl leading-none p-1 -mt-1 -mr-1"
-              aria-label="Close"
-            >
-              ×
-            </button>
-          </div>
-
-          {/* Body member */}
-          <p className="text-sm text-ink mb-4 leading-relaxed">{sphere.bodyMember}</p>
-
-          {/* Luciferic pole */}
-          <div className="rounded-[12px] p-3 mb-2" style={{ background: `${active.color}22` }}>
-            <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">LUCIFERIC POLE</div>
-            <p className="text-xs text-ink leading-relaxed">{truncate(sphere.luciferic, 80)}</p>
-          </div>
-
-          {/* Ahrimanic pole */}
-          <div className="rounded-[12px] p-3 mb-4" style={{ background: `${active.color}22` }}>
-            <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">AHRIMANIC POLE</div>
-            <p className="text-xs text-ink leading-relaxed">{truncate(sphere.ahrimanic, 80)}</p>
-          </div>
-
-          <Link
-            href={`/spheres/${active.planet}`}
-            className="text-sm font-medium text-coral"
+      <AnimatePresence>
+        {active && sphere && (
+          <motion.div
+            key={activeLayer}
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            transition={{ type: 'spring', damping: 26, stiffness: 280 }}
+            className="fixed bottom-0 left-0 right-0 z-20 bg-white rounded-t-[24px] p-6 overflow-y-auto"
+            style={{ maxHeight: '60vh' }}
           >
-            Explore sphere →
-          </Link>
-        </div>
-      )}
+            {/* Header row */}
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <h2 className="font-serif text-2xl text-ink">{active.label}</h2>
+                <p className="text-sm text-ink-muted mt-0.5">
+                  {active.planetName} {active.glyph}
+                </p>
+              </div>
+              <button
+                onClick={() => setActiveLayer(null)}
+                className="text-ink-muted text-2xl leading-none p-1 -mt-1 -mr-1"
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Body member */}
+            <p className="text-sm text-ink mb-4 leading-relaxed">{sphere.bodyMember}</p>
+
+            {/* Luciferic pole */}
+            <div className="rounded-[12px] p-3 mb-2" style={{ background: `${active.color}22` }}>
+              <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">LUCIFERIC POLE</div>
+              <p className="text-xs text-ink leading-relaxed">{truncate(sphere.luciferic, 80)}</p>
+            </div>
+
+            {/* Ahrimanic pole */}
+            <div className="rounded-[12px] p-3 mb-4" style={{ background: `${active.color}22` }}>
+              <div className="text-[10px] font-semibold tracking-wider text-ink-muted mb-1">AHRIMANIC POLE</div>
+              <p className="text-xs text-ink leading-relaxed">{truncate(sphere.ahrimanic, 80)}</p>
+            </div>
+
+            <Link
+              href={`/spheres/${active.planet}`}
+              className="text-sm font-medium text-coral"
+            >
+              Explore sphere →
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

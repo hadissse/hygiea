@@ -54,6 +54,9 @@ export function Sidebar() {
 
   const reportsActive = pathname.startsWith('/reports');
   const orreryActive = pathname.startsWith('/orrery');
+  const hierarchyActive = pathname.startsWith('/hierarchy');
+  const journeyActive = pathname.startsWith('/journey') && !pathname.startsWith('/journey-');
+  const constellationsActive = pathname.startsWith('/constellations');
   const settingsActive = pathname.startsWith('/settings');
 
   return (
@@ -170,6 +173,62 @@ export function Sidebar() {
               <line x1="20" y1="12" x2="22" y2="12" />
             </svg>
             <span>Orrery</span>
+          </Link>
+
+          <Link
+            href="/hierarchy"
+            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+              hierarchyActive
+                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                : 'text-ink-muted hover:text-ink hover:bg-white/60'
+            }`}
+            style={hierarchyActive ? { borderLeftColor: '#9C8AB8' } : undefined}
+          >
+            {hierarchyActive && (
+              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#9C8AB8]" />
+            )}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <ellipse cx="12" cy="6" rx="8" ry="2.5" />
+              <ellipse cx="12" cy="12" rx="8" ry="2.5" />
+              <ellipse cx="12" cy="18" rx="8" ry="2.5" />
+            </svg>
+            <span>Hierarchy</span>
+          </Link>
+
+          <Link
+            href="/constellations"
+            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+              constellationsActive
+                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                : 'text-ink-muted hover:text-ink hover:bg-white/60'
+            }`}
+            style={constellationsActive ? { borderLeftColor: '#E8D5A3' } : undefined}
+          >
+            {constellationsActive && (
+              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#E8D5A3]" />
+            )}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <span>Stars</span>
+          </Link>
+
+          <Link
+            href="/journey"
+            className={`relative flex items-center gap-3 px-3 h-10 rounded-[12px] text-[14px] font-medium transition-colors ${
+              journeyActive
+                ? 'bg-white text-ink shadow-sm border border-rule-soft'
+                : 'text-ink-muted hover:text-ink hover:bg-white/60'
+            }`}
+            style={journeyActive ? { borderLeftColor: '#C2D3E2' } : undefined}
+          >
+            {journeyActive && (
+              <span className="absolute left-0 top-2 bottom-2 w-0.5 rounded-full bg-[#C2D3E2]" />
+            )}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 2 C8 6, 16 10, 12 14 C8 18, 16 20, 12 22" />
+            </svg>
+            <span>Journey</span>
           </Link>
         </div>
 

@@ -55,6 +55,19 @@
   }
 }
 
+@layer base {
+  :root {
+    --material-spirit: linear-gradient(135deg, #FFC78A, #FFE4B5);
+    --material-soul: rgba(255,255,255,0.08);
+    --material-etheric: linear-gradient(180deg, #7E97B8, #8FA084);
+    --material-physical: #2A2522;
+    --material-hierarchy: linear-gradient(180deg, #5A3E7A, #9C8AB8);
+    --glow-sun: 0 0 20px rgba(255,199,138,0.4);
+    --glow-moon: 0 0 20px rgba(194,211,226,0.4);
+    --glow-saturn: 0 0 20px rgba(90,62,122,0.4);
+  }
+}
+
 @layer utilities {
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom, 0px);
