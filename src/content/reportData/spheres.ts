@@ -178,3 +178,7 @@ export const SPHERES: SphereData[] = [
     "sphere_narrative": "The most primordial and compressed of cosmic forces — the intelligence of absolute transformation at the level of death and regeneration within entire evolutionary cycles. Works at the level of collective fate; does not negotiate; the force through which what must die finally can no longer be maintained."
   }
 ];
+
+export const SPHERE_BY_PLANET: Record<string, SphereData> = Object.fromEntries(
+  SPHERES.map(s => [s.planet, s])
+);

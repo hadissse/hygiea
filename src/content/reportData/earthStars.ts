@@ -45,3 +45,5 @@ export const OUTER_EARTH_STARS: OuterEarthStar[] = [
 ];
 
 export const OUTER_EARTH_STAR_BY_NAME: Record<string, OuterEarthStar> = Object.fromEntries(OUTER_EARTH_STARS.map(s => [s.name, s]));
+
+export const EARTH_STARS = OUTER_EARTH_STARS;

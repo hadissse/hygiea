@@ -492,3 +492,8 @@ export const FIXED_STARS: FixedStarData[] = [
     "interpretation_en": "The Leg of the Winged Horse, set north over the Water Barrier, Scheat is a star of imagination shadowed by misfortune, traditionally tied to danger from water and the drowning of hopes. It grants deep intuition and creative vision, yet warns of extreme bad luck, accident and the undertow of despair for those who lose their footing."
   }
 ];
+
+export const FIXED_STARS_BY_SIGN: Record<string, FixedStarData[]> = FIXED_STARS.reduce<Record<string, FixedStarData[]>>((acc, star) => {
+  (acc[star.sign] ??= []).push(star);
+  return acc;
+}, {});
