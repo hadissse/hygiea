@@ -22,38 +22,36 @@ Foundations fixed. Ready to build core features.
 - Sync stubs: events, traits, journey, calibrations, feedback, preferences,
   votes (src/lib/sync.ts)
 
-## Today Tab — Current State (needs work)
+## Today Tab — Current State
 
-Today shows the **day-of-week sphere** only (Saturn = Saturday, etc.).
-This is static and has nothing to do with the user's natal chart.
+Today is a **live transit instrument**. The static sphere-of-the-day is gone.
 
-The spec requires a **live transit stack** against the user's natal chart.
-`calculateTransits()` exists in `src/lib/transits.ts` and is used on the
-Self page — it just isn't wired to Today yet.
+### What's on Today now (src/app/(app)/today/page.tsx)
 
-## Next Up (in order)
+- **Transit Hero Card** — strongest active transit from `calculateTransits(chart)`,
+  moon transits filtered out. Shows: transit label + orb, aspect feel, natal
+  placement reading (truncated/expandable), soul question (aphorism), resonance votes.
+- **Mini Transit Cards** — up to 2 secondary active transits below the hero.
+- **Two Winds Card** — today's sphere's luciferic (coral) vs. ahrimanic (blue)
+  polarity check-in. Resonance votes attached.
+- **Body Card** — planet organ and daily practice. Resonance votes attached.
+- **Graceful fallback** — CTA to set up chart if no natal data; "quiet sky" message
+  if no active transits.
 
-1. **Live transit stack on Today** — Replace sphere-of-the-day with
-   `calculateTransits(chart).slice(0, 3)`. Render each transit as a card
-   with the 4-part voice arc (observation · meaning · shadow · soul question).
-   Keep the sphere-of-the-day as a secondary card below.
+### Resonance Votes
 
-2. **Resonance votes per card** — After each Today card: warm · quiet ·
-   stirring · flat. Store in localStorage under `STORAGE_KEYS.VOTES` keyed
-   by `{date}:{cardId}`. This is the app's only success metric.
+Stored in localStorage under `hygiea.vote.{cardId}.{date}`.
+Four options: Warm · Quiet · Stirring · Flat.
+VOTES_PREFIX added to STORAGE_KEYS.
 
-3. **Two Winds daily card** — A card showing today's sphere's luciferic vs.
-   ahrimanic pole as a polarity check-in. Data is already in
-   `src/content/spheres.ts` (`sphere.luciferic`, `sphere.ahrimanic`).
+## Next Up
 
-4. **Today's Question card** — A daily soul question pulled from the strongest
-   active transit's placement content.
+No immediate feature tasks. Today page is feature-complete for the v1 reading
+experience. Possible next directions:
 
-## Open Questions
-
-- Should Today's transit hero card show the exact time the transit perfects,
-  or just "active this week"?
-- Resonance votes: per-session (forget next day) or persistent across days?
+- Weekly or lunar-cycle view (rhythm layer)
+- Transit notification / push reminder at dawn
+- Calibration from resonance votes (feedback loop)
 
 ## Architecture Decisions
 

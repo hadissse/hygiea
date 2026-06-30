@@ -4,46 +4,15 @@ Last updated: 2026-06-30
 
 ---
 
-## 1. Live Transit Stack on Today
+## Nothing pending right now.
 
-**What**: Replace the static sphere-of-the-day (day-of-week planet) with
-real transits calculated against the user's natal chart. Render the top 3
-active transits as cards with the 4-part voice arc.
+Today tab is feature-complete for v1. All four tasks delivered.
 
-**Why it matters**: This is the core daily hook. Right now Today is just
-"it's Tuesday so Mars." That's nothing. The instrument must read *your* sky.
+Possible next directions if you want to push further:
 
-**Files**: `src/app/(app)/today/page.tsx`, `src/lib/transits.ts`
-`calculateTransits(chart)` already works — just not wired to Today.
-
----
-
-## 2. Resonance Votes Per Card
-
-**What**: After each Today card, show 4 choices: warm · quiet · stirring · flat.
-Store per-card per-day in localStorage under `STORAGE_KEYS.VOTES`.
-
-**Why it matters**: The only user signal the app has. Without it there's no
-feedback loop at all.
-
----
-
-## 3. Two Winds Daily Card
-
-**What**: A card on Today showing today's sphere's Luciferic vs. Ahrimanic
-pole as a polarity check-in. "Today's wind is blowing Luciferic — here's
-what that means."
-
-**Why it matters**: The most original idea in the app. No other astrology
-app has this. The content already exists in `src/content/spheres.ts`
-(`sphere.luciferic`, `sphere.ahrimanic`).
-
----
-
-## 4. Today's Question Card
-
-**What**: Pull the soul question from the strongest active transit's
-placement content and surface it as a final card on Today.
+- Weekly or lunar-cycle view (rhythm layer above Today)
+- Transit notification / push reminder at dawn
+- Calibration loop: resonance votes → surface what's resonating most
 
 ---
 
@@ -55,3 +24,7 @@ placement content and surface it as a final card on Today.
 - Explore pages, transit essays
 - Auth, settings, sync stubs
 - Context files (this session)
+- Live transit stack on Today (hero card + 2 mini cards)
+- Resonance votes per card (Warm · Quiet · Stirring · Flat, stored in localStorage)
+- Two Winds daily card (Luciferic vs. Ahrimanic from spheres.ts)
+- Today's Question (soul question from strongest transit's aphorism)
