@@ -2,7 +2,7 @@
 
 // Shared primitives for the content / teaching layer screens
 // (paywall, course, player, reflection, quotes, explore-depth, search, library).
-// Ported from the Sukoon design files. RTL-first; uses the app's Tailwind tokens.
+// RTL-first; uses the app's Tailwind tokens.
 
 import Link from 'next/link';
 

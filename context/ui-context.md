@@ -2,58 +2,93 @@
 
 ## Theme
 
-[Describe the overall visual language — e.g. Dark only.
-No light mode. The design language is a dark technical
-workspace — near-black backgrounds, layered surfaces,
-and vivid accent colors for interactive elements.]
+Light mode only. No dark mode. Warm cream background with ink typography.
+The visual language is quiet and contemplative — natural materials, soft
+borders, no shadows except on elevated modals.
 
-## Colors
+## Colors (Tailwind tokens from globals.css)
 
-[Define your color tokens as CSS custom properties.
-All components must use these tokens — no hardcoded
-hex values.]
+| Role              | Token            | Hex       |
+|-------------------|------------------|-----------|
+| Page background   | `bg-cream`       | `#FAFAF7` |
+| Surface           | `bg-cream-soft`  | `#F5F2EA` |
+| Muted surface     | `bg-sand`        | `#EDE9E0` |
+| Primary text      | `text-ink`       | `#1C1917` |
+| Soft text         | `text-ink-soft`  | `#292524` |
+| Muted text        | `text-ink-muted` | `#78716C` |
+| Primary accent    | `text-coral`     | `#E9785E` |
+| Soft accent       | `coral-soft`     | `#F3B8A6` |
+| Gold              | `text-gold`      | `#C9A84C` |
+| Amber             | `text-amber`     | `#D4A04C` |
+| Silver            | `text-silver`    | `#A8B4C0` |
+| Lake blue         | `text-lake`      | `#7E97B8` |
+| Sage green        | `text-sage`      | `#8FA084` |
+| Midnight (cards)  | `bg-midnight`    | `#0F1228` |
+| Border            | `border-rule-soft` | `#E5E1D8` |
 
-| Role            | CSS Variable       | Value    |
-| --------------- | ------------------ | -------- |
-| Page background | `--bg-base`        | `#[hex]` |
-| Surface         | `--bg-surface`     | `#[hex]` |
-| Primary text    | `--text-primary`   | `#[hex]` |
-| Muted text      | `--text-muted`     | `#[hex]` |
-| Primary accent  | `--accent-primary` | `#[hex]` |
-| Border          | `--border-default` | `#[hex]` |
-| Error           | `--state-error`    | `#[hex]` |
-| Success         | `--state-success`  | `#[hex]` |
+Hardcoded hex values are acceptable inside complex visual components (planet
+cards, chart wheel, biography timeline) where the colour is data-driven.
+Prefer Tailwind tokens for all structural and layout elements.
 
 ## Typography
 
-| Role      | Font              | Variable      |
-| --------- | ----------------- | ------------- |
-| UI text   | [e.g. Geist Sans] | `--font-sans` |
-| Code/mono | [e.g. Geist Mono] | `--font-mono` |
+All fonts use DM Sans. `font-serif` is aliased to DM Sans (not a serif font —
+the alias is a design-system convention for larger display text). Inter is used
+for mono/tabular numbers only.
+
+| Role         | Class         | Font    |
+|--------------|---------------|---------|
+| Display / hero | `font-serif`  | DM Sans |
+| Body copy    | `font-sans`   | DM Sans |
+| Labels/UI    | `font-ui`     | Inter   |
+| Numbers/mono | `font-mono`   | Inter   |
+
+Tracking conventions: section labels use `tracking-widest` + `text-[10px]` +
+`font-semibold` + `uppercase`. Never use all-caps on body copy.
 
 ## Border Radius
 
-| Context           | Class            |
-| ----------------- | ---------------- |
-| Inline / small UI | `rounded-[size]` |
-| Cards / panels    | `rounded-[size]` |
-| Modals / overlays | `rounded-[size]` |
+| Context             | Value   | Tailwind         |
+|---------------------|---------|------------------|
+| Chips / small UI    | 14px    | `rounded-[14px]` |
+| Cards / panels      | 18px    | `rounded-[18px]` |
+| Modals / overlays   | 22px    | `rounded-[22px]` |
+| Buttons             | 26px    | `rounded-[26px]` or `rounded-full` |
 
 ## Component Library
 
-[e.g. shadcn/ui on top of Tailwind. Components live
-in components/ui/. Use the CLI to add new components
-rather than writing from scratch.]
+No external component library. All components are built from scratch in
+`src/components/`. Core primitives:
+
+- `<Card>` — white rounded card with `border-rule-soft`
+- `<Chip>` — active/inactive toggle pill
+- `<Headline>` — display heading
+- `<Body>` — body copy with optional `muted` prop
+- `<FrameworkLabel>` — small kicker label for hermetic framework attribution
+
+Icons are planet and zodiac glyphs rendered via CSS `mask-image` with
+`/svg/*.svg` files. No Lucide or icon font. SVG glyphs sit in `public/svg/`.
 
 ## Layout Patterns
 
-- [Pattern — e.g. Editor: full-viewport split with
-  left sidebar, center canvas, right sidebar]
-- [Pattern — e.g. Sidebars: fixed width with border separator]
-- [Pattern — e.g. Modals: centered overlay with backdrop blur]
-- [Pattern — e.g. Navbar: top bar with bottom border]
+- **Mobile shell**: `max-w-[540px] mx-auto`, full-bleed cream background.
+- **App shell** (`(app)/layout.tsx`): top bar (48px) + bottom nav on mobile;
+  left sidebar on `md+`.
+- **Two-column desktop**: `md:flex-row` split (50/50 or 40/60) on Today and
+  detail pages.
+- **Card grids**: `grid grid-cols-2 md:grid-cols-3 gap-3` for planet and
+  placement cards.
+- **Full-bleed overlays** (Log, Onboarding): fixed GIF background + frosted
+  cream card floated in center, `max-w-[540px]`.
 
-## Icons
+## Planet & Zodiac Glyphs
 
-[e.g. Lucide React. Stroke-based icons only. Sizes:
-h-4 w-4 for inline, h-5 w-5 for buttons.]
+All rendered via CSS mask pattern:
+```css
+WebkitMaskImage: `url('/svg/${key}.svg')`
+maskImage: `url('/svg/${key}.svg')`
+WebkitMaskSize: 'contain'
+background: <color>
+```
+No `<img>` tags for glyphs except where a photo texture is intentional
+(planet card photo backgrounds in `public/media/`).
