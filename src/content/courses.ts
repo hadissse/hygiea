@@ -1,5 +1,4 @@
-// Course / series content for the teaching layer (Scr42-49, 94).
-// Static seed data ported from the Sukoon design files.
+// Course / series content for the teaching layer.
 
 export interface Course {
   id: string;

@@ -2,52 +2,61 @@
 
 ## General
 
-- [Principle — e.g. Keep modules small and single-purpose]
-- [Principle — e.g. Fix root causes, do not layer workarounds]
-- [Principle — e.g. Do not mix unrelated concerns in one
-  component or route]
+- Keep modules small and single-purpose.
+- Fix root causes — do not layer workarounds.
+- Do not mix unrelated concerns in one component or route.
+- No comments unless the WHY is non-obvious. No docstrings.
+- No feature flags or backward-compat shims — just change the code.
 
 ## TypeScript
 
-- [Rule — e.g. Strict mode is required throughout the project]
-- [Rule — e.g. Avoid any — use explicit interfaces or narrowly
-  scoped types]
-- [Rule — e.g. Validate unknown external input at system
-  boundaries before trusting it]
+- Strict mode throughout.
+- Avoid `any`. Use explicit interfaces or narrowly scoped types.
+- Validate unknown external input (localStorage reads, API responses)
+  at the boundary before trusting it. Wrap in try/catch.
 
-## [Framework — e.g. Next.js]
+## Next.js
 
-- [Convention — e.g. Default to server components]
-- [Convention — e.g. Add use client only when browser
-  interactivity requires it]
-- [Convention — e.g. Keep route handlers focused on a
-  single responsibility]
+- Default to `'use client'` for all app-shell pages — they all read
+  from localStorage which requires the browser.
+- API routes live in `src/app/api/` and handle a single responsibility.
+- Do not do chart calculation in API routes. It must run client-side.
 
 ## Styling
 
-- [Rule — e.g. Use CSS custom property tokens — no
-  hardcoded hex values]
-- [Rule — e.g. Follow the border radius scale defined
-  in ui-context.md]
+- Use Tailwind tokens for structural elements. Hardcoded hex is acceptable
+  inside data-driven visual components (chart wheel, planet cards, timeline).
+- Follow the border-radius scale from ui-context.md.
+- No inline `style={{ color: 'red' }}` for structural chrome — use tokens.
 
-## API Routes
+## localStorage
 
-- [Rule — e.g. Validate and parse request input before
-  any logic runs]
-- [Rule — e.g. Enforce auth and ownership before any mutation]
-- [Rule — e.g. Return consistent, predictable response shapes]
+- All localStorage access must be inside `useEffect`. Never access it at
+  module level or during render.
+- Use `STORAGE_KEYS` from `src/lib/storageKeys.ts` — never hardcode key strings.
+- Wrap every `JSON.parse` from localStorage in try/catch.
 
-## Data and Storage
+## Chart & Transits
 
-- [Rule — e.g. Metadata belongs in the database]
-- [Rule — e.g. Large generated content belongs in file
-  or blob storage]
-- [Rule — e.g. Do not store large content directly in
-  the database]
+- Chart calculation always happens client-side via astronomy-engine.
+- `src/lib/chartCalculator.ts` is the single source of truth for natal data.
+- `src/lib/transits.ts` calculates current transits against the natal chart.
+- Never send raw birth data to an API route.
+
+## Content
+
+- Sphere data lives in `src/content/spheres.ts`.
+- Placement content (planet-in-sign, sign-in-house readings) lives in
+  `src/content/placements.ts`.
+- Fixed star data in `src/content/fixedStars.ts`.
+- Static content is never fetched at runtime — it is imported directly.
 
 ## File Organization
 
-- `[folder]/` — [What belongs here]
-- `[folder]/` — [What belongs here]
-- `[folder]/` — [What belongs here]
-- `[folder]/` — [What belongs here]s
+- `src/app/` — pages and API routes only; no business logic
+- `src/lib/` — all business logic (chart, transits, events, traits, sync)
+- `src/content/` — static data (spheres, placements, fixed stars, courses)
+- `src/components/` — shared UI primitives and feature components
+- `src/i18n/` — all user-facing strings
+- `public/svg/` — planet and zodiac glyph SVGs
+- `public/media/` — planet photo textures

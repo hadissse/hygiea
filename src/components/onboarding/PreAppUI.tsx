@@ -2,12 +2,8 @@
 
 import type { CSSProperties, ReactNode } from 'react';
 
-/**
- * Shared UI primitives for the pre-app onboarding flows (/welcome and /quiz).
- * Faithful ports of the design-file helpers (GradientOrb, Topo, PrimaryBtn,
- * icons) from `Sukoon - 1/Design Files/brand.jsx`. Kept local to avoid
- * modifying shared components.
- */
+// Shared UI primitives for the pre-app onboarding flows (/welcome and /quiz).
+// Kept local to avoid modifying shared components.
 
 // ─── Palette (extras not in the Tailwind @theme) ───────────────────
 export const PALETTE = {

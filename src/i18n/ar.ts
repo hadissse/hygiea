@@ -1,5 +1,5 @@
 const ar = {
-  app_name: 'سُكون',
+  app_name: 'Hygiea',
 
   // Tabs
   tab_today: 'اليوم',
@@ -14,8 +14,8 @@ const ar = {
   header_saved: 'المحفوظات',
 
   // Onboarding
-  onboarding_welcome_title: 'أهلاً بك في سُكون',
-  onboarding_welcome_subtitle: 'خريطتك. سماؤك. سُكونك.',
+  onboarding_welcome_title: 'أهلاً بك في Hygiea',
+  onboarding_welcome_subtitle: 'خريطتك. سماؤك. ممارستك.',
   onboarding_welcome_cta: 'ابدأ',
   onboarding_name_label: 'اسمك',
   onboarding_name_placeholder: 'أدخل اسمك',
@@ -71,7 +71,7 @@ const ar = {
   settings_profile: 'الملف الشخصي',
   settings_data: 'بياناتك',
   settings_privacy: 'الخصوصية',
-  settings_about: 'عن سُكون',
+  settings_about: 'عن Hygiea',
   settings_edit_birth: 'تعديل بيانات الميلاد',
   settings_sovereignty: 'سيادة البيانات',
   settings_export: 'تصدير البيانات',
