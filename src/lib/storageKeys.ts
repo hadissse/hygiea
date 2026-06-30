@@ -10,4 +10,5 @@ export const STORAGE_KEYS = {
   CHART_GUIDE_SEEN: 'hygiea.chart-guide-seen',
   CLOUD_SYNC_CONSENT: 'hygiea.cloud-sync-consent',
   GEOCACHE_PREFIX: 'hygiea.geocache.',
+  VOTES_PREFIX: 'hygiea.vote.',
 } as const
